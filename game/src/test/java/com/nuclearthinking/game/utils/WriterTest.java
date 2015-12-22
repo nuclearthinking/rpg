@@ -7,49 +7,31 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class WriterTest {
-
-
-    @Test(testName = "корректная строка")
-    public void checkInputTestCorrect() {
+    private boolean checkInput(String string) {
         try {
             Class<Writer> cl = Writer.class;
             Writer obj = cl.newInstance();
             Method method = cl.getDeclaredMethod("checkInput", String.class);
             method.setAccessible(true);
-            Assert.assertEquals(method.invoke(obj, "qwe"), true);
-
+            return (boolean) method.invoke(obj, string);
         } catch (NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-            Assert.fail();
+            throw new RuntimeException(e.getMessage());
         }
+
+    }
+
+    @Test(testName = "корректная строка")
+    public void checkInputTestCorrect() {
+       Assert.assertEquals(checkInput("qwe"),true);
     }
 
     @Test(testName = "пустая строка")
     public void checkInputTestEmpty() {
-        try {
-            Class<Writer> cl = Writer.class;
-            Writer obj = cl.newInstance();
-            Method method = cl.getDeclaredMethod("checkInput", String.class);
-            method.setAccessible(true);
-            Assert.assertEquals(method.invoke(obj, ""), false);
-
-        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            Assert.fail();
-            e.printStackTrace();
-        }
+        Assert.assertEquals(checkInput(""),false);
     }
 
     @Test(testName = "пара пробелов")
     public void checkInputTestSomeWhitespaces() {
-        try {
-            Class<Writer> cl = Writer.class;
-            Writer obj = cl.newInstance();
-            Method method = cl.getDeclaredMethod("checkInput", String.class);
-            method.setAccessible(true);
-            Assert.assertEquals(method.invoke(obj, "  "), false);
-        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            Assert.fail();
-            e.printStackTrace();
-        }
+        Assert.assertEquals(checkInput("  "),false);
     }
 }
