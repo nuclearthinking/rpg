@@ -8,10 +8,23 @@ package com.nuclearthinking.game.obj;
  */
 
 public class Player {
+
+    private Player() {
+    }
+
+    private static class PlayerHolder {
+        private static final Player INSTANCE = new Player();
+    }
+
+    public static Player getInstance() {
+        return PlayerHolder.INSTANCE;
+    }
+
     private int hitPoints = 100;
     private PlayerClass pClass;
     private int level = 1;
     private String name;
+
 
     public String getName() {
         return name;
