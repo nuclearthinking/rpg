@@ -10,19 +10,19 @@ import com.nuclearthinking.game.utils.UserInput;
  *
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
-public class Game {
+public final class Game {
 
     private Game() {
         Player player = Player.getInstance();
         setName(player);
     }
 
-    private static class GameHodler {
+    private static class GameHolder {
         private static final Game INSTANCE = new Game();
     }
 
     public static Game getInstance() {
-        return GameHodler.INSTANCE;
+        return GameHolder.INSTANCE;
     }
 
 

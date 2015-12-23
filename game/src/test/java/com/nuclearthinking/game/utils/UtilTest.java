@@ -35,4 +35,32 @@ public class UtilTest {
     }
 
 
+    @Test
+    public void testIsNumericOnly() throws Exception {
+        Assert.assertEquals(ut.isNumericOnly("1"),true);
+    }
+
+    @Test
+    public void testIsNumericOnly2() throws Exception {
+        Assert.assertEquals(ut.isNumericOnly("1324234"),true);
+    }
+
+    @Test
+    public void testIsNumericOnly3() throws Exception {
+        Assert.assertEquals(ut.isNumericOnly("123123q"),false);
+    }
+
+    @Test
+    public void testIsNumericOnly4() throws Exception {
+        Assert.assertEquals(ut.isNumericOnly("qweqwe"),false);
+    }
+
+    @Test
+    public void testIsNumericOnly5() throws Exception {
+        Assert.assertEquals(ut.isNumericOnly("!\"№№№"),false);
+    }
+    @Test
+    public void testIsNumericOnly6() throws Exception {
+        Assert.assertEquals(ut.isNumericOnly("фывйцв"),false);
+    }
 }
