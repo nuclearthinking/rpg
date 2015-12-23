@@ -3,6 +3,8 @@ package com.nuclearthinking.game.utils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by onifent
@@ -23,14 +25,10 @@ public class Writer {
     }
 
     private boolean checkInput(String input) {
-        boolean valid = true;
-
-        if (input.trim().length() == 0) {
-            valid = false;
-        }
-
-
-        return valid;
+        Pattern p = Pattern.compile("^[à-ÿa-z0-9_-]{1,15}$");
+        Matcher m = p.matcher(input);
+        return m.matches();
     }
+
 
 }
