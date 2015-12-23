@@ -20,49 +20,49 @@ public class UserInputTest {
 
     }
 
-    @Test(testName = "корректная строка")
+    @Test(testName = "РєРѕСЂСЂРµРєС‚РЅР°СЏ СЃС‚СЂРѕРєР°")
     public void checkInputTestCorrect() {
        Assert.assertEquals(checkInput("qwe"),true);
     }
 
-    @Test(testName = "пустая строка")
+    @Test(testName = "РїСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР°")
     public void checkInputTestEmpty() {
         Assert.assertEquals(checkInput(""),false);
     }
 
-    @Test(testName = "пара пробелов")
+    @Test(testName = "РїР°СЂР° РїСЂРѕР±РµР»РѕРІ")
     public void checkInputTestSomeWhitespaces() {
         Assert.assertEquals(checkInput("  "),false);
     }
 
-    @Test(testName = "допсимволы")
+    @Test(testName = "РґРѕРїСЃРёРјРІРѕР»С‹")
     public void checkInputTestNotLetterSymbols(){
         Assert.assertEquals(checkInput("][}{!]"),false);
     }
 
-    @Test(testName = "кирилический текст")
+    @Test(testName = "РєРёСЂРёР»РёС‡РµСЃРєРёР№ С‚РµРєСЃС‚")
     public void checkInputCyrilic(){
-        Assert.assertEquals(checkInput("фывфывфы"),true);
+        Assert.assertEquals(checkInput("С„С‹РІС„С‹РІС„С‹"),true);
     }
 
-    @Test(testName = "кирилически и английский текст")
+    @Test(testName = "РєРёСЂРёР»РёС‡РµСЃРєРё Рё Р°РЅРіР»РёР№СЃРєРёР№ С‚РµРєСЃС‚")
     public void checkInputMultitext(){
-        Assert.assertEquals(checkInput("фывqwe"),true);
+        Assert.assertEquals(checkInput("С„С‹РІqwe"),true);
     }
 
-    @Test(testName = "текст и цифры")
+    @Test(testName = "С‚РµРєСЃС‚ Рё С†РёС„СЂС‹")
     public void checkInputTextAndNum(){
         Assert.assertEquals(checkInput("1qwe3"),true);
     }
 
-    @Test(testName = "длинный текст, слишком длинный")
+    @Test(testName = "РґР»РёРЅРЅС‹Р№ С‚РµРєСЃС‚, СЃР»РёС€РєРѕРј РґР»РёРЅРЅС‹Р№")
     public void checkInputLongString(){
-        Assert.assertEquals(checkInput("йцукенгшщзфывапр"),false);
+        Assert.assertEquals(checkInput("Р№С†СѓРєРµРЅРіС€С‰Р·С„С‹РІР°РїСЂ"),false);
     }
 
-    @Test(testName = "длинный текст, в самый раз")
+    @Test(testName = "РґР»РёРЅРЅС‹Р№ С‚РµРєСЃС‚, РІ СЃР°РјС‹Р№ СЂР°Р·")
     public void checkInputLongStringCorrect(){
-        Assert.assertEquals(checkInput("йцуфывячссмивап"),true);
+        Assert.assertEquals(checkInput("Р№С†СѓС„С‹РІСЏС‡СЃСЃРјРёРІР°Рї"),true);
     }
 
 
