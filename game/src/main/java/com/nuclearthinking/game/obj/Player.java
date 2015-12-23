@@ -27,23 +27,23 @@ public class Player {
     private int level = 1;
     private String name;
 
-    private int strenght = 10;
-    private int intelegence = 10;
+    private int strength = 10;
+    private int intelligence = 10;
     private int agility = 10;
     private int stamina = 10;
 
 
-    public void levelUp(){
+    public void levelUp() {
         level++;
 
     }
 
     private void addStrenght(int amount) {
-        strenght = strenght + amount;
+        strength = strength + amount;
     }
 
     private void addIntelegence(int amount) {
-        intelegence = intelegence + amount;
+        intelligence = intelligence + amount;
     }
 
     private void addAgility(int amount) {
