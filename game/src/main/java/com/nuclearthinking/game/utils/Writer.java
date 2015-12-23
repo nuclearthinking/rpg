@@ -12,20 +12,31 @@ import java.util.regex.Pattern;
 
 public class Writer {
 
-    public String getUserInput() {
-        String input = null;
-        try {
-            BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
-            input = is.readLine();
+    public static void main(String[] args) {
+        Writer writer = new Writer();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        writer.getUserInput();
+    }
+
+    public String getUserInput() {
+
+        String input = null;
+        boolean vaild = true;
+        while (vaild) {
+            try {
+                BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
+                input = is.readLine();
+                vaild = !checkInput(input);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return input;
     }
 
     private boolean checkInput(String input) {
-        Pattern p = Pattern.compile("^[‡-ˇa-z0-9_-]{1,15}$");
+        Pattern p = Pattern.compile("^[–∞-—èa-z0-9_-]{1,15}$");
         Matcher m = p.matcher(input);
         return m.matches();
     }
