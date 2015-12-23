@@ -9,7 +9,4 @@ package com.nuclearthinking.game.utils;
 
 public class Printer {
 
-    public void Status(Object player, Object world, Object enviroment) {
-
-    }
 }

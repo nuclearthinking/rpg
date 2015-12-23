@@ -23,13 +23,7 @@ public final class GameStarter {
 
     public GameStarter() throws Exception {
         // printSection("Player load");
-        Player player = Player.getInstance();
-
-        if (player.getName() == null) {
-            System.out.println("Введите имя персонажа");
-            player.setName(input.getUserInput());
-            System.out.println("Добро пожаловать " + player.getName());
-        }
+        Game game = Game.getInstance();
 
     }
 
