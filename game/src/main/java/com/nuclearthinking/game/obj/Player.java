@@ -20,11 +20,39 @@ public class Player {
         return PlayerHolder.INSTANCE;
     }
 
+
+    private static final double DIFFICULITY = 1.0;
     private int hitPoints = 100;
     private PlayerClass pClass;
     private int level = 1;
     private String name;
 
+    private int strenght = 10;
+    private int intelegence = 10;
+    private int agility = 10;
+    private int stamina = 10;
+
+
+    public void levelUp(){
+        level++;
+
+    }
+
+    private void addStrenght(int amount) {
+        strenght = strenght + amount;
+    }
+
+    private void addIntelegence(int amount) {
+        intelegence = intelegence + amount;
+    }
+
+    private void addAgility(int amount) {
+        agility = agility + amount;
+    }
+
+    private void addStamina(int amount) {
+        stamina = stamina + amount;
+    }
 
     public String getName() {
         return name;
@@ -36,10 +64,6 @@ public class Player {
 
     public int getLevel() {
         return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public PlayerClass getpClass() {
