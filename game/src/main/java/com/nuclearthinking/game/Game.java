@@ -2,6 +2,7 @@ package com.nuclearthinking.game;
 
 import com.nuclearthinking.game.obj.Player;
 import com.nuclearthinking.game.utils.UserInput;
+import com.nuclearthinking.game.utils.Util;
 
 /**
  * Created
@@ -28,9 +29,17 @@ public final class Game {
 
     private void setName(Player player) {
         if (player.getName() == null) {
-            System.out.println("Введите имя персонажа");
             UserInput input = new UserInput();
-            player.setName(input.getUserInput());
+            Util ut = new Util();
+            boolean valid = false;
+            String playerName = null;
+            while (!valid){
+                System.out.println("Введите имя персонажа");
+                playerName = input.getUserInput();
+                valid = !ut.isNumericOnly(playerName);
+            }
+            String playerUpperCaseName = ut.setFirstCharUpperCase(playerName);
+            player.setName(playerUpperCaseName);
             System.out.println("Добро пожаловать " + player.getName());
         }
     }

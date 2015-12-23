@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  *
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
-public class Util {
+public class    Util {
 
     public String setFirstCharUpperCase(String string) {
         String firstChar = String.valueOf(string.charAt(0));
