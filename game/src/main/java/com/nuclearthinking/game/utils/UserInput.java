@@ -6,10 +6,6 @@ import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by onifent
- */
-
 public class UserInput {
 
 
