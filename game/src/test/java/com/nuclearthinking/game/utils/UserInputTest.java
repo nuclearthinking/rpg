@@ -6,11 +6,11 @@ import org.testng.annotations.Test;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class WriterTest {
+public class UserInputTest {
     private boolean checkInput(String string) {
         try {
-            Class<Writer> cl = Writer.class;
-            Writer obj = cl.newInstance();
+            Class<UserInput> cl = UserInput.class;
+            UserInput obj = cl.newInstance();
             Method method = cl.getDeclaredMethod("checkInput", String.class);
             method.setAccessible(true);
             return (boolean) method.invoke(obj, string);

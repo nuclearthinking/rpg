@@ -10,13 +10,8 @@ import java.util.regex.Pattern;
  * Created by onifent
  */
 
-public class Writer {
+public class UserInput {
 
-    public static void main(String[] args) {
-        Writer writer = new Writer();
-
-        writer.getUserInput();
-    }
 
     public String getUserInput() {
 
