@@ -1,5 +1,6 @@
 package com.nuclearthinking.game;
 
+import com.nuclearthinking.game.config.Config;
 import com.nuclearthinking.game.obj.Player;
 import com.nuclearthinking.game.utils.UserInput;
 import com.nuclearthinking.game.utils.Util;
@@ -12,6 +13,8 @@ import com.nuclearthinking.game.utils.Util;
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
 public final class Game {
+
+    private static final String welMsg = Config.WELCOME_MSG;
 
     private Game() {
         Player player = Player.getInstance();
@@ -40,7 +43,7 @@ public final class Game {
             }
             String playerUpperCaseName = ut.setFirstCharUpperCase(playerName);
             player.setName(playerUpperCaseName);
-            System.out.println("Добро пожаловать " + player.getName());
+            System.out.println(welMsg + " " + player.getName());
         }
     }
 
