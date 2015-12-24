@@ -17,8 +17,8 @@ public class PreparePlayer {
 
     private static final String welMsg = Config.WELCOME_MSG;
     private Player player;
+    private GameMessages messages = GameMessages.getInstance();
 
-    private static final String inputNameMessage = "Введите имя персонажа";
 
     private PreparePlayer() {
         player = Player.getInstance();
@@ -42,7 +42,7 @@ public class PreparePlayer {
             boolean valid = false;
             String playerName = null;
             while (!valid) {
-                System.out.println(inputNameMessage);
+                System.out.println(messages.getMessages().getInputNameMessage());
                 playerName = input.getUserInput();
                 valid = !ut.isNumericOnly(playerName);
             }
