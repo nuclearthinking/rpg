@@ -34,6 +34,7 @@ public class PreparePlayer {
     }
 
     private void setName(Player player) {
+        //TODO: Сделать это красивым и понятным!
         if (player.getName() == null) {
             UserInput input = new UserInput();
             Util ut = new Util();
