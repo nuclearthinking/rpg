@@ -27,7 +27,7 @@ public final class GameStarter {
 
     public GameStarter() throws Exception
     {
-        printSection("Player load");
+//        printSection("Player load");
         Game.getInstance();
     }
 
@@ -40,7 +40,7 @@ public final class GameStarter {
         {
             LogManager.getLogManager().readConfiguration(is);
         }
-        printSection("Config loading");
+//        printSection("Config loading");
         Config.load();
 
         gameStarter = new GameStarter();

@@ -6,7 +6,11 @@ import com.nuclearthinking.game.utils.UserInput;
 import com.nuclearthinking.game.utils.Util;
 
 /**
- * Created by onifent
+ * Created
+ * Date: 23.12.2015
+ * Time: 14:21
+ *
+ * @author Vladislav Radchenko (onfient@gmail.com)
  */
 
 public class PreparePlayer {
