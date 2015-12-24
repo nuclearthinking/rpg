@@ -29,7 +29,6 @@ public final class GameStarter {
     {
         printSection("Player load");
         Game.getInstance();
-
     }
 
     public static void main(String[] args) throws Exception
