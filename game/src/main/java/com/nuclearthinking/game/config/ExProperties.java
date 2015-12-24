@@ -3,7 +3,9 @@ package com.nuclearthinking.game.config;
 import java.util.Properties;
 
 /**
- * Created by kuksin-mv on 24.12.2015.
+ * Date: 24.12.2015
+ * Time: 13:44
+ * @author kuksin-mv
  */
 public class ExProperties extends Properties
 {

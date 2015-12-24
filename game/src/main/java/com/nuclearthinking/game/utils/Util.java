@@ -12,10 +12,10 @@ import java.util.regex.Pattern;
  */
 public class    Util {
 
-    public String setFirstCharUpperCase(String string) {
+    public String beautifyName(String string) {
         String firstChar = String.valueOf(string.charAt(0));
         String otherPart = string.substring(1, string.length());
-        return firstChar.toUpperCase() + otherPart;
+        return firstChar.toUpperCase() + otherPart.toLowerCase();
     }
 
     public boolean isNumericOnly(String string) {

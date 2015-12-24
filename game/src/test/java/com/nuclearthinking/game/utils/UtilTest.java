@@ -21,17 +21,17 @@ public class UtilTest {
 
     @Test(testName = "eng строка")
     public void testSetFirstCharUpperCase() throws Exception {
-        Assert.assertEquals(ut.setFirstCharUpperCase("qweqwe"), "Qweqwe");
+        Assert.assertEquals(ut.beautifyName("qweqwe"), "Qweqwe");
     }
 
     @Test(testName = "цифробуквы")
     public void testSetFirstCharUpperCase2() {
-        Assert.assertEquals(ut.setFirstCharUpperCase("1234qwe"), "1234qwe");
+        Assert.assertEquals(ut.beautifyName("1234qwe"), "1234qwe");
     }
 
     @Test(testName = "русскобуквы")
     public void testSetFristCharUpperCase3() {
-        Assert.assertEquals(ut.setFirstCharUpperCase("митрофан"), "Митрофан");
+        Assert.assertEquals(ut.beautifyName("митрофан"), "Митрофан");
     }
 
 
@@ -62,5 +62,25 @@ public class UtilTest {
     @Test
     public void testIsNumericOnly6() throws Exception {
         Assert.assertEquals(ut.isNumericOnly("фывйцв"),false);
+    }
+
+    @Test
+    public void testBeautifyName() throws Exception {
+        Assert.assertEquals(ut.beautifyName("дима"),"Дима");
+    }
+
+    @Test
+    public void testBeautifyName2() throws Exception {
+        Assert.assertEquals(ut.beautifyName("ДИМА"),"Дима");
+    }
+
+    @Test
+    public void testBeautifyName3() throws Exception {
+        Assert.assertEquals(ut.beautifyName("Peter"),"Peter");
+    }
+
+    @Test
+    public void testBeautifyName4() throws Exception {
+        Assert.assertEquals(ut.beautifyName("PETER"),"Peter");
     }
 }
