@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.lang.reflect.Field;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,6 +15,7 @@ import java.util.regex.Pattern;
 public class ConfigEngine
 {
     private static final Pattern pt = Pattern.compile("\\_([A-Za-z0-9]{1})");
+    private static final Logger LOG = Logger.getLogger(ConfigEngine.class.getName());
 
     /**
      * "src/main/resources/config/"
@@ -57,7 +60,7 @@ public class ConfigEngine
                                 break;
                             case "string" : field.set(null, settings.getProperty(fieldName, configField.value()));
                                 break;
-                            default : System.out.println("Unknown field type: " + field.getType().getSimpleName() + " field name: " + field.getName() + " config: " + config + ".properties");
+                            default : LOG.log(Level.WARNING, "Unknown field type: " + field.getType().getSimpleName() + " field name: " + field.getName() + " config: " + config + ".properties");
                                 break;
                         }
                     }
@@ -66,7 +69,7 @@ public class ConfigEngine
                         e.printStackTrace();
                         throw new Error("Failed to Load config/" + dir + " " + config + ".properties file. Field: " + field.getName() + " " + e.getMessage());
                     }
-                    System.out.println(config + ": set " + field.getName() + "{" + fieldName + "} = " + field.get(null));
+                    LOG.log(Level.FINE, config + ": set " + field.getName() + "{" + fieldName + "} = " + field.get(null));
                 }
             }
         }

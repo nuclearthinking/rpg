@@ -52,6 +52,6 @@ public final class GameStarter {
         while (s.length() < 61) {
             s = "-" + s;
         }
-        LOG.info(s);
+        LOG.fine(s);
     }
 }
