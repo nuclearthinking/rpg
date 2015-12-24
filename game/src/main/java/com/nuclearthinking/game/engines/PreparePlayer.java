@@ -43,6 +43,11 @@ public class PreparePlayer {
                 System.out.println(messages.getMessages().getInputNameMessage());
                 playerName = input.getUserInput();
                 valid = !ut.isNumericOnly(playerName);
+                String firstchar = String.valueOf(playerName.charAt(0));
+                if (ut.isNumericOnly(firstchar)){
+                    valid = false;
+                    System.out.println(messages.getMessages().getFirstCharNumeric());
+                }
             }
             String playerUpperCaseName = ut.beautifyName(playerName);
             player.setName(playerUpperCaseName);

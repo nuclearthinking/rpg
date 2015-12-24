@@ -33,6 +33,12 @@ public class Messages {
 
     @JsonProperty("unacceptableInputTooManyWhiteSpaces")
     private String unacceptableInputTooManyWhiteSpaces;
+    @JsonProperty("firstCharNumeric")
+    private String firstCharNumeric;
+
+    public String getFirstCharNumeric() {
+        return firstCharNumeric;
+    }
 
     public String getUnacceptableInputTooManyWhiteSpaces() {
         return unacceptableInputTooManyWhiteSpaces;
@@ -56,11 +62,6 @@ public class Messages {
     @JsonProperty("inputNameMessage")
     public String getInputNameMessage() {
         return inputNameMessage;
-    }
-
-    @JsonProperty("inputNameMessage")
-    public void setInputNameMessage(String inputNameMessage) {
-        this.inputNameMessage = inputNameMessage;
     }
 
     @JsonAnyGetter
