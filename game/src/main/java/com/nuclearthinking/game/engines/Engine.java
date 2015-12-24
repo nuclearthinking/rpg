@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.logging.Logger;
 
 /**
- * Created by kuksin-mv on 24.12.2015.
+ * Date: 24.12.2015
+ * Time: 11:51
+ * @author kuksin-mv
  */
 public class Engine
 {

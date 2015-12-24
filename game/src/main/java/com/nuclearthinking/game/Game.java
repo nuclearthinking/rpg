@@ -1,9 +1,8 @@
 package com.nuclearthinking.game;
 
 import com.nuclearthinking.game.config.Config;
-import com.nuclearthinking.game.obj.Player;
-import com.nuclearthinking.game.utils.UserInput;
-import com.nuclearthinking.game.utils.Util;
+import com.nuclearthinking.game.engines.PreparePlayer;
+import com.nuclearthinking.game.utils.Printable;
 
 /**
  * Created
@@ -12,13 +11,12 @@ import com.nuclearthinking.game.utils.Util;
  *
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
-public final class Game {
+public final class Game extends Printable {
 
     private static final String welMsg = Config.WELCOME_MSG;
 
     private Game() {
-        Player player = Player.getInstance();
-        setName(player);
+        PreparePlayer preparePlayer = PreparePlayer.getInstance();
     }
 
     private static class GameHolder {
@@ -29,22 +27,5 @@ public final class Game {
         return GameHolder.INSTANCE;
     }
 
-
-    private void setName(Player player) {
-        if (player.getName() == null) {
-            UserInput input = new UserInput();
-            Util ut = new Util();
-            boolean valid = false;
-            String playerName = null;
-            while (!valid){
-                System.out.println("Введите имя персонажа");
-                playerName = input.getUserInput();
-                valid = !ut.isNumericOnly(playerName);
-            }
-            String playerUpperCaseName = ut.setFirstCharUpperCase(playerName);
-            player.setName(playerUpperCaseName);
-            System.out.println(welMsg + " " + player.getName());
-        }
-    }
 
 }
