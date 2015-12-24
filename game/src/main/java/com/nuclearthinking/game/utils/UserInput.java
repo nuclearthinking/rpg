@@ -1,5 +1,7 @@
 package com.nuclearthinking.game.utils;
 
+import com.nuclearthinking.game.engines.GameMessages;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,6 +10,7 @@ import java.util.regex.Pattern;
 
 public class UserInput {
 
+    private GameMessages messages = GameMessages.getInstance();
 
     public String getUserInput() {
 
@@ -19,17 +22,17 @@ public class UserInput {
                 input = is.readLine();
                 vaild = checkInput(input);
                 if (!vaild) {
-                        if (input.trim().length() <= 0) {
-                            System.out.println("Введите текст.");
+                    if (input.trim().length() <= 0) {
+                        System.out.println(messages.getMessages().getInputText());
+                    } else {
+                        if (input.length() > 15) {
+                            System.out.println(messages.getMessages().getUnacceptableInputTooLong());
                         } else {
-                            if (input.length() > 15) {
-                                System.out.println("Недопустимый ввод, сообщение не должно быть длинее 15 символов.");
-                            } else {
-                                if (input.trim().length() < input.length()) {
-                                    System.out.println("Недопустимый ввод, сообщение не должно содержать пробелы.");
-                                }
+                            if (input.trim().length() < input.length()) {
+                                System.out.println(messages.getMessages().getUnacceptableInputTooManyWhiteSpaces());
                             }
                         }
+                    }
                 }
 
             } catch (IOException e) {

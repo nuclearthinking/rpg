@@ -22,6 +22,33 @@ public class Messages {
     @JsonProperty("inputNameMessage")
     private String inputNameMessage;
 
+    @JsonProperty("welcomeMessage")
+    private String welcomeMessage;
+
+    @JsonProperty("inputText")
+    private String inputText;
+
+    @JsonProperty("unacceptableInputTooLong")
+    private String unacceptableInputTooLong;
+
+    @JsonProperty("unacceptableInputTooManyWhiteSpaces")
+    private String unacceptableInputTooManyWhiteSpaces;
+
+    public String getUnacceptableInputTooManyWhiteSpaces() {
+        return unacceptableInputTooManyWhiteSpaces;
+    }
+
+    public String getUnacceptableInputTooLong() {
+        return unacceptableInputTooLong;
+    }
+
+    public String getInputText() {
+        return inputText;
+    }
+
+    public String getWelcomeMessage() {
+        return welcomeMessage;
+    }
 
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
