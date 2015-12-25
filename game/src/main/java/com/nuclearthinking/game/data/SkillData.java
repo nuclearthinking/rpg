@@ -1,10 +1,12 @@
 package com.nuclearthinking.game.data;
 
+import com.nuclearthinking.game.config.Config;
 import com.nuclearthinking.game.engines.Engine;
 import com.nuclearthinking.game.model.skills.Skill;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -39,6 +41,7 @@ public class SkillData
 
         for (Skill skill : _skills.values())
         {
+
             final int skillId = skill.getId();
             final int skillLvl = skill.getLevel();
 
@@ -72,7 +75,20 @@ public class SkillData
     //Тут для нуждающихся будем отдавать ид скила и уровень
     public Skill getSkill(int skillId, int level)
     {
-        LOG.warning(getClass().getSimpleName() + ": No skill info found for skill id " + skillId + " and skill level " + level + ".");
+        final Skill result = _skills.get(getSkillHashCode(skillId, level));
+
+        if (result != null)
+        {
+            if(Config.DEBUG)
+            {
+                System.out.println("Skill Name: " + result.getName());
+                System.out.println("Skill Id: " + result.getId());
+                System.out.println("Skill Lvl: " + getMaxLevel(result.getId()));
+            }
+            return result;
+        }
+
+        LOG.log(Level.WARNING, getClass().getSimpleName() + ": No skill info found for skill id " + skillId + " and skill level " + level + ".");
         return null;
     }
 

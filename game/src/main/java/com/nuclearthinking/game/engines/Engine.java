@@ -1,11 +1,15 @@
 package com.nuclearthinking.game.engines;
 
+import com.nuclearthinking.game.data.SkillData;
+import com.nuclearthinking.game.engines.skills.DocumentSkill;
 import com.nuclearthinking.game.model.skills.Skill;
 import com.nuclearthinking.game.utils.filter.XMLFilter;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -14,48 +18,79 @@ import java.util.logging.Logger;
  *
  * @author kuksin-mv
  */
-public class Engine {
+public class Engine
+{
     private static final Logger LOG = Logger.getLogger(Engine.class.getName());
+
+    private static final String DIR = System.getProperty("user.dir") + "\\game\\src\\main\\resources\\";
 
     private final List<File> _itemFiles = new ArrayList<File>();
     private final List<File> _skillFiles = new ArrayList<File>();
 
-    protected Engine() {
-        hashFiles("data/items", _itemFiles);
-        hashFiles("data/skills", _skillFiles);
+    protected Engine()
+    {
+       // hashFiles("data/items", _itemFiles);
+        hashFiles(DIR + "data/skills", _skillFiles);
     }
 
-    public static Engine getInstance() {
+    public static Engine getInstance()
+    {
         return SingletonHolder._instance;
     }
 
-    private void hashFiles(String dirname, List<File> hash) {
+    private void hashFiles(String dirname, List<File> hash)
+    {
         File dir = new File(dirname);
-        if (!dir.exists()) {
-            LOG.warning("Dir " + dir.getAbsolutePath() + " not exists");
+        if (!dir.exists())
+        {
+            LOG.log(Level.WARNING, "Dir " + dir.getAbsolutePath() + " not exists");
             return;
         }
 
         final File[] files = dir.listFiles(new XMLFilter());
-        if (files != null) {
-            for (File f : files) {
+        if (files != null)
+        {
+            for (File f : files)
+            {
                 hash.add(f);
             }
         }
     }
 
-    public List<Skill> loadSkills(File file) {
-        if (file == null) {
-            LOG.warning("Skill file not found.");
+    public List<Skill> loadSkills(File file)
+    {
+        if (file == null)
+        {
+            LOG.log(Level.WARNING, "Skill file not found.");
             return null;
         }
-        return null; //TODO: Тут надо будет возвращать список полученный из парсинга фала со скилами
-        //DocumentSkill.parse();
-        //return DocumentSkill.getSkills();
+        DocumentSkill doc = new DocumentSkill(file);
+        doc.parse();
+        return doc.getSkills();
+    }
+
+    public void loadAllSkills(final Map<Integer, Skill> allSkills)
+    {
+        int count = 0;
+        for (File file : _skillFiles)
+        {
+            List<Skill> s = loadSkills(file);
+            if (s == null)
+            {
+                continue;
+            }
+            for (Skill skill : s)
+            {
+                allSkills.put(SkillData.getSkillHashCode(skill), skill);
+                count++;
+            }
+        }
+        LOG.log(Level.FINE, getClass().getSimpleName() + ": Loaded " + count + " Skill templates from XML files.");
     }
 
 
-    private static class SingletonHolder {
+    private static class SingletonHolder
+    {
         protected static final Engine _instance = new Engine();
     }
 }

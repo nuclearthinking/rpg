@@ -1,6 +1,8 @@
 package com.nuclearthinking.game;
 
 import com.nuclearthinking.game.config.Config;
+import com.nuclearthinking.game.data.SkillData;
+import com.nuclearthinking.game.model.skills.Skill;
 import com.nuclearthinking.game.utils.UserInput;
 
 import java.io.File;
@@ -25,9 +27,18 @@ public final class GameStarter {
     public static GameStarter gameStarter;
     private UserInput input = new UserInput();
 
-    public GameStarter() throws Exception {
+    public GameStarter() throws Exception
+    {
 //        printSection("Player load");
+        SkillData.getInstance();
         Game.getInstance();
+
+
+        //Секция для дебага. Настройка в general конфиге
+        if(Config.DEBUG)
+        {
+            final Skill skill = SkillData.getInstance().getSkill(1, 10);
+        }
     }
 
     public static void main(String[] args) throws Exception {
