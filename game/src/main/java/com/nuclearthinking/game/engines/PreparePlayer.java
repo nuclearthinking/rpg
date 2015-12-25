@@ -13,15 +13,20 @@ import com.nuclearthinking.game.utils.Util;
  */
 
 public class PreparePlayer {
-
+    UserInput input = new UserInput();
+    Util ut = new Util();
     private Player player;
     private GameMessages messages = GameMessages.getInstance();
 
 
     private PreparePlayer() {
         player = Player.getInstance();
+        if (player.getName() == null) {
+            String playerName = getValidName();
+            player.setName(ut.beautifyName(playerName));
+            System.out.println(messages.getMessages().getWelcomeMessage() + " " + player.getName());
+        }
 
-        setName(player);
 
     }
 
@@ -33,28 +38,17 @@ public class PreparePlayer {
         return player;
     }
 
-    private void setName(Player player) {
-        //TODO: Сделать это красивым и понятным!
-        if (player.getName() == null) {
-            UserInput input = new UserInput();
-            Util ut = new Util();
-            boolean valid = false;
-            String playerName = null;
-            while (!valid) {
-                System.out.println(messages.getMessages().getInputNameMessage());
-                playerName = input.getUserInput();
-                valid = !ut.isNumericOnly(playerName);
-                String firstchar = String.valueOf(playerName.charAt(0));
-                if (ut.isNumericOnly(firstchar)){
-                    valid = false;
-                    System.out.println(messages.getMessages().getFirstCharNumeric());
-                }
-            }
-            String playerUpperCaseName = ut.beautifyName(playerName);
-            player.setName(playerUpperCaseName);
-            System.out.println(messages.getMessages().getWelcomeMessage() + " " + player.getName());
+    protected String getValidName() {
+        boolean valid = false;
+        String playerName = null;
+        while (!valid) {
+            System.out.println(messages.getMessages().getInputNameMessage());
+            playerName = input.getUserInput();
+            valid = ut.isValidName(playerName);
         }
+        return playerName;
     }
+
 
     private static class PreparePlayerHolder {
         private static final PreparePlayer INSTANCE = new PreparePlayer();

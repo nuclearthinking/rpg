@@ -25,19 +25,16 @@ public final class GameStarter {
     public static GameStarter gameStarter;
     private UserInput input = new UserInput();
 
-    public GameStarter() throws Exception
-    {
+    public GameStarter() throws Exception {
 //        printSection("Player load");
         Game.getInstance();
     }
 
-    public static void main(String[] args) throws Exception
-    {
+    public static void main(String[] args) throws Exception {
         File logFile = new File(DIR + LOG_FOLDER);
         logFile.mkdir();
 
-        try(InputStream is = new FileInputStream(new File(DIR + LOG_NAME)))
-        {
+        try (InputStream is = new FileInputStream(new File(DIR + LOG_NAME))) {
             LogManager.getLogManager().readConfiguration(is);
         }
 //        printSection("Config loading");
@@ -46,8 +43,7 @@ public final class GameStarter {
         gameStarter = new GameStarter();
     }
 
-    public static void printSection(String s)
-    {
+    public static void printSection(String s) {
         s = "=[ " + s + " ]";
         while (s.length() < 61) {
             s = "-" + s;

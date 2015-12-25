@@ -10,7 +10,12 @@ import java.util.regex.Pattern;
  *
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
-public class    Util {
+public class Util {
+
+
+    public boolean isValidName(String string) {
+        return !firstCharIsNumeric(string);
+    }
 
     public String beautifyName(String string) {
         String firstChar = String.valueOf(string.charAt(0));
@@ -22,5 +27,10 @@ public class    Util {
         Pattern p = Pattern.compile("\\p{Digit}++");
         Matcher m = p.matcher(string);
         return m.matches();
+    }
+
+    public boolean firstCharIsNumeric(String string) {
+        String firstCharString = String.valueOf(string.charAt(0));
+        return isNumericOnly(firstCharString);
     }
 }

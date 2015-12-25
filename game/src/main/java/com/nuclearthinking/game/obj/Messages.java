@@ -33,8 +33,11 @@ public class Messages {
 
     @JsonProperty("unacceptableInputTooManyWhiteSpaces")
     private String unacceptableInputTooManyWhiteSpaces;
+
     @JsonProperty("firstCharNumeric")
     private String firstCharNumeric;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public String getFirstCharNumeric() {
         return firstCharNumeric;
@@ -55,9 +58,6 @@ public class Messages {
     public String getWelcomeMessage() {
         return welcomeMessage;
     }
-
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("inputNameMessage")
     public String getInputNameMessage() {

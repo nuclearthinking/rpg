@@ -19,12 +19,12 @@ public final class Game extends Printable {
         PreparePlayer preparePlayer = PreparePlayer.getInstance();
     }
 
-    private static class GameHolder {
-        private static final Game INSTANCE = new Game();
-    }
-
     public static Game getInstance() {
         return GameHolder.INSTANCE;
+    }
+
+    private static class GameHolder {
+        private static final Game INSTANCE = new Game();
     }
 
 

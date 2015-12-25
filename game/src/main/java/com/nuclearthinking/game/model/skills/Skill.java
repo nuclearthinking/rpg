@@ -8,40 +8,34 @@ import java.util.logging.Logger;
 /**
  * Created by kuksin-mv on 24.12.2015.
  */
-public class Skill implements IIdentifiable
-{
+public class Skill implements IIdentifiable {
     private static final Logger LOG = Logger.getLogger(Skill.class.getName());
-    
+
     private final int _id;
     private final int _level;
     private final String _name;
-    
-    public Skill(StatsSet set)
-    {
+
+    public Skill(StatsSet set) {
         _id = set.getInt("skill_id");
         _level = set.getInt("level");
         _name = set.getString("name", "");
     }
 
     @Override
-    public int getId()
-    {
+    public int getId() {
         return _id;
     }
 
-    public int getLevel()
-    {
+    public int getLevel() {
         return _level;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return _name;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Skill " + _name + "(" + _id + "," + _level + ")";
     }
 }

@@ -10,58 +10,44 @@ import java.util.logging.Logger;
 /**
  * Created by kuksin-mv on 24.12.2015.
  */
-public class StatsSet implements IParserAdvUtils
-{
+public class StatsSet implements IParserAdvUtils {
+    public static final StatsSet EMPTY_STATSET = new StatsSet(Collections.<String, Object>emptyMap());
     private static final Logger _log = Logger.getLogger(StatsSet.class.getName());
-
-    public static final StatsSet EMPTY_STATSET = new StatsSet(Collections.<String, Object> emptyMap());
-
     private final Map<String, Object> _set;
 
-    public StatsSet()
-    {
+    public StatsSet() {
         this(new LinkedHashMap<>());
     }
 
-    public StatsSet(Map<String, Object> map)
-    {
+    public StatsSet(Map<String, Object> map) {
         _set = map;
     }
 
-    public final Map<String, Object> getSet()
-    {
+    public final Map<String, Object> getSet() {
         return _set;
     }
 
-    public void add(StatsSet newSet)
-    {
+    public void add(StatsSet newSet) {
         _set.putAll(newSet.getSet());
     }
 
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
         return _set.isEmpty();
     }
 
     //TODO: Сделать для остальных по аналогии
     @Override
-    public boolean getBoolean(String key)
-    {
+    public boolean getBoolean(String key) {
         Object val = _set.get(key);
-        if (val == null)
-        {
+        if (val == null) {
             throw new IllegalArgumentException("Boolean value required, but not specified");
         }
-        if (val instanceof Boolean)
-        {
+        if (val instanceof Boolean) {
             return ((Boolean) val).booleanValue();
         }
-        try
-        {
+        try {
             return Boolean.parseBoolean((String) val);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new IllegalArgumentException("Boolean value required, but found: " + val);
         }
     }
@@ -77,25 +63,19 @@ public class StatsSet implements IParserAdvUtils
     }
 
     @Override
-    public int getInt(String key)
-    {
+    public int getInt(String key) {
         final Object val = _set.get(key);
-        if (val == null)
-        {
+        if (val == null) {
             throw new IllegalArgumentException("Integer value required, but not specified: " + key + "!");
         }
 
-        if (val instanceof Number)
-        {
+        if (val instanceof Number) {
             return ((Number) val).intValue();
         }
 
-        try
-        {
+        try {
             return Integer.parseInt((String) val);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new IllegalArgumentException("Integer value required, but found: " + val + "!");
         }
     }
@@ -116,11 +96,9 @@ public class StatsSet implements IParserAdvUtils
     }
 
     @Override
-    public String getString(String key)
-    {
+    public String getString(String key) {
         Object val = _set.get(key);
-        if (val == null)
-        {
+        if (val == null) {
             throw new IllegalArgumentException("String value required, but not specified");
         }
         return String.valueOf(val);
@@ -147,23 +125,17 @@ public class StatsSet implements IParserAdvUtils
     }
 
     @Override
-    public int getInt(String key, int defaultValue)
-    {
+    public int getInt(String key, int defaultValue) {
         Object val = _set.get(key);
-        if (val == null)
-        {
+        if (val == null) {
             return defaultValue;
         }
-        if (val instanceof Number)
-        {
+        if (val instanceof Number) {
             return ((Number) val).intValue();
         }
-        try
-        {
+        try {
             return Integer.parseInt((String) val);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new IllegalArgumentException("Integer value required, but found: " + val);
         }
     }
@@ -184,11 +156,9 @@ public class StatsSet implements IParserAdvUtils
     }
 
     @Override
-    public String getString(String key, String defaultValue)
-    {
+    public String getString(String key, String defaultValue) {
         Object val = _set.get(key);
-        if (val == null)
-        {
+        if (val == null) {
             return defaultValue;
         }
         return String.valueOf(val);

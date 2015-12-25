@@ -16,7 +16,7 @@ public class Test {
         long currentex = 0;
 
         for (int o = 0; o < 60; o++) {
-            expnextlvl = level*100-100;
+            expnextlvl = level * 100 - 100;
             System.out.println(expnextlvl);
             level++;
         }
