@@ -34,7 +34,7 @@ public class ConfigEngine {
 
 
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            InputStream is = classLoader.getResourceAsStream("config\\general.properties");
+            InputStream is = classLoader.getResourceAsStream("config/general.properties");
             LineNumberReader lnr = new LineNumberReader(new InputStreamReader(is, "UTF-8"));
             settings.load(lnr);
             lnr.close();
