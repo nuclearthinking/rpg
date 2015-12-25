@@ -1,11 +1,14 @@
 package com.nuclearthinking.game.engines;
 
+import com.nuclearthinking.game.data.SkillData;
+import com.nuclearthinking.game.engines.skills.DocumentSkill;
 import com.nuclearthinking.game.model.skills.Skill;
 import com.nuclearthinking.game.utils.filter.XMLFilter;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -29,33 +32,58 @@ public class Engine {
         return SingletonHolder._instance;
     }
 
-    private void hashFiles(String dirname, List<File> hash) {
+    private void hashFiles(String dirname, List<File> hash)
+    {
         File dir = new File(dirname);
-        if (!dir.exists()) {
+        if (!dir.exists())
+        {
             LOG.warning("Dir " + dir.getAbsolutePath() + " not exists");
             return;
         }
 
         final File[] files = dir.listFiles(new XMLFilter());
         if (files != null) {
-            for (File f : files) {
+            for (File f : files)
+            {
                 hash.add(f);
             }
         }
     }
 
-    public List<Skill> loadSkills(File file) {
-        if (file == null) {
+    public List<Skill> loadSkills(File file)
+    {
+        if (file == null)
+        {
             LOG.warning("Skill file not found.");
             return null;
         }
-        return null; //TODO: Тут надо будет возвращать список полученный из парсинга фала со скилами
-        //DocumentSkill.parse();
-        //return DocumentSkill.getSkills();
+        DocumentSkill doc = new DocumentSkill(file);
+        doc.parse();
+        return doc.getSkills();
+    }
+
+    public void loadAllSkills(final Map<Integer, Skill> allSkills)
+    {
+        int count = 0;
+        for (File file : _skillFiles)
+        {
+            List<Skill> s = loadSkills(file);
+            if (s == null)
+            {
+                continue;
+            }
+            for (Skill skill : s)
+            {
+                allSkills.put(SkillData.getSkillHashCode(skill), skill);
+                count++;
+            }
+        }
+        LOG.info(getClass().getSimpleName() + ": Loaded " + count + " Skill templates from XML files.");
     }
 
 
-    private static class SingletonHolder {
+    private static class SingletonHolder
+    {
         protected static final Engine _instance = new Engine();
     }
 }

@@ -12,7 +12,8 @@ import java.util.logging.Logger;
 /**
  * Created by kuksin-mv on 24.12.2015.
  */
-public abstract class Base {
+public abstract class Base
+{
     protected final Logger LOG = Logger.getLogger(Base.class.getName());
 
     protected final Map<String, String[]> _tables = new HashMap<>();
@@ -23,15 +24,18 @@ public abstract class Base {
         _file = pFile;
     }
 
-    public Document parse() {
+    public Document parse()
+    {
         Document doc = null;
-        try {
+        try
+        {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setValidating(false);
             factory.setIgnoringComments(true);
             doc = factory.newDocumentBuilder().parse(_file);
             parseDocument(doc);
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             LOG.log(Level.SEVERE, "Error loading file " + _file, e);
         }
         return doc;
