@@ -1,5 +1,7 @@
 package com.nuclearthinking.game.utils;
 
+import com.nuclearthinking.game.engines.GameMessages;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,16 +10,30 @@ import java.util.regex.Pattern;
 
 public class UserInput {
 
+    private GameMessages messages = GameMessages.getInstance();
 
     public String getUserInput() {
 
         String input = null;
-        boolean vaild = true;
-        while (vaild) {
+        boolean vaild = false;
+        while (!vaild) {
             try {
                 BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
                 input = is.readLine();
-                vaild = !checkInput(input);
+                vaild = checkInput(input);
+                if (!vaild) {
+                    if (input.trim().length() <= 0) {
+                        System.out.println(messages.getMessages().getInputText());
+                    } else {
+                        if (input.length() > 15) {
+                            System.out.println(messages.getMessages().getUnacceptableInputTooLong());
+                        } else {
+                            if (input.trim().length() < input.length()) {
+                                System.out.println(messages.getMessages().getUnacceptableInputTooManyWhiteSpaces());
+                            }
+                        }
+                    }
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -27,7 +43,7 @@ public class UserInput {
     }
 
     private boolean checkInput(String input) {
-        Pattern p = Pattern.compile("^[а-яa-z0-9_-]{1,15}$");
+        Pattern p = Pattern.compile("^[A-ZА-Яа-яa-z0-9_-]{1,15}$");
         Matcher m = p.matcher(input);
         return m.matches();
     }

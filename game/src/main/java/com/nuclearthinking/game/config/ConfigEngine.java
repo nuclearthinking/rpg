@@ -10,7 +10,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by kuksin-mv on 24.12.2015.
+ * Date: 24.12.2015
+ * Time: 13:52
+ * @author kuksin-mv
  */
 public class ConfigEngine
 {

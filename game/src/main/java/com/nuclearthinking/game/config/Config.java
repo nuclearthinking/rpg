@@ -1,7 +1,9 @@
 package com.nuclearthinking.game.config;
 
 /**
- * Created by kuksin-mv on 24.12.2015.
+ * Date: 24.12.2015
+ * Time: 13:19
+ * @author kuksin-mv
  */
 public class Config extends ConfigEngine
 {

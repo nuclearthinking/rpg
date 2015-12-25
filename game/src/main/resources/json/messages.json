@@ -1,0 +1,8 @@
+{
+  "inputNameMessage": "Введите имя персонажа.",
+  "welcomeMessage": "Давно не виделись",
+  "inputText": "Введите текст.",
+  "unacceptableInputTooLong": "Недопустимый ввод, сообщение не должно быть длинее 15 символов.",
+  "unacceptableInputTooManyWhiteSpaces": "Недопустимый ввод, сообщение не должно содержать пробелы.",
+  "firstCharNumeric": "Имя не должно начинаться с цифры"
+}
