@@ -32,4 +32,14 @@ public class MageClass extends PlayerClass implements IPlayerClass {
     public int pDefence(Player player) {
         return 0;
     }
+
+    @Override
+    public double pCriticalChanse(Player player) {
+        return 0;
+    }
+
+    @Override
+    public double mCriticalChanse(Player player) {
+        return 0;
+    }
 }

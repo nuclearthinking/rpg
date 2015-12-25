@@ -18,4 +18,8 @@ public interface IPlayerClass {
     int mDefence(Player player);
 
     int pDefence(Player player);
+
+    double pCriticalChanse(Player player);
+
+    double mCriticalChanse(Player player);
 }
