@@ -65,5 +65,10 @@ public class UserInputTest {
         Assert.assertEquals(checkInput("йцуфывячссмивап"), true);
     }
 
+    @Test(testName = "с буквой ё")
+    public void checkInputWithYo(){
+        Assert.assertEquals(checkInput("лёха"),true);
+    }
+
 
 }

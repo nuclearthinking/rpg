@@ -43,7 +43,7 @@ public class UserInput {
     }
 
     private boolean checkInput(String input) {
-        Pattern p = Pattern.compile("^[A-ZА-Яа-яa-z0-9_-]{1,15}$");
+        Pattern p = Pattern.compile("^[ёA-ZА-Яа-яa-z0-9_-]{1,15}$");
         Matcher m = p.matcher(input);
         return m.matches();
     }
