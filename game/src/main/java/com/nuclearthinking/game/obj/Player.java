@@ -11,13 +11,13 @@ public class Player {
 
     private static final double DIFFICULITY = 1.0;
     private int hitPoints = 100;
-    private PlayerClass pClass;
     private int level = 1;
     private String name;
     private int strength = 10;
     private int intelligence = 10;
     private int agility = 10;
     private int stamina = 10;
+
     private Player() {
     }
 
@@ -58,13 +58,6 @@ public class Player {
         return level;
     }
 
-    public PlayerClass getpClass() {
-        return pClass;
-    }
-
-    public void setpClass(PlayerClass pClass) {
-        this.pClass = pClass;
-    }
 
     public int getHitPoints() {
         return hitPoints;

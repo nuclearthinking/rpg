@@ -1,7 +1,6 @@
 package com.nuclearthinking.game;
 
 import com.nuclearthinking.game.engines.PreparePlayer;
-import com.nuclearthinking.game.utils.Printable;
 
 /**
  * Created
@@ -10,7 +9,7 @@ import com.nuclearthinking.game.utils.Printable;
  *
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
-public final class Game extends Printable {
+public final class Game {
 
     private Game() {
         PreparePlayer preparePlayer = PreparePlayer.getInstance();
