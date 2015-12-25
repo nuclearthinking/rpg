@@ -13,15 +13,19 @@ import com.nuclearthinking.game.utils.Util;
  */
 
 public class PreparePlayer {
-
+    UserInput input = new UserInput();
+    Util ut = new Util();
     private Player player;
     private GameMessages messages = GameMessages.getInstance();
 
 
     private PreparePlayer() {
         player = Player.getInstance();
+        if (player.getName() == null) {
 
-        setName(player);
+        }
+        System.out.println(messages.getMessages().getWelcomeMessage() + " " + player.getName());
+
 
     }
 
@@ -33,27 +37,33 @@ public class PreparePlayer {
         return player;
     }
 
-    private void setName(Player player) {
+    protected String getValidName() {
         //TODO: Сделать это красивым и понятным!
-        if (player.getName() == null) {
-            UserInput input = new UserInput();
-            Util ut = new Util();
-            boolean valid = false;
-            String playerName = null;
-            while (!valid) {
-                System.out.println(messages.getMessages().getInputNameMessage());
-                playerName = input.getUserInput();
-                valid = !ut.isNumericOnly(playerName);
-                String firstchar = String.valueOf(playerName.charAt(0));
-                if (ut.isNumericOnly(firstchar)){
+        boolean valid = false;
+        String playerName;
+        while (!valid) {
+
+            System.out.println(messages.getMessages().getInputNameMessage());
+            playerName = input.getUserInput();
+            if (!ut.isNumericOnly(playerName)) {
+                if (!ut.firstCharIsNumeric(playerName)) {
+                    return ut.beautifyName(playerName);
+                } else {
                     valid = false;
                     System.out.println(messages.getMessages().getFirstCharNumeric());
                 }
+            } else {
+                valid = false;
             }
-            String playerUpperCaseName = ut.beautifyName(playerName);
-            player.setName(playerUpperCaseName);
-            System.out.println(messages.getMessages().getWelcomeMessage() + " " + player.getName());
         }
+        return null;
+    }
+
+    protected boolean isValidName(String string) {
+        boolean valid;
+        valid = ut.isNumericOnly(string);
+        valid = ut.firstCharIsNumeric(string);
+        return valid;
     }
 
     private static class PreparePlayerHolder {

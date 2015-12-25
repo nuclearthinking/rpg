@@ -83,4 +83,22 @@ public class UtilTest {
     public void testBeautifyName4() throws Exception {
         Assert.assertEquals(ut.beautifyName("PETER"),"Peter");
     }
+
+    @Test
+    public void testFirstCharIsNumeric() throws Exception {
+        Assert.assertEquals(ut.firstCharIsNumeric("1111"),true);
+    }
+
+    @Test
+    public void testFirstCharIsNumeric2() throws Exception {
+        Assert.assertEquals(ut.firstCharIsNumeric("qweqwe"),false);
+    }
+    @Test
+    public void testFirstCharIsNumeric3() throws Exception {
+        Assert.assertEquals(ut.firstCharIsNumeric("1"),true);
+    }
+    @Test
+    public void testFirstCharIsNumeric4() throws Exception {
+        Assert.assertEquals(ut.firstCharIsNumeric("q1qwe"),false);
+    }
 }
