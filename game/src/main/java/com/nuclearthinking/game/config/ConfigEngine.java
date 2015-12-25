@@ -1,8 +1,9 @@
 package com.nuclearthinking.game.config;
 
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
+
+import org.apache.commons.io.IOUtils;
+
+import java.io.*;
 import java.lang.reflect.Field;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,9 +27,15 @@ public class ConfigEngine {
      * @param config
      */
     public static void loadConfig(Class<?> configClass, String config, String dir) {
+
         try {
+
             ExProperties settings = new ExProperties();
-            LineNumberReader lnr = new LineNumberReader(new InputStreamReader(new FileInputStream(dir + config + ".properties"), "UTF-8"));
+
+
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            InputStream is = classLoader.getResourceAsStream("config\\general.properties");
+            LineNumberReader lnr = new LineNumberReader(new InputStreamReader(is, "UTF-8"));
             settings.load(lnr);
             lnr.close();
 
@@ -79,6 +86,18 @@ public class ConfigEngine {
             e.printStackTrace();
             throw new Error("Failed to Load config " + dir + " " + config + ".properties file.");
         }
+    }
+
+    public static final String PREFIX = "stream2file";
+    public static final String SUFFIX = ".tmp";
+
+    public static File stream2file(InputStream in) throws IOException {
+        final File tempFile = File.createTempFile(PREFIX, SUFFIX);
+        tempFile.deleteOnExit();
+        try (FileOutputStream out = new FileOutputStream(tempFile)) {
+            IOUtils.copy(in, out);
+        }
+        return tempFile;
     }
 
     /**
