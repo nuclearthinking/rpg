@@ -11,12 +11,12 @@ import org.testng.annotations.Test;
  *
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
-public class UtilTest {
-    Util ut;
+public class StringUtilTest {
+    StringUtil ut;
 
     @BeforeMethod
     public void setUp() {
-        ut = new Util();
+        ut = new StringUtil();
     }
 
     @Test(testName = "eng строка")

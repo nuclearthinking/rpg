@@ -5,8 +5,10 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nuclearthinking.game.obj.Messages;
+import com.nuclearthinking.game.utils.ResourceUtil;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Date: 24.12.2015
@@ -15,6 +17,7 @@ import java.io.*;
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
 public class GameMessages {
+    private ResourceUtil res = new ResourceUtil();
 
     private GameMessages() {
 
@@ -26,8 +29,7 @@ public class GameMessages {
 
     public Messages getMessages() {
         Messages messages = null;
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        InputStream is = classLoader.getResourceAsStream("json/messages.json");
+        InputStream is = res.getResourceAsStream("json/messages.json");
         try {
             JsonFactory jsonFactory = new JsonFactory();
             JsonParser jsonParser = jsonFactory.createParser(is);
