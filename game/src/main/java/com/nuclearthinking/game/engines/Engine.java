@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -17,18 +18,23 @@ import java.util.logging.Logger;
  *
  * @author kuksin-mv
  */
-public class Engine {
+public class Engine
+{
     private static final Logger LOG = Logger.getLogger(Engine.class.getName());
+
+    private static final String DIR = System.getProperty("user.dir") + "\\game\\src\\main\\resources\\";
 
     private final List<File> _itemFiles = new ArrayList<File>();
     private final List<File> _skillFiles = new ArrayList<File>();
 
-    protected Engine() {
-        hashFiles("data/items", _itemFiles);
-        hashFiles("data/skills", _skillFiles);
+    protected Engine()
+    {
+       // hashFiles("data/items", _itemFiles);
+        hashFiles(DIR + "data/skills", _skillFiles);
     }
 
-    public static Engine getInstance() {
+    public static Engine getInstance()
+    {
         return SingletonHolder._instance;
     }
 
@@ -37,12 +43,13 @@ public class Engine {
         File dir = new File(dirname);
         if (!dir.exists())
         {
-            LOG.warning("Dir " + dir.getAbsolutePath() + " not exists");
+            LOG.log(Level.WARNING, "Dir " + dir.getAbsolutePath() + " not exists");
             return;
         }
 
         final File[] files = dir.listFiles(new XMLFilter());
-        if (files != null) {
+        if (files != null)
+        {
             for (File f : files)
             {
                 hash.add(f);
@@ -54,7 +61,7 @@ public class Engine {
     {
         if (file == null)
         {
-            LOG.warning("Skill file not found.");
+            LOG.log(Level.WARNING, "Skill file not found.");
             return null;
         }
         DocumentSkill doc = new DocumentSkill(file);
@@ -78,7 +85,7 @@ public class Engine {
                 count++;
             }
         }
-        LOG.info(getClass().getSimpleName() + ": Loaded " + count + " Skill templates from XML files.");
+        LOG.log(Level.FINE, getClass().getSimpleName() + ": Loaded " + count + " Skill templates from XML files.");
     }
 
 

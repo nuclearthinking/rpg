@@ -168,4 +168,15 @@ public class StatsSet implements IParserAdvUtils {
     public <T extends Enum<T>> T getEnum(String key, Class<T> clazz, T defaultValue) {
         return null;
     }
+
+    public void set(String key, int value)
+    {
+        _set.put(key, value);
+    }
+
+    public void set(String key, String value)
+    {
+        _set.put(key, value);
+    }
+
 }
