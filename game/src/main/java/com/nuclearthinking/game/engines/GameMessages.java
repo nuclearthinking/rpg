@@ -23,6 +23,9 @@ public class GameMessages {
 
     }
 
+    public static GameMessages getInstance() {
+        return Holder.INSTANCE;
+    }
 
     public Messages getMessages() {
         Messages messages = null;
@@ -46,9 +49,5 @@ public class GameMessages {
 
     private static class Holder {
         private static final GameMessages INSTANCE = new GameMessages();
-    }
-
-    public static GameMessages getInstance() {
-        return Holder.INSTANCE;
     }
 }

@@ -3,8 +3,7 @@ package com.nuclearthinking.game.model.interfaces;
 /**
  * Created by kuksin-mv on 24.12.2015.
  */
-public interface IParserUtils
-{
+public interface IParserUtils {
     boolean getBoolean(String key, boolean defaultValue);
 
     byte getByte(String key, byte defaultValue);

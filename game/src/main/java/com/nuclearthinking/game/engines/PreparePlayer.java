@@ -22,9 +22,10 @@ public class PreparePlayer {
     private PreparePlayer() {
         player = Player.getInstance();
         if (player.getName() == null) {
-
+            String playerName = getValidName();
+            player.setName(ut.beautifyName(playerName));
+            System.out.println(messages.getMessages().getWelcomeMessage() + " " + player.getName());
         }
-        System.out.println(messages.getMessages().getWelcomeMessage() + " " + player.getName());
 
 
     }
@@ -38,33 +39,16 @@ public class PreparePlayer {
     }
 
     protected String getValidName() {
-        //TODO: Сделать это красивым и понятным!
         boolean valid = false;
-        String playerName;
+        String playerName = null;
         while (!valid) {
-
             System.out.println(messages.getMessages().getInputNameMessage());
             playerName = input.getUserInput();
-            if (!ut.isNumericOnly(playerName)) {
-                if (!ut.firstCharIsNumeric(playerName)) {
-                    return ut.beautifyName(playerName);
-                } else {
-                    valid = false;
-                    System.out.println(messages.getMessages().getFirstCharNumeric());
-                }
-            } else {
-                valid = false;
-            }
+            valid = ut.isValidName(playerName);
         }
-        return null;
+        return playerName;
     }
 
-    protected boolean isValidName(String string) {
-        boolean valid;
-        valid = ut.isNumericOnly(string);
-        valid = ut.firstCharIsNumeric(string);
-        return valid;
-    }
 
     private static class PreparePlayerHolder {
         private static final PreparePlayer INSTANCE = new PreparePlayer();

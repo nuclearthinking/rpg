@@ -9,29 +9,21 @@ package com.nuclearthinking.game.obj;
 
 public class Player {
 
-    private Player() {
-    }
-
-    private static class PlayerHolder {
-        private static final Player INSTANCE = new Player();
-    }
-
-    public static Player getInstance() {
-        return PlayerHolder.INSTANCE;
-    }
-
-
     private static final double DIFFICULITY = 1.0;
     private int hitPoints = 100;
     private PlayerClass pClass;
     private int level = 1;
     private String name;
-
     private int strength = 10;
     private int intelligence = 10;
     private int agility = 10;
     private int stamina = 10;
+    private Player() {
+    }
 
+    public static Player getInstance() {
+        return PlayerHolder.INSTANCE;
+    }
 
     public void levelUp() {
         level++;
@@ -80,5 +72,9 @@ public class Player {
 
     public void setHitPoints(int hitPoints) {
         this.hitPoints = hitPoints;
+    }
+
+    private static class PlayerHolder {
+        private static final Player INSTANCE = new Player();
     }
 }

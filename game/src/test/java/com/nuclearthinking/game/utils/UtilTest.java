@@ -37,68 +37,92 @@ public class UtilTest {
 
     @Test
     public void testIsNumericOnly() throws Exception {
-        Assert.assertEquals(ut.isNumericOnly("1"),true);
+        Assert.assertEquals(ut.isNumericOnly("1"), true);
     }
 
     @Test
     public void testIsNumericOnly2() throws Exception {
-        Assert.assertEquals(ut.isNumericOnly("1324234"),true);
+        Assert.assertEquals(ut.isNumericOnly("1324234"), true);
     }
 
     @Test
     public void testIsNumericOnly3() throws Exception {
-        Assert.assertEquals(ut.isNumericOnly("123123q"),false);
+        Assert.assertEquals(ut.isNumericOnly("123123q"), false);
     }
 
     @Test
     public void testIsNumericOnly4() throws Exception {
-        Assert.assertEquals(ut.isNumericOnly("qweqwe"),false);
+        Assert.assertEquals(ut.isNumericOnly("qweqwe"), false);
     }
 
     @Test
     public void testIsNumericOnly5() throws Exception {
-        Assert.assertEquals(ut.isNumericOnly("!\"№№№"),false);
+        Assert.assertEquals(ut.isNumericOnly("!\"№№№"), false);
     }
+
     @Test
     public void testIsNumericOnly6() throws Exception {
-        Assert.assertEquals(ut.isNumericOnly("фывйцв"),false);
+        Assert.assertEquals(ut.isNumericOnly("фывйцв"), false);
     }
 
     @Test
     public void testBeautifyName() throws Exception {
-        Assert.assertEquals(ut.beautifyName("дима"),"Дима");
+        Assert.assertEquals(ut.beautifyName("дима"), "Дима");
     }
 
     @Test
     public void testBeautifyName2() throws Exception {
-        Assert.assertEquals(ut.beautifyName("ДИМА"),"Дима");
+        Assert.assertEquals(ut.beautifyName("ДИМА"), "Дима");
     }
 
     @Test
     public void testBeautifyName3() throws Exception {
-        Assert.assertEquals(ut.beautifyName("Peter"),"Peter");
+        Assert.assertEquals(ut.beautifyName("Peter"), "Peter");
     }
 
     @Test
     public void testBeautifyName4() throws Exception {
-        Assert.assertEquals(ut.beautifyName("PETER"),"Peter");
+        Assert.assertEquals(ut.beautifyName("PETER"), "Peter");
     }
 
     @Test
     public void testFirstCharIsNumeric() throws Exception {
-        Assert.assertEquals(ut.firstCharIsNumeric("1111"),true);
+        Assert.assertEquals(ut.firstCharIsNumeric("1111"), true);
     }
 
     @Test
     public void testFirstCharIsNumeric2() throws Exception {
-        Assert.assertEquals(ut.firstCharIsNumeric("qweqwe"),false);
+        Assert.assertEquals(ut.firstCharIsNumeric("qweqwe"), false);
     }
+
     @Test
     public void testFirstCharIsNumeric3() throws Exception {
-        Assert.assertEquals(ut.firstCharIsNumeric("1"),true);
+        Assert.assertEquals(ut.firstCharIsNumeric("1"), true);
     }
+
     @Test
     public void testFirstCharIsNumeric4() throws Exception {
-        Assert.assertEquals(ut.firstCharIsNumeric("q1qwe"),false);
+        Assert.assertEquals(ut.firstCharIsNumeric("q1qwe"), false);
     }
+
+    @Test
+    public void testIsValidName() throws Exception {
+        Assert.assertEquals(ut.isValidName("1qweqwe"), false);
+    }
+
+    @Test
+    public void testIsValidName2() throws Exception {
+        Assert.assertEquals(ut.isValidName("23123123"), false);
+    }
+
+    @Test
+    public void testIsValidName3() throws Exception {
+        Assert.assertEquals(ut.isValidName("q123123"), true);
+    }
+
+    @Test
+    public void testIsValidName4() throws Exception {
+        Assert.assertEquals(ut.isValidName("Onifent"), true);
+    }
+
 }
