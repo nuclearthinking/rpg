@@ -7,5 +7,5 @@ package com.nuclearthinking.game.obj;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public class PlayerClass {
+public abstract class PlayerClass {
 }

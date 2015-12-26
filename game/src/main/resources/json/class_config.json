@@ -1,0 +1,20 @@
+{
+  "rogueConfig": {
+    "agilityRate": 1.1,
+    "strengthRate": 1.1,
+    "intelligenceRate": 1.1,
+    "staminaRate": 1.1
+  },
+  "mageConfig": {
+    "agilityRate": 1.1,
+    "strengthRate": 1.1,
+    "intelligenceRate": 1.1,
+    "staminaRate": 1.1
+  },
+  "warriorConfig": {
+    "agilityRate": 1.1,
+    "strengthRate": 1.1,
+    "intelligenceRate": 1.1,
+    "staminaRate": 1.1
+  }
+}

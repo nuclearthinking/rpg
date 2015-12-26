@@ -14,35 +14,38 @@ public class Player {
     private PlayerClass pClass;
     private int level = 1;
     private String name;
-    private int strength = 10;
-    private int intelligence = 10;
-    private int agility = 10;
-    private int stamina = 10;
+    private double strength = 10;
+    private double intelligence = 10;
+    private double agility = 10;
+    private double stamina = 10;
+
     private Player() {
+    }
+
+    public void levelUP() {
+
+        if (getpClass() instanceof RogueClass) {
+            RogueClass.getInstance().levelUp(this);
+        }
     }
 
     public static Player getInstance() {
         return PlayerHolder.INSTANCE;
     }
 
-    public void levelUp() {
-        level++;
-
-    }
-
-    private void addStrenght(int amount) {
+    protected void addStrenght(double amount) {
         strength = strength + amount;
     }
 
-    private void addIntelegence(int amount) {
+    protected void addIntelegence(double amount) {
         intelligence = intelligence + amount;
     }
 
-    private void addAgility(int amount) {
+    protected void addAgility(double amount) {
         agility = agility + amount;
     }
 
-    private void addStamina(int amount) {
+    protected void addStamina(double amount) {
         stamina = stamina + amount;
     }
 
@@ -72,6 +75,22 @@ public class Player {
 
     public void setHitPoints(int hitPoints) {
         this.hitPoints = hitPoints;
+    }
+
+    public double getStrength() {
+        return strength;
+    }
+
+    public double getIntelligence() {
+        return intelligence;
+    }
+
+    public double getAgility() {
+        return agility;
+    }
+
+    public double getStamina() {
+        return stamina;
     }
 
     private static class PlayerHolder {

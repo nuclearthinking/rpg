@@ -16,7 +16,7 @@ public class PreparePlayer {
     UserInput input = new UserInput();
     StringUtil ut = new StringUtil();
     private Player player;
-    private GameMessages messages = GameMessages.getInstance();
+    private MessagesReader messages = MessagesReader.getInstance();
 
 
     private PreparePlayer() {

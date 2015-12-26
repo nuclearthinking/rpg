@@ -1,6 +1,6 @@
 package com.nuclearthinking.game.utils;
 
-import com.nuclearthinking.game.engines.GameMessages;
+import com.nuclearthinking.game.engines.MessagesReader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class UserInput {
 
-    private GameMessages messages = GameMessages.getInstance();
+    private MessagesReader messages = MessagesReader.getInstance();
 
     public String getUserInput() {
 
