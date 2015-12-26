@@ -13,15 +13,15 @@ import java.io.InputStream;
 
 public class ResourceUtil {
 
-    public InputStream getResourceAsStream(String path) {
+    public InputStream getResourceAsStream(String path)
+    {
         InputStream is = null;
-        try {
-            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            is = classLoader.getResourceAsStream(path);
-            if (is == null) {
-                throw new Exception("Невозможно создать поток из указанного файла");
-            }
-        } catch (Exception e) {
+        try
+        {
+            is = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return is;

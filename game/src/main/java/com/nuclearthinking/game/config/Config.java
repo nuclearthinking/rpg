@@ -8,15 +8,17 @@ import java.io.File;
  *
  * @author kuksin-mv
  */
-public class Config extends ConfigEngine {
-    //TODO: Это для дебага в IDE при компиле в джарник надо указывать другой путь
-    private static final String DIR = "game" + File.separator + "src" + File.separator +"main"+ File.separator+ "resources" + File.separator + "config" +File.separator;
+public class Config extends ConfigEngine
+{
+    private static final String EOL = File.separator;
+    private static final String DIR = "config/";
 
 
     @ConfigField(config = "general", fieldName = "Debug", value = "false")
     public static boolean DEBUG;
 
-    public static void load() throws Exception {
+    public static void load() throws Exception
+    {
         loadConfig(Config.class, "general", DIR);
     }
 }

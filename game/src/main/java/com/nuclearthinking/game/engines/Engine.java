@@ -3,9 +3,10 @@ package com.nuclearthinking.game.engines;
 import com.nuclearthinking.game.data.SkillData;
 import com.nuclearthinking.game.engines.skills.DocumentSkill;
 import com.nuclearthinking.game.model.skills.Skill;
-import com.nuclearthinking.game.utils.filter.XMLFilter;
+import com.nuclearthinking.game.utils.ResourceUtil;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,15 +23,15 @@ public class Engine
 {
     private static final Logger LOG = Logger.getLogger(Engine.class.getName());
 
-    private static final String DIR = System.getProperty("user.dir") + "\\game\\src\\main\\resources\\";
+    private static final ResourceUtil resource = new ResourceUtil();
 
     private final List<File> _itemFiles = new ArrayList<File>();
-    private final List<File> _skillFiles = new ArrayList<File>();
+    private final List<InputStream> _skillFiles = new ArrayList<InputStream>();
 
     protected Engine()
     {
        // hashFiles("data/items", _itemFiles);
-        hashFiles(DIR + "data/skills", _skillFiles);
+        hashFiles("data/skills/", _skillFiles);
     }
 
     public static Engine getInstance()
@@ -38,26 +39,14 @@ public class Engine
         return SingletonHolder._instance;
     }
 
-    private void hashFiles(String dirname, List<File> hash)
+    private void hashFiles(String dirname, List<InputStream> hash)
     {
-        File dir = new File(dirname);
-        if (!dir.exists())
-        {
-            LOG.log(Level.WARNING, "Dir " + dir.getAbsolutePath() + " not exists");
-            return;
-        }
-
-        final File[] files = dir.listFiles(new XMLFilter());
-        if (files != null)
-        {
-            for (File f : files)
-            {
-                hash.add(f);
-            }
-        }
+        //TODO: Почитать как брать файлы из дирректории для инпут стрима. Скорее всего надо сделать метод в котором он будет вайлить по дирректории
+        InputStream is = resource.getResourceAsStream(dirname + "000-100.xml");
+        hash.add(is);
     }
 
-    public List<Skill> loadSkills(File file)
+    public List<Skill> loadSkills(InputStream file)
     {
         if (file == null)
         {
@@ -72,7 +61,7 @@ public class Engine
     public void loadAllSkills(final Map<Integer, Skill> allSkills)
     {
         int count = 0;
-        for (File file : _skillFiles)
+        for (InputStream file : _skillFiles)
         {
             List<Skill> s = loadSkills(file);
             if (s == null)

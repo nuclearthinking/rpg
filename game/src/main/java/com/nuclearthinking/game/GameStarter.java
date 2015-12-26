@@ -2,14 +2,11 @@ package com.nuclearthinking.game;
 
 import com.nuclearthinking.game.config.Config;
 import com.nuclearthinking.game.data.SkillData;
-import com.nuclearthinking.game.model.skills.Skill;
 import com.nuclearthinking.game.utils.ResourceUtil;
-import com.nuclearthinking.game.utils.UserInput;
 
 import java.io.File;
 import java.io.InputStream;
 import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 /**
  * Created
@@ -18,49 +15,40 @@ import java.util.logging.Logger;
  *
  * @author kuksin-mv (onfient@gmail.com)
  */
-public final class GameStarter {
-    private static final Logger LOG = Logger.getLogger(GameStarter.class.getName());
+public final class GameStarter
+{
+    //private static final Logger LOG = Logger.getLogger(GameStarter.class.getName());
+
     private static final String LOG_FOLDER = "log";
     private static final String LOG_NAME = "log.cfg";
-    private static final String DIR = "game" + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator;
-    private static ResourceUtil resource = new ResourceUtil();
+
+    private static final ResourceUtil resource = new ResourceUtil();
 
     public static GameStarter gameStarter;
-    private UserInput input = new UserInput();
 
-
-    public GameStarter() throws Exception {
-//        printSection("Player load");
+    public GameStarter() throws Exception
+    {
         SkillData.getInstance();
         Game.getInstance();
 
 
         //Секция для дебага. Настройка в general конфиге
-        if (Config.DEBUG) {
-            final Skill skill = SkillData.getInstance().getSkill(1, 10);
+        if (Config.DEBUG)
+        {
+            SkillData.getInstance().getSkill(1, 10);
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        File logFile = new File(DIR + LOG_FOLDER);
+    public static void main(String[] args) throws Exception
+    {
+        File logFile = new File(LOG_FOLDER);
         logFile.mkdir();
+
         Config.load();
+
         gameStarter = new GameStarter();
-        InputStream is = resource.getResourceAsStream("log.cfg");
+
+        InputStream is = resource.getResourceAsStream(LOG_NAME);
         LogManager.getLogManager().readConfiguration(is);
-    }
-
-
-    public static void printSection(String s) {
-        s = "=[ " + s + " ]";
-        while (s.length() < 61) {
-            s = "-" + s;
-        }
-        LOG.fine(s);
-    }
-
-    public InputStream getFileStream(String path) {
-        return this.getClass().getResourceAsStream(path);
-
     }
 }

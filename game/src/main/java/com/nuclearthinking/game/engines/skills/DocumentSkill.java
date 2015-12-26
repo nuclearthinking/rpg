@@ -7,7 +7,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,7 +30,7 @@ public class DocumentSkill extends Base
     private SkillInfo _currentSkill;
     private final List<Skill> _skillsInFile = new ArrayList<>();
 
-    public DocumentSkill(File file)
+    public DocumentSkill(InputStream file)
     {
         super(file);
     }
