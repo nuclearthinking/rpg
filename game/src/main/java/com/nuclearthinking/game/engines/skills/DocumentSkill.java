@@ -17,16 +17,6 @@ import java.util.logging.Level;
  */
 public class DocumentSkill extends Base
 {
-    public static class SkillInfo
-    {
-        public int id;
-        public String name;
-        public StatsSet[] sets;
-        public int currentLevel;
-        public List<Skill> skills = new ArrayList<>();
-        public List<Skill> currentSkills = new ArrayList<>();
-    }
-
     private SkillInfo _currentSkill;
     private final List<Skill> _skillsInFile = new ArrayList<>();
 
