@@ -2,7 +2,7 @@ package com.nuclearthinking.game.engines;
 
 import com.nuclearthinking.game.obj.Player;
 import com.nuclearthinking.game.utils.UserInput;
-import com.nuclearthinking.game.utils.Util;
+import com.nuclearthinking.game.utils.StringUtil;
 
 /**
  * Created
@@ -14,7 +14,7 @@ import com.nuclearthinking.game.utils.Util;
 
 public class PreparePlayer {
     UserInput input = new UserInput();
-    Util ut = new Util();
+    StringUtil ut = new StringUtil();
     private Player player;
     private GameMessages messages = GameMessages.getInstance();
 

@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  *
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
-public class Util {
+public class StringUtil {
 
 
     public boolean isValidName(String string) {
