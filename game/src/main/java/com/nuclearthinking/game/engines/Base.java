@@ -4,7 +4,7 @@ import com.nuclearthinking.game.model.StatsSet;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,9 +15,9 @@ public abstract class Base
 {
     protected final Logger LOG = Logger.getLogger(Base.class.getName());
 
-    private final File _file;
+    private final InputStream _file;
 
-    protected Base(File pFile)
+    protected Base(InputStream pFile)
     {
         _file = pFile;
     }
