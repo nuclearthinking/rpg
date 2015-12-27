@@ -169,13 +169,11 @@ public class StatsSet implements IParserAdvUtils {
         return null;
     }
 
-    public void set(String key, int value)
-    {
+    public void set(String key, int value) {
         _set.put(key, value);
     }
 
-    public void set(String key, String value)
-    {
+    public void set(String key, String value) {
         _set.put(key, value);
     }
 

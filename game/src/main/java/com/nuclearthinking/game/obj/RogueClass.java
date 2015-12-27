@@ -11,12 +11,15 @@ import com.nuclearthinking.game.obj.jsonpojo.RogueConfig;
  */
 
 public class RogueClass extends PlayerClass implements IPlayerClass {
-    private RogueConfig rConf = null;
-
     ClassConfigReader classConfigReader = new ClassConfigReader();
+    private RogueConfig rConf = null;
 
     private RogueClass() {
         rConf = classConfigReader.getClassConfig().getRogueConfig();
+    }
+
+    public static RogueClass getInstance() {
+        return RogueClassHolder.INSTANCE;
     }
 
     @Override
@@ -61,9 +64,5 @@ public class RogueClass extends PlayerClass implements IPlayerClass {
     private static class RogueClassHolder {
 
         private static final RogueClass INSTANCE = new RogueClass();
-    }
-
-    public static RogueClass getInstance() {
-        return RogueClassHolder.INSTANCE;
     }
 }

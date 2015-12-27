@@ -19,7 +19,7 @@ public class ResourceUtil {
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
             is = classLoader.getResourceAsStream(path);
             if (is == null) {
-                throw new Exception("Не удалось загрузить ресурс "+ path);
+                throw new Exception("Не удалось загрузить ресурс " + path);
             }
         } catch (Exception e) {
             e.printStackTrace();

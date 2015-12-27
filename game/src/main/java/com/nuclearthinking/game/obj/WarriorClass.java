@@ -7,7 +7,7 @@ package com.nuclearthinking.game.obj;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public class WarriorClass extends PlayerClass implements IPlayerClass{
+public class WarriorClass extends PlayerClass implements IPlayerClass {
     @Override
     public int pDamage(Player player) {
         return 0;
