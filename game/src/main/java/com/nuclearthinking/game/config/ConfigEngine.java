@@ -17,12 +17,11 @@ import java.util.regex.Pattern;
  *
  * @author kuksin-mv
  */
-public class ConfigEngine
-{
+public class ConfigEngine {
+    public static final String PREFIX = "stream2file";
+    public static final String SUFFIX = ".tmp";
     private static final Logger LOG = Logger.getLogger(ConfigEngine.class.getName());
-
     private static final Pattern pt = Pattern.compile("\\_([A-Za-z0-9]{1})");
-
     private static final ResourceUtil resource = new ResourceUtil();
 
     /**
@@ -31,21 +30,17 @@ public class ConfigEngine
      * @param configClass
      * @param config
      */
-    public static void loadConfig(Class<?> configClass, String config, String dir)
-    {
-        try(InputStream is = resource.getResourceAsStream(dir + config + ".properties"))
-        {
+    public static void loadConfig(Class<?> configClass, String config, String dir) {
+        try (InputStream is = resource.getResourceAsStream(dir + config + ".properties")) {
             ExProperties settings = new ExProperties();
 
             LineNumberReader lnr = new LineNumberReader(new InputStreamReader(is, "UTF-8"));
             settings.load(lnr);
             lnr.close();
 
-            for (Field field : configClass.getDeclaredFields())
-            {
+            for (Field field : configClass.getDeclaredFields()) {
                 ConfigField configField;
-                if ((configField = field.getAnnotation(ConfigField.class)) != null && config.equals(configField.config()))
-                {
+                if ((configField = field.getAnnotation(ConfigField.class)) != null && config.equals(configField.config())) {
                     String fieldName = configField.fieldName();
                     String fld = field.getType().getSimpleName().toLowerCase();
 
@@ -86,15 +81,11 @@ public class ConfigEngine
                     LOG.log(Level.FINE, config + ": set " + field.getName() + "{" + fieldName + "} = " + field.get(null));
                 }
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Error("Failed to Load config " + dir + " " + config + ".properties file.");
         }
     }
-
-    public static final String PREFIX = "stream2file";
-    public static final String SUFFIX = ".tmp";
 
     public static File stream2file(InputStream in) throws IOException {
         final File tempFile = File.createTempFile(PREFIX, SUFFIX);

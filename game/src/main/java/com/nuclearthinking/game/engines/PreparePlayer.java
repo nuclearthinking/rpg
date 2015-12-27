@@ -1,8 +1,8 @@
 package com.nuclearthinking.game.engines;
 
 import com.nuclearthinking.game.obj.Player;
-import com.nuclearthinking.game.utils.UserInput;
 import com.nuclearthinking.game.utils.StringUtil;
+import com.nuclearthinking.game.utils.UserInput;
 
 /**
  * Created

@@ -22,15 +22,15 @@ public class Player {
     private Player() {
     }
 
+    public static Player getInstance() {
+        return PlayerHolder.INSTANCE;
+    }
+
     public void levelUP() {
 
         if (getpClass() instanceof RogueClass) {
             RogueClass.getInstance().levelUp(this);
         }
-    }
-
-    public static Player getInstance() {
-        return PlayerHolder.INSTANCE;
     }
 
     protected void addStrenght(double amount) {

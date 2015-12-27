@@ -4,8 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
 /**
  * Date: 26.12.2015
  * Time: 21:07
@@ -14,8 +12,9 @@ import static org.testng.Assert.*;
  */
 public class RogueClassTest {
     Player player;
+
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         player = Player.getInstance();
 
     }
@@ -24,6 +23,6 @@ public class RogueClassTest {
     public void testLevelUp() throws Exception {
         player.setpClass(RogueClass.getInstance());
         player.levelUP();
-        Assert.assertEquals(player.getAgility(),11.1);
+        Assert.assertEquals(player.getAgility(), 11.1);
     }
 }

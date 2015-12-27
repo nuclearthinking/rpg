@@ -66,8 +66,8 @@ public class UserInputTest {
     }
 
     @Test(testName = "с буквой ё")
-    public void checkInputWithYo(){
-        Assert.assertEquals(checkInput("лёха"),true);
+    public void checkInputWithYo() {
+        Assert.assertEquals(checkInput("лёха"), true);
     }
 
 
