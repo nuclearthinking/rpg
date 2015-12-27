@@ -24,7 +24,10 @@ public class RogueClass extends PlayerClass implements IPlayerClass {
 
     @Override
     public int pDamage(Player player) {
-        return 0;
+        double agi = player.getAgility();
+        int level = player.getLevel();
+        double pdmg = agi*0.8+level*2;
+        return (int) pdmg;
     }
 
     @Override
@@ -38,7 +41,6 @@ public class RogueClass extends PlayerClass implements IPlayerClass {
         player.addStamina(rConf.getStaminaRate());
         player.addIntelegence(rConf.getIntelligenceRate());
         player.addAgility(rConf.getAgilityRate());
-
     }
 
     @Override

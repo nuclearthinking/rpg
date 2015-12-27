@@ -26,10 +26,12 @@ public class Player {
         return PlayerHolder.INSTANCE;
     }
 
+
     public void levelUP() {
 
         if (getpClass() instanceof RogueClass) {
             RogueClass.getInstance().levelUp(this);
+            this.level++;
         }
     }
 
@@ -65,7 +67,7 @@ public class Player {
         return pClass;
     }
 
-    public void setpClass(PlayerClass pClass) {
+    public void setClass(PlayerClass pClass) {
         this.pClass = pClass;
     }
 
