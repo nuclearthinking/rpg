@@ -1,7 +1,5 @@
 package com.nuclearthinking.game.obj.world;
 
-import com.nuclearthinking.game.utils.RandomUtil;
-
 import java.util.Arrays;
 
 /**
@@ -17,50 +15,30 @@ public class test {
     //Тест алгоритма генерации уровня
     public static void main(String[] args) {
 
-        //создаем двумерный масив нулей
-        int[][] levels = new int[8][8];
-        for (int i = 0; i < levels.length; i++) {
-            for (int o = 0; o < levels.length; o++) {
-                levels[i][o] = 0;
+
+        /**
+         * первое значение при объявлении массива это высота
+         * второе значение это ширина
+         */
+        int[][] initialArray = new int[8][6];
+        for (int i=0; i<initialArray.length;i++){
+            for (int o=0; o<initialArray[0].length;o++){
+                initialArray[i][o]=0;
             }
         }
 
-        //ставим стартовую точку
-        levels[0][1] = 1;
+        /**
+         * newLevels[0].lenght возвращает размер массива в ширину
+         * newLevels.lenght возвращает размер массива в высоту
+         */
+        System.out.println(initialArray[0].length);
+        System.out.println(initialArray.length);
+        System.out.println(Arrays.deepToString(initialArray));
 
-
-        //пытаемся строить точки от стартовой и до конца в рандомном направлении
-        int[][] newLevels = new int[8][8];
-        for (int i = 0; i < newLevels.length; i++) {
-            for (int o = 0; o < newLevels.length; o++) {
-                if (newLevels[i][o] == 1) {
-                    if (new RandomUtil().randomInt(1, 2) == 1) {
-                        if (o + 1 == newLevels.length) {
-                            newLevels[i + 1][o] = 1;
-                        } else {
-                            newLevels[i][o + 1] = 1;
-                        }
-                    } else {
-                        if (i + 1 == newLevels.length) {
-                            newLevels[i][o + 1] = 1;
-                        } else {
-                            newLevels[i + 1][o] = 1;
-                        }
-                    }
-                }
-            }
-        }
-
-        // чет не вышло пока
-        setLabyrint(levels);
-        System.out.println(Arrays.deepToString(levels));
-        System.out.println(Arrays.deepToString(newLevels));
     }
 
-    public static int[][] setLabyrint(int[][] array){
-        System.out.println(array.length);
-        System.out.println(array[0].length);
+    public static int[][] setLabyrint(int[][] array) {
 
-     return null;
+        return null;
     }
 }
