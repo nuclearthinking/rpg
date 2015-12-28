@@ -8,4 +8,11 @@ package com.nuclearthinking.game.obj;
  */
 
 public abstract class PlayerClass {
+    public double pCriticalChanse(Player player) {
+        return 5 + (player.getAgility() / (10 * (player.getLevel() * 0.5)));
+    }
+
+    public double mCriticalChanse(Player player) {
+        return 5 + (player.getIntelligence() / (10 * player.getLevel() * 0.5));
+    }
 }

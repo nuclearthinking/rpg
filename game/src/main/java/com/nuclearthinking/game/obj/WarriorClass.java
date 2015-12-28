@@ -25,7 +25,7 @@ public class WarriorClass extends PlayerClass implements IPlayerClass {
 
     @Override
     public int mDamage(Player player) {
-        return 0;
+        return (int) player.getIntelligence();
     }
 
     @Override
@@ -38,21 +38,14 @@ public class WarriorClass extends PlayerClass implements IPlayerClass {
 
     @Override
     public int mDefence(Player player) {
-        return 0;
+        double mDef = player.getIntelligence();
+        return (int) mDef;
     }
 
     @Override
     public int pDefence(Player player) {
-        return 0;
+        double pDef = player.getStrength() + player.getAgility() / 2;
+        return (int) pDef;
     }
 
-    @Override
-    public double pCriticalChanse(Player player) {
-        return 0;
-    }
-
-    @Override
-    public double mCriticalChanse(Player player) {
-        return 0;
-    }
 }
