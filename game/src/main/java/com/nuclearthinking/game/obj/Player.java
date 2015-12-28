@@ -19,18 +19,15 @@ public class Player {
     private double agility = 10;
     private double stamina = 10;
 
-    private Player() {
-    }
-
-    public static Player getInstance() {
-        return PlayerHolder.INSTANCE;
+    public Player() {
     }
 
 
     public void levelUP() {
 
         if (getpClass() instanceof RogueClass) {
-            RogueClass.getInstance().levelUp(this);
+            RogueClass rClass = new RogueClass();
+            rClass.levelUp(this);
             this.level++;
         }
     }
@@ -95,7 +92,4 @@ public class Player {
         return stamina;
     }
 
-    private static class PlayerHolder {
-        private static final Player INSTANCE = new Player();
-    }
 }

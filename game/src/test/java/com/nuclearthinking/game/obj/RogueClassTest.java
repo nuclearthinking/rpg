@@ -10,12 +10,11 @@ import org.testng.annotations.Test;
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
 public class RogueClassTest {
-    RogueClass rClass;
 
     @Test
     public void testLevelUp() throws Exception {
-        Player player = Player.getInstance();
-        player.setClass(RogueClass.getInstance());
+        Player player = new Player();
+        player.setClass(new RogueClass());
         player.levelUP();
         Assert.assertEquals(player.getAgility(), 11.1);
         Assert.assertEquals(player.getLevel(), 2);
@@ -23,8 +22,8 @@ public class RogueClassTest {
 
     @Test
     public void testLevelUp2() throws Exception {
-        Player player = Player.getInstance();
-        player.setClass(RogueClass.getInstance());
+        Player player = new Player();
+        player.setClass(new RogueClass());
         player.levelUP();
         player.levelUP();
         Assert.assertEquals(player.getAgility(), 12.2);
@@ -34,13 +33,15 @@ public class RogueClassTest {
 
     @Test
     public void testPDamage() throws Exception {
-       Player  player = Player.getInstance();
-        int dmg = rClass.pDamage(player);
+        Player player = new Player();
+        RogueClass rCLass = new RogueClass();
+        player.setClass(rCLass);
         player.levelUP();
         player.levelUP();
         player.levelUP();
+        int dmg = rCLass.pDamage(player);
         Assert.assertEquals(player.getLevel(), 4);
-        Assert.assertEquals(dmg, 12);
+        Assert.assertEquals(dmg, 18);
     }
 
     @Test

@@ -14,13 +14,10 @@ public class RogueClass extends PlayerClass implements IPlayerClass {
     ClassConfigReader classConfigReader = new ClassConfigReader();
     private RogueConfig rConf = null;
 
-    private RogueClass() {
+    public RogueClass() {
         rConf = classConfigReader.getClassConfig().getRogueConfig();
     }
 
-    public static RogueClass getInstance() {
-        return RogueClassHolder.INSTANCE;
-    }
 
     @Override
     public int pDamage(Player player) {
@@ -63,8 +60,4 @@ public class RogueClass extends PlayerClass implements IPlayerClass {
         return 0;
     }
 
-    private static class RogueClassHolder {
-
-        private static final RogueClass INSTANCE = new RogueClass();
-    }
 }
