@@ -1,5 +1,8 @@
 package com.nuclearthinking.game.obj;
 
+import com.nuclearthinking.game.engines.ClassConfigReader;
+import com.nuclearthinking.game.obj.jsonpojo.MageConfig;
+
 /**
  * Date: 25.12.2015
  * Time: 13:06
@@ -8,6 +11,13 @@ package com.nuclearthinking.game.obj;
  */
 
 public class MageClass extends PlayerClass implements IPlayerClass {
+    MageConfig mConfig;
+    ClassConfigReader classConfigReader = ClassConfigReader.getInstance();
+
+    public MageClass() {
+        mConfig = classConfigReader.getClassConfig().getMageConfig();
+    }
+
     @Override
     public int pDamage(Player player) {
         return 0;
@@ -20,7 +30,10 @@ public class MageClass extends PlayerClass implements IPlayerClass {
 
     @Override
     public void levelUp(Player player) {
-
+        player.addStrenght(mConfig.getStrengthRate());
+        player.addStamina(mConfig.getStaminaRate());
+        player.addIntelegence(mConfig.getIntelligenceRate());
+        player.addAgility(mConfig.getAgilityRate());
     }
 
     @Override

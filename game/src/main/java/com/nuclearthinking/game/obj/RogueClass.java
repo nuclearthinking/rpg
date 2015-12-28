@@ -11,7 +11,7 @@ import com.nuclearthinking.game.obj.jsonpojo.RogueConfig;
  */
 
 public class RogueClass extends PlayerClass implements IPlayerClass {
-    ClassConfigReader classConfigReader = new ClassConfigReader();
+    ClassConfigReader classConfigReader = ClassConfigReader.getInstance();
     private RogueConfig rConf = null;
 
     public RogueClass() {
@@ -23,7 +23,7 @@ public class RogueClass extends PlayerClass implements IPlayerClass {
     public int pDamage(Player player) {
         double agi = player.getAgility();
         int level = player.getLevel();
-        double pdmg = agi*0.8+level*2;
+        double pdmg = agi * 0.8 + level * 2;
         return (int) pdmg;
     }
 
