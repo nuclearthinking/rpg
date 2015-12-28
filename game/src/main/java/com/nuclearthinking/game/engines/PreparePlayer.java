@@ -20,7 +20,7 @@ public class PreparePlayer {
 
 
     private PreparePlayer() {
-        player = Player.getInstance();
+        player = new Player();
         if (player.getName() == null) {
             String playerName = getValidName();
             player.setName(ut.beautifyName(playerName));

@@ -1,5 +1,8 @@
 package com.nuclearthinking.game.obj;
 
+import com.nuclearthinking.game.engines.ClassConfigReader;
+import com.nuclearthinking.game.obj.jsonpojo.WarriorConfig;
+
 /**
  * Date: 25.12.2015
  * Time: 13:06
@@ -8,6 +11,13 @@ package com.nuclearthinking.game.obj;
  */
 
 public class WarriorClass extends PlayerClass implements IPlayerClass {
+    WarriorConfig warriorConfig;
+    ClassConfigReader classConfigReader = ClassConfigReader.getInstance();
+
+    public WarriorClass() {
+        warriorConfig = classConfigReader.getClassConfig().getWarriorConfig();
+    }
+
     @Override
     public int pDamage(Player player) {
         return 0;
@@ -20,7 +30,10 @@ public class WarriorClass extends PlayerClass implements IPlayerClass {
 
     @Override
     public void levelUp(Player player) {
-
+        player.addStrenght(warriorConfig.getStrengthRate());
+        player.addStamina(warriorConfig.getStaminaRate());
+        player.addIntelegence(warriorConfig.getIntelligenceRate());
+        player.addAgility(warriorConfig.getAgilityRate());
     }
 
     @Override

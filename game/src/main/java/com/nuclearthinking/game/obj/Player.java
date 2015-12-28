@@ -19,17 +19,30 @@ public class Player {
     private double agility = 10;
     private double stamina = 10;
 
-    private Player() {
+    public Player() {
     }
 
-    public static Player getInstance() {
-        return PlayerHolder.INSTANCE;
-    }
 
     public void levelUP() {
 
         if (getpClass() instanceof RogueClass) {
-            RogueClass.getInstance().levelUp(this);
+            RogueClass rClass = new RogueClass();
+            rClass.levelUp(this);
+            this.level++;
+        } else {
+            if (getpClass() instanceof MageClass) {
+                MageClass mClass = new MageClass();
+                mClass.levelUp(this);
+                this.level++;
+            } else {
+                if (getpClass() instanceof WarriorClass) {
+                    WarriorClass wClass = new WarriorClass();
+                    wClass.levelUp(this);
+                    this.level++;
+                } else {
+                    throw new RuntimeException("У обьекта" + this.getName() + "не задан класс :" + pClass + "=" + pClass.toString());
+                }
+            }
         }
     }
 
@@ -65,7 +78,7 @@ public class Player {
         return pClass;
     }
 
-    public void setpClass(PlayerClass pClass) {
+    public void setClass(PlayerClass pClass) {
         this.pClass = pClass;
     }
 
@@ -93,7 +106,4 @@ public class Player {
         return stamina;
     }
 
-    private static class PlayerHolder {
-        private static final Player INSTANCE = new Player();
-    }
 }
