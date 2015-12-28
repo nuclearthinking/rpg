@@ -43,7 +43,8 @@ public class WarriorClass extends PlayerClass implements IPlayerClass {
 
     @Override
     public int pDefence(Player player) {
-        return 0;
+        double pDef = player.getStrength() + player.getAgility() / 2;
+        return (int) pDef;
     }
 
     @Override

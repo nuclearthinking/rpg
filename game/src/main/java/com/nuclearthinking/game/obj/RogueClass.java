@@ -21,10 +21,8 @@ public class RogueClass extends PlayerClass implements IPlayerClass {
 
     @Override
     public int pDamage(Player player) {
-        double agi = player.getAgility();
-        int level = player.getLevel();
-        double pdmg = agi * 0.8 + level * 2;
-        return (int) pdmg;
+        double pDmg = player.getAgility() * 0.8 + player.getLevel() * 2;
+        return (int) pDmg;
     }
 
     @Override
@@ -47,7 +45,8 @@ public class RogueClass extends PlayerClass implements IPlayerClass {
 
     @Override
     public int pDefence(Player player) {
-        return 0;
+        double pDef = player.getStrength() / 2 + player.getAgility();
+        return (int) pDef;
     }
 
     @Override

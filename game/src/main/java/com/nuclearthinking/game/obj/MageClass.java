@@ -20,7 +20,8 @@ public class MageClass extends PlayerClass implements IPlayerClass {
 
     @Override
     public int pDamage(Player player) {
-        return 0;
+        double pDmg = player.getAgility() / 2 + player.getStrength() / 2 + player.getLevel();
+        return (int) pDmg;
     }
 
     @Override
@@ -43,7 +44,8 @@ public class MageClass extends PlayerClass implements IPlayerClass {
 
     @Override
     public int pDefence(Player player) {
-        return 0;
+        double pDef = player.getStrength() / 2 + player.getAgility() / 2;
+        return (int) pDef;
     }
 
     @Override
