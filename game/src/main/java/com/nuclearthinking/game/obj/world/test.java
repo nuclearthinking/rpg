@@ -52,7 +52,15 @@ public class test {
         }
 
         // чет не вышло пока
+        setLabyrint(levels);
         System.out.println(Arrays.deepToString(levels));
         System.out.println(Arrays.deepToString(newLevels));
+    }
+
+    public static int[][] setLabyrint(int[][] array){
+        System.out.println(array.length);
+        System.out.println(array[0].length);
+
+     return null;
     }
 }
