@@ -27,7 +27,7 @@ public class RogueClass extends PlayerClass implements IPlayerClass {
 
     @Override
     public int mDamage(Player player) {
-        return 0;
+        return (int) player.getIntelligence();
     }
 
     @Override
@@ -40,7 +40,8 @@ public class RogueClass extends PlayerClass implements IPlayerClass {
 
     @Override
     public int mDefence(Player player) {
-        return 0;
+        double mDef = player.getIntelligence();
+        return (int) mDef;
     }
 
     @Override
