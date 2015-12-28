@@ -50,14 +50,4 @@ public class RogueClass extends PlayerClass implements IPlayerClass {
         return (int) pDef;
     }
 
-    @Override
-    public double pCriticalChanse(Player player) {
-        return 0;
-    }
-
-    @Override
-    public double mCriticalChanse(Player player) {
-        return 0;
-    }
-
 }
