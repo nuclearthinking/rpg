@@ -1,4 +1,4 @@
-package com.nuclearthinking.game.obj;
+package com.nuclearthinking.game.obj.jsonpojo;
 
 import com.fasterxml.jackson.annotation.*;
 

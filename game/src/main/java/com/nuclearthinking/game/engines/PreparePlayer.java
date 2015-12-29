@@ -1,8 +1,8 @@
 package com.nuclearthinking.game.engines;
 
 import com.nuclearthinking.game.obj.Player;
-import com.nuclearthinking.game.utils.UserInput;
 import com.nuclearthinking.game.utils.StringUtil;
+import com.nuclearthinking.game.utils.UserInput;
 
 /**
  * Created
@@ -16,11 +16,11 @@ public class PreparePlayer {
     UserInput input = new UserInput();
     StringUtil ut = new StringUtil();
     private Player player;
-    private GameMessages messages = GameMessages.getInstance();
+    private MessagesReader messages = MessagesReader.getInstance();
 
 
     private PreparePlayer() {
-        player = Player.getInstance();
+        player = new Player();
         if (player.getName() == null) {
             String playerName = getValidName();
             player.setName(ut.beautifyName(playerName));

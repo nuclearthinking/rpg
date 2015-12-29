@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nuclearthinking.game.obj.Messages;
+import com.nuclearthinking.game.obj.jsonpojo.Messages;
 import com.nuclearthinking.game.utils.ResourceUtil;
 
 import java.io.IOException;
@@ -16,14 +16,14 @@ import java.io.InputStream;
  *
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
-public class GameMessages {
+public class MessagesReader {
     private ResourceUtil res = new ResourceUtil();
 
-    private GameMessages() {
+    private MessagesReader() {
 
     }
 
-    public static GameMessages getInstance() {
+    public static MessagesReader getInstance() {
         return Holder.INSTANCE;
     }
 
@@ -45,6 +45,6 @@ public class GameMessages {
     }
 
     private static class Holder {
-        private static final GameMessages INSTANCE = new GameMessages();
+        private static final MessagesReader INSTANCE = new MessagesReader();
     }
 }

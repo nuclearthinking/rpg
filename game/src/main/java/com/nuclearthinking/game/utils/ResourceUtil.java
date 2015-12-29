@@ -13,15 +13,15 @@ import java.io.InputStream;
 
 public class ResourceUtil {
 
-    public InputStream getResourceAsStream(String path)
-    {
+    public InputStream getResourceAsStream(String path) {
         InputStream is = null;
-        try
-        {
-            is = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
-        }
-        catch (Exception e)
-        {
+        try {
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            is = classLoader.getResourceAsStream(path);
+            if (is == null) {
+                throw new Exception("Не удалось загрузить ресурс " + path);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return is;

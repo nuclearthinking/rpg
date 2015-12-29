@@ -19,8 +19,7 @@ import java.util.logging.Logger;
  *
  * @author kuksin-mv
  */
-public class Engine
-{
+public class Engine {
     private static final Logger LOG = Logger.getLogger(Engine.class.getName());
 
     private static final ResourceUtil resource = new ResourceUtil();
@@ -28,28 +27,23 @@ public class Engine
     private final List<File> _itemFiles = new ArrayList<File>();
     private final List<InputStream> _skillFiles = new ArrayList<InputStream>();
 
-    protected Engine()
-    {
-       // hashFiles("data/items", _itemFiles);
+    protected Engine() {
+        // hashFiles("data/items", _itemFiles);
         hashFiles("data/skills/", _skillFiles);
     }
 
-    public static Engine getInstance()
-    {
+    public static Engine getInstance() {
         return SingletonHolder._instance;
     }
 
-    private void hashFiles(String dirname, List<InputStream> hash)
-    {
+    private void hashFiles(String dirname, List<InputStream> hash) {
         //TODO: Почитать как брать файлы из дирректории для инпут стрима. Скорее всего надо сделать метод в котором он будет вайлить по дирректории
         InputStream is = resource.getResourceAsStream(dirname + "000-100.xml");
         hash.add(is);
     }
 
-    public List<Skill> loadSkills(InputStream file)
-    {
-        if (file == null)
-        {
+    public List<Skill> loadSkills(InputStream file) {
+        if (file == null) {
             LOG.log(Level.WARNING, "Skill file not found.");
             return null;
         }
@@ -58,18 +52,14 @@ public class Engine
         return doc.getSkills();
     }
 
-    public void loadAllSkills(final Map<Integer, Skill> allSkills)
-    {
+    public void loadAllSkills(final Map<Integer, Skill> allSkills) {
         int count = 0;
-        for (InputStream file : _skillFiles)
-        {
+        for (InputStream file : _skillFiles) {
             List<Skill> s = loadSkills(file);
-            if (s == null)
-            {
+            if (s == null) {
                 continue;
             }
-            for (Skill skill : s)
-            {
+            for (Skill skill : s) {
                 allSkills.put(SkillData.getSkillHashCode(skill), skill);
                 count++;
             }
@@ -78,8 +68,7 @@ public class Engine
     }
 
 
-    private static class SingletonHolder
-    {
+    private static class SingletonHolder {
         protected static final Engine _instance = new Engine();
     }
 }

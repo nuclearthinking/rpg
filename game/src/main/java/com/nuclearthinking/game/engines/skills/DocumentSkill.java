@@ -15,51 +15,38 @@ import java.util.logging.Level;
 /**
  * Created by kuksin-mv on 24.12.2015.
  */
-public class DocumentSkill extends Base
-{
-    private SkillInfo _currentSkill;
+public class DocumentSkill extends Base {
     private final List<Skill> _skillsInFile = new ArrayList<>();
-
-    public DocumentSkill(InputStream file)
-    {
+    private SkillInfo _currentSkill;
+    public DocumentSkill(InputStream file) {
         super(file);
     }
 
-    private void setCurrentSkill(SkillInfo skill)
-    {
+    private void setCurrentSkill(SkillInfo skill) {
         _currentSkill = skill;
     }
 
     @Override
-    protected StatsSet getStatsSet()
-    {
+    protected StatsSet getStatsSet() {
         return _currentSkill.sets[_currentSkill.currentLevel];
     }
 
-    public List<Skill> getSkills()
-    {
+    public List<Skill> getSkills() {
         return _skillsInFile;
     }
 
     @Override
-    protected void parseDocument(Document doc)
-    {
-        for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
-        {
-            if ("list".equalsIgnoreCase(n.getNodeName()))
-            {
-                for (Node d = n.getFirstChild(); d != null; d = d.getNextSibling())
-                {
-                    if ("skill".equalsIgnoreCase(d.getNodeName()))
-                    {
+    protected void parseDocument(Document doc) {
+        for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling()) {
+            if ("list".equalsIgnoreCase(n.getNodeName())) {
+                for (Node d = n.getFirstChild(); d != null; d = d.getNextSibling()) {
+                    if ("skill".equalsIgnoreCase(d.getNodeName())) {
                         setCurrentSkill(new SkillInfo());
                         parseSkill(d);
                         _skillsInFile.addAll(_currentSkill.skills);
                     }
                 }
-            }
-            else if ("skill".equalsIgnoreCase(n.getNodeName()))
-            {
+            } else if ("skill".equalsIgnoreCase(n.getNodeName())) {
                 setCurrentSkill(new SkillInfo());
                 parseSkill(n);
                 _skillsInFile.addAll(_currentSkill.skills);
@@ -67,8 +54,7 @@ public class DocumentSkill extends Base
         }
     }
 
-    protected void parseSkill(Node n)
-    {
+    protected void parseSkill(Node n) {
         NamedNodeMap attrs = n.getAttributes();
 
         int skillId = Integer.parseInt(attrs.getNamedItem("id").getNodeValue());
@@ -79,16 +65,14 @@ public class DocumentSkill extends Base
         _currentSkill.name = skillName;
         _currentSkill.sets = new StatsSet[levels];
 
-        for (int i = 0; i < levels; i++)
-        {
+        for (int i = 0; i < levels; i++) {
             _currentSkill.sets[i] = new StatsSet();
             _currentSkill.sets[i].set("skill_id", _currentSkill.id);
             _currentSkill.sets[i].set("name", _currentSkill.name);
-            _currentSkill.sets[i].set("level", i+1);
+            _currentSkill.sets[i].set("level", i + 1);
         }
 
-        if (_currentSkill.sets.length != levels)
-        {
+        if (_currentSkill.sets.length != levels) {
             //TODO:ERROR
         }
 
@@ -96,25 +80,29 @@ public class DocumentSkill extends Base
         _currentSkill.skills.addAll(_currentSkill.currentSkills);
     }
 
-    private void makeSkills()
-    {
+    private void makeSkills() {
         int count = 0;
 
         _currentSkill.currentSkills = new ArrayList<>(_currentSkill.sets.length);
 
         StatsSet set;
-        for (int i = 0; i < _currentSkill.sets.length; i++)
-        {
+        for (int i = 0; i < _currentSkill.sets.length; i++) {
             set = _currentSkill.sets[i];
-            try
-            {
+            try {
                 _currentSkill.currentSkills.add(i, new Skill(set));
                 count++;
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 LOG.log(Level.SEVERE, "Skill id= " + set.getInt("skill_id") + "level " + set.getInt("level"), e);
             }
         }
+    }
+
+    public static class SkillInfo {
+        public int id;
+        public String name;
+        public StatsSet[] sets;
+        public int currentLevel;
+        public List<Skill> skills = new ArrayList<>();
+        public List<Skill> currentSkills = new ArrayList<>();
     }
 }
