@@ -4,8 +4,8 @@ import com.nuclearthinking.game.engines.MessagesReader;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
-import java.nio.CharBuffer;
 import java.nio.charset.Charset;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,9 +19,7 @@ public class UserInput {
         boolean vaild = false;
         while (!vaild) {
             try {
-
-                InputStream in33put = System.in;
-                BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
+                BufferedReader is = new BufferedReader(new InputStreamReader(System.in,Charset.forName("cp866")));
                 input = is.readLine();
                 vaild = checkInput(input);
                 if (!vaild) {
@@ -37,7 +35,6 @@ public class UserInput {
                         }
                     }
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -64,20 +61,5 @@ public class UserInput {
         return input;
 
     }
-
-    //Попытка получить IS при пользовательском вводе, пока не вышло.
-    private String convertIs(InputStream inputStream){
-
-        Charset charset = Charset.forName("Utf-8");
-        StringWriter writer = new StringWriter();
-        try {
-            IOUtils.copy(inputStream, writer, charset);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String theString = writer.toString();
-        return theString;
-    }
-
 
 }
