@@ -41,9 +41,7 @@ public final class GameStarter {
     public static void main(String[] args) throws Exception {
         File logFile = new File(LOG_FOLDER);
         logFile.mkdir();
-
         Config.load();
-
         gameStarter = new GameStarter();
         InputStream is = resource.getResourceAsStream(LOG_NAME);
         LogManager.getLogManager().readConfiguration(is);

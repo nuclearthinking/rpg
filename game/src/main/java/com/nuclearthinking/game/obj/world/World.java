@@ -12,20 +12,16 @@ import java.util.List;
 
 public class World {
 
+    private int size = 0;
+    private List<Floor> worldArray;
+
     protected World() {
 
-    }
-
-    private static class WorldHolder {
-        private static final World INSTANCE = new World();
     }
 
     public static World getInstance() {
         return WorldHolder.INSTANCE;
     }
-
-    private int size = 0;
-    private List<Floor> worldArray;
 
     public void createWorld() {
         if (size == 0) {
@@ -49,5 +45,9 @@ public class World {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    private static class WorldHolder {
+        private static final World INSTANCE = new World();
     }
 }
