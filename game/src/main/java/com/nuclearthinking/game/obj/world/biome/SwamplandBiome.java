@@ -7,5 +7,5 @@ package com.nuclearthinking.game.obj.world.biome;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public class SwamplandBiome extends Biome{
+public class SwamplandBiome extends Biome {
 }

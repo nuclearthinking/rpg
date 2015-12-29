@@ -29,7 +29,7 @@ public class WorldGenerateUtil {
         biomes.add(new SwamplandBiome());
         biomes.add(new TaigaBiome());
 
-        int rndId = rUtil.randomInt(0, biomes.size()-1);
+        int rndId = rUtil.randomInt(0, biomes.size() - 1);
 
         return biomes.get(rndId);
     }
@@ -41,7 +41,7 @@ public class WorldGenerateUtil {
         roomes.add(new DefaultRoom());
         roomes.add(new VillageRoom());
 
-        int rndId = rUtil.randomInt(0, roomes.size()-1);
+        int rndId = rUtil.randomInt(0, roomes.size() - 1);
 
         return roomes.get(rndId);
     }

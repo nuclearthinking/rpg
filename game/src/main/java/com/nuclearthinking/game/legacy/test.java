@@ -21,9 +21,9 @@ public class test {
          * второе значение это ширина
          */
         int[][] initialArray = new int[8][6];
-        for (int i=0; i<initialArray.length;i++){
-            for (int o=0; o<initialArray[0].length;o++){
-                initialArray[i][o]=0;
+        for (int i = 0; i < initialArray.length; i++) {
+            for (int o = 0; o < initialArray[0].length; o++) {
+                initialArray[i][o] = 0;
             }
         }
 

@@ -1,11 +1,11 @@
 package com.nuclearthinking.game.utils;
 
 import com.nuclearthinking.game.engines.MessagesReader;
-import org.apache.commons.io.IOUtils;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,7 +19,7 @@ public class UserInput {
         boolean vaild = false;
         while (!vaild) {
             try {
-                BufferedReader is = new BufferedReader(new InputStreamReader(System.in,Charset.forName("cp866")));
+                BufferedReader is = new BufferedReader(new InputStreamReader(System.in, Charset.forName("cp866")));
                 input = is.readLine();
                 vaild = checkInput(input);
                 if (!vaild) {
