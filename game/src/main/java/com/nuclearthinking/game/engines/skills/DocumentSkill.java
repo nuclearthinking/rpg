@@ -36,17 +36,24 @@ public class DocumentSkill extends Base {
     }
 
     @Override
-    protected void parseDocument(Document doc) {
-        for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling()) {
-            if ("list".equalsIgnoreCase(n.getNodeName())) {
-                for (Node d = n.getFirstChild(); d != null; d = d.getNextSibling()) {
-                    if ("skill".equalsIgnoreCase(d.getNodeName())) {
+    protected void parseDocument(Document doc)
+    {
+        for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+        {
+            if ("list".equalsIgnoreCase(n.getNodeName()))
+            {
+                for (Node d = n.getFirstChild(); d != null; d = d.getNextSibling())
+                {
+                    if ("skill".equalsIgnoreCase(d.getNodeName()))
+                    {
                         setCurrentSkill(new SkillInfo());
                         parseSkill(d);
                         _skillsInFile.addAll(_currentSkill.skills);
                     }
                 }
-            } else if ("skill".equalsIgnoreCase(n.getNodeName())) {
+            }
+            else if ("skill".equalsIgnoreCase(n.getNodeName()))
+            {
                 setCurrentSkill(new SkillInfo());
                 parseSkill(n);
                 _skillsInFile.addAll(_currentSkill.skills);

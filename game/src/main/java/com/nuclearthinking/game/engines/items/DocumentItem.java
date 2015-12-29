@@ -21,7 +21,7 @@ public class DocumentItem extends Base
     private ItemInfo _currentItem = null;
     private final List<Item> _itemInFile = new ArrayList<>();
 
-    protected DocumentItem(InputStream file)
+    public DocumentItem(InputStream file)
     {
         super(file);
     }
@@ -33,7 +33,6 @@ public class DocumentItem extends Base
         {
             if ("list".equalsIgnoreCase(n.getNodeName()))
             {
-
                 for (Node d = n.getFirstChild(); d != null; d = d.getNextSibling())
                 {
                     if ("item".equalsIgnoreCase(d.getNodeName()))
@@ -57,7 +56,7 @@ public class DocumentItem extends Base
     @Override
     protected StatsSet getStatsSet()
     {
-        return null;
+        return _currentItem.set;
     }
 
     protected void parseItem(Node n) throws InvocationTargetException
@@ -80,7 +79,7 @@ public class DocumentItem extends Base
     {
         if (_currentItem.item != null)
         {
-            return; // item is already created
+            return;
         }
         try
         {
@@ -91,5 +90,10 @@ public class DocumentItem extends Base
         {
             throw new InvocationTargetException(e);
         }
+    }
+
+    public List<Item> getItemList()
+    {
+        return _itemInFile;
     }
 }

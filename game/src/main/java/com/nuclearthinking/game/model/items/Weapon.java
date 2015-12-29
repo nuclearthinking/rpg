@@ -19,6 +19,6 @@ public class Weapon extends Item
     @Override
     public WeaponType getItemType()
     {
-        return null;
+        return _type;
     }
 }

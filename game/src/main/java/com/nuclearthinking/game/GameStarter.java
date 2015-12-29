@@ -1,7 +1,7 @@
 package com.nuclearthinking.game;
 
 import com.nuclearthinking.game.config.Config;
-import com.nuclearthinking.game.data.SkillData;
+import com.nuclearthinking.game.data.ItemData;
 import com.nuclearthinking.game.utils.ResourceUtil;
 import com.nuclearthinking.game.utils.UserInput;
 
@@ -27,18 +27,23 @@ public final class GameStarter {
     public static GameStarter gameStarter;
     private UserInput input = new UserInput();
 
-    public GameStarter() throws Exception {
-        SkillData.getInstance();
+    public GameStarter() throws Exception
+    {
+        //SkillData.getInstance();
+        ItemData.getInstance();
         Game.getInstance();
 
 
         //Секция для дебага. Настройка в general конфиге
-        if (Config.DEBUG) {
-            SkillData.getInstance().getSkill(1, 10);
+        if (Config.DEBUG)
+        {
+            //SkillData.getInstance().getSkill(1, 10);
+            ItemData.getInstance().getTemplate(0);
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception
+    {
         File logFile = new File(LOG_FOLDER);
         logFile.mkdir();
 
