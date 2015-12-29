@@ -5,6 +5,7 @@ import com.nuclearthinking.game.engines.MessagesReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.util.regex.Matcher;
@@ -22,7 +23,6 @@ public class UserInput {
             try {
                 BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
                 input = is.readLine();
-                input = convert(input);
                 vaild = checkInput(input);
                 if (!vaild) {
                     if (input.trim().length() <= 0) {
@@ -54,15 +54,38 @@ public class UserInput {
     private String convert(String input) {
         Charset charset = Charset.forName("cp1251");
         byte[] string = input.getBytes(charset);
-        String newString = new String(string);
+        try {
+            String newString = new String(string, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         return input;
 
     }
 
     private String convertBR(BufferedReader w){
+        StringBuilder sb = new StringBuilder();
 
+        String line;
+        try {
 
-        return null;
+            while ((line = w.readLine()) != null) {
+                sb.append(line);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (w != null) {
+                try {
+                    w.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return sb.toString();
     }
 
 
