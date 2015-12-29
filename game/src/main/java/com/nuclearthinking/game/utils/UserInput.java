@@ -1,11 +1,9 @@
 package com.nuclearthinking.game.utils;
 
 import com.nuclearthinking.game.engines.MessagesReader;
+import org.apache.commons.io.IOUtils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.util.regex.Matcher;
@@ -21,6 +19,8 @@ public class UserInput {
         boolean vaild = false;
         while (!vaild) {
             try {
+
+                InputStream in33put = System.in;
                 BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
                 input = is.readLine();
                 vaild = checkInput(input);
@@ -51,6 +51,8 @@ public class UserInput {
         return m.matches();
     }
 
+
+    //Попытка конвертировать строку в строку изменив кодировку, неудачно
     private String convert(String input) {
         Charset charset = Charset.forName("cp1251");
         byte[] string = input.getBytes(charset);
@@ -63,29 +65,18 @@ public class UserInput {
 
     }
 
-    private String convertBR(BufferedReader w){
-        StringBuilder sb = new StringBuilder();
+    //Попытка получить IS при пользовательском вводе, пока не вышло.
+    private String convertIs(InputStream inputStream){
 
-        String line;
+        Charset charset = Charset.forName("Utf-8");
+        StringWriter writer = new StringWriter();
         try {
-
-            while ((line = w.readLine()) != null) {
-                sb.append(line);
-            }
-
+            IOUtils.copy(inputStream, writer, charset);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (w != null) {
-                try {
-                    w.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
-
-        return sb.toString();
+        String theString = writer.toString();
+        return theString;
     }
 
 
