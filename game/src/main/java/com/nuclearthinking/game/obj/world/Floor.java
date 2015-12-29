@@ -13,14 +13,13 @@ import com.nuclearthinking.game.utils.WorldGenerateUtil;
 
 
 public class Floor extends World {
-    int minWidth = 0;
-    int maxWidth = 0;
-    int minHeight = 0;
-    int maxHeight = 0;
+    int minWidth = 4;
+    int maxWidth = 7;
+    int minHeight = 3;
+    int maxHeight = 8;
     private RandomUtil rUtil = new RandomUtil();
-    private Level level = new Level();
     private WorldGenerateUtil wGem = new WorldGenerateUtil();
-    private Level[][] floorMap;
+    private Room[][] floorMap;
     private Biome floorBiome;
 
     public void setMinWidth(int minWidth) {
@@ -44,10 +43,10 @@ public class Floor extends World {
         checkWidthHeightValues();
         int width = rUtil.randomInt(minWidth, maxWidth);
         int height = rUtil.randomInt(minHeight, maxHeight);
-        floorMap = new Level[height][width];
+        floorMap = new Room[height][width];
         for (int i = 0; i < height; i++) {
             for (int o = 0; o < width; o++) {
-                floorMap[i][o] = level.generateLevel();
+                floorMap[i][o] = new Room().generateRoom();
             }
         }
         floor.setFloorMap(floorMap);
@@ -65,7 +64,7 @@ public class Floor extends World {
         }
     }
 
-    public void setFloorMap(Level[][] floorMap) {
+    public void setFloorMap(Room[][] floorMap) {
         this.floorMap = floorMap;
     }
 

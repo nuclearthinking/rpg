@@ -13,6 +13,7 @@ import java.util.List;
 public class World {
 
     protected World() {
+
     }
 
     private static class WorldHolder {
@@ -37,9 +38,16 @@ public class World {
         }
     }
 
+    public List<Floor> getWorldArray() {
+        return worldArray;
+    }
 
     //TODO: Метод для сохранения состояния мира
     public void save() {
 
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 }
