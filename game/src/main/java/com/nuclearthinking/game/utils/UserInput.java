@@ -47,19 +47,4 @@ public class UserInput {
         Matcher m = p.matcher(input);
         return m.matches();
     }
-
-
-    //Попытка конвертировать строку в строку изменив кодировку, неудачно
-    private String convert(String input) {
-        Charset charset = Charset.forName("cp1251");
-        byte[] string = input.getBytes(charset);
-        try {
-            String newString = new String(string, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return input;
-
-    }
-
 }
