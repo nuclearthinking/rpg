@@ -19,7 +19,4 @@ public interface IPlayerClass {
 
     int pDefence(Player player);
 
-    double pCriticalChanse(Player player);
-
-    double mCriticalChanse(Player player);
 }
