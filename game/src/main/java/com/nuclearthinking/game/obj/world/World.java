@@ -23,18 +23,20 @@ public class World {
         return WorldHolder.INSTANCE;
     }
 
-    private int size;
+    private int size = 0;
     private List<Floor> worldArray;
 
-    //Генерация мира
-    public void createWorld(int worldSize) {
-        size = worldSize;
+    public void createWorld() {
+        if (size == 0) {
+            throw new RuntimeException("Размер мира не установлен");
+        }
+        int worldSize = size;
         worldArray = new ArrayList<Floor>();
         for (int i = 0; i < worldSize; i++) {
-            worldArray.add(i,new Floor().generateFloor());
+            worldArray.add(i, new Floor().generateFloor());
         }
-
     }
+
 
     //TODO: Метод для сохранения состояния мира
     public void save() {

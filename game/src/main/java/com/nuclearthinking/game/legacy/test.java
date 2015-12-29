@@ -1,4 +1,4 @@
-package com.nuclearthinking.game.obj.world;
+package com.nuclearthinking.game.legacy;
 
 import java.util.Arrays;
 

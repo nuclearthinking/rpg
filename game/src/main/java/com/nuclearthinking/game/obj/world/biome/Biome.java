@@ -1,4 +1,4 @@
-package com.nuclearthinking.game.obj.biome;
+package com.nuclearthinking.game.obj.world.biome;
 
 /**
  * Date: 28.12.2015

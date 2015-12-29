@@ -9,4 +9,10 @@ package com.nuclearthinking.game.obj.world;
 
 public class Room extends Level {
 
+
+    protected Room generateRoom() {
+
+
+        return null;
+    }
 }

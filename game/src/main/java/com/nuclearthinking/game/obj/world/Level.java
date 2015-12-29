@@ -8,4 +8,10 @@ package com.nuclearthinking.game.obj.world;
  */
 
 public class Level extends Floor {
+
+    protected Level generateLevel(){
+
+
+        return null;
+    }
 }
