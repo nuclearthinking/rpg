@@ -24,7 +24,7 @@ public class PreparePlayer {
         if (player.getName() == null) {
             String playerName = getValidName();
             player.setName(ut.beautifyName(playerName));
-            System.out.println(messages.getMessages().getWelcomeMessage() + " " + player.getName());
+            System.out.println(messages.getMessage("welcomeMessage") + " " + player.getName());
         }
 
 
@@ -42,7 +42,7 @@ public class PreparePlayer {
         boolean valid = false;
         String playerName = null;
         while (!valid) {
-            System.out.println(messages.getMessages().getInputNameMessage());
+            System.out.println(messages.getMessage("inputNameMessage"));
             playerName = input.getUserInput();
             valid = ut.isValidName(playerName);
         }

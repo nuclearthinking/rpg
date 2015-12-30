@@ -14,7 +14,7 @@ import com.nuclearthinking.game.obj.world.World;
 public final class Game {
 
     private Game() {
-        PreparePlayer preparePlayer = PreparePlayer.getInstance();
+        PreparePlayer.getInstance();
         World world = World.getInstance();
         world.setSize(30);
         world.createWorld();
