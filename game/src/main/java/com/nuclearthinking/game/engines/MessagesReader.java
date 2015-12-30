@@ -9,6 +9,7 @@ import com.nuclearthinking.game.utils.ResourceUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 
 /**
  * Date: 24.12.2015
@@ -42,6 +43,22 @@ public class MessagesReader {
         }
 
         return messages;
+    }
+
+    public String getMessage(String key) {
+        String message = null;
+        InputStream is = res.getResourceAsStream("json/messages.json");
+        try {
+            JsonFactory jsonFactory = new JsonFactory();
+            JsonParser jsonParser = jsonFactory.createParser(is);
+            ObjectMapper mapper = new ObjectMapper();
+            Map map = mapper.readValue(jsonParser, Map.class);
+            message = (String) map.get(key);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return message;
     }
 
     private static class Holder {

@@ -30,17 +30,17 @@ public class UserInput
                     //Пустое имя
                     if (input.trim().length() <= 0)
                     {
-                        System.out.println(messages.getMessages().getInputText());
+                        System.out.println(messages.getMessage("inputText"));
                     }
                     //Слишком длинное имя
                     if (input.length() > 15)
                     {
-                        System.out.println(messages.getMessages().getUnacceptableInputTooLong());
+                        System.out.println(messages.getMessage("unacceptableInputTooLong"));
                     }
                     //Имя содержит пробелы
                     if (input.trim().length() < input.length() || input.contains(" "))
                     {
-                        System.out.println(messages.getMessages().getUnacceptableInputTooManyWhiteSpaces());
+                        System.out.println(messages.getMessage("unacceptableInputTooManyWhiteSpaces"));
                     }
                 }
             }
