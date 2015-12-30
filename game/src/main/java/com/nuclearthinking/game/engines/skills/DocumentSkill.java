@@ -15,7 +15,8 @@ import java.util.logging.Level;
 /**
  * Created by kuksin-mv on 24.12.2015.
  */
-public class DocumentSkill extends Base {
+public class DocumentSkill extends Base
+{
     private final List<Skill> _skillsInFile = new ArrayList<>();
     private SkillInfo _currentSkill;
 
@@ -30,6 +31,30 @@ public class DocumentSkill extends Base {
     @Override
     protected StatsSet getStatsSet() {
         return _currentSkill.sets[_currentSkill.currentLevel];
+    }
+
+    @Override
+    protected String getTableValue(String name) {
+        try
+        {
+            return _tables.get(name)[_currentSkill.currentLevel];
+        }
+        catch (RuntimeException e)
+        {
+            return "";
+        }
+    }
+
+    @Override
+    protected String getTableValue(String name, int idx) {
+        try
+        {
+            return _tables.get(name)[idx - 1];
+        }
+        catch (RuntimeException e)
+        {
+            return "";
+        }
     }
 
     public List<Skill> getSkills() {
@@ -50,6 +75,7 @@ public class DocumentSkill extends Base {
                         setCurrentSkill(new SkillInfo());
                         parseSkill(d);
                         _skillsInFile.addAll(_currentSkill.skills);
+                        resetTable();
                     }
                 }
             }
@@ -103,14 +129,5 @@ public class DocumentSkill extends Base {
                 LOG.log(Level.SEVERE, "Skill id= " + set.getInt("skill_id") + "level " + set.getInt("level"), e);
             }
         }
-    }
-
-    public static class SkillInfo {
-        public int id;
-        public String name;
-        public StatsSet[] sets;
-        public int currentLevel;
-        public List<Skill> skills = new ArrayList<>();
-        public List<Skill> currentSkills = new ArrayList<>();
     }
 }

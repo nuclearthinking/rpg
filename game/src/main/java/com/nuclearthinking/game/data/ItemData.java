@@ -1,18 +1,20 @@
 package com.nuclearthinking.game.data;
 
-import com.nuclearthinking.game.config.Config;
 import com.nuclearthinking.game.engines.Engine;
 import com.nuclearthinking.game.model.items.Item;
 import com.nuclearthinking.game.model.items.Weapon;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by kuksin-mv on 29.12.2015.
  */
 public class ItemData
 {
+    private static Logger LOG = Logger.getLogger(ItemData.class.getName());
     private final Map<Integer, Weapon> _weapons = new HashMap<>();
 
     private Item[] _allTemplates;
@@ -43,6 +45,7 @@ public class ItemData
             }
         }
         buildFastLookupTable(highest);
+        LOG.log(Level.INFO, getClass().getSimpleName() + ": Loaded: " + _weapons.size() + " Weapon Items");
     }
 
     private void buildFastLookupTable(int size)
@@ -60,13 +63,6 @@ public class ItemData
         if ((id >= _allTemplates.length) || (id < 0))
         {
             return null;
-        }
-
-        if (Config.DEBUG)
-        {
-            System.out.println("Item Name: " + _weapons.get(id).getName());
-            System.out.println("Weapon Id: " + _weapons.get(id).getId());
-            System.out.println("Weapon Type: " + _weapons.get(id).getItemType());
         }
 
         return _allTemplates[id];

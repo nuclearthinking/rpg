@@ -2,7 +2,7 @@ package com.nuclearthinking.game.model.items;
 
 import com.nuclearthinking.game.model.StatsSet;
 import com.nuclearthinking.game.model.interfaces.IIdentifiable;
-import com.nuclearthinking.game.model.items.type.WeaponType;
+import com.nuclearthinking.game.model.items.type.ItemType;
 
 import java.util.logging.Logger;
 
@@ -22,7 +22,7 @@ public abstract class Item implements IIdentifiable
         _name = set.getString("name");
     }
 
-    public abstract WeaponType getItemType();
+    public abstract ItemType getItemType();
 
     @Override
     public final int getId()
@@ -33,6 +33,13 @@ public abstract class Item implements IIdentifiable
     public final String getName()
     {
         return _name;
+    }
+
+    public abstract int getItemMask();
+
+    public boolean isMagicWeapon()
+    {
+        return false;
     }
 
     @Override

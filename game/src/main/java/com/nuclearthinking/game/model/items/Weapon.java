@@ -21,4 +21,10 @@ public class Weapon extends Item
     {
         return _type;
     }
+
+    @Override
+    public int getItemMask()
+    {
+        return getItemType().mask();
+    }
 }

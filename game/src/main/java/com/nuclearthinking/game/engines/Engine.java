@@ -31,7 +31,7 @@ public class Engine {
     protected Engine()
     {
         hashFiles("data/items/", _itemFiles);
-        hashFiles("data/skills/", _skillFiles);
+        //hashFiles("data/skills/", _skillFiles);
     }
 
     public static Engine getInstance()
@@ -60,8 +60,7 @@ public class Engine {
     public List<Item> loadItems()
     {
         List<Item> list = new ArrayList<Item>();
-
-        for (InputStream file : _skillFiles)
+        for (InputStream file : _itemFiles)
         {
             DocumentItem documentItem = new DocumentItem(file);
             documentItem.parse();

@@ -38,7 +38,7 @@ public final class GameStarter {
         if (Config.DEBUG)
         {
             //SkillData.getInstance().getSkill(1, 10);
-            ItemData.getInstance().getTemplate(0);
+            //ItemData.getInstance().getTemplate(0);
         }
     }
 

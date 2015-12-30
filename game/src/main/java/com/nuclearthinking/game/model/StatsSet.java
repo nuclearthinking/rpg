@@ -2,37 +2,29 @@ package com.nuclearthinking.game.model;
 
 import com.nuclearthinking.game.model.interfaces.IParserAdvUtils;
 
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * Created by kuksin-mv on 24.12.2015.
  */
-public class StatsSet implements IParserAdvUtils {
-    public static final StatsSet EMPTY_STATSET = new StatsSet(Collections.<String, Object>emptyMap());
-    private static final Logger _log = Logger.getLogger(StatsSet.class.getName());
+public class StatsSet implements IParserAdvUtils
+{
     private final Map<String, Object> _set;
 
-    public StatsSet() {
+    public StatsSet()
+    {
         this(new LinkedHashMap<>());
     }
 
-    public StatsSet(Map<String, Object> map) {
+    public StatsSet(Map<String, Object> map)
+    {
         _set = map;
     }
 
-    public final Map<String, Object> getSet() {
+    public final Map<String, Object> getSet()
+    {
         return _set;
-    }
-
-    public void add(StatsSet newSet) {
-        _set.putAll(newSet.getSet());
-    }
-
-    public boolean isEmpty() {
-        return _set.isEmpty();
     }
 
     //TODO: Сделать для остальных по аналогии
