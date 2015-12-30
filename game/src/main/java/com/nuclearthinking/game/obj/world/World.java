@@ -43,8 +43,9 @@ public class World {
 
     }
 
-    public void setSize(int size) {
+    public World setSize(int size) {
         this.size = size;
+        return this;
     }
 
     private static class WorldHolder {

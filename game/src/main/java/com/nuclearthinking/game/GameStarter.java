@@ -42,7 +42,7 @@ public final class GameStarter {
         File logFile = new File(LOG_FOLDER);
         logFile.mkdir();
         Config.load();
-        gameStarter = new GameStarter();
+        new GameStarter();
         InputStream is = resource.getResourceAsStream(LOG_NAME);
         LogManager.getLogManager().readConfiguration(is);
     }
