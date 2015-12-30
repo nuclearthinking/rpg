@@ -5,6 +5,7 @@ import com.nuclearthinking.game.engines.MessagesReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,7 +19,7 @@ public class UserInput {
         boolean vaild = false;
         while (!vaild) {
             try {
-                BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
+                BufferedReader is = new BufferedReader(new InputStreamReader(System.in, Charset.forName("cp866")));
                 input = is.readLine();
                 vaild = checkInput(input);
                 if (!vaild) {
@@ -34,7 +35,6 @@ public class UserInput {
                         }
                     }
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -47,6 +47,4 @@ public class UserInput {
         Matcher m = p.matcher(input);
         return m.matches();
     }
-
-
 }

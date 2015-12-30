@@ -18,6 +18,7 @@ import java.util.logging.Level;
 public class DocumentSkill extends Base {
     private final List<Skill> _skillsInFile = new ArrayList<>();
     private SkillInfo _currentSkill;
+
     public DocumentSkill(InputStream file) {
         super(file);
     }

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 /**
  * Created by kuksin-mv on 25.12.2015.
- * <p>
+ * <p/>
  * Это класс лоадер скилов в котором будут храниться все скилы
  */
 public class SkillData {

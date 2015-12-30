@@ -18,10 +18,14 @@ import java.io.InputStream;
  */
 public class ClassConfigReader {
 
+    private ResourceUtil res = new ResourceUtil();
+
     private ClassConfigReader() {
     }
 
-    private ResourceUtil res = new ResourceUtil();
+    public static ClassConfigReader getInstance() {
+        return ClasConfigReaderHolder.INSTANCE;
+    }
 
     public ClassConfig getClassConfig() {
         ClassConfig classConfig = null;
@@ -38,10 +42,6 @@ public class ClassConfigReader {
         }
 
         return classConfig;
-    }
-
-    public static ClassConfigReader getInstance() {
-        return ClasConfigReaderHolder.INSTANCE;
     }
 
     private static class ClasConfigReaderHolder {
