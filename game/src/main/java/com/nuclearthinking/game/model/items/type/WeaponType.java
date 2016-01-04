@@ -15,10 +15,6 @@ public enum WeaponType implements ItemType
     private final int _mask;
     private final TraitType _traitType;
 
-    /**
-     * Constructor of the L2WeaponType.
-     * @param traitType
-     */
     WeaponType(TraitType traitType)
     {
         _mask = 1 << ordinal();
@@ -32,4 +28,8 @@ public enum WeaponType implements ItemType
     }
 
     //TODO: Добавить гетер, который будет отдавать TraitType и на его основе делать умножение урона
+    public TraitType getTraitType()
+    {
+        return _traitType;
+    }
 }

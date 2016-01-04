@@ -10,7 +10,7 @@ public class Weapon extends Item
 {
     private final WeaponType _type;
 
-    protected Weapon(StatsSet set)
+    public Weapon(StatsSet set)
     {
         super(set);
         _type = WeaponType.valueOf(set.getString("weapon_type", "none").toUpperCase());

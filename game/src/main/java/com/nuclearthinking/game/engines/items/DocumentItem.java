@@ -27,35 +27,6 @@ public class DocumentItem extends Base
     }
 
     @Override
-    protected void parseDocument(Document doc)
-    {
-        for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
-        {
-            if ("list".equalsIgnoreCase(n.getNodeName()))
-            {
-                for (Node d = n.getFirstChild(); d != null; d = d.getNextSibling())
-                {
-                    if ("item".equalsIgnoreCase(d.getNodeName()))
-                    {
-                        try
-                        {
-                            _currentItem = new ItemInfo();
-                            parseItem(d);
-                            System.out.println(_currentItem.name);
-                            _itemInFile.add(_currentItem.item);
-                            resetTable();
-                        }
-                        catch (Exception e)
-                        {
-                            LOG.log(Level.WARNING, "Cannot create item " + _currentItem.id, e);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
     protected StatsSet getStatsSet()
     {
         return _currentItem.set;
@@ -73,6 +44,34 @@ public class DocumentItem extends Base
         return _tables.get(name)[idx - 1];
     }
 
+    @Override
+    protected void parseDocument(Document doc)
+    {
+        for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+        {
+            if ("list".equalsIgnoreCase(n.getNodeName()))
+            {
+                for (Node d = n.getFirstChild(); d != null; d = d.getNextSibling())
+                {
+                    if ("item".equalsIgnoreCase(d.getNodeName()))
+                    {
+                        try
+                        {
+                            _currentItem = new ItemInfo();
+                            parseItem(d);
+                            _itemInFile.add(_currentItem.item);
+                            resetTable();
+                        }
+                        catch (Exception e)
+                        {
+                            LOG.log(Level.WARNING, "Cannot create item " + _currentItem.id, e);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     protected void parseItem(Node n) throws InvocationTargetException
     {
         int itemId = Integer.parseInt(n.getAttributes().getNamedItem("id").getNodeValue());
@@ -80,19 +79,24 @@ public class DocumentItem extends Base
         String itemName = n.getAttributes().getNamedItem("name").getNodeValue();
 
         _currentItem.id = itemId;
-        _currentItem.name = itemName;
         _currentItem.type = className;
+        _currentItem.name = itemName;
+
         _currentItem.set = new StatsSet();
         _currentItem.set.set("item_id", itemId);
         _currentItem.set.set("name", itemName);
 
-        if ("set".equalsIgnoreCase(n.getNodeName()))
+        Node first = n.getFirstChild();
+        for (n = first; n != null; n = n.getNextSibling())
         {
-            if (_currentItem.item != null)
+            if ("set".equalsIgnoreCase(n.getNodeName()))
             {
-                throw new IllegalStateException("Item created but set node found! Item " + itemId);
+                if (_currentItem.item != null)
+                {
+                    throw new IllegalStateException("Item created but set node found! Item " + itemId);
+                }
+                parseBeanSet(n, _currentItem.set, 1);
             }
-            parseBeanSet(n, _currentItem.set, 1);
         }
 
         makeItem();
@@ -106,7 +110,6 @@ public class DocumentItem extends Base
         }
         try
         {
-            System.out.println(_currentItem.type);
             Constructor<?> c = Class.forName("com.nuclearthinking.game.model.items." + _currentItem.type).getConstructor(StatsSet.class);
             _currentItem.item = (Item) c.newInstance(_currentItem.set);
         }

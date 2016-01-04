@@ -68,6 +68,19 @@ public class ItemData
         return _allTemplates[id];
     }
 
+    public void getForDebug(int id)
+    {
+        if ((id >= _allTemplates.length) || (id < 0))
+        {
+            System.out.println("Такого Id нет");
+        }
+
+        System.out.println("Item ID: " + _allTemplates[id].getId() + "; " +
+                           "Item Name: " + _allTemplates[id].getName() + "; " +
+                            "Item Type: " + _allTemplates[id].getItemType() + "; " +
+                            "Item Mask: " + _allTemplates[id].getItemMask());
+    }
+
     private static class SingletonHolder
     {
         protected static final ItemData _instance = new ItemData();
