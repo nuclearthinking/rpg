@@ -31,7 +31,7 @@ public class Engine {
     protected Engine()
     {
         hashFiles("data/items/", _itemFiles);
-        //hashFiles("data/skills/", _skillFiles);
+        hashFiles("data/skills/", _skillFiles);
     }
 
     public static Engine getInstance()

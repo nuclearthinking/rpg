@@ -69,6 +69,12 @@ public abstract class Base
         }
     }
 
+     /**
+      * Тут запил на будущее, если в value вместо значения будет символ #
+      * то значения можно будет брать из таблицы
+      * <table name="#dmg"> 100 150 200 </table>
+      * <set name="dmg" val="#dmg" />
+     */
     protected String getValue(String value, Object template)
     {
         // is it a table?
