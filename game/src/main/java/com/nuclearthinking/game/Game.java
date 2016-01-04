@@ -15,8 +15,7 @@ public final class Game {
 
     private Game() {
         PreparePlayer.getInstance();
-        World world = World.getInstance();
-        world.setSize(30);
+        World world = new World().setSize(30);
         world.createWorld();
     }
 
