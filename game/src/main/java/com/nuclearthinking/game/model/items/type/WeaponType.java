@@ -5,8 +5,7 @@ import com.nuclearthinking.game.enums.TraitType;
 /**
  * Created by Izonami on 26.12.2015.
  */
-public enum WeaponType implements ItemType
-{
+public enum WeaponType implements ItemType {
 
     SWORD(TraitType.SWORD),
     DAGGER(TraitType.DAGGER),
@@ -15,21 +14,18 @@ public enum WeaponType implements ItemType
     private final int _mask;
     private final TraitType _traitType;
 
-    WeaponType(TraitType traitType)
-    {
+    WeaponType(TraitType traitType) {
         _mask = 1 << ordinal();
         _traitType = traitType;
     }
 
     @Override
-    public int mask()
-    {
+    public int mask() {
         return _mask;
     }
 
     //TODO: Добавить гетер, который будет отдавать TraitType и на его основе делать умножение урона
-    public TraitType getTraitType()
-    {
+    public TraitType getTraitType() {
         return _traitType;
     }
 }

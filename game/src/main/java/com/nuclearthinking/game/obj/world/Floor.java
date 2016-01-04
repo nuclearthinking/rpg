@@ -19,8 +19,23 @@ public class Floor extends World {
     int maxHeight = 8;
     private RandomUtil rUtil = new RandomUtil();
     private WorldGenerateUtil wGem = new WorldGenerateUtil();
-    private Room[][] floorMap;
+
+    public Room[][] getFloorMap() {
+        return floorMap;
+    }
+
+    protected Room[][] floorMap;
     private Biome floorBiome;
+
+    private int floorId;
+
+    public int getFloorId() {
+        return floorId;
+    }
+
+    public void setFloorId(int floorId) {
+        this.floorId = floorId;
+    }
 
     public void setMinWidth(int minWidth) {
         this.minWidth = minWidth;
@@ -52,8 +67,10 @@ public class Floor extends World {
         floor.setFloorMap(floorMap);
         Biome randomedBiome = wGem.getRandomBiome();
         floor.setFloorBiome(randomedBiome);
+        roomNumbering(floorMap);
         return floor;
     }
+
 
     private void checkWidthHeightValues() {
         if (minWidth == 0 | maxWidth == 0) {
@@ -74,5 +91,33 @@ public class Floor extends World {
 
     public void setFloorBiome(Biome floorBiome) {
         this.floorBiome = floorBiome;
+    }
+
+
+    private void roomNumbering(Room[][] rooms) {
+        int y = 1;
+        for (int i = 0; i < rooms.length; i++) {
+            for (int o = 0; o < rooms[0].length; o++) {
+                rooms[i][o].setRoomId(y);
+                y++;
+            }
+        }
+    }
+
+    public Room getRoomById(int id) {
+        if (id <= 0 & id > floorMap.length) {
+            throw new RuntimeException("Некорректный Room ID");
+        }
+        if (floorMap == null) {
+            throw new RuntimeException("У этажа отсутсвтуют комнаты");
+        }
+        for (int i = 0; i < floorMap.length; i++) {
+            for (int o = 0; o < floorMap[0].length; o++) {
+                if (floorMap[i][o].getRoomId() == id) {
+                    return floorMap[i][o];
+                }
+            }
+        }
+        return null;
     }
 }

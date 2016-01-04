@@ -12,9 +12,22 @@ import com.nuclearthinking.game.utils.WorldGenerateUtil;
 public class Room extends Floor {
     private WorldGenerateUtil worldGenerateUtil = new WorldGenerateUtil();
     private Room roomType;
+    private int roomId;
+
+    public Room getRoomType() {
+        return roomType;
+    }
 
     public void setRoomType(Room roomType) {
         this.roomType = roomType;
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
     protected Room generateRoom() {

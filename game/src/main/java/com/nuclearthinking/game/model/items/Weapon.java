@@ -6,25 +6,21 @@ import com.nuclearthinking.game.model.items.type.WeaponType;
 /**
  * Created by Izonami on 26.12.2015.
  */
-public class Weapon extends Item
-{
+public class Weapon extends Item {
     private final WeaponType _type;
 
-    public Weapon(StatsSet set)
-    {
+    public Weapon(StatsSet set) {
         super(set);
         _type = WeaponType.valueOf(set.getString("weapon_type", "none").toUpperCase());
     }
 
     @Override
-    public WeaponType getItemType()
-    {
+    public WeaponType getItemType() {
         return _type;
     }
 
     @Override
-    public int getItemMask()
-    {
+    public int getItemMask() {
         return getItemType().mask();
     }
 }

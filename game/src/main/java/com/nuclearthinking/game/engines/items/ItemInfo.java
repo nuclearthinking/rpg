@@ -6,8 +6,7 @@ import com.nuclearthinking.game.model.items.Item;
 /**
  * Created by Izonami on 26.12.2015.
  */
-public class ItemInfo
-{
+public class ItemInfo {
     public int id;
     public String type;
     public String name;

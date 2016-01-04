@@ -15,8 +15,7 @@ import java.util.logging.Logger;
 /**
  * Created by kuksin-mv on 24.12.2015.
  */
-public abstract class Base
-{
+public abstract class Base {
     protected final Logger LOG = Logger.getLogger(Base.class.getName());
 
     protected final Map<String, String[]> _tables = new HashMap<>();
@@ -27,26 +26,21 @@ public abstract class Base
         _file = pFile;
     }
 
-    public Document parse()
-    {
+    public Document parse() {
         Document doc = null;
-        try
-        {
+        try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setValidating(false);
             factory.setIgnoringComments(true);
             doc = factory.newDocumentBuilder().parse(_file);
             parseDocument(doc);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             LOG.log(Level.SEVERE, "Error loading file " + _file, e);
         }
         return doc;
     }
 
-    protected void resetTable()
-    {
+    protected void resetTable() {
         _tables.clear();
     }
 
@@ -54,42 +48,31 @@ public abstract class Base
 
     protected abstract StatsSet getStatsSet();
 
-    protected void parseBeanSet(Node n, StatsSet set, Integer level)
-    {
+    protected void parseBeanSet(Node n, StatsSet set, Integer level) {
         String name = n.getAttributes().getNamedItem("name").getNodeValue().trim();
         String value = n.getAttributes().getNamedItem("val").getNodeValue().trim();
         char ch = value.isEmpty() ? ' ' : value.charAt(0);
-        if ((ch == '#') || (ch == '-') || Character.isDigit(ch))
-        {
+        if ((ch == '#') || (ch == '-') || Character.isDigit(ch)) {
             set.set(name, String.valueOf(getValue(value, level)));
-        }
-        else
-        {
+        } else {
             set.set(name, value);
         }
     }
 
-     /**
-      * Тут запил на будущее, если в value вместо значения будет символ #
-      * то значения можно будет брать из таблицы
-      * <table name="#dmg"> 100 150 200 </table>
-      * <set name="dmg" val="#dmg" />
+    /**
+     * Тут запил на будущее, если в value вместо значения будет символ #
+     * то значения можно будет брать из таблицы
+     * <table name="#dmg"> 100 150 200 </table>
+     * <set name="dmg" val="#dmg" />
      */
-    protected String getValue(String value, Object template)
-    {
+    protected String getValue(String value, Object template) {
         // is it a table?
-        if (value.charAt(0) == '#')
-        {
-            if (template instanceof Skill)
-            {
+        if (value.charAt(0) == '#') {
+            if (template instanceof Skill) {
                 return getTableValue(value);
-            }
-            else if (template instanceof Integer)
-            {
+            } else if (template instanceof Integer) {
                 return getTableValue(value, ((Integer) template).intValue());
-            }
-            else
-            {
+            } else {
                 throw new IllegalStateException();
             }
         }

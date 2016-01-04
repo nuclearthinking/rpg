@@ -54,4 +54,35 @@ public class WorldTest {
         world.setSize(15);
         Assert.assertEquals(world.size, 15);
     }
+
+    @Test
+    public void testGetRoomById() {
+        world.setSize(30);
+        world.createWorld();
+        Assert.assertEquals(world.getFloorById(1).getFloorId(), 1);
+    }
+
+    @Test
+    public void testGetRoomByIdTooSmall() {
+        world.setSize(13).createWorld();
+        String message = null;
+        try {
+            world.getFloorById(0);
+        } catch (RuntimeException e) {
+            message = e.getMessage();
+        }
+        Assert.assertEquals(message, "Несуществующий Floor ID");
+    }
+
+    @Test
+    public void testGetRoomByIdToLarge(){
+        world.setSize(14).createWorld();
+        String message = null;
+        try {
+            world.getFloorById(22);
+        } catch (RuntimeException e) {
+            message = e.getMessage();
+        }
+        Assert.assertEquals(message, "Несуществующий Floor ID");
+    }
 }

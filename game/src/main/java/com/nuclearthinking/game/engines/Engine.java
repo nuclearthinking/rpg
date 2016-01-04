@@ -28,26 +28,22 @@ public class Engine {
     private final List<InputStream> _itemFiles = new ArrayList<InputStream>();
     private final List<InputStream> _skillFiles = new ArrayList<InputStream>();
 
-    protected Engine()
-    {
+    protected Engine() {
         hashFiles("data/items/", _itemFiles);
         hashFiles("data/skills/", _skillFiles);
     }
 
-    public static Engine getInstance()
-    {
+    public static Engine getInstance() {
         return SingletonHolder._instance;
     }
 
-    private void hashFiles(String dirname, List<InputStream> hash)
-    {
+    private void hashFiles(String dirname, List<InputStream> hash) {
         //TODO: Почитать как брать файлы из дирректории для инпут стрима. Скорее всего надо сделать метод в котором он будет вайлить по дирректории
         InputStream is = resource.getResourceAsStream(dirname + "000-100.xml");
         hash.add(is);
     }
 
-    public List<Skill> loadSkills(InputStream file)
-    {
+    public List<Skill> loadSkills(InputStream file) {
         if (file == null) {
             LOG.log(Level.WARNING, "Skill file not found.");
             return null;
@@ -57,11 +53,9 @@ public class Engine {
         return doc.getSkills();
     }
 
-    public List<Item> loadItems()
-    {
+    public List<Item> loadItems() {
         List<Item> list = new ArrayList<Item>();
-        for (InputStream file : _itemFiles)
-        {
+        for (InputStream file : _itemFiles) {
             DocumentItem documentItem = new DocumentItem(file);
             documentItem.parse();
             list.addAll(documentItem.getItemList());
