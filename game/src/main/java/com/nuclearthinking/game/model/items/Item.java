@@ -9,15 +9,13 @@ import java.util.logging.Logger;
 /**
  * Created by Izonami on 26.12.2015.
  */
-public abstract class Item implements IIdentifiable
-{
+public abstract class Item implements IIdentifiable {
     protected static final Logger LOG = Logger.getLogger(Item.class.getName());
 
     private final int _itemId;
     private final String _name;
 
-    protected Item(StatsSet set)
-    {
+    protected Item(StatsSet set) {
         _itemId = set.getInt("item_id");
         _name = set.getString("name");
     }
@@ -25,26 +23,22 @@ public abstract class Item implements IIdentifiable
     public abstract ItemType getItemType();
 
     @Override
-    public final int getId()
-    {
+    public final int getId() {
         return _itemId;
     }
 
-    public final String getName()
-    {
+    public final String getName() {
         return _name;
     }
 
     public abstract int getItemMask();
 
-    public boolean isMagicWeapon()
-    {
+    public boolean isMagicWeapon() {
         return false;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return _name + "(" + _itemId + ")";
     }
 }

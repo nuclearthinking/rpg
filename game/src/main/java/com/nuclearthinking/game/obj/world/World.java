@@ -14,10 +14,8 @@ public class World {
 
     protected int size = 0;
     private List<Floor> worldArray;
-
     public World() {
     }
-
 
     public void createWorld() {
         if (size == 0) {
@@ -28,6 +26,7 @@ public class World {
         for (int i = 0; i < worldSize; i++) {
             worldArray.add(i, new Floor().generateFloor());
         }
+        floorNumbering(worldArray);
     }
 
     public List<Floor> getWorldArray() {
@@ -36,7 +35,6 @@ public class World {
 
     //TODO: Метод для сохранения состояния мира
     public void save() {
-
     }
 
     public World setSize(int size) {
@@ -44,4 +42,18 @@ public class World {
         return this;
     }
 
+    public void floorNumbering(List<Floor> worldArray) {
+        int n = 1;
+        for (Floor floor : worldArray) {
+            floor.setFloorId(n);
+            n++;
+        }
+    }
+
+    public Floor getFloorById(int id) {
+        if (id <= 0 | id > worldArray.size()) {
+            throw new RuntimeException("Несуществующий Floor ID");
+        }
+        return worldArray.get(id - 1);
+    }
 }

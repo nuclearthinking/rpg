@@ -8,22 +8,18 @@ import java.util.Map;
 /**
  * Created by kuksin-mv on 24.12.2015.
  */
-public class StatsSet implements IParserAdvUtils
-{
+public class StatsSet implements IParserAdvUtils {
     private final Map<String, Object> _set;
 
-    public StatsSet()
-    {
+    public StatsSet() {
         this(new LinkedHashMap<>());
     }
 
-    public StatsSet(Map<String, Object> map)
-    {
+    public StatsSet(Map<String, Object> map) {
         _set = map;
     }
 
-    public final Map<String, Object> getSet()
-    {
+    public final Map<String, Object> getSet() {
         return _set;
     }
 
