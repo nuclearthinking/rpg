@@ -1,5 +1,11 @@
 package com.nuclearthinking.game.characters;
 
+import com.nuclearthinking.game.model.skills.Skill;
+
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * Date: 22.12.2015
  * Time: 19:52
@@ -7,7 +13,23 @@ package com.nuclearthinking.game.characters;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public class Player extends GameCharacter {
+public class Player extends GameCharacter
+{
+    private volatile Set<Player> _attackByList;
+    private volatile boolean _isCastingNow = false;
+    private Skill _lastSkillCast;
+
+    private boolean _isDead = false;
+
+    private final Map<Integer, Skill> _skills = new ConcurrentHashMap<>();
+    //Тут будем хранить время реюзов скилов
+    //Я придумал как реализовать, но пока что вливать не буду
+    //private volatile Map<Integer, ReuseTime> _reuseTimeStampsSkills = null;
+    private volatile Map<Integer, Long> _disabledSkills = null;
+    private boolean _allSkillsDisabled;
+
+    //Это цель для атаки
+    private GameCharacter _target;
 
     private static final double DIFFICULITY = 1.0;
     private PlayerClass pClass;
@@ -18,9 +40,10 @@ public class Player extends GameCharacter {
     private double agility = 10;
     private double stamina = 10;
 
-    public Player() {
+    public Player(int objectId)
+    {
+        super(objectId);
     }
-
 
     public void levelUP() {
 
