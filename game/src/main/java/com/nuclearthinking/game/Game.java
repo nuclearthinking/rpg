@@ -1,6 +1,7 @@
 package com.nuclearthinking.game;
 
 import com.nuclearthinking.game.engines.PreparePlayer;
+import com.nuclearthinking.game.obj.Player;
 import com.nuclearthinking.game.obj.world.World;
 
 
@@ -14,7 +15,10 @@ import com.nuclearthinking.game.obj.world.World;
 public final class Game {
 
     private Game() {
-        PreparePlayer.getInstance();
+        PreparePlayer pp = PreparePlayer.getInstance();
+
+        Player playableCharacter = pp.getPlayer();
+
         World world = new World().setSize(30);
         world.createWorld();
     }
