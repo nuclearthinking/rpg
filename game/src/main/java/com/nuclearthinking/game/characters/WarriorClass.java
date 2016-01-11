@@ -1,4 +1,4 @@
-package com.nuclearthinking.game.obj;
+package com.nuclearthinking.game.characters;
 
 import com.nuclearthinking.game.engines.ClassConfigReader;
 import com.nuclearthinking.game.obj.jsonpojo.WarriorConfig;
