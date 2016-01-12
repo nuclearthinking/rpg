@@ -32,6 +32,9 @@ public class Player extends GameCharacter
     private GameCharacter _target;
 
     private static final double DIFFICULITY = 1.0;
+
+
+    //TODO: Все присвоение статов нужно будет вынести в отдельный инстанс класс, который будет собирать персонажа
     private PlayerClass pClass;
     private int level = 1;
     private String name;
@@ -68,6 +71,107 @@ public class Player extends GameCharacter
         }
     }
 
+    @Override
+    public void onSpawn()
+    {
+        super.onSpawn();
+        //TODO: Позицию
+    }
+
+
+    public void doCast(Skill skill)
+    {
+        beginCast(skill, false);
+    }
+
+    private void beginCast(Skill skill, boolean boo)
+    {
+        //TODO: Тут будет определение типа скила
+        Player target = null;
+
+        beginCast(skill, boo, target);
+    }
+
+    private void beginCast(Skill skill, boolean simultaneously, Player target)
+    {
+
+    }
+
+    public boolean checkDoCastConditions(Skill skill)
+    {
+        //TODO: Тут будем проверять состояния возможности каста
+        return false;
+    }
+
+    //TODO: Реализовать состояния при которых игрок не сможет совершать действия (например в стуне)
+
+
+    public final boolean isCastingNow()
+    {
+        return _isCastingNow;
+    }
+
+    public void setIsCastingNow(boolean value)
+    {
+        _isCastingNow = value;
+    }
+
+    public void setTarget(GameCharacter object)
+    {
+        if (object != null)
+        {
+            object = null;
+        }
+
+        if ((object != null) && (object != _target))
+        {
+            //TODO: Тут надо сделать список целей
+        }
+
+        _target = object;
+    }
+
+    public final int getTargetId()
+    {
+        if (_target != null)
+        {
+            return _target.getObjectId();
+        }
+        return 0;
+    }
+
+    public final GameCharacter getTarget()
+    {
+        return _target;
+    }
+
+    @Override
+    public boolean isCharacter()
+    {
+        return true;
+    }
+
+    //TODO: Надо ещё что нибудь типо такого
+    /*public Race getRace()
+    {
+        return getRace;
+    }*/
+
+
+
+
+    //TODO: Убрать все расчеты оставить только гетеры в которых будут браться статы расчитанные в другом классе
+    // Например
+    public int getMAtkSpd()
+    {
+        return 1; //getMAtkSpd();
+    }
+
+
+    public void setClass(PlayerClass pClass) {
+        this.pClass = pClass;
+    }
+
     protected void addStrenght(double amount) {
         strength = strength + amount;
     }
@@ -98,10 +202,6 @@ public class Player extends GameCharacter
 
     public PlayerClass getpClass() {
         return pClass;
-    }
-
-    public void setClass(PlayerClass pClass) {
-        this.pClass = pClass;
     }
 
     public double getStrength() {

@@ -1,5 +1,8 @@
 package com.nuclearthinking.game.characters;
 
+import com.nuclearthinking.game.characters.interfaces.IName;
+import com.nuclearthinking.game.characters.interfaces.IObjectId;
+
 /**
  * Date: 11.01.2016
  * Time: 12:23
@@ -12,11 +15,9 @@ package com.nuclearthinking.game.characters;
  * Нужно реализовать инстансы для создания разных объектов (Нпс, игрок и так далее)
  */
 
-public abstract class GameCharacter
+public abstract class GameCharacter implements IName, IObjectId
 {
     private String _name;
-    //Это нужно для того что бы обращаться к объекту в мире. По хорошему бы сделать через интерфейс как и имя
-    //Так же думаю нужна фабрика для генерации этого ид
     private int _objectId;
 
 
@@ -34,6 +35,7 @@ public abstract class GameCharacter
         return false;
     }
 
+    @Override
     public String getName()
     {
         return _name;
@@ -44,6 +46,7 @@ public abstract class GameCharacter
         _name = value;
     }
 
+    @Override
     public final int getObjectId()
     {
         return _objectId;

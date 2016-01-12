@@ -1,5 +1,6 @@
 package com.nuclearthinking.game.characters;
 
+import com.nuclearthinking.game.characters.interfaces.IPlayerClass;
 import com.nuclearthinking.game.engines.ClassConfigReader;
 import com.nuclearthinking.game.obj.jsonpojo.RogueConfig;
 
