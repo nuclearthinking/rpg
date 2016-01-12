@@ -16,11 +16,12 @@ public final class Game {
 
     private Game() {
         PreparePlayer pp = PreparePlayer.getInstance();
-
         Player playableCharacter = pp.getPlayer();
-
         World world = new World().setSize(30);
         world.createWorld();
+
+       MainGameLoop loop =  new MainGameLoop(playableCharacter, world);
+
     }
 
     public static Game getInstance() {

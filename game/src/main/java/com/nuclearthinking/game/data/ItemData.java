@@ -38,7 +38,7 @@ public class ItemData {
             }
         }
         buildFastLookupTable(highest);
-        LOG.log(Level.INFO, getClass().getSimpleName() + ": Loaded: " + _weapons.size() + " Weapon Items");
+//        LOG.log(Level.INFO, getClass().getSimpleName() + ": Loaded: " + _weapons.size() + " Weapon Items");
     }
 
     private void buildFastLookupTable(int size) {
