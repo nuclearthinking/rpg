@@ -6,7 +6,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -72,7 +74,6 @@ public class UserInput {
         return m.matches();
     }
 
-    //TODO: Переписать на Map
 
     public int chouseOne(List<String> stringList) {
         System.out.println(messages.getMessage("chooseOneInVariants"));
@@ -98,5 +99,37 @@ public class UserInput {
 
         }
         return input;
+    }
+
+    //TODO: Сделал реализацию через MAP но вышло чет не очень
+    public Object chouseOneMap(Map<String, Object> variants) {
+        System.out.println(messages.getMessage("chooseOneInVariants"));
+        int iter = 1;
+        int input = 0;
+
+        List<String> printVariants = new ArrayList<>();
+        for (Map.Entry<String, Object> entry : variants.entrySet()) {
+            printVariants.add(entry.getKey());
+        }
+        for (String str : printVariants) {
+            System.out.println(iter + ". " + str);
+            iter++;
+        }
+
+        boolean validInput = false;
+        while (!validInput) {
+            input = getUserInputInt();
+            if (input <= variants.size() & checkInputInt(String.valueOf(input))) {
+                if (input == 0) {
+                    System.out.println(messages.getMessage("numberIsIncorrect"));
+                } else {
+                    validInput = true;
+                }
+            } else {
+                System.out.println(messages.getMessage("numberIsIncorrect"));
+            }
+        }
+
+        return variants.get(printVariants.get(input));
     }
 }
