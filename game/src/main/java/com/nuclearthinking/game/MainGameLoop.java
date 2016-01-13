@@ -26,10 +26,10 @@ public class MainGameLoop {
         /**
          * основная петля игры
          */
-        int currentFloor = player.getCurrentFloor();
-        int currentRoom = player.getCurrentRoom();
-        int worldSize = world.getWorldArray().size();
-        int floorSize = world.getWorldArray().get(currentFloor).getFloorMap().length;
+        int currentFloor;
+        int currentRoom;
+        int worldSize;
+        int floorSize;
 
         while (true) {
             if (day == 1) {
@@ -39,10 +39,14 @@ public class MainGameLoop {
             } else {
                 printCurrentDay();
             }
-            //Почистить
-            System.out.println("Текущий уровень " + player.getCurrentFloor());
-            System.out.println("Текущая комната " + player.getCurrentRoom());
+            currentFloor = player.getCurrentFloor();
+            currentRoom = player.getCurrentRoom();
+            worldSize = world.getWorldArray().size();
+            floorSize = world.getWorldArray().get(currentFloor).getFloorMap().length;
 
+            //Почистить
+            System.out.println("Текущий уровень " + player.getCurrentFloor() + " из " + worldSize);
+            System.out.println("Текущая комната " + player.getCurrentRoom() + " из " + floorSize);
 
             List<String> actions;
 
@@ -76,17 +80,32 @@ public class MainGameLoop {
                             }
                         }
                     }
+                } else {
+
+                    actions = new ArrayList<String>() {
+                        {
+                            add("Следующая комната");
+                            add("Предыдущая комната");
+                        }
+                    };
+
+                    int input = userInput.chouseOne(actions);
+                    if (input == 1) {
+                        player.setCurrentRoom(currentRoom + 1);
+                    } else {
+                        if (input == 2) {
+                            player.setCurrentRoom(currentRoom - 1);
+                        }
+                    }
                 }
             }
-
 
             if (player.getHitPoints() <= 0) {
                 System.out.println("Game over!");
                 break;
             }
-
+            day++;
         }
-
     }
 
 
