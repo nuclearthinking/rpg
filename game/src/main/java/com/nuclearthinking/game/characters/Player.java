@@ -1,5 +1,6 @@
 package com.nuclearthinking.game.characters;
 
+import com.nuclearthinking.game.characters.templates.CharacterTemplate;
 import com.nuclearthinking.game.model.skills.Skill;
 
 import java.util.Map;
@@ -30,6 +31,8 @@ public class Player extends GameCharacter
 
     //Это цель для атаки
     private GameCharacter _target;
+
+    private CharacterTemplate _template;
 
     private static final double DIFFICULITY = 1.0;
 
