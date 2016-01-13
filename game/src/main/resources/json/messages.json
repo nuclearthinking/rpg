@@ -11,5 +11,7 @@
   "warriorClass": "Воин",
   "rogueClass": "Разбойник",
   "chooseYourClass": "Выбирите класс персонажа",
-  "choosedClass" : "Выбранн класс"
+  "choosedClass" : "Выбранн класс",
+  "firstDayWelcomeMessage": "Добро пожаловать в игру!",
+  "day": "День"
 }

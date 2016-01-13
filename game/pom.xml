@@ -9,7 +9,7 @@
     <artifactId>game</artifactId>
     <!-- Упаковщик -->
     <packaging>jar</packaging>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>rpg</name>
 
     <!-- Конфигурационный файл, удобно задавать версии для пакетов -->

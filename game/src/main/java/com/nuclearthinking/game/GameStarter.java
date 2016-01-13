@@ -25,8 +25,6 @@ public final class GameStarter {
 
     private static final ResourceUtil resource = new ResourceUtil();
 
-    public static GameStarter gameStarter;
-    private UserInput input = new UserInput();
 
     public GameStarter() throws Exception {
         SkillData.getInstance();

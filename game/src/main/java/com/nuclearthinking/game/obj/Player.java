@@ -19,6 +19,26 @@ public class Player {
     private double agility = 10;
     private double stamina = 10;
 
+    private int currentFloor;
+
+    private int currentRoom;
+
+    public int getCurrentFloor() {
+        return currentFloor;
+    }
+
+    public void setCurrentFloor(int currentFloor) {
+        this.currentFloor = currentFloor;
+    }
+
+    public int getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(int currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
     public Player() {
     }
 

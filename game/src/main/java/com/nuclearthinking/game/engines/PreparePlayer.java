@@ -63,9 +63,6 @@ public class PreparePlayer {
                     break;
                 }
             }
-
-            System.out.println(player.getpClass());
-
         }
     }
 
