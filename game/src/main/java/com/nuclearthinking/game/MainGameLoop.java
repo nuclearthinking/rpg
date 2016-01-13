@@ -47,6 +47,7 @@ public class MainGameLoop {
             //Почистить
             System.out.println("Текущий уровень " + player.getCurrentFloor() + " из " + worldSize);
             System.out.println("Текущая комната " + player.getCurrentRoom() + " из " + floorSize);
+            System.out.println();
 
             List<String> actions;
 
@@ -104,6 +105,7 @@ public class MainGameLoop {
                 System.out.println("Game over!");
                 break;
             }
+            System.out.println();
             day++;
         }
     }
