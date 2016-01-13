@@ -45,13 +45,18 @@ public class UserInput {
 
     public int getUserInputInt() {
         String input = null;
-        boolean valid = false;
-        try {
-            BufferedReader is = new BufferedReader(new InputStreamReader(System.in, Charset.forName("cp866")));
-            input = is.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        do {
+            try {
+                BufferedReader is = new BufferedReader(new InputStreamReader(System.in, Charset.forName("cp866")));
+                input = is.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (input.equals("")) {
+                System.out.println(messages.getMessage("chooseOneVariant"));
+            }
+        } while (input.equals(""));
         return Integer.parseInt(input);
     }
 
@@ -70,13 +75,13 @@ public class UserInput {
     //TODO: Переписать на Map
 
     public int chouseOne(List<String> stringList) {
+        System.out.println(messages.getMessage("chooseOneInVariants"));
         int iter = 1;
         int input = 0;
         for (String str : stringList) {
             System.out.println(iter + ". " + str);
             iter++;
         }
-        System.out.println(messages.getMessage("chooseOneInVariants"));
 
         boolean validInput = false;
         while (!validInput) {

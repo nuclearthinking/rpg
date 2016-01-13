@@ -26,17 +26,28 @@ public class PreparePlayer {
 
 
     private PreparePlayer() {
+        //Новый обьект игрока
         player = new Player();
-        if (player.getName() == null) {
-            String playerName = getValidName();
-            player.setName(ut.beautifyName(playerName));
-            System.out.println(messages.getMessage("welcomeMessage") + " " + player.getName());
-        }
+        //Установка имени игроку если оно null
+        setPlayerName();
+        //Установка класса игроку если он null
+        choosePlayerClass();
+    }
 
+
+    private void setPlayerName() {
+        if (player.getName() == null) {
+            player.setName(ut.beautifyName(getValidName()));
+            System.out.println(messages.getMessage("welcomeMessage") + " " + player.getName());
+            System.out.println();
+        }
+    }
+
+    private void choosePlayerClass() {
         if (player.getpClass() == null) {
 
             System.out.println(messages.getMessage("chooseYourClass"));
-
+            System.out.println();
             List<String> strings = new ArrayList<String>() {
                 {
                     add(messages.getMessage("mageClass"));
@@ -44,12 +55,11 @@ public class PreparePlayer {
                     add(messages.getMessage("rogueClass"));
                 }
             };
-            int classId = input.chouseOne(strings);
 
-            switch (classId) {
+            switch (input.chouseOne(strings)) {
                 case 1: {
                     player.setClass(new MageClass());
-                    System.out.println(messages.getMessage("choosedClass")+" : "+messages.getMessage("mageClass"));
+                    System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("mageClass"));
                     break;
                 }
                 case 2: {

@@ -15,7 +15,7 @@ import java.util.List;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public class MainGameLoop {
+public final class MainGameLoop {
 
     MessagesReader messages = MessagesReader.getInstance();
     UserInput userInput = new UserInput();
@@ -42,7 +42,7 @@ public class MainGameLoop {
             currentFloor = player.getCurrentFloor();
             currentRoom = player.getCurrentRoom();
             worldSize = world.getWorldArray().size();
-            floorSize = world.getWorldArray().get(currentFloor).getFloorMap().length;
+            floorSize = world.getWorldArray().get(currentFloor).getFloorSize();
 
             //Почистить
             System.out.println("Текущий уровень " + player.getCurrentFloor() + " из " + worldSize);

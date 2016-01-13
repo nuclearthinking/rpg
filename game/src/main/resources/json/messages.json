@@ -5,7 +5,7 @@
   "unacceptableInputTooLong": "Недопустимый ввод, сообщение не должно быть длинее 15 символов.",
   "unacceptableInputTooManyWhiteSpaces": "Недопустимый ввод, сообщение не должно содержать пробелы.",
   "firstCharNumeric": "Имя не должно начинаться с цифры",
-  "chooseOneInVariants": "Выбирите один из вариантов",
+  "chooseOneInVariants": "Выбирите один из вариантов:",
   "numberIsIncorrect": "Введённое число не корректно",
   "mageClass": "Маг",
   "warriorClass": "Воин",
@@ -13,5 +13,6 @@
   "chooseYourClass": "Выбирите класс персонажа",
   "choosedClass" : "Выбранн класс",
   "firstDayWelcomeMessage": "Добро пожаловать в игру!",
-  "day": "День"
+  "day": "День",
+  "chooseOneVariant":"Выбирете один вариант"
 }
