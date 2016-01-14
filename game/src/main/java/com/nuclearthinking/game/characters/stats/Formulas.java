@@ -1,7 +1,9 @@
 package com.nuclearthinking.game.characters.stats;
 
 import com.nuclearthinking.game.characters.Player;
+import com.nuclearthinking.game.characters.stats.functions.FuncMAtkMod;
 import com.nuclearthinking.game.characters.stats.functions.FuncMaxHpMul;
+import com.nuclearthinking.game.characters.stats.functions.FuncMaxMpMul;
 import com.nuclearthinking.game.characters.stats.functions.FuncPAtkMod;
 
 /**
@@ -16,18 +18,18 @@ public final class Formulas
         if (cha.isPlayer())
         {
             cha.addStatFunc(FuncMaxHpMul.getInstance());
-            //cha.addStatFunc(FuncMaxMpMul.getInstance());
+            cha.addStatFunc(FuncMaxMpMul.getInstance());
             cha.addStatFunc(FuncPAtkMod.getInstance());
-            //cha.addStatFunc(FuncMAtkMod.getInstance());
-            //cha.addStatFunc(FuncPDefMod.getInstance());
-            //cha.addStatFunc(FuncMDefMod.getInstance());
-            //cha.addStatFunc(FuncAtkCritical.getInstance());
-            //cha.addStatFunc(FuncMAtkCritical.getInstance());
-            //cha.addStatFunc(FuncAtkAccuracy.getInstance());
-            //cha.addStatFunc(FuncAtkEvasion.getInstance());
-            //cha.addStatFunc(FuncPAtkSpeed.getInstance());
-            //cha.addStatFunc(FuncMAtkSpeed.getInstance());
-            //cha.addStatFunc(FuncMoveSpeed.getInstance());
+            cha.addStatFunc(FuncMAtkMod.getInstance());
+            /*cha.addStatFunc(FuncPDefMod.getInstance());
+            cha.addStatFunc(FuncMDefMod.getInstance());
+            cha.addStatFunc(FuncAtkCritical.getInstance());
+            cha.addStatFunc(FuncMAtkCritical.getInstance());
+            cha.addStatFunc(FuncAtkAccuracy.getInstance());
+            cha.addStatFunc(FuncAtkEvasion.getInstance());
+            cha.addStatFunc(FuncPAtkSpeed.getInstance());
+            cha.addStatFunc(FuncMAtkSpeed.getInstance());
+            cha.addStatFunc(FuncMoveSpeed.getInstance());*/
 
             //TODO: Добавить установку статов с брони
         }

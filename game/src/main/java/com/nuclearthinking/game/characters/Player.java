@@ -226,9 +226,34 @@ public class Player extends GameCharacter
         return 0;//getStat().getSTR();
     }
 
+    public int getINT()
+    {
+        return 0;//getStat().getINT();
+    }
+
+    public int getDEX()
+    {
+        return 0;//getStat().getDEX();
+    }
+
+    public int getWIT()
+    {
+        return 0;//getStat().getWIT();
+    }
+
+    public int getCON()
+    {
+        return 0;//getStat().getCON();
+    }
+
+    public int getMEN()
+    {
+        return 0;//getStat().getMEN();
+    }
+
     public int getMAtkSpd()
     {
-        return 1; //getMAtkSpd();
+        return 1; //getStat().getMAtkSpd();
     }
 
 

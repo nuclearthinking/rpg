@@ -27,12 +27,12 @@ public enum Stats
     MAGIC_CRIT_DMG("mCritPower"),
 
     // BASIC STATS
-    STAT_STR("STR"),
+    STAT_STR("Strength"),
     STAT_CON("CON"),
-    STAT_DEX("DEX"),
-    STAT_INT("INT"),
-    STAT_WIT("WIT"),
-    STAT_MEN("MEN");
+    STAT_DEX("Dexterity"),
+    STAT_INT("Intelligent"),
+    STAT_WIT("Wisdom"),
+    STAT_MEN("Mentality");
 
     public static final int NUM_STATS = values().length;
 

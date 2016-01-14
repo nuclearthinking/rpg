@@ -8,23 +8,23 @@ import com.nuclearthinking.game.model.skills.Skill;
 /**
  * Created by kuksin-mv on 14.01.2016.
  */
-public class FuncMaxHpMul extends AbstractFunction
+public class FuncMaxMpMul extends AbstractFunction
 {
-    private static final FuncMaxHpMul _fmhm_instance = new FuncMaxHpMul();
+    private static final FuncMaxMpMul _fmmm_instance = new FuncMaxMpMul();
 
     public static AbstractFunction getInstance()
     {
-        return _fmhm_instance;
+        return _fmmm_instance;
     }
 
-    private FuncMaxHpMul()
+    public FuncMaxMpMul()
     {
-        super(Stats.MAX_HP, 1, null, 0);
+        super(Stats.MAX_MP, 1, null, 0);
     }
 
     @Override
     public double calc(Player effector, Player effected, Skill skill, double initVal)
     {
-        return initVal * BaseStats.CON.calcBonus(effector);
+        return initVal * BaseStats.MEN.calcBonus(effector);
     }
 }

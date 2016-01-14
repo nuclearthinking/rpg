@@ -7,7 +7,7 @@ import com.nuclearthinking.game.enums.BaseStats;
 /**
  * Created by kuksin-mv on 14.01.2016.
  */
-public class STR implements IBaseStat
+public class Strength implements IBaseStat
 {
     @Override
     public double calcBonus(Player player)

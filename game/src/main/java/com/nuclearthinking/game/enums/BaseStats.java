@@ -12,23 +12,23 @@ import java.util.logging.Logger;
  */
 public enum BaseStats
 {
-    STR(new STR()),
-    INT(new INT()),
-    DEX(new DEX()),
-    WIT(new WIT()),
-    CON(new CONN()),
-    MEN(new MEN());
+    STR(new Strength()),
+    INT(new Intelligent()),
+    DEX(new Dexterity()),
+    WIT(new Wisdom()),
+    CON(new Stamina()),
+    MEN(new Mentality());
 
     private static final Logger _log = Logger.getLogger(BaseStats.class.getName());
 
     public static final int MAX_STAT_VALUE = 100;
 
     public static final double[] STRbonus = new double[MAX_STAT_VALUE];
-    protected static final double[] INTbonus = new double[MAX_STAT_VALUE];
-    protected static final double[] DEXbonus = new double[MAX_STAT_VALUE];
-    protected static final double[] WITbonus = new double[MAX_STAT_VALUE];
-    protected static final double[] CONbonus = new double[MAX_STAT_VALUE];
-    protected static final double[] MENbonus = new double[MAX_STAT_VALUE];
+    public static final double[] INTbonus = new double[MAX_STAT_VALUE];
+    public static final double[] DEXbonus = new double[MAX_STAT_VALUE];
+    public static final double[] WITbonus = new double[MAX_STAT_VALUE];
+    public static final double[] CONbonus = new double[MAX_STAT_VALUE];
+    public static final double[] MENbonus = new double[MAX_STAT_VALUE];
 
     private final IBaseStat _stat;
 
