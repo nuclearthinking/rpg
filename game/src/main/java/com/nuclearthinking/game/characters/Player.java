@@ -53,6 +53,8 @@ public class Player extends GameCharacter
     private double agility = 10;
     private double stamina = 10;
 
+    public Player(){}
+
     public Player(int objectId, CharacterTemplate template)
     {
         super(objectId);

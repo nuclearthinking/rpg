@@ -14,6 +14,7 @@ public class Room extends Floor {
     private Room roomType;
     private int roomId;
 
+
     public Room getRoomType() {
         return roomType;
     }

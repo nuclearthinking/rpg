@@ -20,6 +20,7 @@ public abstract class GameCharacter implements IName, IObjectId
     private String _name;
     private int _objectId;
 
+    public GameCharacter(){}
 
     public GameCharacter(int objectId)
     {

@@ -17,6 +17,9 @@ public class Floor extends World {
     int maxWidth = 7;
     int minHeight = 3;
     int maxHeight = 8;
+    boolean visited = false;
+
+
     private RandomUtil rUtil = new RandomUtil();
     private WorldGenerateUtil wGem = new WorldGenerateUtil();
 
@@ -28,6 +31,15 @@ public class Floor extends World {
     private Biome floorBiome;
 
     private int floorId;
+
+
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
 
     public int getFloorId() {
         return floorId;
