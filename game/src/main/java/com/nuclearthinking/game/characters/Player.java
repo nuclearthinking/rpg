@@ -22,38 +22,27 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Player extends GameCharacter
 {
+    //Тут будем хранить время реюзов скилов
+    private volatile Map<Integer, ReuseTime> _reuseTimeStampsSkills = null;
+    private volatile Map<Integer, Long> _disabledSkills = null;
     private volatile Set<Player> _attackByList;
     private volatile boolean _isCastingNow = false;
+
     private Skill _lastSkillCast;
 
     private boolean _isDead = false;
+    private boolean _allSkillsDisabled;
 
     private Calculator[] _calculators;
+
     private final Map<Integer, Skill> _skills = new ConcurrentHashMap<>();
-    //Тут будем хранить время реюзов скилов
-    //Я придумал как реализовать, но пока что вливать не буду
-    private volatile Map<Integer, ReuseTime> _reuseTimeStampsSkills = null;
-    private volatile Map<Integer, Long> _disabledSkills = null;
-    private boolean _allSkillsDisabled;
 
     //Это цель для атаки
     private GameCharacter _target;
 
     private CharacterTemplate _template;
 
-    private static final double DIFFICULITY = 1.0;
-
-
-    //TODO: Все присвоение статов нужно будет вынести в отдельный инстанс класс, который будет собирать персонажа
-    private PlayerClass pClass;
-    private int level = 1;
-    private String name;
-    private double strength = 10;
-    private double intelligence = 10;
-    private double agility = 10;
-    private double stamina = 10;
-
-    public Player(){}
+    public Player() {}
 
     public Player(int objectId, CharacterTemplate template)
     {
@@ -259,6 +248,45 @@ public class Player extends GameCharacter
         return 1; //getStat().getMAtkSpd();
     }
 
+
+
+
+    private int currentFloor;
+    private int currentRoom;
+    private int hitPoints = 100;
+    private static final double DIFFICULITY = 1.0;
+    //TODO: Все присвоение статов нужно будет вынести в отдельный инстанс класс, который будет собирать персонажа
+    private PlayerClass pClass;
+    private int level = 1;
+    private String name;
+    private double strength = 10;
+    private double intelligence = 10;
+    private double agility = 10;
+    private double stamina = 10;
+
+    public int getCurrentFloor() {
+        return currentFloor;
+    }
+
+    public void setCurrentFloor(int currentFloor) {
+        this.currentFloor = currentFloor;
+    }
+
+    public int getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(int currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
+    public int getHitPoints() {
+        return hitPoints;
+    }
+
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
+    }
 
     public void setClass(PlayerClass pClass) {
         this.pClass = pClass;

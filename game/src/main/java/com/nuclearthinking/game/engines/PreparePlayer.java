@@ -1,9 +1,10 @@
 package com.nuclearthinking.game.engines;
 
-import com.nuclearthinking.game.obj.MageClass;
-import com.nuclearthinking.game.obj.Player;
-import com.nuclearthinking.game.obj.RogueClass;
-import com.nuclearthinking.game.obj.WarriorClass;
+
+import com.nuclearthinking.game.characters.MageClass;
+import com.nuclearthinking.game.characters.Player;
+import com.nuclearthinking.game.characters.RogueClass;
+import com.nuclearthinking.game.characters.WarriorClass;
 import com.nuclearthinking.game.utils.StringUtil;
 import com.nuclearthinking.game.utils.UserInput;
 
