@@ -31,8 +31,7 @@ public class ClassConfigReader {
         ClassConfig classConfig = null;
         InputStream is = res.getResourceAsStream("json/class_config.json");
         try {
-            JsonFactory jsonFactory = new JsonFactory();
-            JsonParser jsonParser = jsonFactory.createParser(is);
+            JsonParser jsonParser = new JsonFactory().createParser(is);
             ObjectMapper mapper = new ObjectMapper();
             MappingIterator<ClassConfig> messagesMappingIterator = mapper.readValues(jsonParser, ClassConfig.class);
             classConfig = messagesMappingIterator.next();

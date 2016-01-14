@@ -19,12 +19,22 @@ public class Floor extends World {
     int maxHeight = 8;
     boolean visited = false;
 
+    int floorSize;
 
     private RandomUtil rUtil = new RandomUtil();
-    private WorldGenerateUtil wGem = new WorldGenerateUtil();
 
+
+    private WorldGenerateUtil wGem = new WorldGenerateUtil();
     public Room[][] getFloorMap() {
         return floorMap;
+    }
+
+    public void setFloorSize(int floorSize) {
+        this.floorSize = floorSize;
+    }
+
+    public int getFloorSize() {
+        return floorSize;
     }
 
     protected Room[][] floorMap;
@@ -79,6 +89,7 @@ public class Floor extends World {
         floor.setFloorMap(floorMap);
         Biome randomedBiome = wGem.getRandomBiome();
         floor.setFloorBiome(randomedBiome);
+        floor.setFloorSize(width*height);
         roomNumbering(floorMap);
         return floor;
     }
