@@ -6,6 +6,7 @@ import com.nuclearthinking.game.characters.stats.functions.AbstractFunction;
 import com.nuclearthinking.game.characters.templates.CharacterTemplate;
 import com.nuclearthinking.game.enums.Race;
 import com.nuclearthinking.game.enums.Stats;
+import com.nuclearthinking.game.model.ReuseTime;
 import com.nuclearthinking.game.model.skills.Skill;
 
 import java.util.Map;
@@ -31,7 +32,7 @@ public class Player extends GameCharacter
     private final Map<Integer, Skill> _skills = new ConcurrentHashMap<>();
     //Тут будем хранить время реюзов скилов
     //Я придумал как реализовать, но пока что вливать не буду
-    //private volatile Map<Integer, ReuseTime> _reuseTimeStampsSkills = null;
+    private volatile Map<Integer, ReuseTime> _reuseTimeStampsSkills = null;
     private volatile Map<Integer, Long> _disabledSkills = null;
     private boolean _allSkillsDisabled;
 
