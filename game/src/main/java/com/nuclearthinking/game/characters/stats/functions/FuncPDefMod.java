@@ -6,25 +6,26 @@ import com.nuclearthinking.game.enums.Stats;
 import com.nuclearthinking.game.model.skills.Skill;
 
 /**
- * Created by kuksin-mv on 14.01.2016.
+ * Created by Izonami on 14.01.2016.
  */
-public class FuncMAtkMod extends AbstractFunction
+public class FuncPDefMod extends AbstractFunction
 {
-    private static final FuncMAtkMod _fmam_instance = new FuncMAtkMod();
+    private static final FuncPDefMod _fpdm_instance = new FuncPDefMod();
 
     public static AbstractFunction getInstance()
     {
-        return _fmam_instance;
+        return _fpdm_instance;
     }
 
-    public FuncMAtkMod()
+    public FuncPDefMod()
     {
-        super(Stats.MAGIC_ATTACK, 1, null, 0);
+        super(Stats.POWER_DEFENCE, 1, null, 0);
     }
 
     @Override
     public double calc(Player effector, Player effected, Skill skill, double initVal)
     {
-        return initVal * BaseStats.INT.calcBonus(effector);
+        //TODO: Тут надо бы учитывать одетую броню
+        return initVal * BaseStats.CON.calcBonus(effector);
     }
 }

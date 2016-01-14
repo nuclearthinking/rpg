@@ -6,25 +6,25 @@ import com.nuclearthinking.game.enums.Stats;
 import com.nuclearthinking.game.model.skills.Skill;
 
 /**
- * Created by kuksin-mv on 14.01.2016.
+ * Created by Izonami on 14.01.2016.
  */
-public class FuncMAtkMod extends AbstractFunction
+public class FuncAtkEvasion extends AbstractFunction
 {
-    private static final FuncMAtkMod _fmam_instance = new FuncMAtkMod();
+    private static final FuncAtkEvasion _fmae_instance = new FuncAtkEvasion();
 
     public static AbstractFunction getInstance()
     {
-        return _fmam_instance;
+        return _fmae_instance;
     }
 
-    public FuncMAtkMod()
+    public FuncAtkEvasion()
     {
-        super(Stats.MAGIC_ATTACK, 1, null, 0);
+        super(Stats.EVASION_RATE, 1, null, 0);
     }
 
     @Override
     public double calc(Player effector, Player effected, Skill skill, double initVal)
     {
-        return initVal * BaseStats.INT.calcBonus(effector);
+        return initVal * BaseStats.DEX.calcBonus(effector);
     }
 }

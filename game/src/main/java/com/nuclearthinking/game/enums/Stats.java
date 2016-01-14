@@ -19,20 +19,24 @@ public enum Stats
     MAGIC_DEFENCE("mDef"),
     POWER_ATTACK("pAtk"),
     MAGIC_ATTACK("mAtk"),
-    PHYSICAL_SKILL_POWER("physicalSkillPower"),
     POWER_ATTACK_SPEED("pAtkSpd"),
     MAGIC_ATTACK_SPEED("mAtkSpd"),
 
     CRITICAL_DAMAGE("critDmg"),
     MAGIC_CRIT_DMG("mCritPower"),
+    MAGIC_CRIT_RATE("mCritRate"),
+
+    MOVE_SPEED("runSpd"),
+    EVASION_RATE("rEvas"),
+    ACCURACY_COMBAT("accCombat"),
 
     // BASIC STATS
-    STAT_STR("Strength"),
+    STAT_STR("STR"),
     STAT_CON("CON"),
-    STAT_DEX("Dexterity"),
-    STAT_INT("Intelligent"),
-    STAT_WIT("Wisdom"),
-    STAT_MEN("Mentality");
+    STAT_DEX("DEX"),
+    STAT_INT("INT"),
+    STAT_WIT("WIT"),
+    STAT_MEN("MEN");
 
     public static final int NUM_STATS = values().length;
 
