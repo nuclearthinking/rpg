@@ -1,6 +1,11 @@
 package com.nuclearthinking.game.characters;
 
+import com.nuclearthinking.game.characters.stats.Calculator;
+import com.nuclearthinking.game.characters.stats.Formulas;
+import com.nuclearthinking.game.characters.stats.functions.AbstractFunction;
 import com.nuclearthinking.game.characters.templates.CharacterTemplate;
+import com.nuclearthinking.game.enums.Race;
+import com.nuclearthinking.game.enums.Stats;
 import com.nuclearthinking.game.model.skills.Skill;
 
 import java.util.Map;
@@ -22,6 +27,7 @@ public class Player extends GameCharacter
 
     private boolean _isDead = false;
 
+    private Calculator[] _calculators;
     private final Map<Integer, Skill> _skills = new ConcurrentHashMap<>();
     //Тут будем хранить время реюзов скилов
     //Я придумал как реализовать, но пока что вливать не буду
@@ -46,9 +52,30 @@ public class Player extends GameCharacter
     private double agility = 10;
     private double stamina = 10;
 
-    public Player(int objectId)
+    public Player(int objectId, CharacterTemplate template)
     {
         super(objectId);
+
+        if (template == null)
+        {
+            throw new NullPointerException("Template is null");
+        }
+
+        _template = template;
+
+        if (isNpc())
+        {
+            for(Skill skill : template.getSkills().values())
+            {
+                //TODO: Тут будут добавляться заданные скилы для нпс
+                //addSkill(skill);
+            }
+        }
+        else
+        {
+            _calculators = new Calculator[Stats.NUM_STATS];
+            Formulas.addFuncsToNewCharacter(this);
+        }
     }
 
     public void levelUP() {
@@ -130,7 +157,6 @@ public class Player extends GameCharacter
         {
             //TODO: Тут надо сделать список целей
         }
-
         _target = object;
     }
 
@@ -154,17 +180,52 @@ public class Player extends GameCharacter
         return true;
     }
 
-    //TODO: Надо ещё что нибудь типо такого
-    /*public Race getRace()
+    public Race getRace()
     {
-        return getRace;
-    }*/
+        return getTemplate().getRace();
+    }
+
+    public CharacterTemplate getTemplate()
+    {
+        return _template;
+    }
+
+    public final void setTemplate(CharacterTemplate template)
+    {
+        _template = template;
+    }
+
+    public final void addStatFunc(AbstractFunction function)
+    {
+        if (function == null)
+        {
+            return;
+        }
+
+        synchronized (this)
+        {
+            int stat = function.getStat().ordinal();
+
+            if (_calculators[stat] == null)
+            {
+                _calculators[stat] = new Calculator();
+            }
+
+            _calculators[stat].addFunc(function);
+        }
+    }
+
 
 
 
 
     //TODO: Убрать все расчеты оставить только гетеры в которых будут браться статы расчитанные в другом классе
     // Например
+    public int getSTR()
+    {
+        return 0;//getStat().getSTR();
+    }
+
     public int getMAtkSpd()
     {
         return 1; //getMAtkSpd();
