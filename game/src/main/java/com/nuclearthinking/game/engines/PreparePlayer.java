@@ -32,8 +32,7 @@ public class PreparePlayer {
     String _name;
     int _classId;
 
-    private PreparePlayer()
-    {
+    public PreparePlayer() {
         player = new Player();
         //Установка имени игроку если оно null
         setPlayerName();
@@ -43,8 +42,7 @@ public class PreparePlayer {
         newPlayer = PlayableInstance.create(template, _name);
     }
 
-    private void setPlayerName()
-    {
+    private void setPlayerName() {
         _name = ut.beautifyName(getValidName());
         System.out.println(messages.getMessage("welcomeMessage") + " " + _name);
         System.out.println();
@@ -87,9 +85,6 @@ public class PreparePlayer {
         }
     }
 
-    public static PreparePlayer getInstance() {
-        return PreparePlayerHolder.INSTANCE;
-    }
 
     public Player getPlayer() {
         return player;
@@ -106,9 +101,5 @@ public class PreparePlayer {
         return playerName;
     }
 
-
-    private static class PreparePlayerHolder {
-        private static final PreparePlayer INSTANCE = new PreparePlayer();
-    }
 
 }
