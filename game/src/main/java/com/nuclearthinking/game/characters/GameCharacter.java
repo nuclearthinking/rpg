@@ -2,6 +2,7 @@ package com.nuclearthinking.game.characters;
 
 import com.nuclearthinking.game.characters.interfaces.IName;
 import com.nuclearthinking.game.characters.interfaces.IObjectId;
+import com.nuclearthinking.game.model.interfaces.IIdentifiable;
 
 /**
  * Date: 11.01.2016
@@ -15,7 +16,7 @@ import com.nuclearthinking.game.characters.interfaces.IObjectId;
  * Нужно реализовать инстансы для создания разных объектов (Нпс, игрок и так далее)
  */
 
-public abstract class GameCharacter implements IName, IObjectId
+public abstract class GameCharacter implements IIdentifiable, IName, IObjectId
 {
     private String _name;
     private int _objectId;

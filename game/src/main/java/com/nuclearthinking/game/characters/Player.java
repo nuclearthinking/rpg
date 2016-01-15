@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public class Player extends GameCharacter
+public abstract class Player extends GameCharacter
 {
     //Тут будем хранить время реюзов скилов
     private volatile Map<Integer, ReuseTime> _reuseTimeStampsSkills = null;
