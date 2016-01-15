@@ -66,13 +66,13 @@ public class PreparePlayer {
             switch (input.chouseOne(strings)) {
                 case 1: {
                     player.setClass(new MageClass());
-                    _classId = 0;
+                    _classId = 1;
                     System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("mageClass"));
                     break;
                 }
                 case 2: {
                     player.setClass(new WarriorClass());
-                    _classId = 1;
+                    _classId = 0;
                     System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("warriorClass"));
                     break;
                 }

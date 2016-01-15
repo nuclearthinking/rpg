@@ -28,7 +28,6 @@ public final class PlayerTemplateData
         for (int i = 0; i < 3; i++)
         {
             int classId = i;
-            System.out.println(classId);
             set.set("classId", classId);
             set.set("basePDef", 10);
             set.set("baseMDef", 5);
