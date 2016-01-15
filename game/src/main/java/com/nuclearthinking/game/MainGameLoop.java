@@ -1,7 +1,7 @@
 package com.nuclearthinking.game;
 
+import com.nuclearthinking.game.characters.Player;
 import com.nuclearthinking.game.engines.MessagesReader;
-import com.nuclearthinking.game.obj.Player;
 import com.nuclearthinking.game.obj.world.World;
 import com.nuclearthinking.game.utils.UserInput;
 

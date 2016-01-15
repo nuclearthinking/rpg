@@ -15,8 +15,6 @@ import java.util.logging.Logger;
 /**
  * Created by kuksin-mv on 24.12.2015.
  */
-
-
 public abstract class Base {
     protected final Logger LOG = Logger.getLogger(Base.class.getName());
 

@@ -1,4 +1,4 @@
-package com.nuclearthinking.game.obj;
+package com.nuclearthinking.game.characters;
 
 /**
  * Date: 22.12.2015

@@ -14,6 +14,7 @@ public class World {
 
     protected int size = 0;
     private List<Floor> worldArray;
+
     public World() {
     }
 
