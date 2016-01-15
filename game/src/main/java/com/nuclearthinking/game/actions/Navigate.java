@@ -12,30 +12,24 @@ import com.nuclearthinking.game.obj.world.World;
 
 public class Navigate extends Action implements Actable {
 
-    private int move;
+    private int roomModificator;
+    private int floorModificator;
 
     Navigate(Player player, World world) {
         super(player, world);
     }
 
-
-    public void setMove(int move) {
-        this.move = move;
+    public void setRoomModificator(int roomModificator) {
+        this.roomModificator = roomModificator;
     }
 
+    public void setFloorModificator(int floorModificator) {
+        this.floorModificator = floorModificator;
+    }
 
     @Override
     public void run() {
-        if (move > 0) {
-            //Если эта комната последняя
-            if (player.getCurrentRoom() == world.getWorldArray().get(player.getCurrentFloor()).getFloorSize()) {
-                player.setCurrentFloor(player.getCurrentFloor() + 1);
-                player.setCurrentRoom(1);
-            } else {
-                //Если эта комната первая
-                if (player.getCurrentRoom() == 1) {
-                }
-            }
-        }
+        player.setCurrentRoom(roomModificator);
+        player.setCurrentFloor(floorModificator);
     }
 }
