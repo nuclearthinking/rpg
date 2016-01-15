@@ -65,6 +65,11 @@ public abstract class GameCharacter implements IName, IObjectId
         return false;
     }
 
+    public boolean isPlayable()
+    {
+        return false;
+    }
+
     public boolean isMonster()
     {
         return false;

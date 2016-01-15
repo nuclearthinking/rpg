@@ -9,7 +9,6 @@ public enum Stats
 {
     MAX_HP("maxHp"),
     MAX_MP("maxMp"),
-    MAX_CP("maxCp"),
     MAX_RECOVERABLE_HP("maxRecoverableHp"),
     MAX_RECOVERABLE_MP("maxRecoverableMp"),
     REGENERATE_HP_RATE("regHp"),

@@ -21,7 +21,7 @@ public class PlayerTemplate extends CharacterTemplate
     {
         super(set);
 
-        _classId = ClassId.getClassId(set.getByte("classId"));
+        _classId = ClassId.getClassId(set.getInt("classId"));
         setRace(_classId.getRace());
         _baseHp = new int[200];
         _baseMp = new int[150];

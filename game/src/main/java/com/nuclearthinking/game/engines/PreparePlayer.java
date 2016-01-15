@@ -5,6 +5,9 @@ import com.nuclearthinking.game.characters.MageClass;
 import com.nuclearthinking.game.characters.Player;
 import com.nuclearthinking.game.characters.RogueClass;
 import com.nuclearthinking.game.characters.WarriorClass;
+import com.nuclearthinking.game.characters.instance.PlayableInstance;
+import com.nuclearthinking.game.characters.templates.PlayerTemplate;
+import com.nuclearthinking.game.characters.templates.PlayerTemplateData;
 import com.nuclearthinking.game.utils.StringUtil;
 import com.nuclearthinking.game.utils.UserInput;
 
@@ -22,26 +25,29 @@ import java.util.List;
 public class PreparePlayer {
     UserInput input = new UserInput();
     StringUtil ut = new StringUtil();
-    private Player player;
+    private Player player = null;
+    private PlayableInstance newPlayer = null;
+    private PlayerTemplate template = null;
     private MessagesReader messages = MessagesReader.getInstance();
+    String _name;
+    int _classId;
 
-
-    private PreparePlayer() {
-        //Новый обьект игрока
+    private PreparePlayer()
+    {
         player = new Player();
         //Установка имени игроку если оно null
         setPlayerName();
         //Установка класса игроку если он null
         choosePlayerClass();
+        template = PlayerTemplateData.getInstance().getTemplate(_classId);
+        newPlayer = PlayableInstance.create(template, _name);
     }
 
-
-    private void setPlayerName() {
-        if (player.getName() == null) {
-            player.setName(ut.beautifyName(getValidName()));
-            System.out.println(messages.getMessage("welcomeMessage") + " " + player.getName());
-            System.out.println();
-        }
+    private void setPlayerName()
+    {
+        _name = ut.beautifyName(getValidName());
+        System.out.println(messages.getMessage("welcomeMessage") + " " + _name);
+        System.out.println();
     }
 
     private void choosePlayerClass() {
@@ -60,16 +66,19 @@ public class PreparePlayer {
             switch (input.chouseOne(strings)) {
                 case 1: {
                     player.setClass(new MageClass());
+                    _classId = 0;
                     System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("mageClass"));
                     break;
                 }
                 case 2: {
                     player.setClass(new WarriorClass());
+                    _classId = 1;
                     System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("warriorClass"));
                     break;
                 }
                 case 3: {
                     player.setClass(new RogueClass());
+                    _classId = 2;
                     System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("rogueClass"));
                     break;
                 }

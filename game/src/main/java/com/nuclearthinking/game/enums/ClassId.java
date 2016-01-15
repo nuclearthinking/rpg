@@ -9,7 +9,7 @@ public enum ClassId implements IIdentifiable
 {
     warrior(0, false, Race.HUMAN),
     mage(1, true, Race.HUMAN),
-    rogue(1, false, Race.HUMAN);
+    rogue(2, false, Race.HUMAN);
 
     private final int _id;
     private final boolean _isMage;

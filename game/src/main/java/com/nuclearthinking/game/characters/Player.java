@@ -1,6 +1,7 @@
 package com.nuclearthinking.game.characters;
 
 import com.nuclearthinking.game.characters.stats.Calculator;
+import com.nuclearthinking.game.characters.stats.CharacterStat;
 import com.nuclearthinking.game.characters.stats.Formulas;
 import com.nuclearthinking.game.characters.stats.functions.AbstractFunction;
 import com.nuclearthinking.game.characters.templates.CharacterTemplate;
@@ -40,6 +41,7 @@ public class Player extends GameCharacter
     //Это цель для атаки
     private GameCharacter _target;
 
+    private CharacterStat _stat;
     private CharacterTemplate _template;
 
     public Player() {}
@@ -67,29 +69,6 @@ public class Player extends GameCharacter
         {
             _calculators = new Calculator[Stats.NUM_STATS];
             Formulas.addFuncsToNewCharacter(this);
-        }
-    }
-
-    public void levelUP() {
-
-        if (getpClass() instanceof RogueClass) {
-            RogueClass rClass = new RogueClass();
-            rClass.levelUp(this);
-            this.level++;
-        } else {
-            if (getpClass() instanceof MageClass) {
-                MageClass mClass = new MageClass();
-                mClass.levelUp(this);
-                this.level++;
-            } else {
-                if (getpClass() instanceof WarriorClass) {
-                    WarriorClass wClass = new WarriorClass();
-                    wClass.levelUp(this);
-                    this.level++;
-                } else {
-                    throw new RuntimeException("У обьекта" + this.getName() + "не задан класс :" + pClass + "=" + pClass.toString());
-                }
-            }
         }
     }
 
@@ -207,46 +186,131 @@ public class Player extends GameCharacter
         }
     }
 
+    public final Calculator[] getCalculators()
+    {
+        return _calculators;
+    }
 
+    public CharacterStat getStat()
+    {
+        return _stat;
+    }
 
+    public void initCharStat()
+    {
+        _stat = new CharacterStat(this);
+    }
+
+    public final void setStat(CharacterStat value)
+    {
+        _stat = value;
+    }
 
 
     //TODO: Убрать все расчеты оставить только гетеры в которых будут браться статы расчитанные в другом классе
-    // Например
-    public int getSTR()
+    // BASIC STATS
+    /*STAT_STR("STR"),
+    STAT_CON("CON"),
+    STAT_DEX("DEX"),
+    STAT_INT("INT"),
+    STAT_WIT("WIT"),
+    STAT_MEN("MEN");
+
+    MAX_HP("maxHp"),
+    MAX_MP("maxMp"),
+    MAX_RECOVERABLE_HP("maxRecoverableHp"),
+    MAX_RECOVERABLE_MP("maxRecoverableMp"),
+    REGENERATE_HP_RATE("regHp"),
+    REGENERATE_MP_RATE("regMp"),
+
+    POWER_DEFENCE("pDef"),
+    MAGIC_DEFENCE("mDef"),
+    POWER_ATTACK("pAtk"),
+    MAGIC_ATTACK("mAtk"),
+    */
+
+    public int getMaxHp()
     {
-        return 0;//getStat().getSTR();
+        return getStat().getMaxHp();
     }
 
-    public int getINT()
+    public int getMaxMp()
     {
-        return 0;//getStat().getINT();
+        return getStat().getMaxMp();
     }
 
-    public int getDEX()
+    public int getMaxHpRegen()
     {
-        return 0;//getStat().getDEX();
+        return getStat().getMaxHpRegen();
     }
 
-    public int getWIT()
+    public int getMaxMpRegen()
     {
-        return 0;//getStat().getWIT();
+        return getStat().getMaxMpRegen();
     }
 
-    public int getCON()
+    public int getPDef()
     {
-        return 0;//getStat().getCON();
+        return getStat().getPDef();
     }
 
-    public int getMEN()
+    public int getMDef()
     {
-        return 0;//getStat().getMEN();
+        return getStat().getMDef();
+    }
+
+    public int getPAtk()
+    {
+        return getStat().getPAtk();
+    }
+
+    public int getMAtk()
+    {
+        return getStat().getMAtk();
+    }
+
+    public int getPAtkSpd()
+    {
+        return getStat().getPAtkSpd();
     }
 
     public int getMAtkSpd()
     {
-        return 1; //getStat().getMAtkSpd();
+        return getStat().getMAtkSpd();
     }
+
+    public int getSTR()
+    {
+        return getStat().getSTR();
+    }
+
+    public int getCON()
+    {
+        return getStat().getCON();
+    }
+
+    public int getDEX()
+    {
+        return getStat().getDEX();
+    }
+
+    public int getINT()
+    {
+        return getStat().getINT();
+    }
+
+    public int getWIT()
+    {
+        return getStat().getWIT();
+    }
+
+    public int getMEN()
+    {
+        return getStat().getMEN();
+    }
+
+
+
 
 
 
@@ -263,6 +327,29 @@ public class Player extends GameCharacter
     private double intelligence = 10;
     private double agility = 10;
     private double stamina = 10;
+
+    public void levelUP() {
+
+        if (getpClass() instanceof RogueClass) {
+            RogueClass rClass = new RogueClass();
+            rClass.levelUp(this);
+            this.level++;
+        } else {
+            if (getpClass() instanceof MageClass) {
+                MageClass mClass = new MageClass();
+                mClass.levelUp(this);
+                this.level++;
+            } else {
+                if (getpClass() instanceof WarriorClass) {
+                    WarriorClass wClass = new WarriorClass();
+                    wClass.levelUp(this);
+                    this.level++;
+                } else {
+                    throw new RuntimeException("У обьекта" + this.getName() + "не задан класс :" + pClass + "=" + pClass.toString());
+                }
+            }
+        }
+    }
 
     public int getCurrentFloor() {
         return currentFloor;

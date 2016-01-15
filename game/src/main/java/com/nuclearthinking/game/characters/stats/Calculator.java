@@ -1,6 +1,8 @@
 package com.nuclearthinking.game.characters.stats;
 
+import com.nuclearthinking.game.characters.Player;
 import com.nuclearthinking.game.characters.stats.functions.AbstractFunction;
+import com.nuclearthinking.game.model.skills.Skill;
 
 /**
  * Created by kuksin-mv on 14.01.2016.
@@ -42,5 +44,16 @@ public final class Calculator
         }
 
         _functions = tmp;
+    }
+
+    //Производим расчет на основе формул
+    public double calc(Player caster, Player target, Skill skill, double initVal)
+    {
+        double value = initVal;
+        for (AbstractFunction func : _functions)
+        {
+            value = func.calc(caster, target, skill, value);
+        }
+        return value;
     }
 }

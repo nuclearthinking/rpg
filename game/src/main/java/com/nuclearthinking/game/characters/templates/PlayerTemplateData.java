@@ -24,13 +24,17 @@ public final class PlayerTemplateData
 
         StatsSet set = new StatsSet();
 
-        //TODO: Хардкод
-        int classId = 0;
-        set.set("classId", classId);
-        set.set("basePDef", 10);
-        set.set("baseMDef", 5);
+        //TODO:Разхардкодить
+        for (int i = 0; i < 3; i++)
+        {
+            int classId = i;
+            System.out.println(classId);
+            set.set("classId", classId);
+            set.set("basePDef", 10);
+            set.set("baseMDef", 5);
+            _playerTemplate.put(ClassId.getClassId(classId), new PlayerTemplate(set));
+        }
 
-        _playerTemplate.put(ClassId.getClassId(classId), new PlayerTemplate(set));
     }
 
     public PlayerTemplate getTemplate(ClassId classId)
@@ -40,7 +44,6 @@ public final class PlayerTemplateData
 
     public PlayerTemplate getTemplate(int classId)
     {
-        System.out.println(_playerTemplate.get(ClassId.getClassId(classId)).getBaseMDef());
         return _playerTemplate.get(ClassId.getClassId(classId));
     }
 

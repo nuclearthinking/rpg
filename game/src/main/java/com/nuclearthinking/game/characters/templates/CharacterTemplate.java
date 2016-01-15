@@ -107,12 +107,12 @@ public class CharacterTemplate
         return _baseMpMax;
     }
 
-    public float getBaseHpReg()
+    public float getBaseHpRegen()
     {
         return _baseHpReg;
     }
 
-    public float getBaseMpReg()
+    public float getBaseMpRegen()
     {
         return _baseMpReg;
     }
