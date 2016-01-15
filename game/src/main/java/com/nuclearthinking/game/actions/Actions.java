@@ -28,7 +28,7 @@ public class Actions {
 
     public Map<String, Action> getAviableActions() {
         Map<String, Action> actionsList = new HashMap<String, Action>();
-
+        gatherNavigationActions(actionsList);
 
         return actionsList;
     }
@@ -49,10 +49,6 @@ public class Actions {
                 //Комната по середине этажа : действие комната +1 или комната -1
             }
         }
-
-
     }
-
-
 }
 
