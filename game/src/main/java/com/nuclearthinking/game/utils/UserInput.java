@@ -1,5 +1,6 @@
 package com.nuclearthinking.game.utils;
 
+import com.nuclearthinking.game.actions.Action;
 import com.nuclearthinking.game.engines.MessagesReader;
 
 import java.io.BufferedReader;
@@ -101,14 +102,13 @@ public class UserInput {
         return input;
     }
 
-    //TODO: Сделал реализацию через MAP но вышло чет не очень
-    public Object chouseOneMap(Map<String, Object> variants) {
+    public Action chouseOneMap(Map<String, Action> variants) {
         System.out.println(messages.getMessage("chooseOneInVariants"));
         int iter = 1;
         int input = 0;
 
         List<String> printVariants = new ArrayList<>();
-        for (Map.Entry<String, Object> entry : variants.entrySet()) {
+        for (Map.Entry<String, Action> entry : variants.entrySet()) {
             printVariants.add(entry.getKey());
         }
         for (String str : printVariants) {
@@ -130,6 +130,7 @@ public class UserInput {
             }
         }
 
-        return variants.get(printVariants.get(input));
+        return variants.get(printVariants.get(input - 1));
+
     }
 }

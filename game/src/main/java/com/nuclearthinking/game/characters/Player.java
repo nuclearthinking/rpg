@@ -21,8 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public class Player extends GameCharacter
-{
+public class Player extends GameCharacter {
     //Тут будем хранить время реюзов скилов
     private volatile Map<Integer, ReuseTime> _reuseTimeStampsSkills = null;
     private volatile Map<Integer, Long> _disabledSkills = null;
@@ -44,62 +43,52 @@ public class Player extends GameCharacter
     private CharacterStat _stat;
     private CharacterTemplate _template;
 
-    public Player() {}
+    public Player() {
+    }
 
-    public Player(int objectId, CharacterTemplate template)
-    {
+    public Player(int objectId, CharacterTemplate template) {
         super(objectId);
 
-        if (template == null)
-        {
+        if (template == null) {
             throw new NullPointerException("Template is null");
         }
 
         _template = template;
 
-        if (isNpc())
-        {
-            for(Skill skill : template.getSkills().values())
-            {
+        if (isNpc()) {
+            for (Skill skill : template.getSkills().values()) {
                 //TODO: Тут будут добавляться заданные скилы для нпс
                 //addSkill(skill);
             }
-        }
-        else
-        {
+        } else {
             _calculators = new Calculator[Stats.NUM_STATS];
             Formulas.addFuncsToNewCharacter(this);
         }
     }
 
     @Override
-    public void onSpawn()
-    {
+    public void onSpawn() {
         super.onSpawn();
         //TODO: Позицию
     }
 
 
-    public void doCast(Skill skill)
-    {
+    public void doCast(Skill skill) {
         beginCast(skill, false);
     }
 
-    private void beginCast(Skill skill, boolean boo)
-    {
+    private void beginCast(Skill skill, boolean boo) {
         //TODO: Тут будет определение типа скила
         Player target = null;
 
         beginCast(skill, boo, target);
     }
 
-    private void beginCast(Skill skill, boolean simultaneously, Player target)
-    {
+    private void beginCast(Skill skill, boolean simultaneously, Player target) {
 
     }
 
-    public boolean checkDoCastConditions(Skill skill)
-    {
+    public boolean checkDoCastConditions(Skill skill) {
         //TODO: Тут будем проверять состояния возможности каста
         return false;
     }
@@ -107,78 +96,62 @@ public class Player extends GameCharacter
     //TODO: Реализовать состояния при которых игрок не сможет совершать действия (например в стуне)
 
 
-    public final boolean isCastingNow()
-    {
+    public final boolean isCastingNow() {
         return _isCastingNow;
     }
 
-    public void setIsCastingNow(boolean value)
-    {
+    public void setIsCastingNow(boolean value) {
         _isCastingNow = value;
     }
 
-    public void setTarget(GameCharacter object)
-    {
-        if (object != null)
-        {
+    public void setTarget(GameCharacter object) {
+        if (object != null) {
             object = null;
         }
 
-        if ((object != null) && (object != _target))
-        {
+        if ((object != null) && (object != _target)) {
             //TODO: Тут надо сделать список целей
         }
         _target = object;
     }
 
-    public final int getTargetId()
-    {
-        if (_target != null)
-        {
+    public final int getTargetId() {
+        if (_target != null) {
             return _target.getObjectId();
         }
         return 0;
     }
 
-    public final GameCharacter getTarget()
-    {
+    public final GameCharacter getTarget() {
         return _target;
     }
 
     @Override
-    public boolean isCharacter()
-    {
+    public boolean isCharacter() {
         return true;
     }
 
-    public Race getRace()
-    {
+    public Race getRace() {
         return getTemplate().getRace();
     }
 
-    public CharacterTemplate getTemplate()
-    {
+    public CharacterTemplate getTemplate() {
         return _template;
     }
 
-    public final void setTemplate(CharacterTemplate template)
-    {
+    public final void setTemplate(CharacterTemplate template) {
         _template = template;
     }
 
-    public final void addStatFunc(AbstractFunction function)
-    {
-        if (function == null)
-        {
+    public final void addStatFunc(AbstractFunction function) {
+        if (function == null) {
             return;
         }
 
-        synchronized (this)
-        {
+        synchronized (this) {
             int stat = function.getStat().ordinal();
 
-            if (_calculators[stat] == null)
-            {
+            if (_calculators[stat] == null) {
                 _calculators[stat] = new Calculator();
             }
 
@@ -186,23 +159,19 @@ public class Player extends GameCharacter
         }
     }
 
-    public final Calculator[] getCalculators()
-    {
+    public final Calculator[] getCalculators() {
         return _calculators;
     }
 
-    public CharacterStat getStat()
-    {
+    public CharacterStat getStat() {
         return _stat;
     }
 
-    public void initCharStat()
-    {
+    public void initCharStat() {
         _stat = new CharacterStat(this);
     }
 
-    public final void setStat(CharacterStat value)
-    {
+    public final void setStat(CharacterStat value) {
         _stat = value;
     }
 
@@ -229,90 +198,69 @@ public class Player extends GameCharacter
     MAGIC_ATTACK("mAtk"),
     */
 
-    public int getMaxHp()
-    {
+    public int getMaxHp() {
         return getStat().getMaxHp();
     }
 
-    public int getMaxMp()
-    {
+    public int getMaxMp() {
         return getStat().getMaxMp();
     }
 
-    public int getMaxHpRegen()
-    {
+    public int getMaxHpRegen() {
         return getStat().getMaxHpRegen();
     }
 
-    public int getMaxMpRegen()
-    {
+    public int getMaxMpRegen() {
         return getStat().getMaxMpRegen();
     }
 
-    public int getPDef()
-    {
+    public int getPDef() {
         return getStat().getPDef();
     }
 
-    public int getMDef()
-    {
+    public int getMDef() {
         return getStat().getMDef();
     }
 
-    public int getPAtk()
-    {
+    public int getPAtk() {
         return getStat().getPAtk();
     }
 
-    public int getMAtk()
-    {
+    public int getMAtk() {
         return getStat().getMAtk();
     }
 
-    public int getPAtkSpd()
-    {
+    public int getPAtkSpd() {
         return getStat().getPAtkSpd();
     }
 
-    public int getMAtkSpd()
-    {
+    public int getMAtkSpd() {
         return getStat().getMAtkSpd();
     }
 
-    public int getSTR()
-    {
+    public int getSTR() {
         return getStat().getSTR();
     }
 
-    public int getCON()
-    {
+    public int getCON() {
         return getStat().getCON();
     }
 
-    public int getDEX()
-    {
+    public int getDEX() {
         return getStat().getDEX();
     }
 
-    public int getINT()
-    {
+    public int getINT() {
         return getStat().getINT();
     }
 
-    public int getWIT()
-    {
+    public int getWIT() {
         return getStat().getWIT();
     }
 
-    public int getMEN()
-    {
+    public int getMEN() {
         return getStat().getMEN();
     }
-
-
-
-
-
 
 
     private int currentFloor;
