@@ -1,6 +1,6 @@
 package com.nuclearthinking.game.characters.stats.calcstats;
 
-import com.nuclearthinking.game.characters.ChracterObject;
+import com.nuclearthinking.game.characters.CharacterObject;
 import com.nuclearthinking.game.characters.interfaces.IBaseStat;
 import com.nuclearthinking.game.enums.BaseStats;
 
@@ -10,8 +10,8 @@ import com.nuclearthinking.game.enums.BaseStats;
 public class Wisdom implements IBaseStat
 {
     @Override
-    public double calcBonus(ChracterObject chracterObject)
+    public double calcBonus(CharacterObject characterObject)
     {
-        return BaseStats.WITbonus[chracterObject.getWIT()];
+        return BaseStats.WITbonus[characterObject.getWIT()];
     }
 }

@@ -11,8 +11,8 @@ import com.nuclearthinking.game.model.interfaces.IIdentifiable;
  * @author Vladislav Radchenko (onifent@gmail.com)
  *
  * Пока что будет такой вот слабенький запил
- * ChracterObject - будет инстансится от GameObject
- * Npc - должен будет инстансится от ChracterObject
+ * CharacterObject - будет инстансится от GameObject
+ * Npc - должен будет инстансится от CharacterObject
  * Нужно реализовать инстансы для создания разных объектов (Нпс, игрок и так далее)
  */
 

@@ -20,34 +20,34 @@ public class MageClass extends PlayerClass implements IPlayerClass {
     }
 
     @Override
-    public int pDamage(ChracterObject chracterObject) {
-        double pDmg = chracterObject.getAgility() / 2 + chracterObject.getStrength() / 2 + chracterObject.getLevel();
+    public int pDamage(CharacterObject characterObject) {
+        double pDmg = characterObject.getAgility() / 2 + characterObject.getStrength() / 2 + characterObject.getLevel();
         return (int) pDmg;
     }
 
     @Override
-    public int mDamage(ChracterObject chracterObject) {
-        double mDmg = chracterObject.getIntelligence() * 0.8 + chracterObject.getLevel() * 2;
+    public int mDamage(CharacterObject characterObject) {
+        double mDmg = characterObject.getIntelligence() * 0.8 + characterObject.getLevel() * 2;
         return (int) mDmg;
     }
 
     @Override
-    public void levelUp(ChracterObject chracterObject) {
-        chracterObject.addStrenght(mConfig.getStrengthRate());
-        chracterObject.addStamina(mConfig.getStaminaRate());
-        chracterObject.addIntelegence(mConfig.getIntelligenceRate());
-        chracterObject.addAgility(mConfig.getAgilityRate());
+    public void levelUp(CharacterObject characterObject) {
+        characterObject.addStrenght(mConfig.getStrengthRate());
+        characterObject.addStamina(mConfig.getStaminaRate());
+        characterObject.addIntelegence(mConfig.getIntelligenceRate());
+        characterObject.addAgility(mConfig.getAgilityRate());
     }
 
     @Override
-    public int mDefence(ChracterObject chracterObject) {
-        double mDef = chracterObject.getIntelligence() * 1.5;
+    public int mDefence(CharacterObject characterObject) {
+        double mDef = characterObject.getIntelligence() * 1.5;
         return (int) mDef;
     }
 
     @Override
-    public int pDefence(ChracterObject chracterObject) {
-        double pDef = chracterObject.getStrength() / 2 + chracterObject.getAgility() / 2;
+    public int pDefence(CharacterObject characterObject) {
+        double pDef = characterObject.getStrength() / 2 + characterObject.getAgility() / 2;
         return (int) pDef;
     }
 

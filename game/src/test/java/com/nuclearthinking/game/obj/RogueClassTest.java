@@ -1,6 +1,6 @@
 package com.nuclearthinking.game.obj;
 
-import com.nuclearthinking.game.characters.ChracterObject;
+import com.nuclearthinking.game.characters.CharacterObject;
 import com.nuclearthinking.game.characters.RogueClass;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,49 +15,49 @@ public class RogueClassTest {
 
     @Test
     public void testLevelUp() throws Exception {
-        ChracterObject chracterObject = new ChracterObject() {
+        CharacterObject characterObject = new CharacterObject() {
             @Override
             public int getId() {
                 return 0;
             }
         };
-        chracterObject.setClass(new RogueClass());
-        chracterObject.levelUP();
-        Assert.assertEquals(chracterObject.getAgility(), 11.1);
-        Assert.assertEquals(chracterObject.getLevel(), 2);
+        characterObject.setClass(new RogueClass());
+        characterObject.levelUP();
+        Assert.assertEquals(characterObject.getAgility(), 11.1);
+        Assert.assertEquals(characterObject.getLevel(), 2);
     }
 
     @Test
     public void testLevelUp2() throws Exception {
-        ChracterObject chracterObject = new ChracterObject() {
+        CharacterObject characterObject = new CharacterObject() {
             @Override
             public int getId() {
                 return 0;
             }
         };
-        chracterObject.setClass(new RogueClass());
-        chracterObject.levelUP();
-        chracterObject.levelUP();
-        Assert.assertEquals(chracterObject.getAgility(), 12.2);
-        Assert.assertEquals(chracterObject.getLevel(), 3);
+        characterObject.setClass(new RogueClass());
+        characterObject.levelUP();
+        characterObject.levelUP();
+        Assert.assertEquals(characterObject.getAgility(), 12.2);
+        Assert.assertEquals(characterObject.getLevel(), 3);
     }
 
 
     @Test
     public void testPDamage() throws Exception {
-        ChracterObject chracterObject = new ChracterObject() {
+        CharacterObject characterObject = new CharacterObject() {
             @Override
             public int getId() {
                 return 0;
             }
         };
         RogueClass rCLass = new RogueClass();
-        chracterObject.setClass(rCLass);
-        chracterObject.levelUP();
-        chracterObject.levelUP();
-        chracterObject.levelUP();
-        int dmg = rCLass.pDamage(chracterObject);
-        Assert.assertEquals(chracterObject.getLevel(), 4);
+        characterObject.setClass(rCLass);
+        characterObject.levelUP();
+        characterObject.levelUP();
+        characterObject.levelUP();
+        int dmg = rCLass.pDamage(characterObject);
+        Assert.assertEquals(characterObject.getLevel(), 4);
         Assert.assertEquals(dmg, 18);
     }
 

@@ -21,12 +21,12 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public abstract class ChracterObject extends GameObject
+public abstract class CharacterObject extends GameObject
 {
     //Тут будем хранить время реюзов скилов
     private volatile Map<Integer, ReuseTime> _reuseTimeStampsSkills = null;
     private volatile Map<Integer, Long> _disabledSkills = null;
-    private volatile Set<ChracterObject> _attackByList;
+    private volatile Set<CharacterObject> _attackByList;
     private volatile boolean _isCastingNow = false;
 
     private Skill _lastSkillCast;
@@ -44,9 +44,9 @@ public abstract class ChracterObject extends GameObject
     private CharacterStat _stat;
     private CharacterTemplate _template;
 
-    public ChracterObject() {}
+    public CharacterObject() {}
 
-    public ChracterObject(int objectId, CharacterTemplate template)
+    public CharacterObject(int objectId, CharacterTemplate template)
     {
         super(objectId);
 
@@ -88,12 +88,12 @@ public abstract class ChracterObject extends GameObject
     private void beginCast(Skill skill, boolean boo)
     {
         //TODO: Тут будет определение типа скила
-        ChracterObject target = null;
+        CharacterObject target = null;
 
         beginCast(skill, boo, target);
     }
 
-    private void beginCast(Skill skill, boolean simultaneously, ChracterObject target)
+    private void beginCast(Skill skill, boolean simultaneously, CharacterObject target)
     {
 
     }
@@ -204,6 +204,28 @@ public abstract class ChracterObject extends GameObject
     public final void setStat(CharacterStat value)
     {
         _stat = value;
+    }
+
+    public final boolean isDead()
+    {
+        return _isDead;
+    }
+
+    public final void setIsDead(boolean value)
+    {
+        _isDead = value;
+    }
+
+    public boolean fillDie(CharacterObject killer)
+    {
+        if (isDead())
+        {
+            return false;
+        }
+
+        setIsDead(true);
+
+        return true;
     }
 
 

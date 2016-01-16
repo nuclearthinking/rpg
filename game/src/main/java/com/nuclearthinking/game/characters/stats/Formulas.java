@@ -1,6 +1,6 @@
 package com.nuclearthinking.game.characters.stats;
 
-import com.nuclearthinking.game.characters.ChracterObject;
+import com.nuclearthinking.game.characters.CharacterObject;
 import com.nuclearthinking.game.characters.stats.functions.*;
 
 /**
@@ -10,7 +10,7 @@ import com.nuclearthinking.game.characters.stats.functions.*;
  */
 public final class Formulas
 {
-    public static void addFuncsToNewCharacter(ChracterObject cha)
+    public static void addFuncsToNewCharacter(CharacterObject cha)
     {
         if (cha.isPlayer())
         {

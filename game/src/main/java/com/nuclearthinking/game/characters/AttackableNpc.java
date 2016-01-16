@@ -29,4 +29,15 @@ public class AttackableNpc extends Npc
     {
         super.onSpawn();
     }
+
+    @Override
+    public boolean fillDie(CharacterObject killer)
+    {
+        if (!super.fillDie(killer))
+        {
+            return false;
+        }
+
+        return true;
+    }
 }

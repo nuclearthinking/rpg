@@ -6,7 +6,7 @@ import com.nuclearthinking.game.characters.templates.CharacterTemplate;
 /**
  * Created by kuksin-mv on 15.01.2016.
  */
-public class PlayableObject extends ChracterObject
+public class PlayableObject extends CharacterObject
 {
     public PlayableObject(int objectId, CharacterTemplate template)
     {
@@ -41,5 +41,18 @@ public class PlayableObject extends ChracterObject
     public int getId()
     {
         return 0;
+    }
+
+    @Override
+    public boolean fillDie(CharacterObject killer)
+    {
+        if (isDead())
+        {
+            return false;
+        }
+        // now reset currentHp to zero
+        setIsDead(true);
+
+        return true;
     }
 }

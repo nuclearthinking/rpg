@@ -1,6 +1,6 @@
 package com.nuclearthinking.game;
 
-import com.nuclearthinking.game.characters.ChracterObject;
+import com.nuclearthinking.game.characters.CharacterObject;
 import com.nuclearthinking.game.characters.instance.MonsterInstance;
 import com.nuclearthinking.game.characters.templates.NpcTemplateData;
 import com.nuclearthinking.game.characters.templates.PlayerTemplateData;
@@ -32,10 +32,10 @@ public final class GameStarter {
     public GameStarter() throws Exception {
         SkillData.getInstance();
         ItemData.getInstance();
-        ChracterObject chracterObject = new MonsterInstance(NpcTemplateData.getInstance().getTemplate(1));
-        System.out.println(chracterObject.getName());
-        System.out.println(chracterObject.getLevel());
-        System.out.println(chracterObject.getId());
+        CharacterObject characterObject = new MonsterInstance(NpcTemplateData.getInstance().getTemplate(1));
+        System.out.println(characterObject.getName());
+        System.out.println(characterObject.getLevel());
+        System.out.println(characterObject.getId());
         Game.getInstance();
 
 

@@ -1,6 +1,6 @@
 package com.nuclearthinking.game.characters.stats;
 
-import com.nuclearthinking.game.characters.ChracterObject;
+import com.nuclearthinking.game.characters.CharacterObject;
 import com.nuclearthinking.game.enums.Stats;
 import com.nuclearthinking.game.model.skills.Skill;
 
@@ -9,13 +9,13 @@ import com.nuclearthinking.game.model.skills.Skill;
  */
 public class CharacterStat
 {
-    private final ChracterObject _activeChracterObject;
+    private final CharacterObject _activeCharacterObject;
     private long _exp = 0;
     private byte _level = 1;
 
-    public CharacterStat(ChracterObject activeChracterObject)
+    public CharacterStat(CharacterObject activeCharacterObject)
     {
-        _activeChracterObject = activeChracterObject;
+        _activeCharacterObject = activeCharacterObject;
     }
 
     public final double calcStat(Stats stat, double init)
@@ -23,21 +23,21 @@ public class CharacterStat
         return calcStat(stat, null, null, init);
     }
 
-    public final double calcStat(Stats stats, ChracterObject target, Skill skill, double initVal)
+    public final double calcStat(Stats stats, CharacterObject target, Skill skill, double initVal)
     {
         double value = initVal;
 
         final int id = stats.ordinal();
-        final Calculator c = _activeChracterObject.getCalculators()[id];
+        final Calculator c = _activeCharacterObject.getCalculators()[id];
 
-        value = c.calc(_activeChracterObject, target, skill, value);
+        value = c.calc(_activeCharacterObject, target, skill, value);
 
         return value;
     }
 
-    public ChracterObject getActiveChar()
+    public CharacterObject getActiveChar()
     {
-        return _activeChracterObject;
+        return _activeCharacterObject;
     }
 
     // BASIC STATS
@@ -75,82 +75,82 @@ public class CharacterStat
 
     public final int getMaxHp()
     {
-        return (int) calcStat(Stats.MAX_HP, _activeChracterObject.getTemplate().getBaseHpMax());
+        return (int) calcStat(Stats.MAX_HP, _activeCharacterObject.getTemplate().getBaseHpMax());
     }
 
     public final int getMaxMp()
     {
-        return (int) calcStat(Stats.MAX_MP, _activeChracterObject.getTemplate().getBaseMpMax());
+        return (int) calcStat(Stats.MAX_MP, _activeCharacterObject.getTemplate().getBaseMpMax());
     }
 
     public final int getMaxHpRegen()
     {
-        return (int) calcStat(Stats.MAX_RECOVERABLE_HP, _activeChracterObject.getTemplate().getBaseHpRegen());
+        return (int) calcStat(Stats.MAX_RECOVERABLE_HP, _activeCharacterObject.getTemplate().getBaseHpRegen());
     }
 
     public final int getMaxMpRegen()
     {
-        return (int) calcStat(Stats.REGENERATE_MP_RATE, _activeChracterObject.getTemplate().getBaseMpRegen());
+        return (int) calcStat(Stats.REGENERATE_MP_RATE, _activeCharacterObject.getTemplate().getBaseMpRegen());
     }
 
     public final int getPDef()
     {
-        return (int) calcStat(Stats.POWER_DEFENCE, _activeChracterObject.getTemplate().getBasePDef());
+        return (int) calcStat(Stats.POWER_DEFENCE, _activeCharacterObject.getTemplate().getBasePDef());
     }
 
     public final int getMDef()
     {
-        return (int) calcStat(Stats.MAGIC_DEFENCE, _activeChracterObject.getTemplate().getBaseMDef());
+        return (int) calcStat(Stats.MAGIC_DEFENCE, _activeCharacterObject.getTemplate().getBaseMDef());
     }
 
     public final int getPAtk()
     {
-        return (int) calcStat(Stats.POWER_ATTACK, _activeChracterObject.getTemplate().getBasePAtk());
+        return (int) calcStat(Stats.POWER_ATTACK, _activeCharacterObject.getTemplate().getBasePAtk());
     }
 
     public final int getMAtk()
     {
-        return (int) calcStat(Stats.MAGIC_ATTACK, _activeChracterObject.getTemplate().getBaseMAtk());
+        return (int) calcStat(Stats.MAGIC_ATTACK, _activeCharacterObject.getTemplate().getBaseMAtk());
     }
 
     public final int getPAtkSpd()
     {
-        return (int) calcStat(Stats.POWER_ATTACK_SPEED, _activeChracterObject.getTemplate().getBasePAtkSpd());
+        return (int) calcStat(Stats.POWER_ATTACK_SPEED, _activeCharacterObject.getTemplate().getBasePAtkSpd());
     }
 
     public final int getMAtkSpd()
     {
-        return (int) calcStat(Stats.MAGIC_ATTACK_SPEED, _activeChracterObject.getTemplate().getBaseMAtkSpd());
+        return (int) calcStat(Stats.MAGIC_ATTACK_SPEED, _activeCharacterObject.getTemplate().getBaseMAtkSpd());
     }
 
     public final int getSTR()
     {
-        return (int) calcStat(Stats.STAT_STR, _activeChracterObject.getTemplate().getBaseSTR());
+        return (int) calcStat(Stats.STAT_STR, _activeCharacterObject.getTemplate().getBaseSTR());
     }
 
     public final int getCON()
     {
-        return (int) calcStat(Stats.STAT_CON, _activeChracterObject.getTemplate().getBaseCON());
+        return (int) calcStat(Stats.STAT_CON, _activeCharacterObject.getTemplate().getBaseCON());
     }
 
     public final int getDEX()
     {
-        return (int) calcStat(Stats.STAT_DEX, _activeChracterObject.getTemplate().getBaseDEX());
+        return (int) calcStat(Stats.STAT_DEX, _activeCharacterObject.getTemplate().getBaseDEX());
     }
 
     public final int getINT()
     {
-        return (int) calcStat(Stats.STAT_INT, _activeChracterObject.getTemplate().getBaseINT());
+        return (int) calcStat(Stats.STAT_INT, _activeCharacterObject.getTemplate().getBaseINT());
     }
 
     public final int getWIT()
     {
-        return (int) calcStat(Stats.STAT_WIT, _activeChracterObject.getTemplate().getBaseWIT());
+        return (int) calcStat(Stats.STAT_WIT, _activeCharacterObject.getTemplate().getBaseWIT());
     }
 
     public final int getMEN()
     {
-        return (int) calcStat(Stats.STAT_MEN, _activeChracterObject.getTemplate().getBaseMEN());
+        return (int) calcStat(Stats.STAT_MEN, _activeCharacterObject.getTemplate().getBaseMEN());
     }
 
     public byte getLevel()

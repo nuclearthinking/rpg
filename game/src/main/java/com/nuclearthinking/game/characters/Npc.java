@@ -6,7 +6,7 @@ import com.nuclearthinking.game.characters.templates.NpcTemplate;
 /**
  * Created by kuksin-mv on 15.01.2016.
  */
-public class Npc extends ChracterObject
+public class Npc extends CharacterObject
 {
     public Npc(NpcTemplate template)
     {
@@ -58,6 +58,17 @@ public class Npc extends ChracterObject
     public void onSpawn()
     {
         //TODO: Надо бы думаю сделать
+    }
+
+    @Override
+    public boolean fillDie(CharacterObject killer)
+    {
+        if (!super.fillDie(killer))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     @Override

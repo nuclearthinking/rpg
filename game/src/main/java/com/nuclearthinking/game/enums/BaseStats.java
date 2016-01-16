@@ -1,6 +1,6 @@
 package com.nuclearthinking.game.enums;
 
-import com.nuclearthinking.game.characters.ChracterObject;
+import com.nuclearthinking.game.characters.CharacterObject;
 import com.nuclearthinking.game.characters.interfaces.IBaseStat;
 import com.nuclearthinking.game.characters.stats.calcstats.*;
 
@@ -42,11 +42,11 @@ public enum BaseStats
         _stat = s;
     }
 
-    public final double calcBonus(ChracterObject chracterObject)
+    public final double calcBonus(CharacterObject characterObject)
     {
-        if (chracterObject != null)
+        if (characterObject != null)
         {
-            return _stat.calcBonus(chracterObject);
+            return _stat.calcBonus(characterObject);
         }
 
         return 1;

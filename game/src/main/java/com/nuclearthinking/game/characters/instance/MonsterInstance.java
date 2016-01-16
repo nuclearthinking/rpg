@@ -1,6 +1,7 @@
 package com.nuclearthinking.game.characters.instance;
 
 import com.nuclearthinking.game.characters.AttackableNpc;
+import com.nuclearthinking.game.characters.CharacterObject;
 import com.nuclearthinking.game.characters.templates.NpcTemplate;
 
 /**
@@ -24,5 +25,16 @@ public class MonsterInstance extends AttackableNpc
     public void onSpawn()
     {
         super.onSpawn();
+    }
+
+    @Override
+    public boolean fillDie(CharacterObject killer)
+    {
+        if (!super.fillDie(killer))
+        {
+            return false;
+        }
+
+        return true;
     }
 }

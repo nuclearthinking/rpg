@@ -1,5 +1,6 @@
 package com.nuclearthinking.game.characters.instance;
 
+import com.nuclearthinking.game.characters.CharacterObject;
 import com.nuclearthinking.game.characters.PlayableObject;
 import com.nuclearthinking.game.characters.templates.CharacterTemplate;
 import com.nuclearthinking.game.characters.templates.PlayerTemplate;
@@ -53,6 +54,17 @@ public class PlayableInstance extends PlayableObject
                                 "Level:" + getLevel() + " " +
                                 "ClassID:" + getClassId()
         );
+        return true;
+    }
+
+    @Override
+    public boolean fillDie(CharacterObject killer)
+    {
+        if (!super.fillDie(killer))
+        {
+            return false;
+        }
+
         return true;
     }
 }

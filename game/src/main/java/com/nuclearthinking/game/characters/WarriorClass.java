@@ -20,32 +20,32 @@ public class WarriorClass extends PlayerClass implements IPlayerClass {
     }
 
     @Override
-    public int pDamage(ChracterObject chracterObject) {
+    public int pDamage(CharacterObject characterObject) {
         return 0;
     }
 
     @Override
-    public int mDamage(ChracterObject chracterObject) {
-        return (int) chracterObject.getIntelligence();
+    public int mDamage(CharacterObject characterObject) {
+        return (int) characterObject.getIntelligence();
     }
 
     @Override
-    public void levelUp(ChracterObject chracterObject) {
-        chracterObject.addStrenght(warriorConfig.getStrengthRate());
-        chracterObject.addStamina(warriorConfig.getStaminaRate());
-        chracterObject.addIntelegence(warriorConfig.getIntelligenceRate());
-        chracterObject.addAgility(warriorConfig.getAgilityRate());
+    public void levelUp(CharacterObject characterObject) {
+        characterObject.addStrenght(warriorConfig.getStrengthRate());
+        characterObject.addStamina(warriorConfig.getStaminaRate());
+        characterObject.addIntelegence(warriorConfig.getIntelligenceRate());
+        characterObject.addAgility(warriorConfig.getAgilityRate());
     }
 
     @Override
-    public int mDefence(ChracterObject chracterObject) {
-        double mDef = chracterObject.getIntelligence();
+    public int mDefence(CharacterObject characterObject) {
+        double mDef = characterObject.getIntelligence();
         return (int) mDef;
     }
 
     @Override
-    public int pDefence(ChracterObject chracterObject) {
-        double pDef = chracterObject.getStrength() + chracterObject.getAgility() / 2;
+    public int pDefence(CharacterObject characterObject) {
+        double pDef = characterObject.getStrength() + characterObject.getAgility() / 2;
         return (int) pDef;
     }
 

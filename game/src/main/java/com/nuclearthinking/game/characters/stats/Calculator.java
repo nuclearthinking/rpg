@@ -1,6 +1,6 @@
 package com.nuclearthinking.game.characters.stats;
 
-import com.nuclearthinking.game.characters.ChracterObject;
+import com.nuclearthinking.game.characters.CharacterObject;
 import com.nuclearthinking.game.characters.stats.functions.AbstractFunction;
 import com.nuclearthinking.game.model.skills.Skill;
 
@@ -47,7 +47,7 @@ public final class Calculator
     }
 
     //Производим расчет на основе формул
-    public double calc(ChracterObject caster, ChracterObject target, Skill skill, double initVal)
+    public double calc(CharacterObject caster, CharacterObject target, Skill skill, double initVal)
     {
         double value = initVal;
         for (AbstractFunction func : _functions)
