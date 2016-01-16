@@ -20,7 +20,7 @@ public class PlayableObject extends CharacterObject
     }
 
     @Override
-    public void initCharStat()
+    public void initCharacterStat()
     {
         setStat(new PlayableStat(this));
     }

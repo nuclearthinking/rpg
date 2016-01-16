@@ -182,4 +182,9 @@ public class StatsSet implements IParserAdvUtils {
         _set.put(key, value);
     }
 
+    public void set(String key, Object value)
+    {
+        _set.put(key, value);
+    }
+
 }

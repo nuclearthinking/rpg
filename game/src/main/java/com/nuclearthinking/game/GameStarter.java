@@ -1,8 +1,5 @@
 package com.nuclearthinking.game;
 
-import com.nuclearthinking.game.characters.CharacterObject;
-import com.nuclearthinking.game.characters.instance.MonsterInstance;
-import com.nuclearthinking.game.characters.templates.NpcTemplateData;
 import com.nuclearthinking.game.characters.templates.PlayerTemplateData;
 import com.nuclearthinking.game.config.Config;
 import com.nuclearthinking.game.data.ItemData;
@@ -32,13 +29,7 @@ public final class GameStarter {
     public GameStarter() throws Exception {
         SkillData.getInstance();
         ItemData.getInstance();
-        CharacterObject characterObject = new MonsterInstance(NpcTemplateData.getInstance().getTemplate(1));
-        System.out.println(characterObject.getName());
-        System.out.println(characterObject.getLevel());
-        System.out.println(characterObject.getId());
         Game.getInstance();
-
-
 
         //Секция для дебага. Настройка в general конфиге
         if (Config.DEBUG) {

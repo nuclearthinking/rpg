@@ -4,6 +4,7 @@ import com.nuclearthinking.game.characters.stats.Calculator;
 import com.nuclearthinking.game.characters.stats.CharacterStat;
 import com.nuclearthinking.game.characters.stats.Formulas;
 import com.nuclearthinking.game.characters.stats.functions.AbstractFunction;
+import com.nuclearthinking.game.characters.status.CharacterStatus;
 import com.nuclearthinking.game.characters.templates.CharacterTemplate;
 import com.nuclearthinking.game.enums.Race;
 import com.nuclearthinking.game.enums.Stats;
@@ -29,8 +30,6 @@ public abstract class CharacterObject extends GameObject
     private volatile Set<CharacterObject> _attackByList;
     private volatile boolean _isCastingNow = false;
 
-    private Skill _lastSkillCast;
-
     private boolean _isDead = false;
     private boolean _allSkillsDisabled;
 
@@ -42,6 +41,7 @@ public abstract class CharacterObject extends GameObject
     private GameObject _target;
 
     private CharacterStat _stat;
+    private CharacterStatus _status;
     private CharacterTemplate _template;
 
     public CharacterObject() {}
@@ -54,6 +54,9 @@ public abstract class CharacterObject extends GameObject
         {
             throw new NullPointerException("Template is null");
         }
+
+        initCharacterStat();
+        initCharacterStatus();
 
         _template = template;
 
@@ -105,7 +108,6 @@ public abstract class CharacterObject extends GameObject
     }
 
     //TODO: Реализовать состояния при которых игрок не сможет совершать действия (например в стуне)
-
 
     public final boolean isCastingNow()
     {
@@ -186,6 +188,11 @@ public abstract class CharacterObject extends GameObject
         }
     }
 
+    public void decreaseCurrentHp(double damage, CharacterObject attacker)
+    {
+        getStatus().updateHp(damage, attacker);
+    }
+
     public final Calculator[] getCalculators()
     {
         return _calculators;
@@ -196,7 +203,7 @@ public abstract class CharacterObject extends GameObject
         return _stat;
     }
 
-    public void initCharStat()
+    public void initCharacterStat()
     {
         _stat = new CharacterStat(this);
     }
@@ -204,6 +211,21 @@ public abstract class CharacterObject extends GameObject
     public final void setStat(CharacterStat value)
     {
         _stat = value;
+    }
+
+    public CharacterStatus getStatus()
+    {
+        return _status;
+    }
+
+    public void initCharacterStatus()
+    {
+        _status = new CharacterStatus(this);
+    }
+
+    public void setStatus(CharacterStatus velue)
+    {
+        _status = velue;
     }
 
     public final boolean isDead()
@@ -223,11 +245,11 @@ public abstract class CharacterObject extends GameObject
             return false;
         }
 
+        setCurrentHp(0);
         setIsDead(true);
 
         return true;
     }
-
 
     //TODO: Убрать все расчеты оставить только гетеры в которых будут браться статы расчитанные в другом классе
     // BASIC STATS
@@ -329,6 +351,16 @@ public abstract class CharacterObject extends GameObject
     public int getMEN()
     {
         return getStat().getMEN();
+    }
+
+    public final double getCurrentHp()
+    {
+        return getStatus().getCurrentHp();
+    }
+
+    public final void setCurrentHp(double newHp)
+    {
+        getStatus().setCurrentHp(newHp);
     }
 
 

@@ -1,6 +1,7 @@
 package com.nuclearthinking.game.characters;
 
 import com.nuclearthinking.game.characters.stats.NpcStat;
+import com.nuclearthinking.game.characters.status.NpcStatus;
 import com.nuclearthinking.game.characters.templates.NpcTemplate;
 
 /**
@@ -25,9 +26,21 @@ public class Npc extends CharacterObject
     }
 
     @Override
-    public void initCharStat()
+    public void initCharacterStat()
     {
         setStat(new NpcStat(this));
+    }
+
+    @Override
+    public NpcStatus getStatus()
+    {
+        return (NpcStatus) super.getStatus();
+    }
+
+    @Override
+    public void initCharacterStatus()
+    {
+        setStatus(new NpcStatus(this));
     }
 
     @Override

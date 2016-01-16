@@ -1,10 +1,6 @@
 package com.nuclearthinking.game.engines;
 
 
-import com.nuclearthinking.game.characters.CharacterObject;
-import com.nuclearthinking.game.characters.MageClass;
-import com.nuclearthinking.game.characters.RogueClass;
-import com.nuclearthinking.game.characters.WarriorClass;
 import com.nuclearthinking.game.characters.instance.PlayableInstance;
 import com.nuclearthinking.game.characters.templates.PlayerTemplate;
 import com.nuclearthinking.game.characters.templates.PlayerTemplateData;
@@ -25,20 +21,14 @@ import java.util.List;
 public class PreparePlayer {
     UserInput input = new UserInput();
     StringUtil ut = new StringUtil();
-    private CharacterObject characterObject = null;
     private PlayableInstance newPlayer = null;
     private PlayerTemplate template = null;
     private MessagesReader messages = MessagesReader.getInstance();
     String _name;
     int _classId;
 
-    public PreparePlayer() {
-        characterObject = new CharacterObject() {
-            @Override
-            public int getId() {
-                return 0;
-            }
-        };
+    public PreparePlayer()
+    {
         //Установка имени игроку если оно null
         setPlayerName();
         //Установка класса игроку если он null
@@ -54,45 +44,38 @@ public class PreparePlayer {
     }
 
     private void choosePlayerClass() {
-        if (characterObject.getpClass() == null) {
-
-            System.out.println(messages.getMessage("chooseYourClass"));
-            System.out.println();
-            List<String> strings = new ArrayList<String>() {
-                {
-                    add(messages.getMessage("mageClass"));
-                    add(messages.getMessage("warriorClass"));
-                    add(messages.getMessage("rogueClass"));
-                }
-            };
-
+        System.out.println(messages.getMessage("chooseYourClass"));
+        System.out.println();
+        List<String> strings = new ArrayList<String>() {
+            {
+                add(messages.getMessage("mageClass"));
+                add(messages.getMessage("warriorClass"));
+                add(messages.getMessage("rogueClass"));
+            }
+        };
             switch (input.chouseOne(strings)) {
                 case 1: {
-                    characterObject.setClass(new MageClass());
                     _classId = 1;
                     System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("mageClass"));
                     break;
                 }
                 case 2: {
-                    characterObject.setClass(new WarriorClass());
                     _classId = 0;
                     System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("warriorClass"));
                     break;
                 }
                 case 3: {
-                    characterObject.setClass(new RogueClass());
                     _classId = 2;
                     System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("rogueClass"));
                     break;
                 }
             }
             System.out.println();
-        }
     }
 
 
-    public CharacterObject getCharacterObject() {
-        return characterObject;
+    public PlayableInstance getCharacterObject() {
+        return newPlayer;
     }
 
     protected String getValidName() {

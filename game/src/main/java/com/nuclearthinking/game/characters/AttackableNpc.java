@@ -1,5 +1,6 @@
 package com.nuclearthinking.game.characters;
 
+import com.nuclearthinking.game.characters.status.AttackableStatus;
 import com.nuclearthinking.game.characters.templates.NpcTemplate;
 
 /**
@@ -10,6 +11,24 @@ public class AttackableNpc extends Npc
     public AttackableNpc(NpcTemplate template)
     {
         super(template);
+    }
+
+    @Override
+    public AttackableStatus getStatus()
+    {
+        return (AttackableStatus) super.getStatus();
+    }
+
+    @Override
+    public void initCharacterStatus()
+    {
+        setStatus(new AttackableStatus(this));
+    }
+
+    @Override
+    public void decreaseCurrentHp(double damage, CharacterObject attacker)
+    {
+        super.decreaseCurrentHp(damage, attacker);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.nuclearthinking.game;
 
-import com.nuclearthinking.game.characters.CharacterObject;
+import com.nuclearthinking.game.characters.instance.MonsterInstance;
+import com.nuclearthinking.game.characters.instance.PlayableInstance;
+import com.nuclearthinking.game.characters.templates.NpcTemplateData;
 import com.nuclearthinking.game.engines.MessagesReader;
 import com.nuclearthinking.game.obj.world.World;
 import com.nuclearthinking.game.utils.UserInput;
@@ -19,10 +21,11 @@ public final class MainGameLoop {
 
     MessagesReader messages = MessagesReader.getInstance();
     UserInput userInput = new UserInput();
+    MonsterInstance monsterInstance;
 
     int day = 1;
 
-    public MainGameLoop(CharacterObject characterObject, World world) {
+    public MainGameLoop(PlayableInstance characterObject, World world) {
         /**
          * основная петля игры
          */
@@ -43,6 +46,13 @@ public final class MainGameLoop {
             currentRoom = characterObject.getCurrentRoom();
             worldSize = world.getWorldArray().size();
             floorSize = world.getWorldArray().get(currentFloor).getFloorSize();
+            monsterInstance = new MonsterInstance(NpcTemplateData.getInstance().getTemplate(1));
+            System.out.println(monsterInstance.getName());
+            System.out.println(monsterInstance.getLevel());
+            System.out.println(monsterInstance.getId());
+            System.out.println("Start HP" + monsterInstance.getMaxHp());
+            /*characterObject.decreaseCurrentHp(1, characterObject1);
+            System.out.println("End HP" + characterObject.getMaxHp());*/
 
             //Почистить
             System.out.println("Текущий уровень " + characterObject.getCurrentFloor() + " из " + worldSize);

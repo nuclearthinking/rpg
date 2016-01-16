@@ -25,6 +25,13 @@ public class NpcTemplateData
         set.set("id", npcId);
         set.set("level", 5);
         set.set("name", "TestMob");
+        set.set("baseSTR", 10);
+        set.set("baseINT", 10);
+        set.set("baseDEX", 10);
+        set.set("baseWIT", 10);
+        set.set("baseCON", 10);
+        set.set("baseMEN", 10);
+        set.set("baseHpMax", 100);
 
         NpcTemplate template = _npcs.get(npcId);
 
