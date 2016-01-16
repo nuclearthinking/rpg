@@ -11,19 +11,19 @@ import com.nuclearthinking.game.model.interfaces.IIdentifiable;
  * @author Vladislav Radchenko (onifent@gmail.com)
  *
  * Пока что будет такой вот слабенький запил
- * Player - будет инстансится от GameCharacter
- * Npc - должен будет инстансится от Player
+ * ChracterObject - будет инстансится от GameObject
+ * Npc - должен будет инстансится от ChracterObject
  * Нужно реализовать инстансы для создания разных объектов (Нпс, игрок и так далее)
  */
 
-public abstract class GameCharacter implements IIdentifiable, IName, IObjectId
+public abstract class GameObject implements IIdentifiable, IName, IObjectId
 {
     private String _name;
     private int _objectId;
 
-    public GameCharacter(){}
+    public GameObject(){}
 
-    public GameCharacter(int objectId)
+    public GameObject(int objectId)
     {
         _objectId = objectId;
     }
@@ -94,7 +94,7 @@ public abstract class GameCharacter implements IIdentifiable, IName, IObjectId
     @Override
     public boolean equals(Object obj)
     {
-        return ((obj instanceof GameCharacter) && (((GameCharacter) obj).getObjectId() == getObjectId()));
+        return ((obj instanceof GameObject) && (((GameObject) obj).getObjectId() == getObjectId()));
     }
 
     @Override

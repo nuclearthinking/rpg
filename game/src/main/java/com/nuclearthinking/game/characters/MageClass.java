@@ -20,34 +20,34 @@ public class MageClass extends PlayerClass implements IPlayerClass {
     }
 
     @Override
-    public int pDamage(Player player) {
-        double pDmg = player.getAgility() / 2 + player.getStrength() / 2 + player.getLevel();
+    public int pDamage(ChracterObject chracterObject) {
+        double pDmg = chracterObject.getAgility() / 2 + chracterObject.getStrength() / 2 + chracterObject.getLevel();
         return (int) pDmg;
     }
 
     @Override
-    public int mDamage(Player player) {
-        double mDmg = player.getIntelligence() * 0.8 + player.getLevel() * 2;
+    public int mDamage(ChracterObject chracterObject) {
+        double mDmg = chracterObject.getIntelligence() * 0.8 + chracterObject.getLevel() * 2;
         return (int) mDmg;
     }
 
     @Override
-    public void levelUp(Player player) {
-        player.addStrenght(mConfig.getStrengthRate());
-        player.addStamina(mConfig.getStaminaRate());
-        player.addIntelegence(mConfig.getIntelligenceRate());
-        player.addAgility(mConfig.getAgilityRate());
+    public void levelUp(ChracterObject chracterObject) {
+        chracterObject.addStrenght(mConfig.getStrengthRate());
+        chracterObject.addStamina(mConfig.getStaminaRate());
+        chracterObject.addIntelegence(mConfig.getIntelligenceRate());
+        chracterObject.addAgility(mConfig.getAgilityRate());
     }
 
     @Override
-    public int mDefence(Player player) {
-        double mDef = player.getIntelligence() * 1.5;
+    public int mDefence(ChracterObject chracterObject) {
+        double mDef = chracterObject.getIntelligence() * 1.5;
         return (int) mDef;
     }
 
     @Override
-    public int pDefence(Player player) {
-        double pDef = player.getStrength() / 2 + player.getAgility() / 2;
+    public int pDefence(ChracterObject chracterObject) {
+        double pDef = chracterObject.getStrength() / 2 + chracterObject.getAgility() / 2;
         return (int) pDef;
     }
 

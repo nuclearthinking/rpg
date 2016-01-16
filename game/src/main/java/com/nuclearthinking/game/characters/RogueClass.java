@@ -21,33 +21,33 @@ public class RogueClass extends PlayerClass implements IPlayerClass {
 
 
     @Override
-    public int pDamage(Player player) {
-        double pDmg = player.getAgility() * 0.8 + player.getLevel() * 2;
+    public int pDamage(ChracterObject chracterObject) {
+        double pDmg = chracterObject.getAgility() * 0.8 + chracterObject.getLevel() * 2;
         return (int) pDmg;
     }
 
     @Override
-    public int mDamage(Player player) {
-        return (int) player.getIntelligence();
+    public int mDamage(ChracterObject chracterObject) {
+        return (int) chracterObject.getIntelligence();
     }
 
     @Override
-    public void levelUp(Player player) {
-        player.addStrenght(rConf.getStrengthRate());
-        player.addStamina(rConf.getStaminaRate());
-        player.addIntelegence(rConf.getIntelligenceRate());
-        player.addAgility(rConf.getAgilityRate());
+    public void levelUp(ChracterObject chracterObject) {
+        chracterObject.addStrenght(rConf.getStrengthRate());
+        chracterObject.addStamina(rConf.getStaminaRate());
+        chracterObject.addIntelegence(rConf.getIntelligenceRate());
+        chracterObject.addAgility(rConf.getAgilityRate());
     }
 
     @Override
-    public int mDefence(Player player) {
-        double mDef = player.getIntelligence();
+    public int mDefence(ChracterObject chracterObject) {
+        double mDef = chracterObject.getIntelligence();
         return (int) mDef;
     }
 
     @Override
-    public int pDefence(Player player) {
-        double pDef = player.getStrength() / 2 + player.getAgility();
+    public int pDefence(ChracterObject chracterObject) {
+        double pDef = chracterObject.getStrength() / 2 + chracterObject.getAgility();
         return (int) pDef;
     }
 

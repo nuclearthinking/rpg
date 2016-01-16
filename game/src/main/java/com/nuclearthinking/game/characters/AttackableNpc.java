@@ -11,4 +11,22 @@ public class AttackableNpc extends Npc
     {
         super(template);
     }
+
+    @Override
+    public boolean canBeAttacked()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isAttackable()
+    {
+        return true;
+    }
+
+    @Override
+    public void onSpawn()
+    {
+        super.onSpawn();
+    }
 }

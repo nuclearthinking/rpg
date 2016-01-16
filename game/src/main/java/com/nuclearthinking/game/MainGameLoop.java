@@ -1,6 +1,6 @@
 package com.nuclearthinking.game;
 
-import com.nuclearthinking.game.characters.Player;
+import com.nuclearthinking.game.characters.ChracterObject;
 import com.nuclearthinking.game.engines.MessagesReader;
 import com.nuclearthinking.game.obj.world.World;
 import com.nuclearthinking.game.utils.UserInput;
@@ -22,7 +22,7 @@ public final class MainGameLoop {
 
     int day = 1;
 
-    public MainGameLoop(Player player, World world) {
+    public MainGameLoop(ChracterObject chracterObject, World world) {
         /**
          * основная петля игры
          */
@@ -34,24 +34,24 @@ public final class MainGameLoop {
         while (true) {
             if (day == 1) {
                 System.out.println(messages.getMessage("firstDayWelcomeMessage"));
-                player.setCurrentFloor(1);
-                player.setCurrentRoom(1);
+                chracterObject.setCurrentFloor(1);
+                chracterObject.setCurrentRoom(1);
             } else {
                 printCurrentDay();
             }
-            currentFloor = player.getCurrentFloor();
-            currentRoom = player.getCurrentRoom();
+            currentFloor = chracterObject.getCurrentFloor();
+            currentRoom = chracterObject.getCurrentRoom();
             worldSize = world.getWorldArray().size();
             floorSize = world.getWorldArray().get(currentFloor).getFloorSize();
 
             //Почистить
-            System.out.println("Текущий уровень " + player.getCurrentFloor() + " из " + worldSize);
-            System.out.println("Текущая комната " + player.getCurrentRoom() + " из " + floorSize);
+            System.out.println("Текущий уровень " + chracterObject.getCurrentFloor() + " из " + worldSize);
+            System.out.println("Текущая комната " + chracterObject.getCurrentRoom() + " из " + floorSize);
             System.out.println();
 
             List<String> actions;
 
-            if (player.getCurrentRoom() == 1) {
+            if (chracterObject.getCurrentRoom() == 1) {
                 actions = new ArrayList<String>() {
                     {
                         add("Следующая комната");
@@ -60,10 +60,10 @@ public final class MainGameLoop {
 
                 int input = userInput.chouseOne(actions);
                 if (input == 1) {
-                    player.setCurrentRoom(currentRoom + 1);
+                    chracterObject.setCurrentRoom(currentRoom + 1);
                 }
             } else {
-                if (player.getCurrentRoom() == floorSize) {
+                if (chracterObject.getCurrentRoom() == floorSize) {
                     {
                         actions = new ArrayList<String>() {
                             {
@@ -73,11 +73,11 @@ public final class MainGameLoop {
                         };
                         int input = userInput.chouseOne(actions);
                         if (input == 1) {
-                            player.setCurrentFloor(currentFloor + 1);
-                            player.setCurrentRoom(1);
+                            chracterObject.setCurrentFloor(currentFloor + 1);
+                            chracterObject.setCurrentRoom(1);
                         } else {
                             if (input == 2) {
-                                player.setCurrentRoom(currentRoom - 1);
+                                chracterObject.setCurrentRoom(currentRoom - 1);
                             }
                         }
                     }
@@ -92,16 +92,16 @@ public final class MainGameLoop {
 
                     int input = userInput.chouseOne(actions);
                     if (input == 1) {
-                        player.setCurrentRoom(currentRoom + 1);
+                        chracterObject.setCurrentRoom(currentRoom + 1);
                     } else {
                         if (input == 2) {
-                            player.setCurrentRoom(currentRoom - 1);
+                            chracterObject.setCurrentRoom(currentRoom - 1);
                         }
                     }
                 }
             }
 
-            if (player.getHitPoints() <= 0) {
+            if (chracterObject.getHitPoints() <= 0) {
                 System.out.println("Game over!");
                 break;
             }

@@ -21,12 +21,12 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public abstract class Player extends GameCharacter
+public abstract class ChracterObject extends GameObject
 {
     //Тут будем хранить время реюзов скилов
     private volatile Map<Integer, ReuseTime> _reuseTimeStampsSkills = null;
     private volatile Map<Integer, Long> _disabledSkills = null;
-    private volatile Set<Player> _attackByList;
+    private volatile Set<ChracterObject> _attackByList;
     private volatile boolean _isCastingNow = false;
 
     private Skill _lastSkillCast;
@@ -39,14 +39,14 @@ public abstract class Player extends GameCharacter
     private final Map<Integer, Skill> _skills = new ConcurrentHashMap<>();
 
     //Это цель для атаки
-    private GameCharacter _target;
+    private GameObject _target;
 
     private CharacterStat _stat;
     private CharacterTemplate _template;
 
-    public Player() {}
+    public ChracterObject() {}
 
-    public Player(int objectId, CharacterTemplate template)
+    public ChracterObject(int objectId, CharacterTemplate template)
     {
         super(objectId);
 
@@ -88,12 +88,12 @@ public abstract class Player extends GameCharacter
     private void beginCast(Skill skill, boolean boo)
     {
         //TODO: Тут будет определение типа скила
-        Player target = null;
+        ChracterObject target = null;
 
         beginCast(skill, boo, target);
     }
 
-    private void beginCast(Skill skill, boolean simultaneously, Player target)
+    private void beginCast(Skill skill, boolean simultaneously, ChracterObject target)
     {
 
     }
@@ -117,7 +117,7 @@ public abstract class Player extends GameCharacter
         _isCastingNow = value;
     }
 
-    public void setTarget(GameCharacter object)
+    public void setTarget(GameObject object)
     {
         if (object != null)
         {
@@ -140,7 +140,7 @@ public abstract class Player extends GameCharacter
         return 0;
     }
 
-    public final GameCharacter getTarget()
+    public final GameObject getTarget()
     {
         return _target;
     }

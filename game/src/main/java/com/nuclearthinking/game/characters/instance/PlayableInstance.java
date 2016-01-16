@@ -1,6 +1,6 @@
 package com.nuclearthinking.game.characters.instance;
 
-import com.nuclearthinking.game.characters.PlayableCharacter;
+import com.nuclearthinking.game.characters.PlayableObject;
 import com.nuclearthinking.game.characters.templates.CharacterTemplate;
 import com.nuclearthinking.game.characters.templates.PlayerTemplate;
 import com.nuclearthinking.game.enums.ClassId;
@@ -10,7 +10,7 @@ import com.nuclearthinking.game.enums.ClassId;
  *
  * Тут наконец то будет собираться именно игрок
  */
-public class PlayableInstance extends PlayableCharacter
+public class PlayableInstance extends PlayableObject
 {
     protected int _class;
 

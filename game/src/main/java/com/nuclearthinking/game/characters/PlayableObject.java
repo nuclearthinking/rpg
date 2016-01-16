@@ -6,9 +6,9 @@ import com.nuclearthinking.game.characters.templates.CharacterTemplate;
 /**
  * Created by kuksin-mv on 15.01.2016.
  */
-public class PlayableCharacter extends Player
+public class PlayableObject extends ChracterObject
 {
-    public PlayableCharacter(int objectId, CharacterTemplate template)
+    public PlayableObject(int objectId, CharacterTemplate template)
     {
         super(objectId, template);
     }
@@ -35,5 +35,11 @@ public class PlayableCharacter extends Player
     public boolean isPlayable()
     {
         return true;
+    }
+
+    @Override
+    public int getId()
+    {
+        return 0;
     }
 }
