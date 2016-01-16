@@ -12,33 +12,28 @@ import com.nuclearthinking.game.obj.world.World;
 
 public class Navigate extends Action implements Actable {
 
-    private int roomModificator;
-    private int floorModificator;
+    private int roomModification;
+    private int floorModification;
 
     Navigate(Player player, World world) {
         super(player, world);
     }
 
-    public void setRoomModificator(int roomModificator) {
-        this.roomModificator = roomModificator;
+    public void setRoomModification(int roomModification) {
+        this.roomModification = roomModification;
     }
 
-    public void setFloorModificator(int floorModificator) {
-        this.floorModificator = floorModificator;
+    public void setFloorModification(int floorModification) {
+        this.floorModification = floorModification;
     }
 
     @Override
     public void run() {
-        if (roomModificator != 0) {
-            player.setCurrentRoom(roomModificator);
+        if (roomModification != 0) {
+            player.setCurrentRoom(roomModification);
         }
-        if (floorModificator != 0) {
-            player.setCurrentFloor(floorModificator);
+        if (floorModification != 0) {
+            player.setCurrentFloor(floorModification);
         }
-    }
-
-    @Override
-    public boolean isNavigate() {
-        return true;
     }
 }

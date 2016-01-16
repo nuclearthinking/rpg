@@ -25,7 +25,4 @@ public class Action implements Actable {
 
     }
 
-    public boolean isNavigate() {
-        return false;
-    }
 }

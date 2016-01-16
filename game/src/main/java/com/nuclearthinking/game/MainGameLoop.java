@@ -25,9 +25,6 @@ public final class MainGameLoop {
         /**
          * основная петля игры
          */
-        int currentFloor;
-        int worldSize;
-        int floorSize;
 
         while (true) {
             if (day == 1) {
@@ -37,18 +34,13 @@ public final class MainGameLoop {
             } else {
                 printCurrentDay();
             }
-            currentFloor = player.getCurrentFloor();
-            worldSize = world.getWorldArray().size();
-            floorSize = world.getWorldArray().get(currentFloor).getFloorSize();
-
-            //Почистить
-            System.out.println("Текущий уровень " + player.getCurrentFloor() + " из " + worldSize);
-            System.out.println("Текущая комната " + player.getCurrentRoom() + " из " + floorSize);
+            System.out.println("Текущий уровень " + player.getCurrentFloor() + " из " + world.getWorldArray().size());
+            System.out.println("Текущая комната " + player.getCurrentRoom() + " из " + world.getWorldArray().get(player.getCurrentFloor()).getFloorSize());
             System.out.println();
 
-            Actions acts = new Actions(player, world);
-            Action act = userInput.chouseOneMap(acts.getAviableActions());
-            act.run();
+            Actions actionsLoader = new Actions(player, world);
+            Action selectedAction = userInput.chouseOneMap(actionsLoader.getAvailableActions());
+            selectedAction.run();
 
             if (player.getHitPoints() <= 0) {
                 System.out.println("Game over!");

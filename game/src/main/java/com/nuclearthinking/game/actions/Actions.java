@@ -23,41 +23,41 @@ public class Actions {
         this.world = world;
     }
 
-    public Map<String, Action> getAviableActions() {
-        Map<String, Action> actionsList = new HashMap<String, Action>();
+    public Map<String, Action> getAvailableActions() {
+        Map<String, Action> actionsList = new HashMap<>();
         gatherNavigationActions(actionsList);
 
         return actionsList;
     }
 
     protected void gatherNavigationActions(Map<String, Action> actionList) {
-        Map<String, Action> tempActionList = new HashMap<String, Action>();
+        Map<String, Action> tempActionList = new HashMap<>();
         int currentRoom = player.getCurrentRoom();
         int currentFloor = player.getCurrentFloor();
         int floorSize = world.getWorldArray().get(currentFloor).getFloorSize();
 
         if (currentRoom == 1) {
             Navigate navigate = new Navigate(player, world);
-            navigate.setRoomModificator(player.getCurrentRoom() + 1);
+            navigate.setRoomModification(player.getCurrentRoom() + 1);
             tempActionList.put("Следующая комната", navigate);
         } else {
             if (currentRoom == floorSize) {
 
                 Navigate navigateNextFloor = new Navigate(player, world);
-                navigateNextFloor.setRoomModificator(1);
-                navigateNextFloor.setFloorModificator(player.getCurrentFloor() + 1);
+                navigateNextFloor.setRoomModification(1);
+                navigateNextFloor.setFloorModification(player.getCurrentFloor() + 1);
                 tempActionList.put("Следующий этаж", navigateNextFloor);
 
                 Navigate navigatePreviousRoom = new Navigate(player, world);
-                navigatePreviousRoom.setRoomModificator(player.getCurrentRoom() - 1);
+                navigatePreviousRoom.setRoomModification(player.getCurrentRoom() - 1);
                 tempActionList.put("Предыдущая комната", navigatePreviousRoom);
             } else {
                 Navigate navigateNextRoom = new Navigate(player, world);
-                navigateNextRoom.setRoomModificator(player.getCurrentRoom() + 1);
+                navigateNextRoom.setRoomModification(player.getCurrentRoom() + 1);
                 tempActionList.put("Следующая комната", navigateNextRoom);
 
                 Navigate navigatePreviousRoom = new Navigate(player, world);
-                navigatePreviousRoom.setRoomModificator(player.getCurrentRoom() - 1);
+                navigatePreviousRoom.setRoomModification(player.getCurrentRoom() - 1);
                 tempActionList.put("Предыдущая комната", navigatePreviousRoom);
             }
         }
