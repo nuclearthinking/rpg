@@ -29,7 +29,16 @@ public class Navigate extends Action implements Actable {
 
     @Override
     public void run() {
-        player.setCurrentRoom(roomModificator);
-        player.setCurrentFloor(floorModificator);
+        if (roomModificator != 0) {
+            player.setCurrentRoom(roomModificator);
+        }
+        if (floorModificator != 0) {
+            player.setCurrentFloor(floorModificator);
+        }
+    }
+
+    @Override
+    public boolean isNavigate() {
+        return true;
     }
 }

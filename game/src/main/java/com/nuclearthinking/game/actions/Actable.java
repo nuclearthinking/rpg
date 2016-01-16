@@ -9,5 +9,5 @@ package com.nuclearthinking.game.actions;
 
 public interface Actable {
 
-    public void run();
+    void run();
 }

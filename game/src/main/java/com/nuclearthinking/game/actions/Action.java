@@ -10,7 +10,7 @@ import com.nuclearthinking.game.obj.world.World;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public class Action {
+public class Action implements Actable {
     Player player;
 
     World world;
@@ -18,5 +18,14 @@ public class Action {
     Action(Player player, World world) {
         this.world = world;
         this.player = player;
+    }
+
+    @Override
+    public void run() {
+
+    }
+
+    public boolean isNavigate() {
+        return false;
     }
 }

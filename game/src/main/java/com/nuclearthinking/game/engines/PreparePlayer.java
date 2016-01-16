@@ -43,8 +43,9 @@ public class PreparePlayer {
     }
 
     private void setPlayerName() {
-        _name = ut.beautifyName(getValidName());
-        System.out.println(messages.getMessage("welcomeMessage") + " " + _name);
+        String name = ut.beautifyName(getValidName());
+        player.setName(name);
+        System.out.println(messages.getMessage("welcomeMessage") + " " + name);
         System.out.println();
     }
 

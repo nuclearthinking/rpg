@@ -2,9 +2,7 @@ package com.nuclearthinking.game.actions;
 
 import com.nuclearthinking.game.characters.Player;
 import com.nuclearthinking.game.obj.world.World;
-import com.nuclearthinking.game.utils.UserInput;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +15,6 @@ import java.util.Map;
 
 public class Actions {
 
-    UserInput userInput = new UserInput();
     Player player;
     World world;
 
@@ -37,18 +34,34 @@ public class Actions {
         Map<String, Action> tempActionList = new HashMap<String, Action>();
         int currentRoom = player.getCurrentRoom();
         int currentFloor = player.getCurrentFloor();
-        int worldSize = world.getWorldArray().size();
         int floorSize = world.getWorldArray().get(currentFloor).getFloorSize();
 
-        if (player.getCurrentRoom() == 1) {
-            //Комната первая на этаже: действте комната +1
+        if (currentRoom == 1) {
+            Navigate navigate = new Navigate(player, world);
+            navigate.setRoomModificator(player.getCurrentRoom() + 1);
+            tempActionList.put("Следующая комната", navigate);
         } else {
-            if (player.getCurrentRoom() == floorSize) {
-                //Комната последняя на этаже : действие комната -1 или этаж +1
+            if (currentRoom == floorSize) {
+
+                Navigate navigateNextFloor = new Navigate(player, world);
+                navigateNextFloor.setRoomModificator(1);
+                navigateNextFloor.setFloorModificator(player.getCurrentFloor() + 1);
+                tempActionList.put("Следующий этаж", navigateNextFloor);
+
+                Navigate navigatePreviousRoom = new Navigate(player, world);
+                navigatePreviousRoom.setRoomModificator(player.getCurrentRoom() - 1);
+                tempActionList.put("Предыдущая комната", navigatePreviousRoom);
             } else {
-                //Комната по середине этажа : действие комната +1 или комната -1
+                Navigate navigateNextRoom = new Navigate(player, world);
+                navigateNextRoom.setRoomModificator(player.getCurrentRoom() + 1);
+                tempActionList.put("Следующая комната", navigateNextRoom);
+
+                Navigate navigatePreviousRoom = new Navigate(player, world);
+                navigatePreviousRoom.setRoomModificator(player.getCurrentRoom() - 1);
+                tempActionList.put("Предыдущая комната", navigatePreviousRoom);
             }
         }
+        actionList.putAll(tempActionList);
     }
 }
 
