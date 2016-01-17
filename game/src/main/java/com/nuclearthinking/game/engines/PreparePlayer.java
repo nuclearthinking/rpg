@@ -1,9 +1,13 @@
 package com.nuclearthinking.game.engines;
 
-import com.nuclearthinking.game.obj.MageClass;
-import com.nuclearthinking.game.obj.Player;
-import com.nuclearthinking.game.obj.RogueClass;
-import com.nuclearthinking.game.obj.WarriorClass;
+
+import com.nuclearthinking.game.characters.MageClass;
+import com.nuclearthinking.game.characters.Player;
+import com.nuclearthinking.game.characters.RogueClass;
+import com.nuclearthinking.game.characters.WarriorClass;
+import com.nuclearthinking.game.characters.instance.PlayableInstance;
+import com.nuclearthinking.game.characters.templates.PlayerTemplate;
+import com.nuclearthinking.game.characters.templates.PlayerTemplateData;
 import com.nuclearthinking.game.utils.StringUtil;
 import com.nuclearthinking.game.utils.UserInput;
 
@@ -21,22 +25,35 @@ import java.util.List;
 public class PreparePlayer {
     UserInput input = new UserInput();
     StringUtil ut = new StringUtil();
-    private Player player;
+    private Player player = null;
+    private PlayableInstance newPlayer = null;
+    private PlayerTemplate template = null;
     private MessagesReader messages = MessagesReader.getInstance();
+    String _name;
+    int _classId;
 
-
-    private PreparePlayer() {
+    public PreparePlayer() {
         player = new Player();
-        if (player.getName() == null) {
-            String playerName = getValidName();
-            player.setName(ut.beautifyName(playerName));
-            System.out.println(messages.getMessage("welcomeMessage") + " " + player.getName());
-        }
+        //Установка имени игроку если оно null
+        setPlayerName();
+        //Установка класса игроку если он null
+        choosePlayerClass();
+        template = PlayerTemplateData.getInstance().getTemplate(_classId);
+        newPlayer = PlayableInstance.create(template, _name);
+    }
 
+    private void setPlayerName() {
+        String name = ut.beautifyName(getValidName());
+        player.setName(name);
+        System.out.println(messages.getMessage("welcomeMessage") + " " + name);
+        System.out.println();
+    }
+
+    private void choosePlayerClass() {
         if (player.getpClass() == null) {
 
             System.out.println(messages.getMessage("chooseYourClass"));
-
+            System.out.println();
             List<String> strings = new ArrayList<String>() {
                 {
                     add(messages.getMessage("mageClass"));
@@ -44,21 +61,23 @@ public class PreparePlayer {
                     add(messages.getMessage("rogueClass"));
                 }
             };
-            int classId = input.chouseOne(strings);
 
-            switch (classId) {
+            switch (input.chouseOne(strings)) {
                 case 1: {
                     player.setClass(new MageClass());
-                    System.out.println(messages.getMessage("choosedClass")+" : "+messages.getMessage("mageClass"));
+                    _classId = 1;
+                    System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("mageClass"));
                     break;
                 }
                 case 2: {
                     player.setClass(new WarriorClass());
+                    _classId = 0;
                     System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("warriorClass"));
                     break;
                 }
                 case 3: {
                     player.setClass(new RogueClass());
+                    _classId = 2;
                     System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("rogueClass"));
                     break;
                 }
@@ -67,9 +86,6 @@ public class PreparePlayer {
         }
     }
 
-    public static PreparePlayer getInstance() {
-        return PreparePlayerHolder.INSTANCE;
-    }
 
     public Player getPlayer() {
         return player;
@@ -86,9 +102,5 @@ public class PreparePlayer {
         return playerName;
     }
 
-
-    private static class PreparePlayerHolder {
-        private static final PreparePlayer INSTANCE = new PreparePlayer();
-    }
 
 }

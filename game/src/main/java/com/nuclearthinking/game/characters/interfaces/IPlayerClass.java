@@ -1,4 +1,6 @@
-package com.nuclearthinking.game.obj;
+package com.nuclearthinking.game.characters.interfaces;
+
+import com.nuclearthinking.game.characters.Player;
 
 /**
  * Created
