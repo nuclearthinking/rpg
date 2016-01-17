@@ -40,7 +40,7 @@ public class World {
         return this;
     }
 
-    public void floorNumbering(List<Floor> worldArray) {
+    protected void floorNumbering(List<Floor> worldArray) {
         int n = 1;
         for (Floor floor : worldArray) {
             floor.setFloorId(n);

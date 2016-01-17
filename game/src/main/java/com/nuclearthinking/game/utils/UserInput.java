@@ -102,7 +102,7 @@ public class UserInput {
         return input;
     }
 
-    public Action chouseOneMap(Map<String, Action> variants) {
+    public Action selectActionFromMap(Map<String, Action> variants) {
         System.out.println(messages.getMessage("chooseOneInVariants"));
         int iter = 1;
         int input = 0;
