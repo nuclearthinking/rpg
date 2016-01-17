@@ -34,9 +34,6 @@ public class World {
         return worldArray;
     }
 
-    //TODO: Метод для сохранения состояния мира
-    public void save() {
-    }
 
     public World setSize(int size) {
         this.size = size;
