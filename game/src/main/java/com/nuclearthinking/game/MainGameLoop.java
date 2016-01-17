@@ -39,7 +39,7 @@ public final class MainGameLoop {
             System.out.println();
 
             Actions actionsLoader = new Actions(player, world);
-            Action selectedAction = userInput.chouseOneMap(actionsLoader.getAvailableActions());
+            Action selectedAction = userInput.selectActionFromMap(actionsLoader.getAvailableActions());
             selectedAction.run();
 
             if (player.getHitPoints() <= 0) {

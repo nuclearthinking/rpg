@@ -34,16 +34,13 @@ public class World {
         return worldArray;
     }
 
-    //TODO: Метод для сохранения состояния мира
-    public void save() {
-    }
 
     public World setSize(int size) {
         this.size = size;
         return this;
     }
 
-    public void floorNumbering(List<Floor> worldArray) {
+    protected void floorNumbering(List<Floor> worldArray) {
         int n = 1;
         for (Floor floor : worldArray) {
             floor.setFloorId(n);
