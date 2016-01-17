@@ -15,7 +15,6 @@ public class PlayableInstance extends PlayableObject
 {
     protected int _class;
 
-
     public PlayableInstance(int objectId, CharacterTemplate template)
     {
         super(objectId, template);

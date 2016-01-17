@@ -30,6 +30,11 @@ public class CharacterStat
         final int id = stats.ordinal();
         final Calculator c = _activeCharacterObject.getCalculators()[id];
 
+        if ((c == null) || (c.size() == 0))
+        {
+            return value;
+        }
+
         value = c.calc(_activeCharacterObject, target, skill, value);
 
         return value;
@@ -73,82 +78,82 @@ public class CharacterStat
     STAT_MEN("MEN");
     */
 
-    public final int getMaxHp()
+    public int getMaxHp()
     {
         return (int) calcStat(Stats.MAX_HP, _activeCharacterObject.getTemplate().getBaseHpMax());
     }
 
-    public final int getMaxMp()
+    public int getMaxMp()
     {
         return (int) calcStat(Stats.MAX_MP, _activeCharacterObject.getTemplate().getBaseMpMax());
     }
 
-    public final int getMaxHpRegen()
+    public int getMaxHpRegen()
     {
         return (int) calcStat(Stats.MAX_RECOVERABLE_HP, _activeCharacterObject.getTemplate().getBaseHpRegen());
     }
 
-    public final int getMaxMpRegen()
+    public int getMaxMpRegen()
     {
         return (int) calcStat(Stats.REGENERATE_MP_RATE, _activeCharacterObject.getTemplate().getBaseMpRegen());
     }
 
-    public final int getPDef()
+    public int getPDef()
     {
         return (int) calcStat(Stats.POWER_DEFENCE, _activeCharacterObject.getTemplate().getBasePDef());
     }
 
-    public final int getMDef()
+    public int getMDef()
     {
         return (int) calcStat(Stats.MAGIC_DEFENCE, _activeCharacterObject.getTemplate().getBaseMDef());
     }
 
-    public final int getPAtk()
+    public int getPAtk()
     {
         return (int) calcStat(Stats.POWER_ATTACK, _activeCharacterObject.getTemplate().getBasePAtk());
     }
 
-    public final int getMAtk()
+    public int getMAtk()
     {
         return (int) calcStat(Stats.MAGIC_ATTACK, _activeCharacterObject.getTemplate().getBaseMAtk());
     }
 
-    public final int getPAtkSpd()
+    public int getPAtkSpd()
     {
         return (int) calcStat(Stats.POWER_ATTACK_SPEED, _activeCharacterObject.getTemplate().getBasePAtkSpd());
     }
 
-    public final int getMAtkSpd()
+    public int getMAtkSpd()
     {
         return (int) calcStat(Stats.MAGIC_ATTACK_SPEED, _activeCharacterObject.getTemplate().getBaseMAtkSpd());
     }
 
-    public final int getSTR()
+    public int getSTR()
     {
         return (int) calcStat(Stats.STAT_STR, _activeCharacterObject.getTemplate().getBaseSTR());
     }
 
-    public final int getCON()
+    public int getCON()
     {
         return (int) calcStat(Stats.STAT_CON, _activeCharacterObject.getTemplate().getBaseCON());
     }
 
-    public final int getDEX()
+    public int getDEX()
     {
         return (int) calcStat(Stats.STAT_DEX, _activeCharacterObject.getTemplate().getBaseDEX());
     }
 
-    public final int getINT()
+    public int getINT()
     {
         return (int) calcStat(Stats.STAT_INT, _activeCharacterObject.getTemplate().getBaseINT());
     }
 
-    public final int getWIT()
+    public int getWIT()
     {
         return (int) calcStat(Stats.STAT_WIT, _activeCharacterObject.getTemplate().getBaseWIT());
     }
 
-    public final int getMEN()
+    public int getMEN()
     {
         return (int) calcStat(Stats.STAT_MEN, _activeCharacterObject.getTemplate().getBaseMEN());
     }

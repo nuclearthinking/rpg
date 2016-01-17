@@ -1,9 +1,10 @@
 package com.nuclearthinking.game.engines;
 
 
-import com.nuclearthinking.game.characters.instance.PlayableInstance;
-import com.nuclearthinking.game.characters.templates.PlayerTemplate;
-import com.nuclearthinking.game.characters.templates.PlayerTemplateData;
+import com.nuclearthinking.game.player.MageClass;
+import com.nuclearthinking.game.player.Player;
+import com.nuclearthinking.game.player.RogueClass;
+import com.nuclearthinking.game.player.WarriorClass;
 import com.nuclearthinking.game.utils.StringUtil;
 import com.nuclearthinking.game.utils.UserInput;
 
@@ -18,23 +19,22 @@ import java.util.List;
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
 
-public class PreparePlayer {
+public class PreparePlayer extends Player
+{
     UserInput input = new UserInput();
     StringUtil ut = new StringUtil();
-    private PlayableInstance newPlayer = null;
-    private PlayerTemplate template = null;
+    private Player player;
     private MessagesReader messages = MessagesReader.getInstance();
     String _name;
     int _classId;
 
     public PreparePlayer()
     {
+        player = new Player();
         //Установка имени игроку если оно null
         setPlayerName();
         //Установка класса игроку если он null
         choosePlayerClass();
-        template = PlayerTemplateData.getInstance().getTemplate(_classId);
-        newPlayer = PlayableInstance.create(template, _name);
     }
 
     private void setPlayerName() {
@@ -55,17 +55,17 @@ public class PreparePlayer {
         };
             switch (input.chouseOne(strings)) {
                 case 1: {
-                    _classId = 1;
+                    player.setClass(new MageClass());
                     System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("mageClass"));
                     break;
                 }
                 case 2: {
-                    _classId = 0;
+                    player.setClass(new WarriorClass());
                     System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("warriorClass"));
                     break;
                 }
                 case 3: {
-                    _classId = 2;
+                    player.setClass(new RogueClass());
                     System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("rogueClass"));
                     break;
                 }
@@ -74,8 +74,8 @@ public class PreparePlayer {
     }
 
 
-    public PlayableInstance getCharacterObject() {
-        return newPlayer;
+    public Player getCharacterObject() {
+        return player;
     }
 
     protected String getValidName() {

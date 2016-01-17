@@ -1,6 +1,5 @@
 package com.nuclearthinking.game;
 
-import com.nuclearthinking.game.characters.templates.PlayerTemplateData;
 import com.nuclearthinking.game.config.Config;
 import com.nuclearthinking.game.data.ItemData;
 import com.nuclearthinking.game.data.SkillData;
@@ -33,7 +32,6 @@ public final class GameStarter {
 
         //Секция для дебага. Настройка в general конфиге
         if (Config.DEBUG) {
-            PlayerTemplateData.getInstance().getTemplate(0);
             SkillData.getInstance().getSkill(1, 10);
             ItemData.getInstance().getForDebug(1);
         }

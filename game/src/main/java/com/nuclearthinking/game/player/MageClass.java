@@ -1,4 +1,4 @@
-package com.nuclearthinking.game.characters;
+package com.nuclearthinking.game.player;
 
 import com.nuclearthinking.game.characters.interfaces.IPlayerClass;
 import com.nuclearthinking.game.engines.ClassConfigReader;
@@ -20,19 +20,19 @@ public class MageClass extends PlayerClass implements IPlayerClass {
     }
 
     @Override
-    public int pDamage(CharacterObject characterObject) {
+    public int pDamage(Player characterObject) {
         double pDmg = characterObject.getAgility() / 2 + characterObject.getStrength() / 2 + characterObject.getLevel();
         return (int) pDmg;
     }
 
     @Override
-    public int mDamage(CharacterObject characterObject) {
+    public int mDamage(Player characterObject) {
         double mDmg = characterObject.getIntelligence() * 0.8 + characterObject.getLevel() * 2;
         return (int) mDmg;
     }
 
     @Override
-    public void levelUp(CharacterObject characterObject) {
+    public void levelUp(Player characterObject) {
         characterObject.addStrenght(mConfig.getStrengthRate());
         characterObject.addStamina(mConfig.getStaminaRate());
         characterObject.addIntelegence(mConfig.getIntelligenceRate());
@@ -40,15 +40,20 @@ public class MageClass extends PlayerClass implements IPlayerClass {
     }
 
     @Override
-    public int mDefence(CharacterObject characterObject) {
+    public int mDefence(Player characterObject) {
         double mDef = characterObject.getIntelligence() * 1.5;
         return (int) mDef;
     }
 
     @Override
-    public int pDefence(CharacterObject characterObject) {
+    public int pDefence(Player characterObject) {
         double pDef = characterObject.getStrength() / 2 + characterObject.getAgility() / 2;
         return (int) pDef;
     }
 
+    @Override
+    public boolean isMage()
+    {
+        return true;
+    }
 }

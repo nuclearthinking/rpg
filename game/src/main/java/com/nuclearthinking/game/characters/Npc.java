@@ -11,7 +11,7 @@ public class Npc extends CharacterObject
 {
     public Npc(NpcTemplate template)
     {
-        super(2, template);
+        super(200, template);
     }
 
     public Npc(int npcId)
@@ -28,6 +28,7 @@ public class Npc extends CharacterObject
     @Override
     public void initCharacterStat()
     {
+        System.out.println(this);
         setStat(new NpcStat(this));
     }
 

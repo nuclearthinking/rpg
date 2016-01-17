@@ -7,7 +7,6 @@ import com.nuclearthinking.game.characters.PlayableObject;
  */
 public class PlayableStat extends CharacterStat
 {
-
     public PlayableStat(PlayableObject activePlayer)
     {
         super(activePlayer);

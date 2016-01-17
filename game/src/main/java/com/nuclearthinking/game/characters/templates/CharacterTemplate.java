@@ -20,7 +20,7 @@ public class CharacterTemplate
     private int _baseWIT;
     private int _baseMEN;
 
-    private int _baseHpMax;
+    private float _baseHpMax;
     private float _baseMpMax;
     private float _baseHpReg;
     private float _baseMpReg;
@@ -52,7 +52,7 @@ public class CharacterTemplate
         _baseINT = set.getInt("baseINT", 0);
         _baseWIT = set.getInt("baseWIT", 0);
         _baseMEN = set.getInt("baseMEN", 0);
-        _baseHpMax = set.getInt("baseHpMax", 0);
+        _baseHpMax = set.getFloat("baseHpMax", 0);
         _baseMpMax = set.getFloat("baseMpMax", 0);
         _baseHpReg = set.getFloat("baseHpReg", 0);
         _baseMpReg = set.getFloat("baseMpReg", 0);
@@ -97,7 +97,7 @@ public class CharacterTemplate
         return _baseMEN;
     }
 
-    public int getBaseHpMax()
+    public float getBaseHpMax()
     {
         return _baseHpMax;
     }

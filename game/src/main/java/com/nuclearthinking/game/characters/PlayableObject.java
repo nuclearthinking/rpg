@@ -1,6 +1,7 @@
 package com.nuclearthinking.game.characters;
 
 import com.nuclearthinking.game.characters.stats.PlayableStat;
+import com.nuclearthinking.game.characters.status.PlayableStatus;
 import com.nuclearthinking.game.characters.templates.CharacterTemplate;
 
 /**
@@ -23,6 +24,18 @@ public class PlayableObject extends CharacterObject
     public void initCharacterStat()
     {
         setStat(new PlayableStat(this));
+    }
+
+    @Override
+    public PlayableStatus getStatus()
+    {
+        return (PlayableStatus) super.getStatus();
+    }
+
+    @Override
+    public void initCharacterStatus()
+    {
+        setStatus(new PlayableStatus(this));
     }
 
     @Override

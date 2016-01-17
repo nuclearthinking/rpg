@@ -15,6 +15,7 @@ public class NpcTemplateData
     protected NpcTemplateData()
     {
         load();
+        System.out.println(_npcs.size());
     }
 
     public void load()

@@ -56,4 +56,9 @@ public final class Calculator
         }
         return value;
     }
+
+    public int size()
+    {
+        return _functions.length;
+    }
 }
