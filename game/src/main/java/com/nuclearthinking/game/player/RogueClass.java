@@ -1,6 +1,5 @@
 package com.nuclearthinking.game.player;
 
-import com.nuclearthinking.game.characters.interfaces.IPlayerClass;
 import com.nuclearthinking.game.engines.ClassConfigReader;
 import com.nuclearthinking.game.obj.jsonpojo.RogueConfig;
 
@@ -11,7 +10,7 @@ import com.nuclearthinking.game.obj.jsonpojo.RogueConfig;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public class RogueClass extends PlayerClass implements IPlayerClass {
+public class RogueClass extends PlayerClass {
     ClassConfigReader classConfigReader = ClassConfigReader.getInstance();
     private RogueConfig rConf = null;
 

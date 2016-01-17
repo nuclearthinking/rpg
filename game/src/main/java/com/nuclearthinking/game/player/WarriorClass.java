@@ -1,6 +1,5 @@
 package com.nuclearthinking.game.player;
 
-import com.nuclearthinking.game.characters.interfaces.IPlayerClass;
 import com.nuclearthinking.game.engines.ClassConfigReader;
 import com.nuclearthinking.game.obj.jsonpojo.WarriorConfig;
 
@@ -11,7 +10,7 @@ import com.nuclearthinking.game.obj.jsonpojo.WarriorConfig;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public class WarriorClass extends PlayerClass implements IPlayerClass {
+public class WarriorClass extends PlayerClass {
     WarriorConfig warriorConfig;
     ClassConfigReader classConfigReader = ClassConfigReader.getInstance();
 
@@ -46,7 +45,7 @@ public class WarriorClass extends PlayerClass implements IPlayerClass {
     @Override
     public int pDefence(Player characterObject) {
         double pDef = characterObject.getStrength() + characterObject.getAgility() / 2;
-        return (int) pDef;
+        return (int) pDef * 5;
     }
 
     @Override

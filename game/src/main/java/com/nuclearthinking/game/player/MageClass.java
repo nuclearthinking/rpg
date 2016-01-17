@@ -1,6 +1,5 @@
 package com.nuclearthinking.game.player;
 
-import com.nuclearthinking.game.characters.interfaces.IPlayerClass;
 import com.nuclearthinking.game.engines.ClassConfigReader;
 import com.nuclearthinking.game.obj.jsonpojo.MageConfig;
 
@@ -11,7 +10,7 @@ import com.nuclearthinking.game.obj.jsonpojo.MageConfig;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public class MageClass extends PlayerClass implements IPlayerClass {
+public class MageClass extends PlayerClass {
     MageConfig mConfig;
     ClassConfigReader classConfigReader = ClassConfigReader.getInstance();
 

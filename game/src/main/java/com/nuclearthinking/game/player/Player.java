@@ -54,6 +54,11 @@ public class Player implements IName
         }
     }
 
+    public int getPDef()
+    {
+        return getpClass().pDefence(this);
+    }
+
     public int getCurrentFloor() {
         return currentFloor;
     }

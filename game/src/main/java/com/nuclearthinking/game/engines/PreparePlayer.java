@@ -25,8 +25,6 @@ public class PreparePlayer extends Player
     StringUtil ut = new StringUtil();
     private Player player;
     private MessagesReader messages = MessagesReader.getInstance();
-    String _name;
-    int _classId;
 
     public PreparePlayer()
     {
@@ -38,8 +36,8 @@ public class PreparePlayer extends Player
     }
 
     private void setPlayerName() {
-        _name = ut.beautifyName(getValidName());
-        System.out.println(messages.getMessage("welcomeMessage") + " " + _name);
+        player.setName(ut.beautifyName(getValidName()));
+        System.out.println(messages.getMessage("welcomeMessage") + " " + player.getName());
         System.out.println();
     }
 

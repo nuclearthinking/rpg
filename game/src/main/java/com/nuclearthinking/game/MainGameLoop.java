@@ -48,6 +48,8 @@ public final class MainGameLoop {
             //Почистить
             System.out.println("Текущий уровень " + player.getCurrentFloor() + " из " + worldSize);
             System.out.println("Текущая комната " + player.getCurrentRoom() + " из " + floorSize);
+
+            System.out.println(player.getName() + " " + player.getHitPoints() + " " + player.getpClass() + " " + player.getPDef());
             byte _lvl = 1;
             int _hp = 10;
             Monster monster = new Monster("Monster", _lvl, _hp);
