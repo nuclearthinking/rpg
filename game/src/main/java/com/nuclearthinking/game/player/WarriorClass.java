@@ -19,8 +19,9 @@ public class WarriorClass extends PlayerClass {
     }
 
     @Override
-    public int pDamage(Player characterObject) {
-        return 0;
+    public int pDamage(Player characterObject)
+    {
+        return (int) characterObject.getStrength() * 2;
     }
 
     @Override

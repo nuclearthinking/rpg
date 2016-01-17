@@ -59,6 +59,11 @@ public class Player implements IName
         return getpClass().pDefence(this);
     }
 
+    public int getPAtk()
+    {
+        return getpClass().pDamage(this);
+    }
+
     public int getCurrentFloor() {
         return currentFloor;
     }
@@ -140,12 +145,34 @@ public class Player implements IName
         setHitPoints(hitPoints - dmg);
     }
 
-    public void addDmg(int dmg, Monster target)
+    public void addDmg(Monster target)
     {
-        if (target.getHitPoints() - dmg <= 0)
+        addDmg(target, false);
+    }
+
+    public void addDmg(Monster target, boolean autoAtack)
+    {
+        while (true)
         {
-            target.fillDie();
+            int test = getPAtk() / target.getPDef();
+            double value = Math.random() * test;
+
+            if (target.getHitPoints() - value <= 0)
+            {
+                target.fillDie();
+                break;
+            }
+
+            if (value <= 1)
+            {
+                System.out.println("Вы промазали");
+            }
+            target.updateHp((int)value);
+
+            if (!autoAtack)
+            {
+                break;
+            }
         }
-        target.updateHp(dmg);
     }
 }

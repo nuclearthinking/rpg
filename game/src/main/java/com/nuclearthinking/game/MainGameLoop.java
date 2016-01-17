@@ -54,7 +54,7 @@ public final class MainGameLoop {
             int _hp = 10;
             Monster monster = new Monster("Monster", _lvl, _hp);
             System.out.println(monster.getName() + " " + monster.getLevel() + " " + monster.getHitPoints());
-            player.addDmg(11, monster);
+            player.addDmg(monster, true);
             System.out.println(monster.getName() + " " + monster.getLevel() + " " + monster.getHitPoints());
             System.out.println();
 

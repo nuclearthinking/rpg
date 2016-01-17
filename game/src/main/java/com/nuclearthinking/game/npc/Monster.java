@@ -26,6 +26,11 @@ public class Monster
         setStat(hp);
     }
 
+    public int getPDef()
+    {
+        return (int) getStrength() / 2;
+    }
+
     public int getCurrentFloor() {
         return currentFloor;
     }
@@ -112,6 +117,7 @@ public class Monster
     public void fillDie()
     {
         System.out.println("Monster Die");
+        setHitPoints(0);
         getReward();
     }
 
