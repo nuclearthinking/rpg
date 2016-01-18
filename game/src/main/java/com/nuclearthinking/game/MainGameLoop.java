@@ -52,7 +52,7 @@ public final class MainGameLoop {
             System.out.println(player.getName() + " " + player.getHitPoints() + " " + player.getpClass() + " " + player.getPDef());
             byte _lvl = 1;
             int _hp = 10;
-            Monster monster = new Monster("Monster", _lvl, _hp);
+            Monster monster = new Monster("Monster", _lvl);
             System.out.println(monster.getName() + " " + monster.getLevel() + " " + monster.getHitPoints());
             player.addDmg(monster, true);
             System.out.println(monster.getName() + " " + monster.getLevel() + " " + monster.getHitPoints());
