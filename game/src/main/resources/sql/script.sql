@@ -1,0 +1,8 @@
+;             
+CREATE USER IF NOT EXISTS "" SALT '' HASH '' ADMIN;           
+CREATE MEMORY TABLE PUBLIC.TEST(
+    NAME VARCHAR
+);        
+-- 1 +/- SELECT COUNT(*) FROM PUBLIC.TEST;    
+INSERT INTO PUBLIC.TEST(NAME) VALUES
+('Hello World');        
