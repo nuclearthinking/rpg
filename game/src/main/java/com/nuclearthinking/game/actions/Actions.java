@@ -1,7 +1,7 @@
 package com.nuclearthinking.game.actions;
 
-import com.nuclearthinking.game.characters.Player;
 import com.nuclearthinking.game.obj.world.World;
+import com.nuclearthinking.game.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;

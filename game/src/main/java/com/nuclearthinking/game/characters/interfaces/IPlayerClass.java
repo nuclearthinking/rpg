@@ -1,6 +1,6 @@
 package com.nuclearthinking.game.characters.interfaces;
 
-import com.nuclearthinking.game.characters.Player;
+import com.nuclearthinking.game.player.Player;
 
 /**
  * Created
@@ -11,14 +11,14 @@ import com.nuclearthinking.game.characters.Player;
  */
 public interface IPlayerClass {
 
-    int pDamage(Player player);
+    int pDamage(Player characterObject);
 
-    int mDamage(Player player);
+    int mDamage(Player characterObject);
 
-    void levelUp(Player player);
+    void levelUp(Player characterObject);
 
-    int mDefence(Player player);
+    int mDefence(Player characterObject);
 
-    int pDefence(Player player);
+    int pDefence(Player characterObject);
 
 }

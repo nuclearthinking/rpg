@@ -1,6 +1,6 @@
 package com.nuclearthinking.game.characters.stats;
 
-import com.nuclearthinking.game.characters.Player;
+import com.nuclearthinking.game.characters.CharacterObject;
 import com.nuclearthinking.game.characters.stats.functions.*;
 
 /**
@@ -10,9 +10,9 @@ import com.nuclearthinking.game.characters.stats.functions.*;
  */
 public final class Formulas
 {
-    public static void addFuncsToNewCharacter(Player cha)
+    public static void addFuncsToNewCharacter(CharacterObject cha)
     {
-        if (cha.isPlayer())
+        if (cha.isPlayer() || cha.isMonster())
         {
             cha.addStatFunc(FuncMaxHpMul.getInstance());
             cha.addStatFunc(FuncMaxMpMul.getInstance());

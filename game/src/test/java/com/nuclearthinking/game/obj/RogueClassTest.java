@@ -1,7 +1,7 @@
 package com.nuclearthinking.game.obj;
 
-import com.nuclearthinking.game.characters.Player;
-import com.nuclearthinking.game.characters.RogueClass;
+import com.nuclearthinking.game.player.Player;
+import com.nuclearthinking.game.player.RogueClass;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
