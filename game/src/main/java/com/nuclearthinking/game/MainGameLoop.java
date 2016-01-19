@@ -8,6 +8,9 @@ import com.nuclearthinking.game.npc.Monster;
 import com.nuclearthinking.game.obj.world.World;
 import com.nuclearthinking.game.player.Player;
 import com.nuclearthinking.game.utils.UserInput;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Date: 12.01.2016
  * Time: 14:25
@@ -40,17 +43,13 @@ public final class MainGameLoop {
 
             System.out.println(player.getName() + " " + player.getHitPoints() + " " + player.getpClass() + " " + player.getPDef());
             byte _lvl = 1;
-            int _hp = 10;
             Monster monster = new Monster("Monster", _lvl);
             System.out.println(monster.getName() + " " + monster.getLevel() + " " + monster.getHitPoints());
             player.addDmg(monster, true);
             System.out.println(monster.getName() + " " + monster.getLevel() + " " + monster.getHitPoints());
             System.out.println();
 
-            Actions actionsLoader = new Actions(player, world);
-            Action selectedAction = userInput.selectActionFromMap(actionsLoader.getAvailableActions());
-            selectedAction.run();
-
+           
             if (player.getHitPoints() <= 0) {
                 System.out.println("Game over!");
                 break;
