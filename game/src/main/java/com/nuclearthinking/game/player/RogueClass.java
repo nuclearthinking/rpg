@@ -56,4 +56,9 @@ public class RogueClass extends PlayerClass {
         return true;
     }
 
+    @Override
+    public String toString()
+    {
+        return "Rogue";
+    }
 }

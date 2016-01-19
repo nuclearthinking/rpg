@@ -55,4 +55,9 @@ public class WarriorClass extends PlayerClass {
         return true;
     }
 
+    @Override
+    public String toString()
+    {
+        return "Warrior";
+    }
 }

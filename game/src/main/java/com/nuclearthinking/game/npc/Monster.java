@@ -7,8 +7,8 @@ import com.nuclearthinking.game.obj.AbstractObject;
  */
 public class Monster extends AbstractObject
 {
-    private static final double DIFFICULITY = 1.0;
-    private byte _level = 1;
+    private byte _level;
+    private double DIFFICULITY = 1.023;
 
     public Monster(String name, byte level)
     {
@@ -24,7 +24,7 @@ public class Monster extends AbstractObject
 
     public int getHitPoints()
     {
-        return (int) (_hitPoints * DIFFICULITY);
+        return (int) (_hitPoints * DIFFICULITY * getLevel());
     }
 
     public void setHitPoints(int hitPoints)
@@ -50,7 +50,7 @@ public class Monster extends AbstractObject
 
     public void fillDie()
     {
-        System.out.println("Monster Die");
+        System.out.println(getName() + " " + "Die");
         setHitPoints(0);
         getReward();
     }

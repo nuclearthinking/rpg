@@ -55,4 +55,10 @@ public class MageClass extends PlayerClass {
     {
         return true;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Mage";
+    }
 }
