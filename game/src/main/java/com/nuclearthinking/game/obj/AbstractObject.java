@@ -9,7 +9,6 @@ public abstract class AbstractObject implements IName
 {
     public String _name;
     public int _hitPoints;
-    public static final double DIFFICULITY = 1.0;
     public double _strength = 10;
     public double _intelligence = 10;
     public double _agility = 10;
