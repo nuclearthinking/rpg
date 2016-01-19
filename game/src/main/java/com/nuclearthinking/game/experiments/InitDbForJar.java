@@ -1,5 +1,6 @@
 package com.nuclearthinking.game.experiments;
 
+import org.h2.tools.DeleteDbFiles;
 import org.h2.tools.RunScript;
 
 import java.io.InputStream;
@@ -27,10 +28,10 @@ public class InitDbForJar {
      */
     private static void createScript() throws Exception {
         Class.forName("org.h2.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:h2:mem:test");
+        Connection conn = DriverManager.getConnection("jdbc:h2:mem:game","admin","admin");
         Statement stat = conn.createStatement();
-        stat.execute("CREATE TABLE TEST(NAME VARCHAR)");
-        stat.execute("INSERT INTO TEST VALUES('Hello World')");
+        stat.execute("CREATE TABLE GAME(NAME VARCHAR)");
+        stat.execute("INSERT INTO GAME VALUES('Hello World')");
         stat.execute("SCRIPT TO 'src/main/resources/sql/script.sql'");
         stat.close();
         conn.close();

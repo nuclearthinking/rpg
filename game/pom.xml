@@ -56,10 +56,18 @@
             <version>2.4.4</version>
         </dependency>
 
+        <!-- H2 database -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.190</version>
+        </dependency>
+
+        <!-- Hibirnate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.0.7.Final</version>
         </dependency>
 
         <!--<dependency>-->
