@@ -1,6 +1,6 @@
 package com.nuclearthinking.game.characters.stats.calcstats;
 
-import com.nuclearthinking.game.characters.Player;
+import com.nuclearthinking.game.characters.CharacterObject;
 import com.nuclearthinking.game.characters.interfaces.IBaseStat;
 import com.nuclearthinking.game.enums.BaseStats;
 
@@ -10,8 +10,8 @@ import com.nuclearthinking.game.enums.BaseStats;
 public class Intelligent implements IBaseStat
 {
     @Override
-    public double calcBonus(Player player)
+    public double calcBonus(CharacterObject characterObject)
     {
-        return BaseStats.INTbonus[player.getINT()];
+        return BaseStats.INTbonus[characterObject.getINT()];
     }
 }

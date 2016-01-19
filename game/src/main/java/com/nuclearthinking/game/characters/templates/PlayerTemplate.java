@@ -11,8 +11,8 @@ public class PlayerTemplate extends CharacterTemplate
 {
     private final ClassId _classId;
 
-    private final int[] _baseHp;
-    private final int[] _baseMp;
+    private final float[] _baseHp;
+    private final float[] _baseMp;
 
     private final double[] _baseHpRegen;
     private final double[] _baseMpRegen;
@@ -23,11 +23,11 @@ public class PlayerTemplate extends CharacterTemplate
 
         _classId = ClassId.getClassId(set.getInt("classId"));
         setRace(_classId.getRace());
-        _baseHp = new int[200];
-        _baseMp = new int[150];
+        _baseHp = new float[3];
+        _baseMp = new float[3];
 
-        _baseHpRegen = new double[1];
-        _baseMpRegen = new double[1];
+        _baseHpRegen = new double[3];
+        _baseMpRegen = new double[3];
     }
 
     public ClassId getClassId()
@@ -35,12 +35,12 @@ public class PlayerTemplate extends CharacterTemplate
         return _classId;
     }
 
-    public int getBaseHp(int level)
+    public float getBaseHp(int level)
     {
         return _baseHp[level];
     }
 
-    public int getBaseMp(int level)
+    public float getBaseMp(int level)
     {
         return _baseMp[level];
     }

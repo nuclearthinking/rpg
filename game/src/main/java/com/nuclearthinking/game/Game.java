@@ -1,9 +1,9 @@
 package com.nuclearthinking.game;
 
-import com.nuclearthinking.game.characters.Player;
 import com.nuclearthinking.game.engines.PreparePlayer;
 import com.nuclearthinking.game.obj.world.World;
 import com.nuclearthinking.game.obj.world.WorldManager;
+import com.nuclearthinking.game.player.Player;
 
 
 /**

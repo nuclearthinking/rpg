@@ -103,8 +103,25 @@ public class StatsSet implements IParserAdvUtils {
     }
 
     @Override
-    public byte getByte(String key, byte defaultValue) {
-        return 0;
+    public byte getByte(String key, byte defaultValue)
+    {
+        Object val = _set.get(key);
+        if (val == null)
+        {
+            return defaultValue;
+        }
+        if (val instanceof Number)
+        {
+            return ((Number) val).byteValue();
+        }
+        try
+        {
+            return Byte.parseByte((String) val);
+        }
+        catch (Exception e)
+        {
+            throw new IllegalArgumentException("Byte value required, but found: " + val);
+        }
     }
 
     @Override
@@ -162,6 +179,11 @@ public class StatsSet implements IParserAdvUtils {
     }
 
     public void set(String key, String value) {
+        _set.put(key, value);
+    }
+
+    public void set(String key, Object value)
+    {
         _set.put(key, value);
     }
 

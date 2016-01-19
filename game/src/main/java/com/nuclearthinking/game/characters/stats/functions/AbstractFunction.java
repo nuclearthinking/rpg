@@ -1,6 +1,6 @@
 package com.nuclearthinking.game.characters.stats.functions;
 
-import com.nuclearthinking.game.characters.Player;
+import com.nuclearthinking.game.characters.CharacterObject;
 import com.nuclearthinking.game.enums.Stats;
 import com.nuclearthinking.game.model.skills.Skill;
 
@@ -42,5 +42,5 @@ public abstract class AbstractFunction
         return _value;
     }
 
-    public abstract double calc(Player effector, Player effected, Skill skill, double initVal);
+    public abstract double calc(CharacterObject effector, CharacterObject effected, Skill skill, double initVal);
 }

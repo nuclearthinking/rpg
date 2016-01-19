@@ -32,7 +32,6 @@ public final class GameStarter {
 
         //Секция для дебага. Настройка в general конфиге
         if (Config.DEBUG) {
-            //PlayerTemplateData.getInstance().getTemplate(0);
             SkillData.getInstance().getSkill(1, 10);
             ItemData.getInstance().getForDebug(1);
         }

@@ -2,6 +2,7 @@ package com.nuclearthinking.game.characters;
 
 import com.nuclearthinking.game.characters.interfaces.IName;
 import com.nuclearthinking.game.characters.interfaces.IObjectId;
+import com.nuclearthinking.game.model.interfaces.IIdentifiable;
 
 /**
  * Date: 11.01.2016
@@ -10,19 +11,19 @@ import com.nuclearthinking.game.characters.interfaces.IObjectId;
  * @author Vladislav Radchenko (onifent@gmail.com)
  *
  * Пока что будет такой вот слабенький запил
- * Player - будет инстансится от GameCharacter
- * Npc - должен будет инстансится от Player
+ * CharacterObject - будет инстансится от Player
+ * Npc - должен будет инстансится от CharacterObject
  * Нужно реализовать инстансы для создания разных объектов (Нпс, игрок и так далее)
  */
 
-public abstract class GameCharacter implements IName, IObjectId
+public abstract class GameObject implements IIdentifiable, IName, IObjectId
 {
     private String _name;
     private int _objectId;
 
-    public GameCharacter(){}
+    public GameObject(){}
 
-    public GameCharacter(int objectId)
+    public GameObject(int objectId)
     {
         _objectId = objectId;
     }
@@ -93,7 +94,7 @@ public abstract class GameCharacter implements IName, IObjectId
     @Override
     public boolean equals(Object obj)
     {
-        return ((obj instanceof GameCharacter) && (((GameCharacter) obj).getObjectId() == getObjectId()));
+        return ((obj instanceof GameObject) && (((GameObject) obj).getObjectId() == getObjectId()));
     }
 
     @Override

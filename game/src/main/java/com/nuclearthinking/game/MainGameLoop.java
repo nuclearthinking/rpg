@@ -2,9 +2,10 @@ package com.nuclearthinking.game;
 
 import com.nuclearthinking.game.actions.Action;
 import com.nuclearthinking.game.actions.Actions;
-import com.nuclearthinking.game.characters.Player;
 import com.nuclearthinking.game.engines.MessagesReader;
+import com.nuclearthinking.game.npc.Monster;
 import com.nuclearthinking.game.obj.world.World;
+import com.nuclearthinking.game.player.Player;
 import com.nuclearthinking.game.utils.UserInput;
 
 /**
@@ -18,6 +19,7 @@ public final class MainGameLoop {
 
     MessagesReader messages = MessagesReader.getInstance();
     UserInput userInput = new UserInput();
+    Monster monster;
 
     int day = 1;
 
@@ -42,6 +44,10 @@ public final class MainGameLoop {
             Action selectedAction = userInput.selectActionFromMap(actionsLoader.getAvailableActions());
             selectedAction.run();
 
+            byte lvl = (byte)(player.getCurrentRoom() + player.getCurrentFloor());
+
+            spawn(player, "Monster" + lvl, lvl);
+           
             if (player.getHitPoints() <= 0) {
                 System.out.println("Game over!");
                 break;
@@ -49,6 +55,16 @@ public final class MainGameLoop {
             System.out.println();
             day++;
         }
+    }
+
+    public void spawn(Player player, String name, byte lvl)
+    {
+        monster = new Monster(name, lvl);
+
+        System.out.println(player.getName() + " " + player.getHitPoints() + " " + player.getpClass() + " " + player.getPDef());
+        System.out.println(monster.getName() + " " + monster.getLevel() + " " + monster.getHitPoints());
+        player.addDmg(monster, true);
+        System.out.println(monster.getName() + " " + monster.getLevel() + " " + monster.getHitPoints());
     }
 
 
