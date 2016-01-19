@@ -1,6 +1,5 @@
 package com.nuclearthinking.game.engines;
 
-
 import com.nuclearthinking.game.player.MageClass;
 import com.nuclearthinking.game.player.Player;
 import com.nuclearthinking.game.player.RogueClass;
@@ -72,7 +71,7 @@ public class PreparePlayer extends Player
     }
 
 
-    public Player getCharacterObject() {
+    public Player getPlayer() {
         return player;
     }
 
