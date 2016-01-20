@@ -18,4 +18,21 @@ public class WeaponType {
     private Integer weaponTypeId;
 
     private String weaponTypeName;
+
+    public String getWeaponTypeName() {
+        return weaponTypeName;
+    }
+
+    public void setWeaponTypeName(String weaponTypeName) {
+        this.weaponTypeName = weaponTypeName;
+    }
+
+    public Integer getWeaponTypeId() {
+
+        return weaponTypeId;
+    }
+
+    public void setWeaponTypeId(Integer weaponTypeId) {
+        this.weaponTypeId = weaponTypeId;
+    }
 }

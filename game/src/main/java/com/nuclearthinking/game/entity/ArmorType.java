@@ -19,4 +19,20 @@ public class ArmorType {
     private Integer armorTypeId;
 
     private String armorTypeName;
+
+    public Integer getArmorTypeId() {
+        return armorTypeId;
+    }
+
+    public void setArmorTypeId(Integer armorTypeId) {
+        this.armorTypeId = armorTypeId;
+    }
+
+    public String getArmorTypeName() {
+        return armorTypeName;
+    }
+
+    public void setArmorTypeName(String armorTypeName) {
+        this.armorTypeName = armorTypeName;
+    }
 }

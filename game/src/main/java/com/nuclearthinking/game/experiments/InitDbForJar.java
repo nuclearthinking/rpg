@@ -1,5 +1,6 @@
 package com.nuclearthinking.game.experiments;
 
+import com.nuclearthinking.game.utils.ResourceUtil;
 import org.h2.tools.DeleteDbFiles;
 import org.h2.tools.RunScript;
 
@@ -19,8 +20,8 @@ import java.sql.Statement;
 
 public class InitDbForJar {
     public static void main(String... args) throws Exception {
-        createScript();
-//        new InitDbForJar().initDb();
+//        createScript();
+        new InitDbForJar().initDb();
     }
 
     /**
@@ -28,7 +29,7 @@ public class InitDbForJar {
      */
     private static void createScript() throws Exception {
         Class.forName("org.h2.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:h2:mem:game","admin","admin");
+        Connection conn = DriverManager.getConnection("jdbc:h2:mem:game", "admin", "admin");
         Statement stat = conn.createStatement();
         stat.execute("CREATE TABLE GAME(NAME VARCHAR)");
         stat.execute("INSERT INTO GAME VALUES('Hello World')");
@@ -41,8 +42,10 @@ public class InitDbForJar {
      * Initialize a database from a SQL script file.
      */
     void initDb() throws Exception {
+        ResourceUtil ru = new ResourceUtil();
         Class.forName("org.h2.Driver");
-        InputStream in = getClass().getResourceAsStream("script.sql");
+        InputStream in = ru.getResourceAsStream("sql/init.sql");
+        ru = null;
         if (in == null) {
             System.out.println("Please add the file script.sql to the classpath, package "
                     + getClass().getPackage().getName());
