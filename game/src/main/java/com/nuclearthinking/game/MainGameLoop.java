@@ -40,13 +40,15 @@ public final class MainGameLoop {
             System.out.println("Текущая комната " + player.getCurrentRoom() + " из " + world.getWorldArray().get(player.getCurrentFloor()).getFloorSize());
             System.out.println();
 
-            Actions actionsLoader = new Actions(player, world);
-            Action selectedAction = userInput.selectActionFromMap(actionsLoader.getAvailableActions());
-            selectedAction.run();
-
             byte lvl = (byte)(player.getCurrentRoom() + player.getCurrentFloor());
 
             spawn(player, "Monster" + lvl, lvl);
+
+            Actions actionsLoader = new Actions(player, world, monster);
+            Action selectedAction = userInput.selectActionFromMap(actionsLoader.getAvailableActions());
+            selectedAction.run();
+
+
            
             if (player.getHitPoints() <= 0) {
                 System.out.println("Game over!");
@@ -60,11 +62,7 @@ public final class MainGameLoop {
     public void spawn(Player player, String name, byte lvl)
     {
         monster = new Monster(name, lvl);
-
-        System.out.println(player.getName() + " " + player.getHitPoints() + " " + player.getpClass() + " " + player.getPDef());
-        System.out.println(monster.getName() + " " + monster.getLevel() + " " + monster.getHitPoints());
-        player.addDmg(monster, true);
-        System.out.println(monster.getName() + " " + monster.getLevel() + " " + monster.getHitPoints());
+        System.out.println(player.getExp() + " " + player.getLevel());
     }
 
 

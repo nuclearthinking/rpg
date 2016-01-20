@@ -1,6 +1,7 @@
 package com.nuclearthinking.game.npc;
 
 import com.nuclearthinking.game.obj.AbstractObject;
+import com.nuclearthinking.game.player.Player;
 
 /**
  * Created by Izonami on 17.01.2016.
@@ -9,6 +10,7 @@ public class Monster extends AbstractObject
 {
     private byte _level;
     private double DIFFICULITY = 1.023;
+    private boolean _isDead;
 
     public Monster(String name, byte level)
     {
@@ -48,15 +50,22 @@ public class Monster extends AbstractObject
         setHitPoints(_hitPoints - dmg);
     }
 
-    public void fillDie()
+    public void fillDie(Player player)
     {
         System.out.println(getName() + " " + "Die");
         setHitPoints(0);
+        _isDead = true;
         getReward();
+        player.setExp(200);
     }
 
     public void getReward()
     {
         System.out.println("Ваша награда");
+    }
+
+    public boolean isDead()
+    {
+        return _isDead;
     }
 }

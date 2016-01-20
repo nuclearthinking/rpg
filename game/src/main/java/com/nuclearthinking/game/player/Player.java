@@ -21,6 +21,8 @@ public class Player extends AbstractObject
     private int _currentRoom;
     private PlayerClass _pClass;
     private int _level = 1;
+    private int _exp = 0;
+    private int[] _expForLvlUp = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
 
     public Player()
     {
@@ -32,16 +34,19 @@ public class Player extends AbstractObject
         if (getpClass().isRogue()) {
             RogueClass rClass = new RogueClass();
             rClass.levelUp(this);
+            initStat();
             _level++;
         } else {
             if (getpClass().isMage()) {
                 MageClass mClass = new MageClass();
                 mClass.levelUp(this);
+                initStat();
                 _level++;
             } else {
                 if (getpClass().isWarrior()) {
                     WarriorClass wClass = new WarriorClass();
                     wClass.levelUp(this);
+                    initStat();
                     _level++;
                 } else {
                     throw new RuntimeException("У обьекта" + this.getName() + "не задан класс :" + _pClass + "=" + _pClass.toString());
@@ -90,6 +95,11 @@ public class Player extends AbstractObject
         return _level;
     }
 
+    public void setLevel(int lvl)
+    {
+        _level = lvl;
+    }
+
     public void setClass(PlayerClass pClass)
     {
         _pClass = pClass;
@@ -122,6 +132,11 @@ public class Player extends AbstractObject
 
     public void addDmg(Monster target, boolean autoAtack)
     {
+        if(target.isDead())
+        {
+            return;
+        }
+
         while (true)
         {
             int test = getPAtk() / target.getPDef();
@@ -129,7 +144,7 @@ public class Player extends AbstractObject
 
             if (target.getHitPoints() - value <= 0)
             {
-                target.fillDie();
+                target.fillDie(this);
                 break;
             }
 
@@ -143,6 +158,31 @@ public class Player extends AbstractObject
             {
                 break;
             }
+        }
+    }
+
+    public int getExp()
+    {
+        return _exp;
+    }
+
+    public void setExp(int exp)
+    {
+        if(getLevel() >= _expForLvlUp.length)
+        {
+            System.out.println("Максимальный уровень");
+            return;
+        }
+
+        int tmp = getExp() + exp;
+
+        if (tmp >= _expForLvlUp[getLevel()])
+        {
+            levelUP();
+        }
+        else
+        {
+            _exp = _exp + exp;
         }
     }
 }

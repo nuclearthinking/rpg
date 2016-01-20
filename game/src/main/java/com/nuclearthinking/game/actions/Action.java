@@ -1,5 +1,6 @@
 package com.nuclearthinking.game.actions;
 
+import com.nuclearthinking.game.npc.Monster;
 import com.nuclearthinking.game.obj.world.World;
 import com.nuclearthinking.game.player.Player;
 
@@ -12,12 +13,18 @@ import com.nuclearthinking.game.player.Player;
 
 public class Action implements Actable {
     Player player;
-
     World world;
+    Monster monster;
 
     Action(Player player, World world) {
         this.world = world;
         this.player = player;
+    }
+
+    Action(Player player, World world, Monster monster) {
+        this.world = world;
+        this.player = player;
+        this.monster = monster;
     }
 
     @Override
