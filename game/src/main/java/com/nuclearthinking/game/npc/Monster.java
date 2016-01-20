@@ -10,6 +10,7 @@ public class Monster extends AbstractObject
 {
     private byte _level;
     private double DIFFICULITY = 1.023;
+    private boolean _isDead;
 
     public Monster(String name, byte level)
     {
@@ -53,6 +54,7 @@ public class Monster extends AbstractObject
     {
         System.out.println(getName() + " " + "Die");
         setHitPoints(0);
+        _isDead = true;
         getReward();
         player.setExp(200);
     }
@@ -60,5 +62,10 @@ public class Monster extends AbstractObject
     public void getReward()
     {
         System.out.println("Ваша награда");
+    }
+
+    public boolean isDead()
+    {
+        return _isDead;
     }
 }

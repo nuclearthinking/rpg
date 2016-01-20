@@ -132,6 +132,11 @@ public class Player extends AbstractObject
 
     public void addDmg(Monster target, boolean autoAtack)
     {
+        if(target.isDead())
+        {
+            return;
+        }
+
         while (true)
         {
             int test = getPAtk() / target.getPDef();

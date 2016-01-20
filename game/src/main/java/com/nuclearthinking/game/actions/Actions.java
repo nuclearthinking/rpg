@@ -1,5 +1,6 @@
 package com.nuclearthinking.game.actions;
 
+import com.nuclearthinking.game.npc.Monster;
 import com.nuclearthinking.game.obj.world.World;
 import com.nuclearthinking.game.player.Player;
 
@@ -17,6 +18,13 @@ public class Actions {
 
     Player player;
     World world;
+    Monster monster;
+
+    public Actions(Player player, World world, Monster monster) {
+        this.player = player;
+        this.world = world;
+        this.monster = monster;
+    }
 
     public Actions(Player player, World world) {
         this.player = player;
@@ -26,7 +34,7 @@ public class Actions {
     public Map<String, Action> getAvailableActions() {
         Map<String, Action> actionsList = new HashMap<>();
         gatherNavigationActions(actionsList);
-
+        getAttackActions(actionsList);
         return actionsList;
     }
 
@@ -62,6 +70,18 @@ public class Actions {
             }
         }
         actionList.putAll(tempActionList);
+    }
+
+    protected void getAttackActions(Map<String, Action> actionMap)
+    {
+        Map<String, Action> tempActionMap = new HashMap<String, Action>();
+        if(!monster.isDead())
+        {
+            Attack attack = new Attack(player, world, monster);
+            tempActionMap.put("Attack", attack);
+        }
+
+        actionMap.putAll(tempActionMap);
     }
 }
 
