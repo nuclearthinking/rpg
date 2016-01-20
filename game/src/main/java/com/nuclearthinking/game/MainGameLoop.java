@@ -61,10 +61,11 @@ public final class MainGameLoop {
     {
         monster = new Monster(name, lvl);
 
-        System.out.println(player.getName() + " " + player.getHitPoints() + " " + player.getpClass() + " " + player.getPDef());
+        System.out.println(player.getName() + " " + player.getHitPoints() + " " + player.getStamina() + " " + player.getPDef());
         System.out.println(monster.getName() + " " + monster.getLevel() + " " + monster.getHitPoints());
         player.addDmg(monster, true);
         System.out.println(monster.getName() + " " + monster.getLevel() + " " + monster.getHitPoints());
+        System.out.println(player.getName() + " " + player.getHitPoints() + " " + player.getStamina() + " " + player.getLevel());
     }
 
 

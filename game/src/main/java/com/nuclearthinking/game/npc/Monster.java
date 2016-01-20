@@ -1,6 +1,7 @@
 package com.nuclearthinking.game.npc;
 
 import com.nuclearthinking.game.obj.AbstractObject;
+import com.nuclearthinking.game.player.Player;
 
 /**
  * Created by Izonami on 17.01.2016.
@@ -48,11 +49,12 @@ public class Monster extends AbstractObject
         setHitPoints(_hitPoints - dmg);
     }
 
-    public void fillDie()
+    public void fillDie(Player player)
     {
         System.out.println(getName() + " " + "Die");
         setHitPoints(0);
         getReward();
+        player.setExp(200);
     }
 
     public void getReward()
