@@ -16,7 +16,7 @@ import java.sql.SQLException;
  */
 
 public class DatabaseUtils {
-    private static final String H2_DB_URL = "jdbc:h2:mem:game;MODE=MySQL";
+    private static final String H2_DB_URL = "jdbc:h2:file:./src/main/resources/sql/game;MODE=MySQL";
 
     public void initDb() {
         try {
