@@ -3,6 +3,7 @@ package com.nuclearthinking.game;
 import com.nuclearthinking.game.config.Config;
 import com.nuclearthinking.game.data.ItemData;
 import com.nuclearthinking.game.data.SkillData;
+import com.nuclearthinking.game.utils.DatabaseUtils;
 import com.nuclearthinking.game.utils.ResourceUtil;
 
 import java.io.File;
@@ -41,6 +42,8 @@ public final class GameStarter {
         File logFile = new File(LOG_FOLDER);
         logFile.mkdir();
         Config.load();
+        //Инициализация базы данных
+        new DatabaseUtils().initDb();
         new GameStarter();
         InputStream is = resource.getResourceAsStream(LOG_NAME);
         LogManager.getLogManager().readConfiguration(is);
