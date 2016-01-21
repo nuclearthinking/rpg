@@ -51,14 +51,12 @@ public class RogueClass extends PlayerClass {
     }
 
     @Override
-    public boolean isRogue()
-    {
+    public boolean isRogue() {
         return true;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Rogue";
     }
 }

@@ -18,15 +18,13 @@ import java.util.List;
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
 
-public class PreparePlayer extends Player
-{
+public class PreparePlayer extends Player {
     UserInput input = new UserInput();
     StringUtil ut = new StringUtil();
     private Player player;
     private MessagesReader messages = MessagesReader.getInstance();
 
-    public PreparePlayer()
-    {
+    public PreparePlayer() {
         player = new Player();
         //Установка имени игроку если оно null
         setPlayerName();
@@ -50,24 +48,24 @@ public class PreparePlayer extends Player
                 add(messages.getMessage("rogueClass"));
             }
         };
-            switch (input.chouseOne(strings)) {
-                case 1: {
-                    player.setClass(new MageClass());
-                    System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("mageClass"));
-                    break;
-                }
-                case 2: {
-                    player.setClass(new WarriorClass());
-                    System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("warriorClass"));
-                    break;
-                }
-                case 3: {
-                    player.setClass(new RogueClass());
-                    System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("rogueClass"));
-                    break;
-                }
+        switch (input.chouseOne(strings)) {
+            case 1: {
+                player.setClass(new MageClass());
+                System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("mageClass"));
+                break;
             }
-            System.out.println();
+            case 2: {
+                player.setClass(new WarriorClass());
+                System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("warriorClass"));
+                break;
+            }
+            case 3: {
+                player.setClass(new RogueClass());
+                System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("rogueClass"));
+                break;
+            }
+        }
+        System.out.println();
     }
 
 

@@ -1,7 +1,6 @@
 package com.nuclearthinking.game.experiments;
 
 import com.nuclearthinking.game.utils.ResourceUtil;
-import org.h2.tools.DeleteDbFiles;
 import org.h2.tools.RunScript;
 
 import java.io.InputStream;

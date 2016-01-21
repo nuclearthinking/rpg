@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.nuclearthinking.game.entity.Armor" table="armor">
+        <id name="id" type="java.lang.Integer" column="armor_id">
+            <generator class="increment"/>
+        </id>
+        <property name="armorType" type="java.lang.Integer" column="armor_type"/>
+
+        <property name="name" type="java.lang.String" column="name"/>
+
+        <property name="strengthBonus" type="java.lang.Integer" column="str_b"/>
+
+        <property name="intelligenceBonus" type="java.lang.Integer" column="int_b"/>
+
+        <property name="agilityBonus" type="java.lang.Integer" column="agi_b"/>
+
+        <property name="armorAmount" type="java.lang.Integer" column="armor_amount"/>
+    </class>
+</hibernate-mapping>

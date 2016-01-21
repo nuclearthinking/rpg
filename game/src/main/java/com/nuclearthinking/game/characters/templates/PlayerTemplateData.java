@@ -9,24 +9,20 @@ import java.util.Map;
 /**
  * Created by kuksin-mv on 15.01.2016.
  */
-public final class PlayerTemplateData
-{
+public final class PlayerTemplateData {
     private final Map<ClassId, PlayerTemplate> _playerTemplate = new HashMap<ClassId, PlayerTemplate>();
 
-    protected PlayerTemplateData()
-    {
+    protected PlayerTemplateData() {
         load();
     }
 
-    public void load()
-    {
+    public void load() {
         _playerTemplate.clear();
 
         StatsSet set = new StatsSet();
 
         //TODO:Разхардкодить
-        for (int i = 0; i < 3; i++)
-        {
+        for (int i = 0; i < 3; i++) {
             int classId = i;
             set.set("classId", classId);
             set.set("basePDef", 10);
@@ -36,23 +32,19 @@ public final class PlayerTemplateData
 
     }
 
-    public PlayerTemplate getTemplate(ClassId classId)
-    {
+    public PlayerTemplate getTemplate(ClassId classId) {
         return _playerTemplate.get(classId);
     }
 
-    public PlayerTemplate getTemplate(int classId)
-    {
+    public PlayerTemplate getTemplate(int classId) {
         return _playerTemplate.get(ClassId.getClassId(classId));
     }
 
-    public static final PlayerTemplateData getInstance()
-    {
+    public static final PlayerTemplateData getInstance() {
         return SingletonHolder._instance;
     }
 
-    private static class SingletonHolder
-    {
+    private static class SingletonHolder {
         protected static final PlayerTemplateData _instance = new PlayerTemplateData();
     }
 }

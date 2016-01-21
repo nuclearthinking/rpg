@@ -10,8 +10,7 @@ import java.util.Map;
 /**
  * Created by kuksin-mv on 13.01.2016.
  */
-public class CharacterTemplate
-{
+public class CharacterTemplate {
     //Базовые статы
     private int _baseSTR;
     private int _baseCON;
@@ -39,13 +38,11 @@ public class CharacterTemplate
 
     private Race _race;
 
-    public CharacterTemplate(StatsSet set)
-    {
+    public CharacterTemplate(StatsSet set) {
         set(set);
     }
 
-    public void set(StatsSet set)
-    {
+    public void set(StatsSet set) {
         _baseSTR = set.getInt("baseSTR", 0);
         _baseCON = set.getInt("baseCON", 0);
         _baseDEX = set.getInt("baseDEX", 0);
@@ -67,113 +64,91 @@ public class CharacterTemplate
         _baseMCritRate = set.getInt("baseMCritRate", 0);
     }
 
-    public int getBaseSTR()
-    {
+    public int getBaseSTR() {
         return _baseSTR;
     }
 
-    public int getBaseCON()
-    {
+    public int getBaseCON() {
         return _baseCON;
     }
 
-    public int getBaseDEX()
-    {
+    public int getBaseDEX() {
         return _baseDEX;
     }
 
-    public int getBaseINT()
-    {
+    public int getBaseINT() {
         return _baseINT;
     }
 
-    public int getBaseWIT()
-    {
+    public int getBaseWIT() {
         return _baseWIT;
     }
 
-    public int getBaseMEN()
-    {
+    public int getBaseMEN() {
         return _baseMEN;
     }
 
-    public float getBaseHpMax()
-    {
+    public float getBaseHpMax() {
         return _baseHpMax;
     }
 
-    public float getBaseMpMax()
-    {
+    public float getBaseMpMax() {
         return _baseMpMax;
     }
 
-    public float getBaseHpRegen()
-    {
+    public float getBaseHpRegen() {
         return _baseHpReg;
     }
 
-    public float getBaseMpRegen()
-    {
+    public float getBaseMpRegen() {
         return _baseMpReg;
     }
 
-    public int getBasePAtk()
-    {
+    public int getBasePAtk() {
         return _basePAtk;
     }
 
-    public int getBaseMAtk()
-    {
+    public int getBaseMAtk() {
         return _baseMAtk;
     }
 
-    public int getBasePDef()
-    {
+    public int getBasePDef() {
         return _basePDef;
     }
 
-    public int getBaseMDef()
-    {
+    public int getBaseMDef() {
         return _baseMDef;
     }
 
-    public int getBasePAtkSpd()
-    {
+    public int getBasePAtkSpd() {
         return _basePAtkSpd;
     }
 
-    public int getBaseMAtkSpd()
-    {
+    public int getBaseMAtkSpd() {
         return _baseMAtkSpd;
     }
 
-    public int getBaseAttackRange()
-    {
+    public int getBaseAttackRange() {
         return _baseAttackRange;
     }
 
-    public int getBaseCritRate()
-    {
+    public int getBaseCritRate() {
         return _baseCritRate;
     }
 
-    public int getBaseMCritRate()
-    {
+    public int getBaseMCritRate() {
         return _baseMCritRate;
     }
 
-    public Race getRace()
-    {
+    public Race getRace() {
         return _race;
     }
 
-    public void setRace(Race race)
-    {
+    public void setRace(Race race) {
         _race = race;
     }
 
-    public Map<Integer, Skill> getSkills()
-    {
+    public Map<Integer, Skill> getSkills() {
         return Collections.emptyMap();
     }
 }

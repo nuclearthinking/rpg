@@ -6,54 +6,44 @@ import com.nuclearthinking.game.characters.templates.NpcTemplate;
 /**
  * Created by kuksin-mv on 15.01.2016.
  */
-public class AttackableNpc extends Npc
-{
-    public AttackableNpc(NpcTemplate template)
-    {
+public class AttackableNpc extends Npc {
+    public AttackableNpc(NpcTemplate template) {
         super(template);
     }
 
     @Override
-    public AttackableStatus getStatus()
-    {
+    public AttackableStatus getStatus() {
         return (AttackableStatus) super.getStatus();
     }
 
     @Override
-    public void initCharacterStatus()
-    {
+    public void initCharacterStatus() {
         setStatus(new AttackableStatus(this));
     }
 
     @Override
-    public void decreaseCurrentHp(double damage, CharacterObject attacker)
-    {
+    public void decreaseCurrentHp(double damage, CharacterObject attacker) {
         super.decreaseCurrentHp(damage, attacker);
     }
 
     @Override
-    public boolean canBeAttacked()
-    {
+    public boolean canBeAttacked() {
         return true;
     }
 
     @Override
-    public boolean isAttackable()
-    {
+    public boolean isAttackable() {
         return true;
     }
 
     @Override
-    public void onSpawn()
-    {
+    public void onSpawn() {
         super.onSpawn();
     }
 
     @Override
-    public boolean fillDie(CharacterObject killer)
-    {
-        if (!super.fillDie(killer))
-        {
+    public boolean fillDie(CharacterObject killer) {
+        if (!super.fillDie(killer)) {
             return false;
         }
 

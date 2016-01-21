@@ -16,8 +16,10 @@ public class WeaponType {
     @Id
     @GeneratedValue
     private Integer weaponTypeId;
-
     private String weaponTypeName;
+
+    public WeaponType() {
+    }
 
     public String getWeaponTypeName() {
         return weaponTypeName;

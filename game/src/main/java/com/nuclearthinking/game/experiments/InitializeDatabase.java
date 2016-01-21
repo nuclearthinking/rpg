@@ -2,7 +2,10 @@ package com.nuclearthinking.game.experiments;
 
 import org.h2.tools.DeleteDbFiles;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  * Date: 14.01.2016
@@ -18,7 +21,7 @@ public class InitializeDatabase {
         DeleteDbFiles.execute("~", "test", true);
 
         Class.forName("org.h2.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:h2:~/test","admin","admin");
+        Connection conn = DriverManager.getConnection("jdbc:h2:~/test", "admin", "admin");
         Statement stat = conn.createStatement();
 
         // this line would initialize the database

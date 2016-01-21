@@ -25,6 +25,7 @@ public class Floor extends World {
 
 
     private WorldGenerateUtil wGem = new WorldGenerateUtil();
+
     public Room[][] getFloorMap() {
         return floorMap;
     }
@@ -89,7 +90,7 @@ public class Floor extends World {
         floor.setFloorMap(floorMap);
         Biome randomedBiome = wGem.getRandomBiome();
         floor.setFloorBiome(randomedBiome);
-        floor.setFloorSize(width*height);
+        floor.setFloorSize(width * height);
         roomNumbering(floorMap);
         return floor;
     }

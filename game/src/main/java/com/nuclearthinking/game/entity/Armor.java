@@ -19,9 +19,12 @@ public class Armor {
     private Integer id;
     private String name;
     private Integer armorType;
-    private Integer strenghtBonus;
+    private Integer strengthBonus;
     private Integer agilityBonus;
     private Integer intelligenceBonus;
+
+    public Armor() {
+    }
 
     public Integer getId() {
         return id;
@@ -47,12 +50,12 @@ public class Armor {
         this.armorType = armorType;
     }
 
-    public Integer getStrenghtBonus() {
-        return strenghtBonus;
+    public Integer getStrengthBonus() {
+        return strengthBonus;
     }
 
-    public void setStrenghtBonus(Integer strenghtBonus) {
-        this.strenghtBonus = strenghtBonus;
+    public void setStrengthBonus(Integer strengthBonus) {
+        this.strengthBonus = strengthBonus;
     }
 
     public Integer getAgilityBonus() {

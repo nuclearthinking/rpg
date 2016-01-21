@@ -20,6 +20,10 @@ public class ArmorType {
 
     private String armorTypeName;
 
+
+    public ArmorType() {
+    }
+
     public Integer getArmorTypeId() {
         return armorTypeId;
     }

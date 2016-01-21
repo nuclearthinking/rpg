@@ -6,18 +6,14 @@ import com.nuclearthinking.game.characters.CharacterObject;
 /**
  * Created by Izonami on 16.01.2016.
  */
-public class AttackableStatus extends NpcStatus
-{
-    public AttackableStatus(AttackableNpc npc)
-    {
+public class AttackableStatus extends NpcStatus {
+    public AttackableStatus(AttackableNpc npc) {
         super(npc);
     }
 
     @Override
-    public void updateHp(double value, CharacterObject attacker)
-    {
-        if (getActiveCharacter().isDead())
-        {
+    public void updateHp(double value, CharacterObject attacker) {
+        if (getActiveCharacter().isDead()) {
             return;
         }
 
@@ -25,8 +21,7 @@ public class AttackableStatus extends NpcStatus
     }
 
     @Override
-    public AttackableNpc getActiveCharacter()
-    {
+    public AttackableNpc getActiveCharacter() {
         return (AttackableNpc) super.getActiveCharacter();
     }
 }

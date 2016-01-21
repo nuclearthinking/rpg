@@ -8,23 +8,19 @@ import com.nuclearthinking.game.model.skills.Skill;
 /**
  * Created by Izonami on 14.01.2016.
  */
-public class FuncPDefMod extends AbstractFunction
-{
+public class FuncPDefMod extends AbstractFunction {
     private static final FuncPDefMod _fpdm_instance = new FuncPDefMod();
 
-    public static AbstractFunction getInstance()
-    {
+    public static AbstractFunction getInstance() {
         return _fpdm_instance;
     }
 
-    public FuncPDefMod()
-    {
+    public FuncPDefMod() {
         super(Stats.POWER_DEFENCE, 1, null, 0);
     }
 
     @Override
-    public double calc(CharacterObject effector, CharacterObject effected, Skill skill, double initVal)
-    {
+    public double calc(CharacterObject effector, CharacterObject effected, Skill skill, double initVal) {
         //TODO: Тут надо бы учитывать одетую броню
         return initVal * BaseStats.CON.calcBonus(effector);
     }

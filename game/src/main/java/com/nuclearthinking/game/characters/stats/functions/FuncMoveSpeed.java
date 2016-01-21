@@ -8,23 +8,19 @@ import com.nuclearthinking.game.model.skills.Skill;
 /**
  * Created by Izonami on 14.01.2016.
  */
-public class FuncMoveSpeed extends AbstractFunction
-{
+public class FuncMoveSpeed extends AbstractFunction {
     private static final FuncMoveSpeed _fms_instance = new FuncMoveSpeed();
 
-    public static AbstractFunction getInstance()
-    {
+    public static AbstractFunction getInstance() {
         return _fms_instance;
     }
 
-    public FuncMoveSpeed()
-    {
+    public FuncMoveSpeed() {
         super(Stats.MOVE_SPEED, 1, null, 0);
     }
 
     @Override
-    public double calc(CharacterObject effector, CharacterObject effected, Skill skill, double initVal)
-    {
+    public double calc(CharacterObject effector, CharacterObject effected, Skill skill, double initVal) {
         return initVal * BaseStats.DEX.calcBonus(effector);
     }
 }

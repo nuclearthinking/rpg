@@ -1,11 +1,12 @@
 package com.nuclearthinking.game.utils;
 
-import com.nuclearthinking.game.utils.ResourceUtil;
 import org.h2.tools.RunScript;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * Date: 20.01.2016
@@ -15,6 +16,7 @@ import java.sql.*;
  */
 
 public class DatabaseUtils {
+
 
     public void initDb() {
         try {

@@ -19,11 +19,15 @@ public class Weapon {
     private Integer id;
     private String name;
     private Integer weaponType;
-    private Integer strenghtBonus;
+    private Integer strengthBonus;
     private Integer agilityBonus;
     private Integer intelligenceBonus;
     private Integer damageMinimal;
     private Integer damageMaximal;
+
+
+    public Weapon() {
+    }
 
     public Integer getId() {
         return id;
@@ -49,12 +53,12 @@ public class Weapon {
         this.weaponType = weaponType;
     }
 
-    public Integer getStrenghtBonus() {
-        return strenghtBonus;
+    public Integer getStrengthBonus() {
+        return strengthBonus;
     }
 
-    public void setStrenghtBonus(Integer strenghtBonus) {
-        this.strenghtBonus = strenghtBonus;
+    public void setStrengthBonus(Integer strengthBonus) {
+        this.strengthBonus = strengthBonus;
     }
 
     public Integer getAgilityBonus() {
