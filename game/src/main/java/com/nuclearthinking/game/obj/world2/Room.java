@@ -7,7 +7,6 @@ public class Room
 {
     public String[][] _room;
 
-
     public String[][] getRoom()
     {
         return _room;
