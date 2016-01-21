@@ -2,11 +2,11 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.nuclearthinking.game.entity.Weapon" table="weapon">
-        <id name="id" type="java.lang.Integer" column="weapon_id">
+    <class name="com.nuclearthinking.game.DAO.Armor" table="armor">
+        <id name="id" type="java.lang.Integer" column="armor_id">
             <generator class="increment"/>
         </id>
-        <property name="weaponType" type="java.lang.Integer" column="weapon_type"/>
+        <property name="armorType" type="java.lang.Integer" column="armor_type"/>
 
         <property name="name" type="java.lang.String" column="name"/>
 
@@ -16,8 +16,6 @@
 
         <property name="agilityBonus" type="java.lang.Integer" column="agi_b"/>
 
-        <property name="damageMinimal" type="java.lang.Integer" column="damage_minimal"/>
-
-        <property name="damageMaximal" type="java.lang.Integer" column="damage_maximal"/>
+        <property name="armorAmount" type="java.lang.Integer" column="armor_amount"/>
     </class>
 </hibernate-mapping>

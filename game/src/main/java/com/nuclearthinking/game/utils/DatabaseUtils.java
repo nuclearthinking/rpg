@@ -24,12 +24,11 @@ public class DatabaseUtils {
 
             Class.forName("org.h2.Driver");
             InputStream in = ru.getResourceAsStream("sql/init.sql");
-            ru = null;
             if (in == null) {
                 System.out.println("Please add the file script.sql to the classpath, package "
                         + getClass().getPackage().getName());
             } else {
-                Connection conn = DriverManager.getConnection("jdbc:h2:mem:test");
+                Connection conn = DriverManager.getConnection("jdbc:h2:mem:game", "admin", "admin");
                 RunScript.execute(conn, new InputStreamReader(in));
                 conn.close();
             }

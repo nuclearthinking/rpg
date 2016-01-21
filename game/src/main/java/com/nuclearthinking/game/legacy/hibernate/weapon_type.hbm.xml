@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.nuclearthinking.game.entity.WeaponType" table="weapon_types">
+    <class name="com.nuclearthinking.game.DAO.WeaponType" table="weapon_types">
         <id name="weaponTypeId" type="java.lang.Integer" column="weapon_type_id">
             <generator class="increment"/>
         </id>

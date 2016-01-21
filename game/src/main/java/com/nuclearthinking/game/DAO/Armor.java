@@ -1,4 +1,4 @@
-package com.nuclearthinking.game.entity;
+package com.nuclearthinking.game.DAO;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.nuclearthinking.game.experiments;
+package com.nuclearthinking.game.legacy;
 
 import java.util.Arrays;
 
