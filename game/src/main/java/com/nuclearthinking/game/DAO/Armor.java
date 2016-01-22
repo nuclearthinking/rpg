@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * Date: 19.01.2016
@@ -23,15 +22,16 @@ public class Armor {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     private String name;
     private Integer armorType;
     private Integer strengthBonus;
     private Integer agilityBonus;
     private Integer intelligenceBonus;
 
-    public Armor(){
+    public Armor() {
     }
+
     public Armor(Connection conn) {
         this.connection = conn;
     }
@@ -39,25 +39,27 @@ public class Armor {
     public Armor getArmorByID(int id) {
         Armor armorFromDB = new Armor();
         try {
-        ResultSet rs = new DatabaseEngine().executeQuery("SELECT * FROM armor WHERE armor_id = "+id+";",connection);
-            armorFromDB.setId(rs.getInt(1));
-            armorFromDB.setName(rs.getString(2));
-            armorFromDB.setStrengthBonus(3);
-            armorFromDB.setIntelligenceBonus(4);
-            armorFromDB.setAgilityBonus(5);
-            armorFromDB.setArmorAmount(6);
-            armorFromDB.setArmorType(7);
+            ResultSet rs = new DatabaseEngine().executeQuery("SELECT * FROM armor WHERE armor_id = " + id + ";", connection);
+            if (rs.next()) {
+                armorFromDB.setId(rs.getLong(1));
+                armorFromDB.setName(rs.getString(2));
+                armorFromDB.setStrengthBonus(3);
+                armorFromDB.setIntelligenceBonus(4);
+                armorFromDB.setAgilityBonus(5);
+                armorFromDB.setArmorAmount(6);
+                armorFromDB.setArmorType(7);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return armorFromDB;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
