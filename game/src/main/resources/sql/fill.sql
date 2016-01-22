@@ -1,3 +1,4 @@
 INSERT INTO `game`.`weapon_types` (`weapon_type_id`, `weapon_type_name`) VALUES (NULL, 'sword'),(NULL , 'staff'), (NULL , 'dagger'), (NULL , 'axe');
 INSERT INTO `game`.`armor_types` (armor_type_id,armor_type_name) VALUES (NULL , 'helmet'), (NULL , 'gloves'), (NULL , 'chest'), (NULL , 'shield'), (NULL , 'leggings'), (NULL , 'boots');
-INSERT INTO `game`.`weapon` (weapon_id,name,damage_minimal,damage_maximal,str_b,agi_b,int_b,weapon_type) VALUES (NULL ,'Iron Sword', 1,3,0,0,0,1);
+INSERT INTO `game`.`weapon` (weapon_id,name,damage_minimal,damage_maximal,str_b,agi_b,int_b,weapon_type) VALUES (NULL ,'Iron Sword', 1,3,0,0,0,1),(NULL , 'Bronze Sword', 2 , 3, 1, 0, 0, 1),(NULL ,'Oak Staff',1,3,1,1,2,2);
+INSERT INTO `game`.`armor` (armor_id,name,str_b,int_b,agi_b,armor_amount,armor_type) VALUES (NULL ,'Cloth Cap',0,0,0,3,1);

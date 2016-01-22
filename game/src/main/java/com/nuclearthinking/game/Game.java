@@ -1,5 +1,6 @@
 package com.nuclearthinking.game;
 
+import com.nuclearthinking.game.DAO.Armor;
 import com.nuclearthinking.game.engines.DatabaseEngine;
 import com.nuclearthinking.game.engines.PreparePlayer;
 import com.nuclearthinking.game.obj.world.World;
@@ -23,6 +24,10 @@ public final class Game {
         Connection connection = new DatabaseEngine().initDb().getConnection();
         //Создание мира
         World world = new WorldManager(30).getWorld();
+
+        //дебуг
+        Armor armor = new Armor(connection).getArmorByID(1);
+        System.out.println(armor.getName());
         //Создание персонажа
         Player player = new PreparePlayer().getPlayer();
         //Запуск игры
