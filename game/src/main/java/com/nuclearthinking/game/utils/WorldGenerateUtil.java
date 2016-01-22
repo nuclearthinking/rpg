@@ -46,4 +46,9 @@ public class WorldGenerateUtil {
         return roomes.get(rndId);
     }
 
+    public int getRnd(int min, int max)
+    {
+        return (int)Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
 }
