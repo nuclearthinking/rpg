@@ -18,7 +18,6 @@ import java.sql.SQLException;
 
 @Entity
 public class Armor {
-    private Connection connection;
 
     @Id
     @GeneratedValue
@@ -32,14 +31,10 @@ public class Armor {
     public Armor() {
     }
 
-    public Armor(Connection conn) {
-        this.connection = conn;
-    }
-
     public Armor getArmorByID(int id) {
         Armor armorFromDB = new Armor();
         try {
-            ResultSet rs = new DatabaseEngine().executeQuery("SELECT * FROM armor WHERE armor_id = " + id + ";", connection);
+            ResultSet rs = DatabaseEngine.getInstance().executeQuery("SELECT * FROM armor WHERE armor_id = " + id + ";");
             if (rs.next()) {
                 armorFromDB.setId(rs.getLong(1));
                 armorFromDB.setName(rs.getString(2));

@@ -14,14 +14,19 @@ import java.sql.*;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public class DatabaseEngine {
+public final class DatabaseEngine {
 
 
-//    private static final String H2_DB_URL = "jdbc:h2:mem:game;MODE=MySQL";
-        private static final String H2_DB_URL = "jdbc:h2:file:./src/main/resources/sql/game;MODE=MySQL";
+    //    private static final String H2_DB_URL = "jdbc:h2:mem:game;MODE=MySQL";
+    private static final String H2_DB_URL = "jdbc:h2:file:./src/main/resources/sql/game;MODE=MySQL";
+
+    public void setConnection(Connection _connection) {
+        this.connection = _connection;
+    }
+
     private Connection connection;
 
-    public DatabaseEngine() {
+    private DatabaseEngine() {
 
     }
 
@@ -35,7 +40,7 @@ public class DatabaseEngine {
                 System.out.println("Please add the file create.sql to the classpath, package "
                         + getClass().getPackage().getName());
             } else {
-                this.connection = DriverManager.getConnection(H2_DB_URL, "admin", "admin");
+                setConnection(DriverManager.getConnection(H2_DB_URL, "admin", "admin"));
                 RunScript.execute(connection, new InputStreamReader(in));
                 RunScript.execute(connection, new InputStreamReader(in2));
             }
@@ -66,7 +71,7 @@ public class DatabaseEngine {
         }
     }
 
-    public ResultSet executeQuery(String SQLquerry,Connection connection) {
+    public ResultSet executeQuery(String SQLquerry) {
         if (connection == null) throw new RuntimeException("База данных не инициализированна");
         ResultSet rs = null;
         try {
@@ -78,5 +83,12 @@ public class DatabaseEngine {
         return rs;
     }
 
+    public static DatabaseEngine getInstance() {
+        return DataBaseHolder.INSTANCE;
+    }
+
+    private static class DataBaseHolder {
+        private static final DatabaseEngine INSTANCE = new DatabaseEngine();
+    }
 
 }
