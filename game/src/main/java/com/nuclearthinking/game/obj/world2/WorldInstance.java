@@ -1,5 +1,7 @@
 package com.nuclearthinking.game.obj.world2;
 
+import java.util.Map;
+
 /**
  * Created by kuksin-mv on 20.01.2016.
  */
@@ -15,21 +17,9 @@ public class WorldInstance
     public WorldInstance(int _worldSize)
     {
         setSize(_worldSize);
-        Cell cell = new Cell();
 
-        String piace = cell.getCellValue(0);
-        String wall = cell.getCellValue(1);
-        String bonus = cell.getCellValue(2);
-
-        Room room, room2;
-        room = new Room(new String[WORLD_SIZE][WORLD_SIZE]);
-        room2 = new Room(new String[WORLD_SIZE][WORLD_SIZE]);
-
-        room.setCellIntoRoom(piace, wall, bonus);
-        room2.setCellIntoRoom(piace, wall, bonus);
-
-        this.roomOut(room);
-        this.roomOut(room2);
+        Jungle jungle = new Jungle(_worldSize);
+        biomOut(jungle);
     }
 
     private void setSize(int _worldSize)
@@ -49,6 +39,15 @@ public class WorldInstance
                 System.out.print(room._room[i][j] + " ");
             }
             System.out.println();
+        }
+    }
+
+    private void biomOut(BiomObject biom)
+    {
+        for(Map.Entry<String, Room> map : biom.getBiom().entrySet())
+        {
+            Room value = map.getValue();
+            roomOut(value);
         }
     }
 }
