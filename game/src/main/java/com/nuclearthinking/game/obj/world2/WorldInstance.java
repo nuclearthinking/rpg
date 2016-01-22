@@ -10,24 +10,26 @@ public class WorldInstance
     public static void main(String[] args)
     {
         WorldInstance worldInstance = new WorldInstance(10);
-
-        Cell cell = new Cell();
-        Cell cell2 = new Cell();
-        Room room = new Room();
-        Room room2 = new Room();
-        cell.setCellValue(0, "o");
-        cell2.setCellValue(0, "|");
-        room.setRoom(new String[WORLD_SIZE][WORLD_SIZE]);
-        room2.setRoom(new String[WORLD_SIZE][WORLD_SIZE]);
-        room.setRoom(cell, cell2);
-        room2.setRoom(cell, cell2);
-        worldInstance.roomOut(room);
-        worldInstance.roomOut(room2);
     }
 
     public WorldInstance(int _worldSize)
     {
         setSize(_worldSize);
+        Cell cell = new Cell();
+
+        String piace = cell.getCellValue(0);
+        String wall = cell.getCellValue(1);
+        String bonus = cell.getCellValue(2);
+
+        Room room, room2;
+        room = new Room(new String[WORLD_SIZE][WORLD_SIZE]);
+        room2 = new Room(new String[WORLD_SIZE][WORLD_SIZE]);
+
+        room.setCellIntoRoom(piace, wall, bonus);
+        room2.setCellIntoRoom(piace, wall, bonus);
+
+        this.roomOut(room);
+        this.roomOut(room2);
     }
 
     private void setSize(int _worldSize)

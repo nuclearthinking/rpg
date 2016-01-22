@@ -9,7 +9,17 @@ public class Cell
 
     public Cell()
     {
+        _cell = new String[4];
+        setCellValue(0, "o");
+        setCellValue(1, "|");
+        setCellValue(2, "۞");
+    }
+
+    public Cell(String value)
+    {
         _cell = new String[1];
+        setCellValue(0, value);
+        setCellValue(1, value);
     }
 
     public String[] getCell()
