@@ -8,23 +8,19 @@ import com.nuclearthinking.game.model.skills.Skill;
 /**
  * Created by Izonami on 14.01.2016.
  */
-public class FuncMAtkCritical extends AbstractFunction
-{
+public class FuncMAtkCritical extends AbstractFunction {
     private static final FuncMAtkCritical _fmac_instance = new FuncMAtkCritical();
 
-    public static AbstractFunction getInstance()
-    {
+    public static AbstractFunction getInstance() {
         return _fmac_instance;
     }
 
-    public FuncMAtkCritical()
-    {
+    public FuncMAtkCritical() {
         super(Stats.MAGIC_CRIT_RATE, 1, null, 0);
     }
 
     @Override
-    public double calc(CharacterObject effector, CharacterObject effected, Skill skill, double initVal)
-    {
+    public double calc(CharacterObject effector, CharacterObject effected, Skill skill, double initVal) {
         return initVal * BaseStats.MEN.calcBonus(effector);
     }
 }

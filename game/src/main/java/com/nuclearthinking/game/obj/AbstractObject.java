@@ -5,8 +5,7 @@ import com.nuclearthinking.game.characters.interfaces.IName;
 /**
  * Created by kuksin-mv on 18.01.2016.
  */
-public abstract class AbstractObject implements IName
-{
+public abstract class AbstractObject implements IName {
     public String _name;
     public int _hitPoints;
     public double _strength = 10;
@@ -14,64 +13,52 @@ public abstract class AbstractObject implements IName
     public double _agility = 10;
     public double _stamina = 10;
 
-    public AbstractObject()
-    {
+    public AbstractObject() {
         initStat();
     }
 
-    public int getHitPoints()
-    {
+    public int getHitPoints() {
         return _hitPoints;
     }
 
-    public void setHitPoints(int hitPoints)
-    {
+    public void setHitPoints(int hitPoints) {
         _hitPoints = hitPoints;
     }
 
-    public void initHitPoints()
-    {
+    public void initHitPoints() {
         _hitPoints = (int) getStamina() * 2;
     }
 
-    public double getStrength()
-    {
+    public double getStrength() {
         return _strength;
     }
 
-    public double getIntelligence()
-    {
+    public double getIntelligence() {
         return _intelligence;
     }
 
-    public double getAgility()
-    {
+    public double getAgility() {
         return _agility;
     }
 
-    public double getStamina()
-    {
+    public double getStamina() {
         return _stamina;
     }
 
-    public void updateHp(int dmg)
-    {
+    public void updateHp(int dmg) {
         setHitPoints(_hitPoints - dmg);
     }
 
     @Override
-    public String getName()
-    {
+    public String getName() {
         return _name;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         _name = name;
     }
 
-    public void initStat()
-    {
+    public void initStat() {
         initHitPoints();
     }
 }

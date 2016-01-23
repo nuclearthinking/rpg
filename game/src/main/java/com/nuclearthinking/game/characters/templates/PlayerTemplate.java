@@ -7,8 +7,7 @@ import com.nuclearthinking.game.model.StatsSet;
  * Created by kuksin-mv on 15.01.2016.
  * TODO: Пока тут сделано для одного уровня, нужно придумать как делать для большего кол-ва уровней
  */
-public class PlayerTemplate extends CharacterTemplate
-{
+public class PlayerTemplate extends CharacterTemplate {
     private final ClassId _classId;
 
     private final float[] _baseHp;
@@ -17,8 +16,7 @@ public class PlayerTemplate extends CharacterTemplate
     private final double[] _baseHpRegen;
     private final double[] _baseMpRegen;
 
-    public PlayerTemplate(StatsSet set)
-    {
+    public PlayerTemplate(StatsSet set) {
         super(set);
 
         _classId = ClassId.getClassId(set.getInt("classId"));
@@ -30,28 +28,23 @@ public class PlayerTemplate extends CharacterTemplate
         _baseMpRegen = new double[3];
     }
 
-    public ClassId getClassId()
-    {
+    public ClassId getClassId() {
         return _classId;
     }
 
-    public float getBaseHp(int level)
-    {
+    public float getBaseHp(int level) {
         return _baseHp[level];
     }
 
-    public float getBaseMp(int level)
-    {
+    public float getBaseMp(int level) {
         return _baseMp[level];
     }
 
-    public double getBaseHpRegen(int level)
-    {
+    public double getBaseHpRegen(int level) {
         return _baseHpRegen[level];
     }
 
-    public double getBaseMpRegen(int level)
-    {
+    public double getBaseMpRegen(int level) {
         return _baseMpRegen[level];
     }
 

@@ -51,14 +51,12 @@ public class MageClass extends PlayerClass {
     }
 
     @Override
-    public boolean isMage()
-    {
+    public boolean isMage() {
         return true;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Mage";
     }
 }

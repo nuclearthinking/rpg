@@ -10,8 +10,7 @@ import java.util.logging.Logger;
 /**
  * Created by kuksin-mv on 14.01.2016.
  */
-public enum BaseStats
-{
+public enum BaseStats {
     STR(new Strength()),
     INT(new Intelligent()),
     DEX(new Dexterity()),
@@ -32,33 +31,26 @@ public enum BaseStats
 
     private final IBaseStat _stat;
 
-    public final String getValue()
-    {
+    public final String getValue() {
         return _stat.getClass().getSimpleName();
     }
 
-    BaseStats(IBaseStat s)
-    {
+    BaseStats(IBaseStat s) {
         _stat = s;
     }
 
-    public final double calcBonus(CharacterObject characterObject)
-    {
-        if (characterObject != null)
-        {
+    public final double calcBonus(CharacterObject characterObject) {
+        if (characterObject != null) {
             return _stat.calcBonus(characterObject);
         }
 
         return 1;
     }
 
-    public static final BaseStats valueOfXml(String name)
-    {
+    public static final BaseStats valueOfXml(String name) {
         name = name.intern();
-        for (BaseStats s : values())
-        {
-            if (s.getValue().equalsIgnoreCase(name))
-            {
+        for (BaseStats s : values()) {
+            if (s.getValue().equalsIgnoreCase(name)) {
                 return s;
             }
         }

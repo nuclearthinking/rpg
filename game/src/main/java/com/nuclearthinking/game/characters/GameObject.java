@@ -9,97 +9,82 @@ import com.nuclearthinking.game.model.interfaces.IIdentifiable;
  * Time: 12:23
  *
  * @author Vladislav Radchenko (onifent@gmail.com)
- *
- * Пока что будет такой вот слабенький запил
- * CharacterObject - будет инстансится от Player
- * Npc - должен будет инстансится от CharacterObject
- * Нужно реализовать инстансы для создания разных объектов (Нпс, игрок и так далее)
+ *         <p>
+ *         Пока что будет такой вот слабенький запил
+ *         CharacterObject - будет инстансится от Player
+ *         Npc - должен будет инстансится от CharacterObject
+ *         Нужно реализовать инстансы для создания разных объектов (Нпс, игрок и так далее)
  */
 
-public abstract class GameObject implements IIdentifiable, IName, IObjectId
-{
+public abstract class GameObject implements IIdentifiable, IName, IObjectId {
     private String _name;
     private int _objectId;
 
-    public GameObject(){}
+    public GameObject() {
+    }
 
-    public GameObject(int objectId)
-    {
+    public GameObject(int objectId) {
         _objectId = objectId;
     }
 
-    public void onSpawn()
-    {
+    public void onSpawn() {
     }
 
-    public boolean canBeAttacked()
-    {
+    public boolean canBeAttacked() {
         return false;
     }
 
     @Override
-    public String getName()
-    {
+    public String getName() {
         return _name;
     }
 
-    public void setName(String value)
-    {
+    public void setName(String value) {
         _name = value;
     }
 
     @Override
-    public final int getObjectId()
-    {
+    public final int getObjectId() {
         return _objectId;
     }
 
 
     // Вся бадяга ниже нужна что бы избавляться от instanceof
-    public boolean isAttackable()
-    {
+    public boolean isAttackable() {
         return false;
     }
 
-    public boolean isCharacter()
-    {
+    public boolean isCharacter() {
         return false;
     }
 
-    public boolean isPlayable()
-    {
+    public boolean isPlayable() {
         return false;
     }
 
-    public boolean isMonster()
-    {
+    public boolean isMonster() {
         return false;
     }
 
-    public boolean isNpc()
-    {
+    public boolean isNpc() {
         return false;
     }
 
-    public boolean isPlayer()
-    {
+    public boolean isPlayer() {
         return false;
     }
 
-    public boolean isTargetable()
-    {
+    public boolean isTargetable() {
         return true;
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         return ((obj instanceof GameObject) && (((GameObject) obj).getObjectId() == getObjectId()));
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return (getClass().getSimpleName() + ":" + getName() + "[" + getObjectId() + "]");
     }
 }

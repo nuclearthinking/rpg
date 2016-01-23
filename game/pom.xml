@@ -20,6 +20,7 @@
 
     <!-- Зависимости -->
     <dependencies>
+
         <!-- Логгер -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -34,24 +35,51 @@
             <version>6.9.10</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Apache Common IO -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
         </dependency>
 
+        <!-- Jackson -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.4.4</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.esotericsoftware</groupId>-->
-            <!--<artifactId>kryo</artifactId>-->
-            <!--<version>3.0.3</version>-->
-        <!--</dependency>-->
+        <!-- Mockito -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>1.10.19</version>
+        </dependency>
+
+        <!-- H2 database -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.190</version>
+        </dependency>
+
+        <!-- Hibirnate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.0.7.Final</version>
+        </dependency>
+
+        <!-- Kryo -->
+        <dependency>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>kryo</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+
     </dependencies>
+
 
     <build>
         <resources>
@@ -116,8 +144,10 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
-                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <id>make-assembly</id>
+                        <!-- this is used for inheritance merges -->
+                        <phase>package</phase>
+                        <!-- bind to the packaging phase -->
                         <goals>
                             <goal>single</goal>
                         </goals>

@@ -8,15 +8,14 @@ import com.nuclearthinking.game.obj.AbstractObject;
  * Time: 12:23
  *
  * @author Vladislav Radchenko (onifent@gmail.com)
- *
- * Пока что будет такой вот слабенький запил
- * CharacterObject - будет инстансится от Player
- * Npc - должен будет инстансится от CharacterObject
- * Нужно реализовать инстансы для создания разных объектов (Нпс, игрок и так далее)
+ *         <p>
+ *         Пока что будет такой вот слабенький запил
+ *         CharacterObject - будет инстансится от Player
+ *         Npc - должен будет инстансится от CharacterObject
+ *         Нужно реализовать инстансы для создания разных объектов (Нпс, игрок и так далее)
  */
 
-public class Player extends AbstractObject
-{
+public class Player extends AbstractObject {
     private int _currentFloor;
     private int _currentRoom;
     private PlayerClass _pClass;
@@ -24,8 +23,7 @@ public class Player extends AbstractObject
     private int _exp = 0;
     private int[] _expForLvlUp = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
 
-    public Player()
-    {
+    public Player() {
         super();
     }
 
@@ -55,133 +53,106 @@ public class Player extends AbstractObject
         }
     }
 
-    public int getPDef()
-    {
+    public int getPDef() {
         return getpClass().pDefence(this);
     }
 
-    public int getPAtk()
-    {
+    public int getPAtk() {
         return getpClass().pDamage(this);
     }
 
-    public int getCurrentFloor()
-    {
+    public int getCurrentFloor() {
         return _currentFloor;
     }
 
-    public void setCurrentFloor(int currentFloor)
-    {
+    public void setCurrentFloor(int currentFloor) {
         _currentFloor = currentFloor;
     }
 
-    public int getCurrentRoom()
-    {
+    public int getCurrentRoom() {
         return _currentRoom;
     }
 
-    public void setCurrentRoom(int currentRoom)
-    {
+    public void setCurrentRoom(int currentRoom) {
         _currentRoom = currentRoom;
     }
 
-    public PlayerClass getpClass()
-    {
+    public PlayerClass getpClass() {
         return _pClass;
     }
 
-    public int getLevel()
-    {
+    public int getLevel() {
         return _level;
     }
 
-    public void setLevel(int lvl)
-    {
+    public void setLevel(int lvl) {
         _level = lvl;
     }
 
-    public void setClass(PlayerClass pClass)
-    {
+    public void setClass(PlayerClass pClass) {
         _pClass = pClass;
     }
 
-    public void addStrenght(double amount)
-    {
+    public void addStrenght(double amount) {
         _strength += amount;
     }
 
-    public void addIntelegence(double amount)
-    {
+    public void addIntelegence(double amount) {
         _intelligence += amount;
     }
 
-    public void addAgility(double amount)
-    {
+    public void addAgility(double amount) {
         _agility += amount;
     }
 
-    public void addStamina(double amount)
-    {
+    public void addStamina(double amount) {
         _stamina += amount;
     }
 
-    public void addDmg(Monster target)
-    {
+    public void addDmg(Monster target) {
         addDmg(target, false);
     }
 
-    public void addDmg(Monster target, boolean autoAtack)
-    {
-        if(target.isDead())
-        {
+    public void addDmg(Monster target, boolean autoAtack) {
+        if (target.isDead()) {
             return;
         }
 
-        while (true)
-        {
+        while (true) {
             int test = getPAtk() / target.getPDef();
             double value = Math.random() * test;
 
-            if (target.getHitPoints() - value <= 0)
-            {
+            if (target.getHitPoints() - value <= 0) {
                 target.fillDie(this);
                 break;
             }
 
-            if (value <= 1)
-            {
+            if (value <= 1) {
                 System.out.println("Вы промазали");
             }
-            target.updateHp((int)value);
+            target.updateHp((int) value);
 
-            if (!autoAtack)
-            {
+            if (!autoAtack) {
                 break;
             }
         }
     }
 
-    public int getExp()
-    {
+    public int getExp() {
         return _exp;
     }
 
-    public void setExp(int exp)
-    {
-        if(getLevel() >= _expForLvlUp.length)
-        {
+    public void setExp(int exp) {
+        if (getLevel() >= _expForLvlUp.length) {
             System.out.println("Максимальный уровень");
             return;
         }
 
         int tmp = getExp() + exp;
 
-        if (tmp >= _expForLvlUp[getLevel()])
-        {
+        if (tmp >= _expForLvlUp[getLevel()]) {
             levelUP();
-        }
-        else
-        {
+        } else {
             _exp = _exp + exp;
         }
     }

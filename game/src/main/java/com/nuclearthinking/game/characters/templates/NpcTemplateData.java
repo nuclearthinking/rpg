@@ -8,18 +8,15 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by Izonami on 16.01.2016.
  */
-public class NpcTemplateData
-{
+public class NpcTemplateData {
     private final Map<Integer, NpcTemplate> _npcs = new ConcurrentHashMap<Integer, NpcTemplate>();
 
-    protected NpcTemplateData()
-    {
+    protected NpcTemplateData() {
         load();
         System.out.println(_npcs.size());
     }
 
-    public void load()
-    {
+    public void load() {
         final StatsSet set = new StatsSet();
         final int npcId = 1;
 
@@ -36,41 +33,32 @@ public class NpcTemplateData
 
         NpcTemplate template = _npcs.get(npcId);
 
-        if (template == null)
-        {
+        if (template == null) {
             template = new NpcTemplate(set);
             _npcs.put(template.getId(), template);
-        }
-        else
-        {
+        } else {
             template.set(set);
         }
     }
 
-    public NpcTemplate getTemplate(int id)
-    {
+    public NpcTemplate getTemplate(int id) {
         return _npcs.get(id);
     }
 
-    public NpcTemplate getNpcName(String name)
-    {
-        for(NpcTemplate npcTemplate : _npcs.values())
-        {
-            if (npcTemplate.getName().equalsIgnoreCase(name))
-            {
+    public NpcTemplate getNpcName(String name) {
+        for (NpcTemplate npcTemplate : _npcs.values()) {
+            if (npcTemplate.getName().equalsIgnoreCase(name)) {
                 return npcTemplate;
             }
         }
         return null;
     }
 
-    public static NpcTemplateData getInstance()
-    {
+    public static NpcTemplateData getInstance() {
         return SingletonHolder._instance;
     }
 
-    private static class SingletonHolder
-    {
+    private static class SingletonHolder {
         protected static final NpcTemplateData _instance = new NpcTemplateData();
     }
 }

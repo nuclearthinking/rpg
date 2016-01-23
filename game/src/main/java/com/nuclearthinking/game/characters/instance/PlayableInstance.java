@@ -8,20 +8,17 @@ import com.nuclearthinking.game.enums.ClassId;
 
 /**
  * Created by kuksin-mv on 15.01.2016.
- *
+ * <p>
  * Тут наконец то будет собираться именно игрок
  */
-public class PlayableInstance extends PlayableObject
-{
+public class PlayableInstance extends PlayableObject {
     protected int _class;
 
-    public PlayableInstance(int objectId, CharacterTemplate template)
-    {
+    public PlayableInstance(int objectId, CharacterTemplate template) {
         super(objectId, template);
     }
 
-    public static PlayableInstance create(PlayerTemplate template, String name)
-    {
+    public static PlayableInstance create(PlayerTemplate template, String name) {
         PlayableInstance player = new PlayableInstance(1, template);
         player.setName(name);
         player.setClass(player.getClassId());
@@ -30,37 +27,31 @@ public class PlayableInstance extends PlayableObject
     }
 
     @Override
-    public final PlayerTemplate getTemplate()
-    {
+    public final PlayerTemplate getTemplate() {
         return (PlayerTemplate) super.getTemplate();
     }
 
-    public void setClass(ClassId classId)
-    {
+    public void setClass(ClassId classId) {
         _class = classId.ordinal();
     }
 
-    public ClassId getClassId()
-    {
+    public ClassId getClassId() {
         return getTemplate().getClassId();
     }
 
-    private boolean createPlayer()
-    {
+    private boolean createPlayer() {
         System.out.println(
-                        "Object ID:" + getObjectId() + " " +
-                                "Name:" + getName() + " " +
-                                "Level:" + getLevel() + " " +
-                                "ClassID:" + getClassId()
+                "Object ID:" + getObjectId() + " " +
+                        "Name:" + getName() + " " +
+                        "Level:" + getLevel() + " " +
+                        "ClassID:" + getClassId()
         );
         return true;
     }
 
     @Override
-    public boolean fillDie(CharacterObject killer)
-    {
-        if (!super.fillDie(killer))
-        {
+    public boolean fillDie(CharacterObject killer) {
+        if (!super.fillDie(killer)) {
             return false;
         }
 
