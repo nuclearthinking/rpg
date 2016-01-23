@@ -1,8 +1,12 @@
 package com.nuclearthinking.game.DAO;
 
+import com.nuclearthinking.game.engines.DatabaseEngine;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Date: 19.01.2016
@@ -16,24 +20,44 @@ public class Weapon {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private int id;
     private String name;
-    private Integer weaponType;
-    private Integer strengthBonus;
-    private Integer agilityBonus;
-    private Integer intelligenceBonus;
-    private Integer damageMinimal;
-    private Integer damageMaximal;
+    private String weaponType;
+    private int strengthBonus;
+    private int agilityBonus;
+    private int intelligenceBonus;
+    private int damageMinimal;
+    private int damageMaximal;
 
 
     public Weapon() {
     }
 
-    public Integer getId() {
+    public Weapon getWeaponFromDbById(int id) {
+        Weapon weaponFromDb = new Weapon();
+        try {
+            ResultSet rs = DatabaseEngine.getInstance().executeQuery("SELECT * FROM weapon WHERE weapon_id = " + id + ";");
+            if (rs.next()) {
+                weaponFromDb.setId(rs.getInt(1));
+                weaponFromDb.setName(rs.getString(2));
+                weaponFromDb.setDamageMinimal(rs.getInt(3));
+                weaponFromDb.setDamageMaximal(rs.getInt(4));
+                weaponFromDb.setStrengthBonus(rs.getInt(5));
+                weaponFromDb.setAgilityBonus(rs.getInt(6));
+                weaponFromDb.setIntelligenceBonus(rs.getInt(7));
+                weaponFromDb.setWeaponType(new WeaponType().getWeaponTypeNameById(rs.getInt(8)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return weaponFromDb;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -45,51 +69,51 @@ public class Weapon {
         this.name = name;
     }
 
-    public Integer getWeaponType() {
+    public String getWeaponType() {
         return weaponType;
     }
 
-    public void setWeaponType(Integer weaponType) {
+    public void setWeaponType(String weaponType) {
         this.weaponType = weaponType;
     }
 
-    public Integer getStrengthBonus() {
+    public int getStrengthBonus() {
         return strengthBonus;
     }
 
-    public void setStrengthBonus(Integer strengthBonus) {
+    public void setStrengthBonus(int strengthBonus) {
         this.strengthBonus = strengthBonus;
     }
 
-    public Integer getAgilityBonus() {
+    public int getAgilityBonus() {
         return agilityBonus;
     }
 
-    public void setAgilityBonus(Integer agilityBonus) {
+    public void setAgilityBonus(int agilityBonus) {
         this.agilityBonus = agilityBonus;
     }
 
-    public Integer getIntelligenceBonus() {
+    public int getIntelligenceBonus() {
         return intelligenceBonus;
     }
 
-    public void setIntelligenceBonus(Integer intelligenceBonus) {
+    public void setIntelligenceBonus(int intelligenceBonus) {
         this.intelligenceBonus = intelligenceBonus;
     }
 
-    public Integer getDamageMinimal() {
+    public int getDamageMinimal() {
         return damageMinimal;
     }
 
-    public void setDamageMinimal(Integer damageMinimal) {
+    public void setDamageMinimal(int damageMinimal) {
         this.damageMinimal = damageMinimal;
     }
 
-    public Integer getDamageMaximal() {
+    public int getDamageMaximal() {
         return damageMaximal;
     }
 
-    public void setDamageMaximal(Integer damageMaximal) {
+    public void setDamageMaximal(int damageMaximal) {
         this.damageMaximal = damageMaximal;
     }
 }

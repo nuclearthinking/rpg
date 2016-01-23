@@ -5,7 +5,6 @@ import com.nuclearthinking.game.engines.DatabaseEngine;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -21,12 +20,12 @@ public class Armor {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
     private String name;
-    private Integer armorType;
-    private Integer strengthBonus;
-    private Integer agilityBonus;
-    private Integer intelligenceBonus;
+    private String armorType;
+    private int strengthBonus;
+    private int agilityBonus;
+    private int intelligenceBonus;
 
     public Armor() {
     }
@@ -36,13 +35,13 @@ public class Armor {
         try {
             ResultSet rs = DatabaseEngine.getInstance().executeQuery("SELECT * FROM armor WHERE armor_id = " + id + ";");
             if (rs.next()) {
-                armorFromDB.setId(rs.getLong(1));
+                armorFromDB.setId(rs.getInt(1));
                 armorFromDB.setName(rs.getString(2));
-                armorFromDB.setStrengthBonus(3);
-                armorFromDB.setIntelligenceBonus(4);
-                armorFromDB.setAgilityBonus(5);
-                armorFromDB.setArmorAmount(6);
-                armorFromDB.setArmorType(7);
+                armorFromDB.setStrengthBonus(rs.getInt(3));
+                armorFromDB.setIntelligenceBonus(rs.getInt(4));
+                armorFromDB.setAgilityBonus(rs.getInt(5));
+                armorFromDB.setArmorAmount(rs.getInt(6));
+                armorFromDB.setArmorType(new ArmorType().getArmorTypeNameById(rs.getInt(7)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -50,11 +49,11 @@ public class Armor {
         return armorFromDB;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -66,45 +65,45 @@ public class Armor {
         this.name = name;
     }
 
-    public Integer getArmorType() {
+    public String getArmorType() {
         return armorType;
     }
 
-    public void setArmorType(Integer armorType) {
+    public void setArmorType(String armorType) {
         this.armorType = armorType;
     }
 
-    public Integer getStrengthBonus() {
+    public int getStrengthBonus() {
         return strengthBonus;
     }
 
-    public void setStrengthBonus(Integer strengthBonus) {
+    public void setStrengthBonus(int strengthBonus) {
         this.strengthBonus = strengthBonus;
     }
 
-    public Integer getAgilityBonus() {
+    public int getAgilityBonus() {
         return agilityBonus;
     }
 
-    public void setAgilityBonus(Integer agilityBonus) {
+    public void setAgilityBonus(int agilityBonus) {
         this.agilityBonus = agilityBonus;
     }
 
-    public Integer getIntelligenceBonus() {
+    public int getIntelligenceBonus() {
         return intelligenceBonus;
     }
 
-    public void setIntelligenceBonus(Integer intelligenceBonus) {
+    public void setIntelligenceBonus(int intelligenceBonus) {
         this.intelligenceBonus = intelligenceBonus;
     }
 
-    public Integer getArmorAmount() {
+    public int getArmorAmount() {
         return armorAmount;
     }
 
-    public void setArmorAmount(Integer armorAmount) {
+    public void setArmorAmount(int armorAmount) {
         this.armorAmount = armorAmount;
     }
 
-    private Integer armorAmount;
+    private int armorAmount;
 }

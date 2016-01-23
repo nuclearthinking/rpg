@@ -18,7 +18,7 @@ public final class Game {
 
     private Game() {
         //Инициализация базы данных
-        DatabaseEngine.getInstance().initDb().getConnection();
+        DatabaseEngine.getInstance().initDb();
         //Создание мира
         World world = new WorldManager(30).getWorld();
         //Создание персонажа
