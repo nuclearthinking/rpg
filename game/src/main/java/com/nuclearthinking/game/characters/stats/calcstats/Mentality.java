@@ -7,11 +7,9 @@ import com.nuclearthinking.game.enums.BaseStats;
 /**
  * Created by kuksin-mv on 14.01.2016.
  */
-public class Mentality implements IBaseStat
-{
+public class Mentality implements IBaseStat {
     @Override
-    public double calcBonus(CharacterObject characterObject)
-    {
+    public double calcBonus(CharacterObject characterObject) {
         return BaseStats.MENbonus[characterObject.getMEN()];
     }
 }

@@ -5,15 +5,12 @@ import com.nuclearthinking.game.characters.stats.functions.*;
 
 /**
  * Created by kuksin-mv on 14.01.2016.
- *
+ * <p>
  * Тут предлагаю производить все расчеты со статами и эффектами
  */
-public final class Formulas
-{
-    public static void addFuncsToNewCharacter(CharacterObject cha)
-    {
-        if (cha.isPlayer() || cha.isMonster())
-        {
+public final class Formulas {
+    public static void addFuncsToNewCharacter(CharacterObject cha) {
+        if (cha.isPlayer() || cha.isMonster()) {
             cha.addStatFunc(FuncMaxHpMul.getInstance());
             cha.addStatFunc(FuncMaxMpMul.getInstance());
             cha.addStatFunc(FuncPAtkMod.getInstance());

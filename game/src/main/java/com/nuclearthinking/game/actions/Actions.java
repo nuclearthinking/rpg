@@ -72,11 +72,9 @@ public class Actions {
         actionList.putAll(tempActionList);
     }
 
-    protected void getAttackActions(Map<String, Action> actionMap)
-    {
+    protected void getAttackActions(Map<String, Action> actionMap) {
         Map<String, Action> tempActionMap = new HashMap<String, Action>();
-        if(!monster.isDead())
-        {
+        if (!monster.isDead()) {
             Attack attack = new Attack(player, world, monster);
             tempActionMap.put("Attack", attack);
         }

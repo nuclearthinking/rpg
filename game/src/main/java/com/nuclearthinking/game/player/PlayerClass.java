@@ -9,8 +9,7 @@ import com.nuclearthinking.game.characters.interfaces.IPlayerClass;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public abstract class PlayerClass implements IPlayerClass
-{
+public abstract class PlayerClass implements IPlayerClass {
     public double pCriticalChanse(Player characterObject) {
         return 5 + (characterObject.getAgility() / (10 * (characterObject.getLevel() * 0.5)));
     }
@@ -19,18 +18,15 @@ public abstract class PlayerClass implements IPlayerClass
         return 5 + (characterObject.getIntelligence() / (10 * characterObject.getLevel() * 0.5));
     }
 
-    public boolean isMage()
-    {
+    public boolean isMage() {
         return false;
     }
 
-    public boolean isRogue()
-    {
+    public boolean isRogue() {
         return false;
     }
 
-    public boolean isWarrior()
-    {
+    public boolean isWarrior() {
         return false;
     }
 }

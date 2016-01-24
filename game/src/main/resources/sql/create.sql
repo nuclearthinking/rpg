@@ -1,0 +1,6 @@
+CREATE SCHEMA IF NOT EXISTS `game`;
+USE `game`;
+CREATE TABLE IF NOT EXISTS `game`.`weapon_types` (`weapon_type_id` INT NOT NULL AUTO_INCREMENT,`weapon_type_name` VARCHAR(45) NULL,PRIMARY KEY (`weapon_type_id`))ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `game`.`weapon` (`weapon_id` INT NOT NULL AUTO_INCREMENT, `name` VARCHAR(45) NOT NULL, `damage_minimal` INT NOT NULL, `damage_maximal` INT NOT NULL, `str_b` INT NULL, `agi_b` INT NULL, `int_b` INT NULL, `weapon_type` INT NULL, PRIMARY KEY (`weapon_id`), INDEX `weapontypedict_idx` (`weapon_type` ASC), CONSTRAINT `weapontypedict` FOREIGN KEY (`weapon_type`) REFERENCES `game`.`weapon_types` (`weapon_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)  ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `game`.`armor_types` (`armor_type_id` INT NOT NULL AUTO_INCREMENT, `armor_type_name` VARCHAR(45) NOT NULL, PRIMARY KEY (`armor_type_id`) ) ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `game`.`armor` (`armor_id` INT NOT NULL AUTO_INCREMENT, `name` VARCHAR(45) NULL, `str_b` INT NULL, `int_b` INT NULL, `agi_b` INT NULL, `armor_amount` INT NULL, `armor_type` INT NULL, PRIMARY KEY (`armor_id`), INDEX `armor_idx` (`armor_type` ASC), CONSTRAINT `armor` FOREIGN KEY (`armor_type`) REFERENCES `game`.`armor_types` (`armor_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION ) ENGINE = InnoDB;

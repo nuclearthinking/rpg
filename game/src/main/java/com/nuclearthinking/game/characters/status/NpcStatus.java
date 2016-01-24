@@ -6,19 +6,15 @@ import com.nuclearthinking.game.characters.Npc;
 /**
  * Created by Izonami on 16.01.2016.
  */
-public class NpcStatus extends CharacterStatus
-{
+public class NpcStatus extends CharacterStatus {
 
-    public NpcStatus(Npc npc)
-    {
+    public NpcStatus(Npc npc) {
         super(npc);
     }
 
     @Override
-    public void updateHp(double value, CharacterObject attacker)
-    {
-        if (getActiveCharacter().isDead())
-        {
+    public void updateHp(double value, CharacterObject attacker) {
+        if (getActiveCharacter().isDead()) {
             return;
         }
 
@@ -26,8 +22,7 @@ public class NpcStatus extends CharacterStatus
     }
 
     @Override
-    public Npc getActiveCharacter()
-    {
+    public Npc getActiveCharacter() {
         return (Npc) super.getActiveCharacter();
     }
 }

@@ -7,60 +7,49 @@ import com.nuclearthinking.game.characters.templates.CharacterTemplate;
 /**
  * Created by kuksin-mv on 15.01.2016.
  */
-public class PlayableObject extends CharacterObject
-{
-    public PlayableObject(int objectId, CharacterTemplate template)
-    {
+public class PlayableObject extends CharacterObject {
+    public PlayableObject(int objectId, CharacterTemplate template) {
         super(objectId, template);
     }
 
     @Override
-    public PlayableStat getStat()
-    {
+    public PlayableStat getStat() {
         return (PlayableStat) super.getStat();
     }
 
     @Override
-    public void initCharacterStat()
-    {
+    public void initCharacterStat() {
         setStat(new PlayableStat(this));
     }
 
     @Override
-    public PlayableStatus getStatus()
-    {
+    public PlayableStatus getStatus() {
         return (PlayableStatus) super.getStatus();
     }
 
     @Override
-    public void initCharacterStatus()
-    {
+    public void initCharacterStatus() {
         setStatus(new PlayableStatus(this));
     }
 
     @Override
-    public boolean canBeAttacked()
-    {
+    public boolean canBeAttacked() {
         return true;
     }
 
     @Override
-    public boolean isPlayable()
-    {
+    public boolean isPlayable() {
         return true;
     }
 
     @Override
-    public int getId()
-    {
+    public int getId() {
         return 0;
     }
 
     @Override
-    public boolean fillDie(CharacterObject killer)
-    {
-        if (isDead())
-        {
+    public boolean fillDie(CharacterObject killer) {
+        if (isDead()) {
             return false;
         }
         // now reset currentHp to zero

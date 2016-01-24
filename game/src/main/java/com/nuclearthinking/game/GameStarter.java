@@ -3,10 +3,12 @@ package com.nuclearthinking.game;
 import com.nuclearthinking.game.config.Config;
 import com.nuclearthinking.game.data.ItemData;
 import com.nuclearthinking.game.data.SkillData;
+import com.nuclearthinking.game.engines.DatabaseEngine;
 import com.nuclearthinking.game.utils.ResourceUtil;
 
 import java.io.File;
 import java.io.InputStream;
+import java.sql.Connection;
 import java.util.logging.LogManager;
 
 /**

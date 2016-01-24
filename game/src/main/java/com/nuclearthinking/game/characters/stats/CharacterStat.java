@@ -7,31 +7,26 @@ import com.nuclearthinking.game.model.skills.Skill;
 /**
  * Created by kuksin-mv on 15.01.2016.
  */
-public class CharacterStat
-{
+public class CharacterStat {
     private final CharacterObject _activeCharacterObject;
     private long _exp = 0;
     private byte _level = 1;
 
-    public CharacterStat(CharacterObject activeCharacterObject)
-    {
+    public CharacterStat(CharacterObject activeCharacterObject) {
         _activeCharacterObject = activeCharacterObject;
     }
 
-    public final double calcStat(Stats stat, double init)
-    {
+    public final double calcStat(Stats stat, double init) {
         return calcStat(stat, null, null, init);
     }
 
-    public final double calcStat(Stats stats, CharacterObject target, Skill skill, double initVal)
-    {
+    public final double calcStat(Stats stats, CharacterObject target, Skill skill, double initVal) {
         double value = initVal;
 
         final int id = stats.ordinal();
         final Calculator c = _activeCharacterObject.getCalculators()[id];
 
-        if ((c == null) || (c.size() == 0))
-        {
+        if ((c == null) || (c.size() == 0)) {
             return value;
         }
 
@@ -40,8 +35,7 @@ public class CharacterStat
         return value;
     }
 
-    public CharacterObject getActiveChar()
-    {
+    public CharacterObject getActiveChar() {
         return _activeCharacterObject;
     }
 
@@ -78,103 +72,83 @@ public class CharacterStat
     STAT_MEN("MEN");
     */
 
-    public int getMaxHp()
-    {
+    public int getMaxHp() {
         return (int) calcStat(Stats.MAX_HP, _activeCharacterObject.getTemplate().getBaseHpMax());
     }
 
-    public int getMaxMp()
-    {
+    public int getMaxMp() {
         return (int) calcStat(Stats.MAX_MP, _activeCharacterObject.getTemplate().getBaseMpMax());
     }
 
-    public int getMaxHpRegen()
-    {
+    public int getMaxHpRegen() {
         return (int) calcStat(Stats.MAX_RECOVERABLE_HP, _activeCharacterObject.getTemplate().getBaseHpRegen());
     }
 
-    public int getMaxMpRegen()
-    {
+    public int getMaxMpRegen() {
         return (int) calcStat(Stats.REGENERATE_MP_RATE, _activeCharacterObject.getTemplate().getBaseMpRegen());
     }
 
-    public int getPDef()
-    {
+    public int getPDef() {
         return (int) calcStat(Stats.POWER_DEFENCE, _activeCharacterObject.getTemplate().getBasePDef());
     }
 
-    public int getMDef()
-    {
+    public int getMDef() {
         return (int) calcStat(Stats.MAGIC_DEFENCE, _activeCharacterObject.getTemplate().getBaseMDef());
     }
 
-    public int getPAtk()
-    {
+    public int getPAtk() {
         return (int) calcStat(Stats.POWER_ATTACK, _activeCharacterObject.getTemplate().getBasePAtk());
     }
 
-    public int getMAtk()
-    {
+    public int getMAtk() {
         return (int) calcStat(Stats.MAGIC_ATTACK, _activeCharacterObject.getTemplate().getBaseMAtk());
     }
 
-    public int getPAtkSpd()
-    {
+    public int getPAtkSpd() {
         return (int) calcStat(Stats.POWER_ATTACK_SPEED, _activeCharacterObject.getTemplate().getBasePAtkSpd());
     }
 
-    public int getMAtkSpd()
-    {
+    public int getMAtkSpd() {
         return (int) calcStat(Stats.MAGIC_ATTACK_SPEED, _activeCharacterObject.getTemplate().getBaseMAtkSpd());
     }
 
-    public int getSTR()
-    {
+    public int getSTR() {
         return (int) calcStat(Stats.STAT_STR, _activeCharacterObject.getTemplate().getBaseSTR());
     }
 
-    public int getCON()
-    {
+    public int getCON() {
         return (int) calcStat(Stats.STAT_CON, _activeCharacterObject.getTemplate().getBaseCON());
     }
 
-    public int getDEX()
-    {
+    public int getDEX() {
         return (int) calcStat(Stats.STAT_DEX, _activeCharacterObject.getTemplate().getBaseDEX());
     }
 
-    public int getINT()
-    {
+    public int getINT() {
         return (int) calcStat(Stats.STAT_INT, _activeCharacterObject.getTemplate().getBaseINT());
     }
 
-    public int getWIT()
-    {
+    public int getWIT() {
         return (int) calcStat(Stats.STAT_WIT, _activeCharacterObject.getTemplate().getBaseWIT());
     }
 
-    public int getMEN()
-    {
+    public int getMEN() {
         return (int) calcStat(Stats.STAT_MEN, _activeCharacterObject.getTemplate().getBaseMEN());
     }
 
-    public byte getLevel()
-    {
+    public byte getLevel() {
         return _level;
     }
 
-    public void setLevel(byte value)
-    {
+    public void setLevel(byte value) {
         _level = value;
     }
 
-    public long getExp()
-    {
+    public long getExp() {
         return _exp;
     }
 
-    public void setExp(long value)
-    {
+    public void setExp(long value) {
         _exp = value;
     }
 }

@@ -22,8 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-public abstract class CharacterObject extends GameObject
-{
+public abstract class CharacterObject extends GameObject {
     //Тут будем хранить время реюзов скилов
     private volatile Map<Integer, ReuseTime> _reuseTimeStampsSkills = null;
     private volatile Map<Integer, Long> _disabledSkills = null;
@@ -46,14 +45,13 @@ public abstract class CharacterObject extends GameObject
     private CharacterStatus _status;
     private CharacterTemplate _template;
 
-    public CharacterObject() {}
+    public CharacterObject() {
+    }
 
-    public CharacterObject(int objectId, CharacterTemplate template)
-    {
+    public CharacterObject(int objectId, CharacterTemplate template) {
         super(objectId);
 
-        if (template == null)
-        {
+        if (template == null) {
             throw new NullPointerException("Template is null");
         }
 
@@ -62,16 +60,12 @@ public abstract class CharacterObject extends GameObject
 
         _template = template;
 
-        if (isNpc())
-        {
-            for(Skill skill : template.getSkills().values())
-            {
+        if (isNpc()) {
+            for (Skill skill : template.getSkills().values()) {
                 //TODO: Тут будут добавляться заданные скилы для нпс
                 //addSkill(skill);
             }
-        }
-        else
-        {
+        } else {
             System.out.println(Stats.NUM_STATS);
             _calculators = new Calculator[Stats.NUM_STATS];
             Formulas.addFuncsToNewCharacter(this);
@@ -82,169 +76,137 @@ public abstract class CharacterObject extends GameObject
     }
 
     @Override
-    public void onSpawn()
-    {
+    public void onSpawn() {
         super.onSpawn();
         //TODO: Позицию
     }
 
 
-    public void doCast(Skill skill)
-    {
+    public void doCast(Skill skill) {
         beginCast(skill, false);
     }
 
-    private void beginCast(Skill skill, boolean boo)
-    {
+    private void beginCast(Skill skill, boolean boo) {
         //TODO: Тут будет определение типа скила
         CharacterObject target = null;
 
         beginCast(skill, boo, target);
     }
 
-    private void beginCast(Skill skill, boolean simultaneously, CharacterObject target)
-    {
+    private void beginCast(Skill skill, boolean simultaneously, CharacterObject target) {
 
     }
 
-    public boolean checkDoCastConditions(Skill skill)
-    {
+    public boolean checkDoCastConditions(Skill skill) {
         //TODO: Тут будем проверять состояния возможности каста
         return false;
     }
 
     //TODO: Реализовать состояния при которых игрок не сможет совершать действия (например в стуне)
 
-    public final boolean isCastingNow()
-    {
+    public final boolean isCastingNow() {
         return _isCastingNow;
     }
 
-    public void setIsCastingNow(boolean value)
-    {
+    public void setIsCastingNow(boolean value) {
         _isCastingNow = value;
     }
 
-    public void setTarget(GameObject object)
-    {
-        if (object != null)
-        {
+    public void setTarget(GameObject object) {
+        if (object != null) {
             object = null;
         }
 
-        if ((object != null) && (object != _target))
-        {
+        if ((object != null) && (object != _target)) {
             //TODO: Тут надо сделать список целей
         }
         _target = object;
     }
 
-    public final int getTargetId()
-    {
-        if (_target != null)
-        {
+    public final int getTargetId() {
+        if (_target != null) {
             return _target.getObjectId();
         }
         return 0;
     }
 
-    public final GameObject getTarget()
-    {
+    public final GameObject getTarget() {
         return _target;
     }
 
     @Override
-    public boolean isCharacter()
-    {
+    public boolean isCharacter() {
         return true;
     }
 
-    public Race getRace()
-    {
+    public Race getRace() {
         return getTemplate().getRace();
     }
 
-    public CharacterTemplate getTemplate()
-    {
+    public CharacterTemplate getTemplate() {
         return _template;
     }
 
-    public final void setTemplate(CharacterTemplate template)
-    {
+    public final void setTemplate(CharacterTemplate template) {
         _template = template;
     }
 
-    public final void addStatFunc(AbstractFunction function)
-    {
-        if (function == null)
-        {
+    public final void addStatFunc(AbstractFunction function) {
+        if (function == null) {
             return;
         }
 
         int stat = function.getStat().ordinal();
 
-        if (_calculators[stat] == null)
-        {
+        if (_calculators[stat] == null) {
             _calculators[stat] = new Calculator();
         }
 
         _calculators[stat].addFunc(function);
     }
 
-    public void decreaseCurrentHp(double damage, CharacterObject attacker)
-    {
+    public void decreaseCurrentHp(double damage, CharacterObject attacker) {
         getStatus().updateHp(damage, attacker);
     }
 
-    public final Calculator[] getCalculators()
-    {
+    public final Calculator[] getCalculators() {
         return _calculators;
     }
 
-    public CharacterStat getStat()
-    {
+    public CharacterStat getStat() {
         return _stat;
     }
 
-    public void initCharacterStat()
-    {
+    public void initCharacterStat() {
         _stat = new CharacterStat(this);
     }
 
-    public final void setStat(CharacterStat value)
-    {
+    public final void setStat(CharacterStat value) {
         _stat = value;
     }
 
-    public CharacterStatus getStatus()
-    {
+    public CharacterStatus getStatus() {
         return _status;
     }
 
-    public void initCharacterStatus()
-    {
+    public void initCharacterStatus() {
         _status = new CharacterStatus(this);
     }
 
-    public void setStatus(CharacterStatus value)
-    {
+    public void setStatus(CharacterStatus value) {
         _status = value;
     }
 
-    public final boolean isDead()
-    {
+    public final boolean isDead() {
         return _isDead;
     }
 
-    public final void setIsDead(boolean value)
-    {
+    public final void setIsDead(boolean value) {
         _isDead = value;
     }
 
-    public boolean fillDie(CharacterObject killer)
-    {
-        if (isDead())
-        {
+    public boolean fillDie(CharacterObject killer) {
+        if (isDead()) {
             return false;
         }
 
@@ -276,93 +238,75 @@ public abstract class CharacterObject extends GameObject
     MAGIC_ATTACK("mAtk"),
     */
 
-    public int getMaxHp()
-    {
+    public int getMaxHp() {
         return getStat().getMaxHp();
     }
 
-    public int getMaxMp()
-    {
+    public int getMaxMp() {
         return getStat().getMaxMp();
     }
 
-    public int getMaxHpRegen()
-    {
+    public int getMaxHpRegen() {
         return getStat().getMaxHpRegen();
     }
 
-    public int getMaxMpRegen()
-    {
+    public int getMaxMpRegen() {
         return getStat().getMaxMpRegen();
     }
 
-    public int getPDef()
-    {
+    public int getPDef() {
         return getStat().getPDef();
     }
 
-    public int getMDef()
-    {
+    public int getMDef() {
         return getStat().getMDef();
     }
 
-    public int getPAtk()
-    {
+    public int getPAtk() {
         return getStat().getPAtk();
     }
 
-    public int getMAtk()
-    {
+    public int getMAtk() {
         return getStat().getMAtk();
     }
 
-    public int getPAtkSpd()
-    {
+    public int getPAtkSpd() {
         return getStat().getPAtkSpd();
     }
 
-    public int getMAtkSpd()
-    {
+    public int getMAtkSpd() {
         return getStat().getMAtkSpd();
     }
 
-    public int getSTR()
-    {
+    public int getSTR() {
         return getStat().getSTR();
     }
 
-    public int getCON()
-    {
+    public int getCON() {
         return getStat().getCON();
     }
 
-    public int getDEX()
-    {
+    public int getDEX() {
         return getStat().getDEX();
     }
 
-    public int getINT()
-    {
+    public int getINT() {
         return getStat().getINT();
     }
 
-    public int getWIT()
-    {
+    public int getWIT() {
         return getStat().getWIT();
     }
 
-    public int getMEN()
-    {
+    public int getMEN() {
         return getStat().getMEN();
     }
 
-    public final double getCurrentHp()
-    {
+    public final double getCurrentHp() {
         return getStatus().getCurrentHp();
     }
 
-    public final void setCurrentHp(double newHp)
-    {
+    public final void setCurrentHp(double newHp) {
         getStatus().setCurrentHp(newHp);
     }
 

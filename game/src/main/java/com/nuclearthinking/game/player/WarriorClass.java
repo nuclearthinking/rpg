@@ -19,8 +19,7 @@ public class WarriorClass extends PlayerClass {
     }
 
     @Override
-    public int pDamage(Player characterObject)
-    {
+    public int pDamage(Player characterObject) {
         return (int) characterObject.getStrength() * 2;
     }
 
@@ -50,14 +49,12 @@ public class WarriorClass extends PlayerClass {
     }
 
     @Override
-    public boolean isWarrior()
-    {
+    public boolean isWarrior() {
         return true;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Warrior";
     }
 }
