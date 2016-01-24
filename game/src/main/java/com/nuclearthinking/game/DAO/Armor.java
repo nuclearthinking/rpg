@@ -2,9 +2,7 @@ package com.nuclearthinking.game.DAO;
 
 import com.nuclearthinking.game.engines.DatabaseEngine;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -15,25 +13,26 @@ import java.sql.SQLException;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-@Entity
-public class Armor {
+public class Armor extends DAO {
 
-    @Id
-    @GeneratedValue
     private int id;
     private String name;
     private String armorType;
     private int strengthBonus;
     private int agilityBonus;
     private int intelligenceBonus;
+    private int armorAmount;
 
     public Armor() {
     }
 
     public Armor getArmorByID(int id) {
+        checkId(id);
         Armor armorFromDB = new Armor();
         try {
-            ResultSet rs = DatabaseEngine.getInstance().executeQuery("SELECT * FROM armor WHERE armor_id = " + id + ";");
+            PreparedStatement preparedStatement = getPreparedStatement();
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 armorFromDB.setId(rs.getInt(1));
                 armorFromDB.setName(rs.getString(2));
@@ -43,10 +42,22 @@ public class Armor {
                 armorFromDB.setArmorAmount(rs.getInt(6));
                 armorFromDB.setArmorType(new ArmorType().getArmorTypeNameById(rs.getInt(7)));
             }
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return armorFromDB;
+    }
+
+    @Override
+    PreparedStatement getPreparedStatement() {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = DatabaseEngine.getInstance().getConnection().prepareStatement("SELECT * FROM armor WHERE armor_id = ?;");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return preparedStatement;
     }
 
     public int getId() {
@@ -104,6 +115,4 @@ public class Armor {
     public void setArmorAmount(int armorAmount) {
         this.armorAmount = armorAmount;
     }
-
-    private int armorAmount;
 }

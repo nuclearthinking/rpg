@@ -11,12 +11,12 @@ import com.nuclearthinking.game.model.skills.Skill;
 public class FuncAtkAccuracy extends AbstractFunction {
     private static final FuncAtkAccuracy _faa_instance = new FuncAtkAccuracy();
 
-    public static AbstractFunction getInstance() {
-        return _faa_instance;
-    }
-
     public FuncAtkAccuracy() {
         super(Stats.ACCURACY_COMBAT, 1, null, 0);
+    }
+
+    public static AbstractFunction getInstance() {
+        return _faa_instance;
     }
 
     @Override

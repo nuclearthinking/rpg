@@ -13,36 +13,33 @@ import com.nuclearthinking.game.utils.WorldGenerateUtil;
 
 
 public class Floor extends World {
+    protected Room[][] floorMap;
     int minWidth = 4;
     int maxWidth = 7;
     int minHeight = 3;
     int maxHeight = 8;
     boolean visited = false;
-
     int floorSize;
-
     private RandomUtil rUtil = new RandomUtil();
-
-
     private WorldGenerateUtil wGem = new WorldGenerateUtil();
+    private Biome floorBiome;
+    private int floorId;
 
     public Room[][] getFloorMap() {
         return floorMap;
     }
 
-    public void setFloorSize(int floorSize) {
-        this.floorSize = floorSize;
+    public void setFloorMap(Room[][] floorMap) {
+        this.floorMap = floorMap;
     }
 
     public int getFloorSize() {
         return floorSize;
     }
 
-    protected Room[][] floorMap;
-    private Biome floorBiome;
-
-    private int floorId;
-
+    public void setFloorSize(int floorSize) {
+        this.floorSize = floorSize;
+    }
 
     public boolean isVisited() {
         return visited;
@@ -95,7 +92,6 @@ public class Floor extends World {
         return floor;
     }
 
-
     private void checkWidthHeightValues() {
         if (minWidth == 0 | maxWidth == 0) {
             throw new RuntimeException("Не установленны минимальные и максимальные значения ширины этажа");
@@ -103,10 +99,6 @@ public class Floor extends World {
         if (minHeight == 0 | maxHeight == 0) {
             throw new RuntimeException("Не установленны минимальные и максимальные значения высоты этажа");
         }
-    }
-
-    public void setFloorMap(Room[][] floorMap) {
-        this.floorMap = floorMap;
     }
 
     public Biome getFloorBiome() {

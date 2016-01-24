@@ -23,21 +23,16 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public abstract class CharacterObject extends GameObject {
+    private final Map<Integer, Skill> _skills = new ConcurrentHashMap<>();
     //Тут будем хранить время реюзов скилов
     private volatile Map<Integer, ReuseTime> _reuseTimeStampsSkills = null;
     private volatile Map<Integer, Long> _disabledSkills = null;
     private volatile Set<CharacterObject> _attackByList;
     private volatile boolean _isCastingNow = false;
-
     private boolean _isDead = false;
     private boolean _allSkillsDisabled;
-
     private int level = 1;
-
     private Calculator[] _calculators;
-
-    private final Map<Integer, Skill> _skills = new ConcurrentHashMap<>();
-
     //Это цель для атаки
     private GameObject _target;
 
@@ -112,17 +107,6 @@ public abstract class CharacterObject extends GameObject {
         _isCastingNow = value;
     }
 
-    public void setTarget(GameObject object) {
-        if (object != null) {
-            object = null;
-        }
-
-        if ((object != null) && (object != _target)) {
-            //TODO: Тут надо сделать список целей
-        }
-        _target = object;
-    }
-
     public final int getTargetId() {
         if (_target != null) {
             return _target.getObjectId();
@@ -132,6 +116,17 @@ public abstract class CharacterObject extends GameObject {
 
     public final GameObject getTarget() {
         return _target;
+    }
+
+    public void setTarget(GameObject object) {
+        if (object != null) {
+            object = null;
+        }
+
+        if ((object != null) && (object != _target)) {
+            //TODO: Тут надо сделать список целей
+        }
+        _target = object;
     }
 
     @Override
@@ -177,24 +172,24 @@ public abstract class CharacterObject extends GameObject {
         return _stat;
     }
 
-    public void initCharacterStat() {
-        _stat = new CharacterStat(this);
-    }
-
     public final void setStat(CharacterStat value) {
         _stat = value;
+    }
+
+    public void initCharacterStat() {
+        _stat = new CharacterStat(this);
     }
 
     public CharacterStatus getStatus() {
         return _status;
     }
 
-    public void initCharacterStatus() {
-        _status = new CharacterStatus(this);
-    }
-
     public void setStatus(CharacterStatus value) {
         _status = value;
+    }
+
+    public void initCharacterStatus() {
+        _status = new CharacterStatus(this);
     }
 
     public final boolean isDead() {

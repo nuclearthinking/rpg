@@ -16,6 +16,10 @@ public class NpcTemplateData {
         System.out.println(_npcs.size());
     }
 
+    public static NpcTemplateData getInstance() {
+        return SingletonHolder._instance;
+    }
+
     public void load() {
         final StatsSet set = new StatsSet();
         final int npcId = 1;
@@ -52,10 +56,6 @@ public class NpcTemplateData {
             }
         }
         return null;
-    }
-
-    public static NpcTemplateData getInstance() {
-        return SingletonHolder._instance;
     }
 
     private static class SingletonHolder {

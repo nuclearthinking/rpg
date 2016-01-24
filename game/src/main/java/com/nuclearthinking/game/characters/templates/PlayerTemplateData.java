@@ -16,6 +16,10 @@ public final class PlayerTemplateData {
         load();
     }
 
+    public static final PlayerTemplateData getInstance() {
+        return SingletonHolder._instance;
+    }
+
     public void load() {
         _playerTemplate.clear();
 
@@ -38,10 +42,6 @@ public final class PlayerTemplateData {
 
     public PlayerTemplate getTemplate(int classId) {
         return _playerTemplate.get(ClassId.getClassId(classId));
-    }
-
-    public static final PlayerTemplateData getInstance() {
-        return SingletonHolder._instance;
     }
 
     private static class SingletonHolder {

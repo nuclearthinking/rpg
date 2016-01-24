@@ -11,12 +11,12 @@ import com.nuclearthinking.game.model.skills.Skill;
 public class FuncPAtkSpeed extends AbstractFunction {
     private static final FuncPAtkSpeed _fpas_instance = new FuncPAtkSpeed();
 
-    public static AbstractFunction getInstance() {
-        return _fpas_instance;
-    }
-
     public FuncPAtkSpeed() {
         super(Stats.POWER_ATTACK_SPEED, 1, null, 0);
+    }
+
+    public static AbstractFunction getInstance() {
+        return _fpas_instance;
     }
 
     @Override

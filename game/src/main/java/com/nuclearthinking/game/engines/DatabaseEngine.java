@@ -19,15 +19,14 @@ public final class DatabaseEngine {
 
     //    private static final String H2_DB_URL = "jdbc:h2:mem:game;MODE=MySQL";
     private static final String H2_DB_URL = "jdbc:h2:file:./src/main/resources/sql/game;MODE=MySQL";
-
-    public void setConnection(Connection _connection) {
-        this.connection = _connection;
-    }
-
     private Connection connection;
 
     private DatabaseEngine() {
 
+    }
+
+    public static DatabaseEngine getInstance() {
+        return DataBaseHolder.INSTANCE;
     }
 
     public DatabaseEngine initDb() {
@@ -59,6 +58,10 @@ public final class DatabaseEngine {
         }
     }
 
+    public void setConnection(Connection _connection) {
+        this.connection = _connection;
+    }
+
     public void closeConnection() {
         if (connection != null) {
             try {
@@ -81,11 +84,6 @@ public final class DatabaseEngine {
             e.printStackTrace();
         }
         return rs;
-    }
-
-
-    public static DatabaseEngine getInstance() {
-        return DataBaseHolder.INSTANCE;
     }
 
     private static class DataBaseHolder {

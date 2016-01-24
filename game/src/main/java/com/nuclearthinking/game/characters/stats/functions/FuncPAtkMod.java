@@ -11,12 +11,12 @@ import com.nuclearthinking.game.model.skills.Skill;
 public class FuncPAtkMod extends AbstractFunction {
     private static final FuncPAtkMod _fpa_instance = new FuncPAtkMod();
 
-    public static AbstractFunction getInstance() {
-        return _fpa_instance;
-    }
-
     private FuncPAtkMod() {
         super(Stats.POWER_ATTACK, 1, null, 0);
+    }
+
+    public static AbstractFunction getInstance() {
+        return _fpa_instance;
     }
 
     @Override

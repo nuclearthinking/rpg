@@ -11,12 +11,12 @@ import com.nuclearthinking.game.model.skills.Skill;
 public class FuncMoveSpeed extends AbstractFunction {
     private static final FuncMoveSpeed _fms_instance = new FuncMoveSpeed();
 
-    public static AbstractFunction getInstance() {
-        return _fms_instance;
-    }
-
     public FuncMoveSpeed() {
         super(Stats.MOVE_SPEED, 1, null, 0);
+    }
+
+    public static AbstractFunction getInstance() {
+        return _fms_instance;
     }
 
     @Override
