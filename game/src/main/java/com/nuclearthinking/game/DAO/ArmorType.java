@@ -5,6 +5,7 @@ import com.nuclearthinking.game.engines.DatabaseEngine;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -29,13 +30,18 @@ public class ArmorType {
     }
 
     public ArmorType getArmorTypeById(int id) {
+
+
         ArmorType armorTypeFromDb = new ArmorType();
         try {
-            ResultSet rs = DatabaseEngine.getInstance().executeQuery("SELECT * FROM armor_types WHERE armor_type_id = " + id + ";");
+            PreparedStatement prps = getPrpStatement();
+            prps.setInt(1, id);
+            ResultSet rs = prps.executeQuery();
             if (rs.next()) {
                 armorTypeFromDb.setArmorTypeId(rs.getInt(1));
                 armorTypeFromDb.setArmorTypeName(rs.getString(2));
             }
+            prps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -45,14 +51,27 @@ public class ArmorType {
     public String getArmorTypeNameById(int id) {
         String armorTypeName = null;
         try {
-            ResultSet rs = DatabaseEngine.getInstance().executeQuery("SELECT * FROM armor_types WHERE armor_type_id = " + id + ";");
+            PreparedStatement prpst = getPrpStatement();
+            prpst.setInt(1, id);
+            ResultSet rs = prpst.executeQuery();
             if (rs.next()) {
                 armorTypeName = rs.getString(2);
             }
+            prpst.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return armorTypeName;
+    }
+
+    protected PreparedStatement getPrpStatement() {
+        PreparedStatement prpst = null;
+        try {
+            prpst = DatabaseEngine.getInstance().getConnection().prepareStatement("SELECT * FROM armor_types WHERE armor_type_id = ?;");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return prpst;
     }
 
     public Integer getArmorTypeId() {
