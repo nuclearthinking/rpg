@@ -8,7 +8,7 @@ import com.nuclearthinking.game.utils.WorldGenerateUtil;
 public class Room
 {
     private static WorldGenerateUtil wgu = new WorldGenerateUtil();
-    public String[][] _room;
+    private String[][] _room;
 
     public Room(String[][] value)
     {
@@ -18,6 +18,11 @@ public class Room
     public String[][] getRoom()
     {
         return _room;
+    }
+
+    public int getRoomSize()
+    {
+        return _room.length;
     }
 
     public String getRoomValue(int x, int y)

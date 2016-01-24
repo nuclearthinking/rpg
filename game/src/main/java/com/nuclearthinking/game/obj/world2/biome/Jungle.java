@@ -1,4 +1,7 @@
-package com.nuclearthinking.game.obj.world2;
+package com.nuclearthinking.game.obj.world2.biome;
+
+import com.nuclearthinking.game.obj.world2.Cell;
+import com.nuclearthinking.game.obj.world2.Room;
 
 /**
  * Created by Izonami on 22.01.2016.
@@ -11,23 +14,20 @@ public class Jungle extends BiomObject
     public Jungle(int size)
     {
         _size = size;
-        createJungle();
+        createBiome();
     }
 
-    private void createJungle()
+    private void createBiome()
     {
         String piace = cell.getCellValue(0);
         String tree = cell.getCellValue(3);
         String water = cell.getCellValue(4);
 
-        Room room, room2;
+        Room room;
         room = new Room(new String[_size][_size]);
-        room2 = new Room(new String[_size][_size]);
 
         room.setCellIntoRoom(piace, water, tree);
-        room2.setCellIntoRoom(piace, water, tree);
 
-        setBiom("Room1", room);
-        setBiom("Room2", room2);
+        setBiom("Jungle", room);
     }
 }

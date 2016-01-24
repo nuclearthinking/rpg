@@ -1,5 +1,8 @@
 package com.nuclearthinking.game.obj.world2;
 
+import com.nuclearthinking.game.obj.world2.biome.BiomObject;
+import com.nuclearthinking.game.obj.world2.biome.Jungle;
+
 import java.util.Map;
 
 /**
@@ -7,42 +10,32 @@ import java.util.Map;
  */
 public class WorldInstance
 {
-    private static int WORLD_SIZE;
+    public static Jungle jungle;
 
     public static void main(String[] args)
     {
         WorldInstance worldInstance = new WorldInstance(10);
+        worldInstance.biomOut(jungle);
     }
 
-    public WorldInstance(int _worldSize)
+    public WorldInstance(int biomSize)
     {
-        setSize(_worldSize);
-
-        Jungle jungle = new Jungle(_worldSize);
-        biomOut(jungle);
-    }
-
-    private void setSize(int _worldSize)
-    {
-        WORLD_SIZE = _worldSize;
+        jungle = new Jungle(biomSize);
     }
 
     private void roomOut(Room room)
     {
-        for(int i = 0; i < room._room.length; i++)
+        for(int i = 0; i < room.getRoomSize(); i++)
         {
-            for(int j = 0; j < room._room[i].length; j++)
+            for(int j = 0; j < room.getRoomSize(); j++)
             {
-                System.out.print(room._room[i][j] + " ");
-                System.out.print(room._room[i][j] + " ");
-                System.out.print(room._room[j][i] + " ");
-                System.out.print(room._room[i][j] + " ");
+                System.out.print(room.getRoom()[i][j] + " ");
             }
             System.out.println();
         }
     }
 
-    private void biomOut(BiomObject biom)
+    public void biomOut(BiomObject biom)
     {
         for(Map.Entry<String, Room> map : biom.getBiom().entrySet())
         {

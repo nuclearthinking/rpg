@@ -1,4 +1,6 @@
-package com.nuclearthinking.game.obj.world2;
+package com.nuclearthinking.game.obj.world2.biome;
+
+import com.nuclearthinking.game.obj.world2.Room;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +10,7 @@ import java.util.Map;
  */
 public abstract class BiomObject
 {
-    public Map<String, Room> _biom = new HashMap<String, Room>();
+    private Map<String, Room> _biom = new HashMap<String, Room>();
 
     public Map<String, Room> getBiom()
     {
