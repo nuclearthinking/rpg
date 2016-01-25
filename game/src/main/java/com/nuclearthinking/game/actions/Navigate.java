@@ -1,6 +1,7 @@
 package com.nuclearthinking.game.actions;
 
 import com.nuclearthinking.game.obj.world.World;
+import com.nuclearthinking.game.obj.world2.WorldInstance;
 import com.nuclearthinking.game.player.Player;
 
 /**
@@ -17,6 +18,10 @@ public class Navigate extends Action implements Actable {
 
     Navigate(Player player, World world) {
         super(player, world);
+    }
+
+    Navigate(Player player, WorldInstance worldInstance) {
+        super(player, worldInstance);
     }
 
     public void setRoomModification(int roomModification) {

@@ -45,29 +45,6 @@ public class Room
         _room[x][y] = value;
     }
 
-    public void setCellIntoRoom(Cell... cell)
-    {
-        for (int i = 0; i < this._room.length; i++)
-        {
-            for (int j = 0; j < this._room[i].length; j++)
-            {
-                int tmp = wgu.getRnd(0, 10);
-                if (tmp <= 5)
-                {
-                    this.setRoomValue(i, j, cell[0].getCellValue(0));
-                }
-                else if (tmp >= 6 && tmp <= 9)
-                {
-                    this.setRoomValue(i, j, cell[1].getCellValue(0));
-                }
-                else
-                {
-                    this.setRoomValue(i, j, cell[2].getCellValue(0));
-                }
-            }
-        }
-    }
-
     public void setCellIntoRoom(String... cell)
     {
         for (int i = 0; i < this._room.length; i++)
@@ -86,6 +63,34 @@ public class Room
                 else
                 {
                     this.setRoomValue(i, j, cell[2]);
+                }
+            }
+        }
+    }
+
+    public void setCellIntoRoom(String value)
+    {
+        for (int i = 0; i < this._room.length; i++)
+        {
+            for (int j = 0; j < this._room[i].length; j++)
+            {
+                int tmp = wgu.getRnd(0, _room.length);
+                int x = tmp;
+                int y = tmp;
+                if (tmp <= 5)
+                {
+                    this.setRoomValue(x, y, value);
+                    return;
+                }
+                else if (tmp >= 6 && tmp <= 9)
+                {
+                    this.setRoomValue(x, y, value);
+                    return;
+                }
+                else
+                {
+                    this.setRoomValue(x, y, value);
+                    return;
                 }
             }
         }
