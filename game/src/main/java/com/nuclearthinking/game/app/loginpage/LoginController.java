@@ -1,10 +1,10 @@
 package com.nuclearthinking.game.app.loginpage;
 
+import com.nuclearthinking.game.DAO.Account;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
 
@@ -13,6 +13,14 @@ import javafx.scene.paint.Color;
  */
 public class LoginController
 {
+    private ObservableList<Account> accountsData = FXCollections.observableArrayList();
+
+    @FXML
+    private TableView<Account> accountTable;
+
+    @FXML
+    private TableColumn<Account, String> loginColumn, passwordColumn;
+
     @FXML
     private Button login, exit;
 
@@ -38,6 +46,12 @@ public class LoginController
             {
                 System.out.println("Login: " + loginTextTmp);
                 System.out.println("Password: " + passwordTextTmp);
+
+                accountsData.add(new Account(loginTextTmp, passwordTextTmp));
+                accountTable.setItems(accountsData);
+
+                loginColumn.setCellValueFactory(cellData -> cellData.getValue().getLoginProperty());
+                passwordColumn.setCellValueFactory(cellData -> cellData.getValue().getPasswordProperty());
 
                 loginTxt.clear();
                 passwordTxt.clear();
@@ -82,5 +96,10 @@ public class LoginController
             return false;
         }
         return true;
+    }
+
+    public ObservableList<Account> getAccountsData()
+    {
+        return accountsData;
     }
 }
