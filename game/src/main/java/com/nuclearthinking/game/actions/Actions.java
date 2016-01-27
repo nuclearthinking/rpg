@@ -35,6 +35,7 @@ public class Actions {
         Map<String, Action> actionsList = new HashMap<>();
         gatherNavigationActions(actionsList);
         getAttackActions(actionsList);
+        getSaveActions(actionsList);
         return actionsList;
     }
 
@@ -84,7 +85,8 @@ public class Actions {
 
     protected void getSaveActions(Map<String, Action> actionMap) {
         Map<String, Action> tempActionMap = new HashMap<>();
-
+        Save save = new Save(player, world);
+        tempActionMap.put("Сохранить", save);
         actionMap.putAll(tempActionMap);
     }
 }

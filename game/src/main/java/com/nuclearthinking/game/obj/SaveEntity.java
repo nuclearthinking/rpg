@@ -1,9 +1,5 @@
 package com.nuclearthinking.game.obj;
 
-import com.esotericsoftware.kryo.Kryo;
-import com.esotericsoftware.kryo.KryoSerializable;
-import com.esotericsoftware.kryo.io.Input;
-import com.esotericsoftware.kryo.io.Output;
 import com.nuclearthinking.game.obj.world.World;
 import com.nuclearthinking.game.player.Player;
 
@@ -14,10 +10,14 @@ import com.nuclearthinking.game.player.Player;
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
 
-public class SaveEntity implements KryoSerializable {
+public class SaveEntity {
 
     protected World world;
     protected Player player;
+
+    public SaveEntity() {
+
+    }
 
     public SaveEntity(World world, Player player) {
         this.world = world;
@@ -40,13 +40,4 @@ public class SaveEntity implements KryoSerializable {
         this.player = player;
     }
 
-    @Override
-    public void write(Kryo kryo, Output output) {
-
-    }
-
-    @Override
-    public void read(Kryo kryo, Input input) {
-
-    }
 }

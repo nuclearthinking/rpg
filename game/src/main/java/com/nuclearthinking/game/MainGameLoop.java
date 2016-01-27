@@ -4,6 +4,7 @@ import com.nuclearthinking.game.actions.Action;
 import com.nuclearthinking.game.actions.Actions;
 import com.nuclearthinking.game.engines.MessagesReader;
 import com.nuclearthinking.game.npc.Monster;
+import com.nuclearthinking.game.obj.SaveEntity;
 import com.nuclearthinking.game.obj.world.World;
 import com.nuclearthinking.game.player.Player;
 import com.nuclearthinking.game.utils.UserInput;
@@ -20,14 +21,25 @@ public final class MainGameLoop {
     MessagesReader messages = MessagesReader.getInstance();
     UserInput userInput = new UserInput();
     Monster monster;
+    World world;
+    Player player;
 
     int day = 1;
 
     public MainGameLoop(Player player, World world) {
-        /**
-         * основная петля игры
-         */
+        this.player = player;
+        this.world = world;
+        loop();
+    }
 
+    public MainGameLoop(SaveEntity saveEntity) {
+        this.player = saveEntity.getPlayer();
+        this.world = saveEntity.getWorld();
+        System.out.println(player.getName());
+        loop();
+    }
+
+    protected void loop() {
         while (true) {
             if (day == 1) {
                 System.out.println(messages.getMessage("firstDayWelcomeMessage"));
