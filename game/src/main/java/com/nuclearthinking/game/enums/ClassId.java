@@ -20,6 +20,10 @@ public enum ClassId implements IIdentifiable {
         _race = race;
     }
 
+    public static ClassId getClassId(int cId) {
+        return ClassId.values()[cId];
+    }
+
     @Override
     public int getId() {
         return _id;
@@ -31,9 +35,5 @@ public enum ClassId implements IIdentifiable {
 
     public final Race getRace() {
         return _race;
-    }
-
-    public static ClassId getClassId(int cId) {
-        return ClassId.values()[cId];
     }
 }

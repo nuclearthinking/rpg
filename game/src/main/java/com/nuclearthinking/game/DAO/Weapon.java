@@ -2,9 +2,7 @@ package com.nuclearthinking.game.DAO;
 
 import com.nuclearthinking.game.engines.DatabaseEngine;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -15,11 +13,8 @@ import java.sql.SQLException;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-@Entity
-public class Weapon {
+public class Weapon extends DAO {
 
-    @Id
-    @GeneratedValue
     private int id;
     private String name;
     private String weaponType;
@@ -34,9 +29,12 @@ public class Weapon {
     }
 
     public Weapon getWeaponFromDbById(int id) {
+        checkId(id);
         Weapon weaponFromDb = new Weapon();
         try {
-            ResultSet rs = DatabaseEngine.getInstance().executeQuery("SELECT * FROM weapon WHERE weapon_id = " + id + ";");
+            PreparedStatement preparedStatement = getPreparedStatement();
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 weaponFromDb.setId(rs.getInt(1));
                 weaponFromDb.setName(rs.getString(2));
@@ -47,10 +45,22 @@ public class Weapon {
                 weaponFromDb.setIntelligenceBonus(rs.getInt(7));
                 weaponFromDb.setWeaponType(new WeaponType().getWeaponTypeNameById(rs.getInt(8)));
             }
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return weaponFromDb;
+    }
+
+    @Override
+    PreparedStatement getPreparedStatement() {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = DatabaseEngine.getInstance().getConnection().prepareStatement("SELECT * FROM weapon WHERE weapon_id = ?;");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return preparedStatement;
     }
 
     public int getId() {

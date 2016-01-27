@@ -11,12 +11,12 @@ import com.nuclearthinking.game.model.skills.Skill;
 public class FuncAtkEvasion extends AbstractFunction {
     private static final FuncAtkEvasion _fmae_instance = new FuncAtkEvasion();
 
-    public static AbstractFunction getInstance() {
-        return _fmae_instance;
-    }
-
     public FuncAtkEvasion() {
         super(Stats.EVASION_RATE, 1, null, 0);
+    }
+
+    public static AbstractFunction getInstance() {
+        return _fmae_instance;
     }
 
     @Override

@@ -11,12 +11,12 @@ import com.nuclearthinking.game.model.skills.Skill;
 public class FuncMDefMod extends AbstractFunction {
     private static final FuncMDefMod _fmdm_instance = new FuncMDefMod();
 
-    public static AbstractFunction getInstance() {
-        return _fmdm_instance;
-    }
-
     public FuncMDefMod() {
         super(Stats.MAGIC_DEFENCE, 1, null, 0);
+    }
+
+    public static AbstractFunction getInstance() {
+        return _fmdm_instance;
     }
 
     @Override

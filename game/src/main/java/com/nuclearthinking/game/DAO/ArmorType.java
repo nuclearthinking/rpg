@@ -2,9 +2,7 @@ package com.nuclearthinking.game.DAO;
 
 import com.nuclearthinking.game.engines.DatabaseEngine;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -15,27 +13,26 @@ import java.sql.SQLException;
  * @author Vladislav Radchenko (onifent@gmail.com)
  */
 
-@Entity
-public class ArmorType {
+public class ArmorType extends DAO {
 
-    @Id
-    @GeneratedValue
     private Integer armorTypeId;
-
     private String armorTypeName;
-
 
     public ArmorType() {
     }
 
     public ArmorType getArmorTypeById(int id) {
+        checkId(id);
         ArmorType armorTypeFromDb = new ArmorType();
         try {
-            ResultSet rs = DatabaseEngine.getInstance().executeQuery("SELECT * FROM armor_types WHERE armor_type_id = " + id + ";");
+            PreparedStatement preparedStatement = getPreparedStatement();
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 armorTypeFromDb.setArmorTypeId(rs.getInt(1));
                 armorTypeFromDb.setArmorTypeName(rs.getString(2));
             }
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -43,16 +40,32 @@ public class ArmorType {
     }
 
     public String getArmorTypeNameById(int id) {
+        checkId(id);
         String armorTypeName = null;
         try {
-            ResultSet rs = DatabaseEngine.getInstance().executeQuery("SELECT * FROM armor_types WHERE armor_type_id = " + id + ";");
+            PreparedStatement preparedStatement = getPreparedStatement();
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 armorTypeName = rs.getString(2);
             }
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return armorTypeName;
+    }
+
+
+    @Override
+    PreparedStatement getPreparedStatement() {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = DatabaseEngine.getInstance().getConnection().prepareStatement("SELECT * FROM armor_types WHERE armor_type_id = ?;");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return preparedStatement;
     }
 
     public Integer getArmorTypeId() {

@@ -18,33 +18,18 @@ public enum BaseStats {
     CON(new Stamina()),
     MEN(new Mentality());
 
-    private static final Logger _log = Logger.getLogger(BaseStats.class.getName());
-
     public static final int MAX_STAT_VALUE = 100;
-
     public static final double[] STRbonus = new double[MAX_STAT_VALUE];
     public static final double[] INTbonus = new double[MAX_STAT_VALUE];
     public static final double[] DEXbonus = new double[MAX_STAT_VALUE];
     public static final double[] WITbonus = new double[MAX_STAT_VALUE];
     public static final double[] CONbonus = new double[MAX_STAT_VALUE];
     public static final double[] MENbonus = new double[MAX_STAT_VALUE];
-
+    private static final Logger _log = Logger.getLogger(BaseStats.class.getName());
     private final IBaseStat _stat;
-
-    public final String getValue() {
-        return _stat.getClass().getSimpleName();
-    }
 
     BaseStats(IBaseStat s) {
         _stat = s;
-    }
-
-    public final double calcBonus(CharacterObject characterObject) {
-        if (characterObject != null) {
-            return _stat.calcBonus(characterObject);
-        }
-
-        return 1;
     }
 
     public static final BaseStats valueOfXml(String name) {
@@ -55,5 +40,17 @@ public enum BaseStats {
             }
         }
         throw new NoSuchElementException("Unknown name '" + name + "' for enum BaseStats");
+    }
+
+    public final String getValue() {
+        return _stat.getClass().getSimpleName();
+    }
+
+    public final double calcBonus(CharacterObject characterObject) {
+        if (characterObject != null) {
+            return _stat.calcBonus(characterObject);
+        }
+
+        return 1;
     }
 }

@@ -11,12 +11,12 @@ import com.nuclearthinking.game.model.skills.Skill;
 public class FuncMAtkCritical extends AbstractFunction {
     private static final FuncMAtkCritical _fmac_instance = new FuncMAtkCritical();
 
-    public static AbstractFunction getInstance() {
-        return _fmac_instance;
-    }
-
     public FuncMAtkCritical() {
         super(Stats.MAGIC_CRIT_RATE, 1, null, 0);
+    }
+
+    public static AbstractFunction getInstance() {
+        return _fmac_instance;
     }
 
     @Override
