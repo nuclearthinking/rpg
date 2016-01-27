@@ -39,7 +39,7 @@ public class Engine {
 
     private void hashFiles(String dirname, List<InputStream> hash) {
         //TODO: Почитать как брать файлы из дирректории для инпут стрима. Скорее всего надо сделать метод в котором он будет вайлить по дирректории
-        InputStream is = resource.getResourceAsStream(dirname + "000-100.xml");
+        InputStream is = ResourceUtil.getResourceAsStream(dirname + "000-100.xml");
         hash.add(is);
     }
 

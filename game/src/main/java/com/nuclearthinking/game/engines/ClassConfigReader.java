@@ -18,8 +18,6 @@ import java.io.InputStream;
  */
 public class ClassConfigReader {
 
-    private ResourceUtil res = new ResourceUtil();
-
     private ClassConfigReader() {
     }
 
@@ -29,7 +27,7 @@ public class ClassConfigReader {
 
     public ClassConfig getClassConfig() {
         ClassConfig classConfig = null;
-        InputStream is = res.getResourceAsStream("json/class_config.json");
+        InputStream is = ResourceUtil.getResourceAsStream("json/class_config.json");
         try {
             JsonParser jsonParser = new JsonFactory().createParser(is);
             ObjectMapper mapper = new ObjectMapper();

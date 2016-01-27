@@ -2,9 +2,6 @@ package com.nuclearthinking.game.model;
 
 import com.nuclearthinking.game.model.skills.Skill;
 
-/**
- * Created by kuksin-mv on 11.01.2016.
- */
 public class ReuseTime {
     private final int _id1;
     private final int _id2;
@@ -12,11 +9,11 @@ public class ReuseTime {
     private final long _stamp;
 
     //Принимает скил, время перезарядки скила и время использования
-    public ReuseTime(Skill skill, long reuse, long systime) {
+    public ReuseTime(Skill skill, long reuse, long sysTime) {
         _id1 = skill.getId();
         _id2 = skill.getLevel();
         _reuse = reuse;
-        _stamp = systime > 0 ? systime : System.currentTimeMillis() + reuse;
+        _stamp = sysTime > 0 ? sysTime : System.currentTimeMillis() + reuse;
     }
 
     public long getStamp() {

@@ -3,12 +3,9 @@ package com.nuclearthinking.game.npc;
 import com.nuclearthinking.game.obj.AbstractObject;
 import com.nuclearthinking.game.player.Player;
 
-/**
- * Created by Izonami on 17.01.2016.
- */
 public class Monster extends AbstractObject {
     private byte _level;
-    private double DIFFICULITY = 1.023;
+    private double DIFFICULTY = 1.023;
     private boolean _isDead;
 
     public Monster(String name, byte level) {
@@ -18,11 +15,11 @@ public class Monster extends AbstractObject {
     }
 
     public int getPDef() {
-        return (int) (getStrength() / 2 * DIFFICULITY);
+        return (int) (getStrength() / 2 * DIFFICULTY);
     }
 
     public int getHitPoints() {
-        return (int) (_hitPoints * DIFFICULITY * getLevel());
+        return (int) (_hitPoints * DIFFICULTY * getLevel());
     }
 
     public void setHitPoints(int hitPoints) {

@@ -33,8 +33,8 @@ public final class DatabaseEngine {
         try {
             ResourceUtil ru = new ResourceUtil();
             Class.forName("org.h2.Driver");
-            InputStream in = ru.getResourceAsStream("sql/create.sql");
-            InputStream in2 = ru.getResourceAsStream("sql/fill.sql");
+            InputStream in = ResourceUtil.getResourceAsStream("sql/create.sql");
+            InputStream in2 = ResourceUtil.getResourceAsStream("sql/fill.sql");
             if (in == null) {
                 System.out.println("Please add the file create.sql to the classpath, package "
                         + getClass().getPackage().getName());

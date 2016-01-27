@@ -27,6 +27,6 @@ public class FloorTest {
     @Test
     public void testGetRoomById() throws Exception {
         Floor generatedFloor = floor.generateFloor();
-        Assert.assertEquals(generatedFloor.getRoomById(1).getRoomId(),1);
+        Assert.assertEquals(generatedFloor.getRoomById(1).getRoomId(), 1);
     }
 }

@@ -20,7 +20,6 @@ import java.util.List;
 
 public class PreparePlayer extends Player {
     UserInput input = new UserInput();
-    StringUtil ut = new StringUtil();
     private Player player;
     private MessagesReader messages = MessagesReader.getInstance();
 
@@ -33,7 +32,7 @@ public class PreparePlayer extends Player {
     }
 
     private void setPlayerName() {
-        player.setName(ut.beautifyName(getValidName()));
+        player.setName(StringUtil.beautifyName(getValidName()));
         System.out.println(messages.getMessage("welcomeMessage") + " " + player.getName());
         System.out.println();
     }
@@ -79,7 +78,7 @@ public class PreparePlayer extends Player {
         while (!valid) {
             System.out.println(messages.getMessage("inputNameMessage"));
             playerName = input.getUserInput();
-            valid = ut.isValidName(playerName);
+            valid = StringUtil.isValidName(playerName);
         }
         return playerName;
     }

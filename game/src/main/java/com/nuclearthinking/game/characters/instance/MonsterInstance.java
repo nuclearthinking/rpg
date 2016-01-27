@@ -5,7 +5,10 @@ import com.nuclearthinking.game.characters.CharacterObject;
 import com.nuclearthinking.game.characters.templates.NpcTemplate;
 
 /**
- * Created by Izonami on 16.01.2016.
+ * Date: 16.01.2016
+ * Time: 12:09
+ *
+ * @author Izonami
  */
 public class MonsterInstance extends AttackableNpc {
 

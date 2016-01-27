@@ -75,7 +75,7 @@ public class WorldTest {
     }
 
     @Test
-    public void testGetRoomByIdToLarge(){
+    public void testGetRoomByIdToLarge() {
         world.setSize(14).createWorld();
         String message = null;
         try {

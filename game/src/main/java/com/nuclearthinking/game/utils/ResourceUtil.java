@@ -13,7 +13,7 @@ import java.io.InputStream;
 
 public class ResourceUtil {
 
-    public InputStream getResourceAsStream(String path) {
+    public static InputStream getResourceAsStream(String path) {
         InputStream is = null;
         try {
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -27,7 +27,7 @@ public class ResourceUtil {
         return is;
     }
 
-    public File getResourceAsFile(String path) {
+    public static File getResourceAsFile(String path) {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         InputStream is = classLoader.getResourceAsStream(path);
         File tempFile = null;

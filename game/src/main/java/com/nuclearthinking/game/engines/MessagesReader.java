@@ -18,7 +18,6 @@ import java.util.Map;
  * @author Vladislav Radchenko (onfient@gmail.com)
  */
 public class MessagesReader {
-    private ResourceUtil res = new ResourceUtil();
 
     private MessagesReader() {
 
@@ -30,7 +29,7 @@ public class MessagesReader {
 
     public Messages getMessages() {
         Messages messages = null;
-        InputStream is = res.getResourceAsStream("json/messages.json");
+        InputStream is = ResourceUtil.getResourceAsStream("json/messages.json");
         try {
             JsonFactory jsonFactory = new JsonFactory();
             JsonParser jsonParser = jsonFactory.createParser(is);
@@ -47,7 +46,7 @@ public class MessagesReader {
 
     public String getMessage(String key) {
         String message = null;
-        InputStream is = res.getResourceAsStream("json/messages.json");
+        InputStream is = ResourceUtil.getResourceAsStream("json/messages.json");
         try {
             JsonFactory jsonFactory = new JsonFactory();
             JsonParser jsonParser = jsonFactory.createParser(is);

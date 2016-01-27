@@ -17,13 +17,10 @@ import java.util.logging.LogManager;
  * @author kuksin-mv
  */
 public final class GameStarter {
-    //private static final Logger LOG = Logger.getLogger(GameStarter.class.getName());
 
+    //private static final Logger LOG = Logger.getLogger(GameStarter.class.getName());
     private static final String LOG_FOLDER = "log";
     private static final String LOG_NAME = "log.cfg";
-
-    private static final ResourceUtil resource = new ResourceUtil();
-
 
     public GameStarter() throws Exception {
         SkillData.getInstance();
@@ -42,7 +39,7 @@ public final class GameStarter {
         logFile.mkdir();
         Config.load();
         new GameStarter();
-        InputStream is = resource.getResourceAsStream(LOG_NAME);
+        InputStream is = ResourceUtil.getResourceAsStream(LOG_NAME);
         LogManager.getLogManager().readConfiguration(is);
     }
 }

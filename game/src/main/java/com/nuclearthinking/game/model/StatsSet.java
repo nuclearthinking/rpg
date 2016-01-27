@@ -5,9 +5,6 @@ import com.nuclearthinking.game.model.interfaces.IParserAdvUtils;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Created by kuksin-mv on 24.12.2015.
- */
 public class StatsSet implements IParserAdvUtils {
     private final Map<String, Object> _set;
 

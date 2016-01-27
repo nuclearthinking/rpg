@@ -5,9 +5,6 @@ import com.nuclearthinking.game.model.interfaces.IIdentifiable;
 
 import java.util.logging.Logger;
 
-/**
- * Created by kuksin-mv on 24.12.2015.
- */
 public class Skill implements IIdentifiable {
     private static final Logger LOG = Logger.getLogger(Skill.class.getName());
 

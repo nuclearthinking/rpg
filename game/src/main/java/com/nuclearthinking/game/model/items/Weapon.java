@@ -4,7 +4,10 @@ import com.nuclearthinking.game.model.StatsSet;
 import com.nuclearthinking.game.model.items.type.WeaponType;
 
 /**
- * Created by Izonami on 26.12.2015.
+ * Date: 26.12.2015
+ * Time: 12:08
+ *
+ * @author Izonami
  */
 public class Weapon extends Item {
     private final WeaponType _type;

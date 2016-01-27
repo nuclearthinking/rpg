@@ -73,11 +73,17 @@ public class Actions {
     }
 
     protected void getAttackActions(Map<String, Action> actionMap) {
-        Map<String, Action> tempActionMap = new HashMap<String, Action>();
+        Map<String, Action> tempActionMap = new HashMap<>();
         if (!monster.isDead()) {
             Attack attack = new Attack(player, world, monster);
             tempActionMap.put("Attack", attack);
         }
+
+        actionMap.putAll(tempActionMap);
+    }
+
+    protected void getSaveActions(Map<String, Action> actionMap) {
+        Map<String, Action> tempActionMap = new HashMap<>();
 
         actionMap.putAll(tempActionMap);
     }

@@ -7,7 +7,10 @@ import com.nuclearthinking.game.model.items.type.ItemType;
 import java.util.logging.Logger;
 
 /**
- * Created by Izonami on 26.12.2015.
+ * Date: 26.12.2015
+ * Time: 12:09
+ *
+ * @author Izonami
  */
 public abstract class Item implements IIdentifiable {
     protected static final Logger LOG = Logger.getLogger(Item.class.getName());

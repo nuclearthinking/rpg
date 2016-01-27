@@ -16,12 +16,12 @@ public class Action implements Actable {
     World world;
     Monster monster;
 
-    Action(Player player, World world) {
+    public Action(Player player, World world) {
         this.world = world;
         this.player = player;
     }
 
-    Action(Player player, World world, Monster monster) {
+    public Action(Player player, World world, Monster monster) {
         this.world = world;
         this.player = player;
         this.monster = monster;
