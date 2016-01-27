@@ -1,4 +1,4 @@
-package com.nuclearthinking.game.app;
+package com.nuclearthinking.game.app.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -6,7 +6,7 @@ import javafx.scene.control.MenuItem;
 /**
  * Created by kuksin-mv on 26.01.2016.
  */
-public class MenuBar
+public class MenuBarController
 {
     @FXML
     public MenuItem close, about;

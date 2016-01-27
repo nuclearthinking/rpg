@@ -1,7 +1,7 @@
-package com.nuclearthinking.game.app.loginpage;
+package com.nuclearthinking.game.app.controller;
 
 import com.nuclearthinking.game.DAO.Account;
-import com.nuclearthinking.game.app.Controller;
+import com.nuclearthinking.game.app.StartApp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,7 +19,7 @@ public class LoginController
 {
     private ObservableList<Account> accountsData = FXCollections.observableArrayList();
 
-    private ResourceBundle bundle = new Controller().getBundle();
+    private ResourceBundle bundle = new StartApp().getBundle();
 
     @FXML
     private TableView<Account> accountTable;

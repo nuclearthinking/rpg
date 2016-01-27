@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class Controller extends Application
+public class StartApp extends Application
 {
     private Stage primaryStage;
     private BorderPane rootLayout;
@@ -46,6 +46,8 @@ public class Controller extends Application
             rootLayout = (BorderPane) loader.load(is);
 
             Scene scene = new Scene(rootLayout);
+            scene.getStylesheets().add(StartApp.class.getResource("/css/but.css").toExternalForm());
+            System.out.println(scene.getStylesheets().get(0));
             primaryStage.setScene(scene);
             primaryStage.setTitle(getBundle().getString("title"));
             primaryStage.show();
