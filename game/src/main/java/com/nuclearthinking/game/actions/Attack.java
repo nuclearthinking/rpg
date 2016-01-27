@@ -2,7 +2,6 @@ package com.nuclearthinking.game.actions;
 
 import com.nuclearthinking.game.npc.Monster;
 import com.nuclearthinking.game.obj.world.World;
-import com.nuclearthinking.game.obj.world2.WorldInstance;
 import com.nuclearthinking.game.player.Player;
 
 /**
@@ -13,12 +12,8 @@ public class Attack extends Action implements Actable {
         super(player, world, monster);
     }
 
-    Attack(Player player, WorldInstance worldInstance, Monster monster) {
-        super(player, worldInstance, monster);
-    }
-
     @Override
     public void run() {
-        player.addDmg(monster);
+        player.addDmg(monster, true);
     }
 }

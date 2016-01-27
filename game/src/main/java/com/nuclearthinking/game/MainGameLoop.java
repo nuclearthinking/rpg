@@ -4,7 +4,7 @@ import com.nuclearthinking.game.actions.Action;
 import com.nuclearthinking.game.actions.Actions;
 import com.nuclearthinking.game.engines.MessagesReader;
 import com.nuclearthinking.game.npc.Monster;
-import com.nuclearthinking.game.obj.world2.WorldInstance;
+import com.nuclearthinking.game.obj.world.World;
 import com.nuclearthinking.game.player.Player;
 import com.nuclearthinking.game.utils.UserInput;
 
@@ -23,17 +23,12 @@ public final class MainGameLoop {
 
     int day = 1;
 
-    public MainGameLoop(Player player, WorldInstance world) {
+    public MainGameLoop(Player player, World world) {
         /**
          * основная петля игры
          */
 
         while (true) {
-            if (player.getCurrentRoom() > world.getRoomSize())
-            {
-                System.out.println("Игра пройдена");
-                return;
-            }
             if (day == 1) {
                 System.out.println(messages.getMessage("firstDayWelcomeMessage"));
                 player.setCurrentFloor(1);
@@ -41,13 +36,13 @@ public final class MainGameLoop {
             } else {
                 printCurrentDay();
             }
-            System.out.println("Текущий уровень " + player.getCurrentFloor() + " из " + world.getFloorSize());
-            System.out.println("Текущая комната " + player.getCurrentRoom() + " из " + world.getRoomSize());
+            System.out.println("Текущий уровень " + player.getCurrentFloor() + " из " + world.getWorldArray().size());
+            System.out.println("Текущая комната " + player.getCurrentRoom() + " из " + world.getWorldArray().get(player.getCurrentFloor()).getFloorSize());
             System.out.println();
 
             byte lvl = (byte) (player.getCurrentRoom() + player.getCurrentFloor());
 
-            spawn(player, "Monster" + lvl, lvl, world);
+            spawn(player, "Monster" + lvl, lvl);
 
             Actions actionsLoader = new Actions(player, world, monster);
             Action selectedAction = userInput.selectActionFromMap(actionsLoader.getAvailableActions());
@@ -63,11 +58,8 @@ public final class MainGameLoop {
         }
     }
 
-    public void spawn(Player player, String name, byte lvl, WorldInstance worldInstance)
-    {
+    public void spawn(Player player, String name, byte lvl) {
         monster = new Monster(name, lvl);
-        //TODO: Хардкод
-        worldInstance.jungle.setCellValue("☻");
         System.out.println(player.getExp() + " " + player.getLevel());
     }
 

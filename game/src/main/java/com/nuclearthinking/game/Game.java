@@ -2,7 +2,8 @@ package com.nuclearthinking.game;
 
 import com.nuclearthinking.game.engines.DatabaseEngine;
 import com.nuclearthinking.game.engines.PreparePlayer;
-import com.nuclearthinking.game.obj.world2.WorldInstance;
+import com.nuclearthinking.game.obj.world.World;
+import com.nuclearthinking.game.obj.world.WorldManager;
 import com.nuclearthinking.game.player.Player;
 
 
@@ -19,12 +20,11 @@ public final class Game {
         //Инициализация базы данных
         DatabaseEngine.getInstance().initDb();
         //Создание мира
-        //World world = new WorldManager(30).getWorld();
-        WorldInstance worldInstance = new WorldInstance(10, 10);
+        World world = new WorldManager(30).getWorld();
         //Создание персонажа
         Player player = new PreparePlayer().getPlayer();
         //Запуск игры
-        new MainGameLoop(player, worldInstance);
+        new MainGameLoop(player, world);
     }
 
     public static Game getInstance() {

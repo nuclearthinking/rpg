@@ -2,7 +2,6 @@ package com.nuclearthinking.game.actions;
 
 import com.nuclearthinking.game.npc.Monster;
 import com.nuclearthinking.game.obj.world.World;
-import com.nuclearthinking.game.obj.world2.WorldInstance;
 import com.nuclearthinking.game.player.Player;
 
 /**
@@ -15,7 +14,6 @@ import com.nuclearthinking.game.player.Player;
 public class Action implements Actable {
     Player player;
     World world;
-    WorldInstance worldInstance;
     Monster monster;
 
     Action(Player player, World world) {
@@ -23,19 +21,8 @@ public class Action implements Actable {
         this.player = player;
     }
 
-    Action(Player player, WorldInstance worldInstance) {
-        this.worldInstance = worldInstance;
-        this.player = player;
-    }
-
     Action(Player player, World world, Monster monster) {
         this.world = world;
-        this.player = player;
-        this.monster = monster;
-    }
-
-    Action(Player player, WorldInstance worldInstance, Monster monster) {
-        this.worldInstance = worldInstance;
         this.player = player;
         this.monster = monster;
     }
