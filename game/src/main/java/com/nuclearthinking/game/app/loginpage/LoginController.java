@@ -1,11 +1,15 @@
 package com.nuclearthinking.game.app.loginpage;
 
 import com.nuclearthinking.game.DAO.Account;
+import com.nuclearthinking.game.app.Controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+
+import java.util.ResourceBundle;
 
 
 /**
@@ -14,6 +18,8 @@ import javafx.scene.paint.Color;
 public class LoginController
 {
     private ObservableList<Account> accountsData = FXCollections.observableArrayList();
+
+    private ResourceBundle bundle = new Controller().getBundle();
 
     @FXML
     private TableView<Account> accountTable;
@@ -39,14 +45,12 @@ public class LoginController
     @FXML
     private void initialize()
     {
+        accountTable.setPlaceholder(new Text(bundle.getString("table")));
         login.setOnAction((event -> {
             String loginTextTmp = loginTxt.getText();
             String passwordTextTmp = passwordTxt.getText();
             if (isValid(loginTextTmp) && isValid(passwordTextTmp))
             {
-                System.out.println("Login: " + loginTextTmp);
-                System.out.println("Password: " + passwordTextTmp);
-
                 accountsData.add(new Account(loginTextTmp, passwordTextTmp));
                 accountTable.setItems(accountsData);
 
@@ -61,31 +65,28 @@ public class LoginController
             }
             else if(!isValid(loginTextTmp) && isValid(passwordTextTmp))
             {
-                msgLogin.setText("Fill Login");
+                msgLogin.setText(bundle.getString("msg.login"));
                 msgLogin.setTextFill(Color.RED);
 
                 msgPassword.setTextFill(null);
             }
             else if(isValid(loginTextTmp) && !isValid(passwordTextTmp))
             {
-                msgPassword.setText("Fill Password");
+                msgPassword.setText(bundle.getString("msg.password"));
                 msgPassword.setTextFill(Color.RED);
 
                 msgLogin.setTextFill(null);
             }
             else
             {
-                msgLogin.setText("Fill Login");
+                msgLogin.setText(bundle.getString("msg.login"));
                 msgLogin.setTextFill(Color.RED);
-                msgPassword.setText("Fill Password");
+                msgPassword.setText(bundle.getString("msg.password"));
                 msgPassword.setTextFill(Color.RED);
             }
         }));
 
-        exit.setOnAction((event -> {
-            System.out.println("Exit");
-            System.exit(0);
-        }));
+        exit.setOnAction((event -> System.exit(0)));
 
     }
 

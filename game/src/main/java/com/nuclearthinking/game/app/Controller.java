@@ -20,6 +20,7 @@ public class Controller extends Application
     private Stage primaryStage;
     private BorderPane rootLayout;
     private static ResourceUtil resourceUtil = new ResourceUtil();
+    private static ResourceBundle bundle;
 
     public static void main(String[] args) {
         launch(args);
@@ -29,22 +30,24 @@ public class Controller extends Application
     public void start(Stage primaryStage)
     {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("RPG");
 
-        initRootLayout(new Locale("ru", "RU"));
-        showPersonOverview(new Locale("ru", "RU"));
+        bundle = ResourceBundle.getBundle("bundles.Localization", Locale.getDefault());
+
+        initRootLayout(bundle);
+        showPersonOverview(bundle);
     }
 
-    public void initRootLayout(Locale locale)
+    public void initRootLayout(ResourceBundle bundle)
     {
-        try(InputStream is = resourceUtil.getResourceAsStream("view\\mainframe.fxml"))
+        try(InputStream is = resourceUtil.getResourceAsStream("fxml\\mainframe.fxml"))
         {
             FXMLLoader loader = new FXMLLoader();
-            loader.setResources(ResourceBundle.getBundle("bundles.Localization", locale));
+            loader.setResources(bundle);
             rootLayout = (BorderPane) loader.load(is);
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
+            primaryStage.setTitle(getBundle().getString("title"));
             primaryStage.show();
         }
         catch (IOException e)
@@ -53,18 +56,17 @@ public class Controller extends Application
         }
     }
 
-    public void showPersonOverview(Locale locale)
+    public void showPersonOverview(ResourceBundle bundle)
     {
-        try(InputStream is = resourceUtil.getResourceAsStream("view\\app.fxml"))
+        try(InputStream is = resourceUtil.getResourceAsStream("fxml\\app.fxml"))
         {
             FXMLLoader loader = new FXMLLoader();
-            loader.setResources(ResourceBundle.getBundle("bundles.Localization", locale));
+            loader.setResources(bundle);
             AnchorPane personOverview = (AnchorPane) loader.load(is);
 
             rootLayout.setCenter(personOverview);
         }
-        catch (IOException e)
-        {
+        catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -72,5 +74,10 @@ public class Controller extends Application
     public Stage getPrimaryStage()
     {
         return primaryStage;
+    }
+
+    public ResourceBundle getBundle()
+    {
+        return bundle;
     }
 }
