@@ -11,12 +11,12 @@ import com.nuclearthinking.game.model.skills.Skill;
 public class FuncAtkCritical extends AbstractFunction {
     private static final FuncAtkCritical _fac_instance = new FuncAtkCritical();
 
-    public static AbstractFunction getInstance() {
-        return _fac_instance;
-    }
-
     public FuncAtkCritical() {
         super(Stats.CRITICAL_DAMAGE, 1, null, 0);
+    }
+
+    public static AbstractFunction getInstance() {
+        return _fac_instance;
     }
 
     @Override
