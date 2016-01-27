@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Controller extends Application
 {
@@ -24,19 +26,21 @@ public class Controller extends Application
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage)
+    {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("rpg");
+        this.primaryStage.setTitle("RPG");
 
-        initRootLayout();
-        showPersonOverview();
+        initRootLayout(new Locale("ru", "RU"));
+        showPersonOverview(new Locale("ru", "RU"));
     }
 
-    public void initRootLayout()
+    public void initRootLayout(Locale locale)
     {
         try(InputStream is = resourceUtil.getResourceAsStream("view\\mainframe.fxml"))
         {
             FXMLLoader loader = new FXMLLoader();
+            loader.setResources(ResourceBundle.getBundle("bundles.Localization", locale));
             rootLayout = (BorderPane) loader.load(is);
 
             Scene scene = new Scene(rootLayout);
@@ -49,11 +53,12 @@ public class Controller extends Application
         }
     }
 
-    public void showPersonOverview()
+    public void showPersonOverview(Locale locale)
     {
         try(InputStream is = resourceUtil.getResourceAsStream("view\\app.fxml"))
         {
             FXMLLoader loader = new FXMLLoader();
+            loader.setResources(ResourceBundle.getBundle("bundles.Localization", locale));
             AnchorPane personOverview = (AnchorPane) loader.load(is);
 
             rootLayout.setCenter(personOverview);
