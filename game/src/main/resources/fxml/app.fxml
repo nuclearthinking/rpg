@@ -43,8 +43,8 @@
                   </GridPane>
                   <HBox alignment="CENTER" layoutX="150.0" layoutY="169.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="false" spacing="15.0">
                      <children>
-                        <Button fx:id="login" layoutX="142.0" layoutY="169.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" stylesheets="@../css/but.css" text="%button.enter" />
-                        <Button fx:id="exit" layoutX="222.0" layoutY="169.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" stylesheets="@../css/but.css" text="%button.exit" />
+                        <Button fx:id="login" layoutX="142.0" layoutY="169.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="%button.enter" />
+                        <Button fx:id="exit" layoutX="222.0" layoutY="169.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" text="%button.exit" />
                      </children>
                      <opaqueInsets>
                         <Insets />

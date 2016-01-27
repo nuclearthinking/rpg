@@ -47,7 +47,6 @@ public class StartApp extends Application
 
             Scene scene = new Scene(rootLayout);
             scene.getStylesheets().add(StartApp.class.getResource("/css/but.css").toExternalForm());
-            System.out.println(scene.getStylesheets().get(0));
             primaryStage.setScene(scene);
             primaryStage.setTitle(getBundle().getString("title"));
             primaryStage.show();
