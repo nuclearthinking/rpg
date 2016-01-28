@@ -2,13 +2,18 @@ package com.nuclearthinking.game.app.controller;
 
 import com.nuclearthinking.game.DAO.Account;
 import com.nuclearthinking.game.app.StartApp;
+import com.nuclearthinking.game.utils.ResourceUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ResourceBundle;
 
 
@@ -19,7 +24,9 @@ public class LoginController
 {
     private ObservableList<Account> accountsData = FXCollections.observableArrayList();
 
-    private ResourceBundle bundle = new StartApp().getBundle();
+    private StartApp startApp = new StartApp();
+
+    private static ResourceUtil resourceUtil = new ResourceUtil();
 
     @FXML
     private TableView<Account> accountTable;
@@ -45,7 +52,7 @@ public class LoginController
     @FXML
     private void initialize()
     {
-        accountTable.setPlaceholder(new Text(bundle.getString("table")));
+        accountTable.setPlaceholder(new Text(startApp.getBundle().getString("table")));
         login.setOnAction((event -> {
             String loginTextTmp = loginTxt.getText();
             String passwordTextTmp = passwordTxt.getText();
@@ -62,26 +69,28 @@ public class LoginController
 
                 msgLogin.setTextFill(null);
                 msgPassword.setTextFill(null);
+
+                loadNewOverview(startApp.getBundle());
             }
             else if(!isValid(loginTextTmp) && isValid(passwordTextTmp))
             {
-                msgLogin.setText(bundle.getString("msg.login"));
+                msgLogin.setText(startApp.getBundle().getString("msg.login"));
                 msgLogin.setTextFill(Color.RED);
 
                 msgPassword.setTextFill(null);
             }
             else if(isValid(loginTextTmp) && !isValid(passwordTextTmp))
             {
-                msgPassword.setText(bundle.getString("msg.password"));
+                msgPassword.setText(startApp.getBundle().getString("msg.password"));
                 msgPassword.setTextFill(Color.RED);
 
                 msgLogin.setTextFill(null);
             }
             else
             {
-                msgLogin.setText(bundle.getString("msg.login"));
+                msgLogin.setText(startApp.getBundle().getString("msg.login"));
                 msgLogin.setTextFill(Color.RED);
-                msgPassword.setText(bundle.getString("msg.password"));
+                msgPassword.setText(startApp.getBundle().getString("msg.password"));
                 msgPassword.setTextFill(Color.RED);
             }
         }));
@@ -102,5 +111,21 @@ public class LoginController
     public ObservableList<Account> getAccountsData()
     {
         return accountsData;
+    }
+
+    public void loadNewOverview(ResourceBundle bundle)
+    {
+        startApp.getRootLayout().setCenter(null);
+        try(InputStream is = resourceUtil.getResourceAsStream("fxml\\create.fxml"))
+        {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setResources(bundle);
+            AnchorPane personOverview = (AnchorPane) loader.load(is);
+
+            startApp.getRootLayout().setCenter(personOverview);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

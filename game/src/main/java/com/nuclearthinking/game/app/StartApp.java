@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class StartApp extends Application
 {
     private Stage primaryStage;
-    private BorderPane rootLayout;
+    private static BorderPane rootLayout;
     private static ResourceUtil resourceUtil = new ResourceUtil();
     private static ResourceBundle bundle;
 
@@ -80,5 +80,10 @@ public class StartApp extends Application
     public ResourceBundle getBundle()
     {
         return bundle;
+    }
+
+    public BorderPane getRootLayout()
+    {
+        return rootLayout;
     }
 }
