@@ -46,6 +46,7 @@ public class MenuBarController
             aboutStage = new Stage();
             Scene scene = new Scene(aboutPane);
             aboutStage.initModality(Modality.APPLICATION_MODAL);
+            aboutStage.setResizable(false);
             aboutStage.setScene(scene);
             aboutStage.setTitle(bundle.getString("about.title"));
             aboutStage.showAndWait();
