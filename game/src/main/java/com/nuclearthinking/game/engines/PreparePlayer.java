@@ -32,9 +32,52 @@ public class PreparePlayer extends Player {
         choosePlayerClass();
     }
 
+    public PreparePlayer(String name, String playerClass)
+    {
+        player = new Player();
+        setPlayerName(name);
+        choosePlayerClass(playerClass);
+    }
+
     private void setPlayerName() {
         player.setName(ut.beautifyName(getValidName()));
         System.out.println(messages.getMessage("welcomeMessage") + " " + player.getName());
+        System.out.println();
+    }
+
+    private void setPlayerName(String name)
+    {
+        player.setName(ut.beautifyName(name));
+        System.out.println(messages.getMessage("welcomeMessage") + " " + player.getName());
+        System.out.println();
+    }
+
+    private void choosePlayerClass(String playerClass)
+    {
+        List<String> strings = new ArrayList<String>() {
+            {
+                add(messages.getMessage("mageClass"));
+                add(messages.getMessage("warriorClass"));
+                add(messages.getMessage("rogueClass"));
+            }
+        };
+        switch (playerClass) {
+            case "Mag": {
+                player.setClass(new MageClass());
+                System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("mageClass"));
+                break;
+            }
+            case "Warrior": {
+                player.setClass(new WarriorClass());
+                System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("warriorClass"));
+                break;
+            }
+            case "Rogue": {
+                player.setClass(new RogueClass());
+                System.out.println(messages.getMessage("choosedClass") + " : " + messages.getMessage("rogueClass"));
+                break;
+            }
+        }
         System.out.println();
     }
 
