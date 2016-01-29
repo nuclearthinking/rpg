@@ -1,5 +1,6 @@
 package com.nuclearthinking.game.app.controller;
 
+import com.nuclearthinking.game.app.StartApp;
 import com.nuclearthinking.game.engines.PreparePlayer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +12,8 @@ import javafx.scene.control.TextField;
  */
 public class CreateCharacterController
 {
+    private static final StartApp startApp = new StartApp();
+
     @FXML
     private TextField playerName;
 
@@ -18,20 +21,19 @@ public class CreateCharacterController
     private ChoiceBox selectClass;
 
     @FXML
-    private Button create;
+    private Button create, back;
 
     @FXML
     private void initialize()
     {
-        //playerName.setTooltip(new Tooltip("Fill Player Name"));
-
-        //selectClass.setTooltip(new Tooltip("Select the Class"));
         selectClass.getItems().addAll("Mag", "Warrior", "Rogue");
         selectClass.getSelectionModel().selectFirst();
 
         create.setOnAction(event ->
         {
-            new PreparePlayer(playerName.getText(),(String)selectClass.getSelectionModel().getSelectedItem()).getPlayer();
+            new PreparePlayer(playerName.getText(), (String) selectClass.getSelectionModel().getSelectedItem()).getPlayer();
         });
+
+        back.setOnAction(event -> startApp.loadOverview(startApp.getBundle(), "fxml\\auth.fxml"));
     }
 }

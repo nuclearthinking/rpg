@@ -43,7 +43,12 @@
                            </tooltip></ChoiceBox>
                      </children>
                   </GridPane>
-                  <Button fx:id="create" layoutX="318.0" layoutY="253.0" mnemonicParsing="false" text="%button.create" />
+                  <HBox layoutX="120.0" layoutY="187.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="back" layoutX="223.0" layoutY="253.0" mnemonicParsing="false" text="%button.back" />
+                        <Button fx:id="create" layoutX="318.0" layoutY="253.0" mnemonicParsing="false" text="%button.create" />
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
         </items>

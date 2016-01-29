@@ -34,7 +34,7 @@ public class StartApp extends Application
         bundle = ResourceBundle.getBundle("bundles.Localization", Locale.getDefault());
 
         initRootLayout(bundle);
-        showPersonOverview(bundle);
+        loadOverview(bundle, "fxml\\auth.fxml");
     }
 
     public void initRootLayout(ResourceBundle bundle)
@@ -57,9 +57,15 @@ public class StartApp extends Application
         }
     }
 
-    public void showPersonOverview(ResourceBundle bundle)
+    public void loadOverview(ResourceBundle bundle, String path)
     {
-        try(InputStream is = resourceUtil.getResourceAsStream("fxml\\app.fxml"))
+        if(path.length() <= 0 || path.isEmpty() || path == null)
+        {
+            //TODO:Запись в лог
+            return;
+        }
+
+        try(InputStream is = resourceUtil.getResourceAsStream(path))
         {
             FXMLLoader loader = new FXMLLoader();
             loader.setResources(bundle);
