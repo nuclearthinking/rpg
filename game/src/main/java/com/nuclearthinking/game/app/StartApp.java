@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class StartApp extends Application
 {
-    private Stage primaryStage;
+    private static Stage primaryStage;
     private static BorderPane rootLayout;
     private static ResourceUtil resourceUtil = new ResourceUtil();
     private static ResourceBundle bundle;
