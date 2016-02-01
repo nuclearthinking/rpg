@@ -1,11 +1,12 @@
 package com.nuclearthinking.game.app.controller;
 
+import com.nuclearthinking.game.app.ContextContainer;
 import com.nuclearthinking.game.app.StartApp;
-import com.nuclearthinking.game.app.map.GameMap;
-import com.nuclearthinking.game.app.utils.ManagerAudio;
+import com.nuclearthinking.game.app.alldrow.GameWorld;
 import com.nuclearthinking.game.engines.PreparePlayer;
 import com.nuclearthinking.game.player.Player;
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -18,6 +19,7 @@ public class CreateCharacterController
     private static final StartApp startApp = new StartApp();
     //Возможно он не должен быть статичным
     private static Player player;
+    private ContextContainer container;
 
     @FXML
     private TextField playerName;
@@ -44,11 +46,16 @@ public class CreateCharacterController
     }
 
     //TODO: Тут должно быть создание и заселение мира, и добавление туда созданного\загруженного персонажа
+    //Тут два способа загрузки, я пока не могу определитсья нужен MenuBar или нет
+    //Если не нужен, то раскоменировать и закоменитить строчку -> startApp.getRootLayout().setCenter(container.getSurface());
     public void initGameScene()
     {
-        GameMap gameMap = new GameMap();
-        startApp.getRootLayout().setCenter(gameMap.getMainGroup());
-        startApp.getRootLayout().getCenter().toBack();
-        ManagerAudio.backMusicStart("/audio/bg.mp3");
+        Canvas canvas = new Canvas(600, 400);
+        container = new ContextContainer(new GameWorld(), canvas);
+        //Scene scene = new Scene(container.getSurface(), 600, 400);
+        container.startUp();
+        startApp.getRootLayout().setCenter(container.getSurface());
+        //startApp.getPrimaryStage().setScene(scene);
+        //startApp.getPrimaryStage().show();
     }
 }
