@@ -2,10 +2,9 @@ package com.nuclearthinking.game.app.controller;
 
 import com.nuclearthinking.game.app.StartApp;
 import com.nuclearthinking.game.app.map.GameMap;
-import com.nuclearthinking.game.app.map.interfaces.IGameMap;
 import com.nuclearthinking.game.engines.PreparePlayer;
+import com.nuclearthinking.game.player.Player;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -16,6 +15,8 @@ import javafx.scene.control.TextField;
 public class CreateCharacterController
 {
     private static final StartApp startApp = new StartApp();
+    //Возможно он не должен быть статичным
+    private static Player player;
 
     @FXML
     private TextField playerName;
@@ -34,22 +35,18 @@ public class CreateCharacterController
 
         create.setOnAction(event ->
         {
-            startApp.getPrimaryStage().setScene(initGameScene());
-            startApp.getPrimaryStage().setResizable(false);
-            startApp.getPrimaryStage().show();
-            new PreparePlayer(playerName.getText(), (String) selectClass.getSelectionModel().getSelectedItem()).getPlayer();
+            player = new PreparePlayer(playerName.getText(),(String) selectClass.getSelectionModel().getSelectedItem()).getPlayer();
+            initGameScene();
         });
 
         back.setOnAction(event -> startApp.loadOverview(startApp.getBundle(), "fxml\\auth.fxml"));
     }
 
-    public Scene initGameScene()
+    //TODO: Тут должно быть создание и заселение мира, и добавление туда созданного\загруженного персонажа
+    public void initGameScene()
     {
         GameMap gameMap = new GameMap();
-        //Задаем размер окна в зависимости от размера карты
-        Scene scene = new Scene(gameMap.getMainGroup(),
-                gameMap.getSquareXYCount() * IGameMap.SQUARE_PX_WIDTH,
-                gameMap.getSquareXYCount() * IGameMap.SQUARE_PX_HEIGHT);
-        return scene;
+        startApp.getRootLayout().setCenter(gameMap.getMainGroup());
+        startApp.getRootLayout().getCenter().toBack();
     }
 }
