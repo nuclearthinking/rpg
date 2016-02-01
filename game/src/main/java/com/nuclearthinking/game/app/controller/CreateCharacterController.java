@@ -2,6 +2,7 @@ package com.nuclearthinking.game.app.controller;
 
 import com.nuclearthinking.game.app.StartApp;
 import com.nuclearthinking.game.app.map.GameMap;
+import com.nuclearthinking.game.app.utils.ManagerAudio;
 import com.nuclearthinking.game.engines.PreparePlayer;
 import com.nuclearthinking.game.player.Player;
 import javafx.fxml.FXML;
@@ -48,5 +49,6 @@ public class CreateCharacterController
         GameMap gameMap = new GameMap();
         startApp.getRootLayout().setCenter(gameMap.getMainGroup());
         startApp.getRootLayout().getCenter().toBack();
+        ManagerAudio.backMusicStart("/audio/bg.mp3");
     }
 }

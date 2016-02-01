@@ -5,6 +5,7 @@ import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -27,7 +28,7 @@ public class ManagerResources
             {
                 result = new Image(is);
             }
-            catch (Exception e)
+            catch (IOException e)
             {
                 e.printStackTrace();
             }
