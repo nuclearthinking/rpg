@@ -28,6 +28,12 @@ public class ContextContainer extends AnimationTimer
         this.controlBar = managerView.getControlBar();
     }
 
+    //Тут хранятся события на действия по канвасу
+    public void event()
+    {
+        this.canvas.setOnMouseClicked(managerView);
+    }
+
     public Parent getSurface()
     {
         root = new Group();
@@ -43,6 +49,7 @@ public class ContextContainer extends AnimationTimer
 
     public void startUp()
     {
+        event();
         start(); //Запускает таймер анимации
         managerView.showFps(true); //Показываем FPS
         ManagerAudio.backMusicStart("/audio/bg.mp3");

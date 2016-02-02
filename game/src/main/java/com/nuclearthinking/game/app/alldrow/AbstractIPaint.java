@@ -6,7 +6,7 @@ import javafx.scene.Node;
 /**
  * Created by kuksin-mv on 01.02.2016.
  */
-public abstract class AbstarctIPaint implements IPaint
+public abstract class AbstractIPaint implements IPaint
 {
     @Override
     public IPaint invoke()
