@@ -5,6 +5,8 @@ import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -32,6 +34,25 @@ public class ManagerResources
             {
                 e.printStackTrace();
             }
+
+        return result;
+    }
+
+    public static Image loadImageFile(String fileName)
+    {
+        Image result = null;
+        try(FileInputStream fis = new FileInputStream(fileName))
+        {
+            result = new Image(fis);
+        }
+        catch(FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
         return result;
     }
