@@ -39,7 +39,7 @@ public class MapEditor extends Application
 
 
     @FXML
-    private MenuItem open, save;
+    private MenuItem open, save, openMap;
 
     @FXML
     private void initialize()
@@ -61,6 +61,18 @@ public class MapEditor extends Application
                 scrollPane.setContent(stackPane);
                 //Скролы с липучко, с картинкой пихаем в бордерпанель
                 borderPane.setCenter(scrollPane);
+            }
+        });
+
+        openMap.setOnAction(event1 ->
+        {
+            FileChooser chooser = new FileChooser();
+            chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Map", "*.map"));
+            File file = chooser.showOpenDialog(primaryStage);
+            if(file != null && isBackLoad())
+            {
+                config = ManagerResources.loadMap(file.getAbsolutePath());
+                repaint();
             }
         });
 
@@ -165,6 +177,10 @@ public class MapEditor extends Application
         {
             e.printStackTrace();
         }
+    }
+
+    public boolean isBackLoad(){
+        return image != null;
     }
 
     @Override
