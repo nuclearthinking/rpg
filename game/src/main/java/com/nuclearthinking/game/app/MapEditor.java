@@ -39,7 +39,7 @@ public class MapEditor extends Application
 
 
     @FXML
-    private MenuItem open, save, openMap;
+    private MenuItem open, save, openMap, quite;
 
     @FXML
     private void initialize()
@@ -81,8 +81,11 @@ public class MapEditor extends Application
             FileChooser chooser = new FileChooser();
             chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Map", "*.map"));
             File file = chooser.showSaveDialog(primaryStage);
-            save(file);
+            if (file != null)
+                save(file);
         });
+
+        quite.setOnAction(event -> System.exit(0));
     }
 
     private Node loadImg(Image image)
