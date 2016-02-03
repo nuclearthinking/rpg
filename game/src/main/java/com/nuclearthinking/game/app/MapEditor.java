@@ -10,8 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -23,16 +25,18 @@ import java.io.*;
  */
 public class MapEditor extends Application
 {
+    private static final ResourceUtil ru = new ResourceUtil();
+    // Ставить больше 32 не рекомендуется так как там не получится покрыть всю картинку
+    private static final int PIXEL = 16; //От колличества пикселей зависит точность рисования чем меньше тем больше, но рисовать запарит
+
     private static Stage primaryStage;
     private static BorderPane borderPane;
-    private static final ResourceUtil ru = new ResourceUtil();
 
     private GraphicsContext gc;
     private Image image;
-    // Ставить больше 32 не рекомендуется так как там не получится покрыть всю картинку
-    private static final int PIXEL = 16; //От колличества пикселей зависит точность рисования чем меньше тем больше, но рисовать запарит
     private int[][] config;
     private Canvas canvas;
+
 
     @FXML
     private MenuItem open, save;
@@ -48,7 +52,16 @@ public class MapEditor extends Application
 
             File file = chooser.showOpenDialog(primaryStage);
             if (file != null)
-                borderPane.setCenter(loadImg(ManagerResources.loadImageFile(file.getAbsolutePath())));
+            {
+                //Делаем липучку, в неё пихаем картинку
+                StackPane stackPane = new StackPane(loadImg(ManagerResources.loadImageFile(file.getAbsolutePath())));
+                //Создаем скролы
+                ScrollPane scrollPane = new ScrollPane();
+                //В скролы пихаем липучку
+                scrollPane.setContent(stackPane);
+                //Скролы с липучко, с картинкой пихаем в бордерпанель
+                borderPane.setCenter(scrollPane);
+            }
         });
 
         save.setOnAction(event ->
