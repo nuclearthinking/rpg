@@ -2,11 +2,11 @@ package com.nuclearthinking.game.app.controller;
 
 import com.nuclearthinking.game.app.ContextContainer;
 import com.nuclearthinking.game.app.StartApp;
-import com.nuclearthinking.game.app.alldrow.GameWorld;
+import com.nuclearthinking.game.app.TestScene;
+import com.nuclearthinking.game.app.alldrow.ObjectWorld;
 import com.nuclearthinking.game.engines.PreparePlayer;
 import com.nuclearthinking.game.player.Player;
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -38,7 +38,7 @@ public class CreateCharacterController
 
         create.setOnAction(event ->
         {
-            player = new PreparePlayer(playerName.getText(),(String) selectClass.getSelectionModel().getSelectedItem()).getPlayer();
+            player = new PreparePlayer(playerName.getText(), (String) selectClass.getSelectionModel().getSelectedItem()).getPlayer();
             initGameScene();
         });
 
@@ -50,12 +50,10 @@ public class CreateCharacterController
     //Если не нужен, то раскоменировать и закоменитить строчку -> startApp.getRootLayout().setCenter(container.getSurface());
     public void initGameScene()
     {
-        Canvas canvas = new Canvas(600, 400);
-        container = new ContextContainer(new GameWorld(), canvas);
-        //Scene scene = new Scene(container.getSurface(), 600, 400);
-        container.startUp();
-        startApp.getRootLayout().setCenter(container.getSurface());
-        //startApp.getPrimaryStage().setScene(scene);
-        //startApp.getPrimaryStage().show();
+        ObjectWorld world = new TestScene(60, "Test Frame");
+        world.initialize(startApp.getPrimaryStage());
+        world.beginGameLoop();
+        startApp.getPrimaryStage().show();
+
     }
 }
