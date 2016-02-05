@@ -1,6 +1,5 @@
 package com.nuclearthinking.game.app.controller;
 
-import com.nuclearthinking.game.app.ContextContainer;
 import com.nuclearthinking.game.app.StartApp;
 import com.nuclearthinking.game.app.TestScene;
 import com.nuclearthinking.game.app.alldrow.ObjectWorld;
@@ -19,7 +18,6 @@ public class CreateCharacterController
     private static final StartApp startApp = new StartApp();
     //Возможно он не должен быть статичным
     private static Player player;
-    private ContextContainer container;
 
     @FXML
     private TextField playerName;
@@ -54,6 +52,6 @@ public class CreateCharacterController
         world.initialize(startApp.getPrimaryStage());
         world.beginGameLoop();
         startApp.getPrimaryStage().show();
-
     }
+
 }

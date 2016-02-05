@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -42,6 +43,7 @@ public abstract class ObjectWorld
             updateSprites();
             checkCollision();
             cleanupSprites();
+            //showFps(); //TODO: Получилось гавно. Надо ещё и чистить как то ведь
         });
 
         Timeline timeline = new Timeline(oneFrame);
@@ -91,6 +93,13 @@ public abstract class ObjectWorld
     protected void cleanupSprites()
     {
         spriteManager.cleanupSprites();
+    }
+
+    protected void showFps()
+    {
+        getGraphics().setStroke(Color.BLACK);
+        getGraphics().strokeText("FPS: " + Integer.toString(fps), 0, 20, 200);
+        getGraphics().restore();
     }
 
     protected int getFps()

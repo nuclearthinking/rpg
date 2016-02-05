@@ -1,40 +1,23 @@
 package com.nuclearthinking.game.app.alldrow;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.shape.Circle;
+import java.awt.*;
 
 /**
  * Created by kuksin-mv on 04.02.2016.
  */
 public class Atom extends Sprite
 {
-    public Atom(double radius)
+    public Atom(String spriteFile, int direction)
     {
-        Circle circle = new Circle();
-        circle.setCenterX(radius);
-        circle.setCenterY(radius);
-        circle.setRadius(radius);
-        circle.setCache(true);
-
-        node = circle;
-    }
-
-    public Circle getAsCircle()
-    {
-        return (Circle) node;
-    }
-
-    public void draw(GraphicsContext context)
-    {
-        //context.fillOval(10, 60, 30, 30);
+        super(spriteFile, direction);
+        setPosition(new Point(10, 10));
     }
 
     @Override
     public void update()
     {
-
-        node.setTranslateX(node.getTranslateX() + vX);
-        node.setTranslateY(node.getTranslateY() + vY);
+        setTranslateX(getTranslateX() + vX);
+        setTranslateY(getTranslateY() + vY);
     }
 
     @Override

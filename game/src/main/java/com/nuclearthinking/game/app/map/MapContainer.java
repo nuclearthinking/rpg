@@ -1,5 +1,7 @@
 package com.nuclearthinking.game.app.map;
 
+import com.nuclearthinking.game.app.alldrow.Sprite;
+import com.nuclearthinking.game.app.alldrow.SpriteManager;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -30,6 +32,7 @@ public class MapContainer
                 context.drawImage(factory.getImages()[j][i], boxToPixels(i) + offsetX, boxToPixels(j) + offsetY);
             }
         }
+        SpriteManager.draw(context, 10, 10);
     }
 
     //Это для обратной сборки картинки, что бы квадраты не расползлись друг от друга и не влепились в один
@@ -48,6 +51,11 @@ public class MapContainer
     public int getColumns()
     {
         return factory.getMapColumns();
+    }
+
+    public void initHero(Sprite hero)
+    {
+        hero.setMapContainer(this);
     }
 
 }

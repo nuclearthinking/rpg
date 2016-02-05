@@ -1,5 +1,7 @@
 package com.nuclearthinking.game.app.alldrow;
 
+import javafx.scene.canvas.GraphicsContext;
+
 import java.util.*;
 
 /**
@@ -58,6 +60,14 @@ public class SpriteManager
     {
         GAME_ACTORS.removeAll(CLEAN_UP_SPRITES);
         CLEAN_UP_SPRITES.clear();
+    }
+
+    public static void draw(GraphicsContext context, int offsetX, int offsetY)
+    {
+        for(Sprite role : GAME_ACTORS)
+        {
+            role.draw(context, offsetX, offsetY);
+        }
     }
 
 }
