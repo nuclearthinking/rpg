@@ -1,5 +1,6 @@
 package com.nuclearthinking.game.app.alldrow;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.shape.Circle;
 
 /**
@@ -7,7 +8,6 @@ import javafx.scene.shape.Circle;
  */
 public class Atom extends Sprite
 {
-
     public Atom(double radius)
     {
         Circle circle = new Circle();
@@ -24,9 +24,15 @@ public class Atom extends Sprite
         return (Circle) node;
     }
 
+    public void draw(GraphicsContext context)
+    {
+        //context.fillOval(10, 60, 30, 30);
+    }
+
     @Override
     public void update()
     {
+
         node.setTranslateX(node.getTranslateX() + vX);
         node.setTranslateY(node.getTranslateY() + vY);
     }

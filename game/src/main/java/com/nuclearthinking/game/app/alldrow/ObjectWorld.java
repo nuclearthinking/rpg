@@ -5,6 +5,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -20,6 +22,8 @@ public abstract class ObjectWorld
 
     private Scene gameSurface;
     private Group sceneNode;
+    private Canvas nodeCanvas;
+    private GraphicsContext graphicsContext;
 
     private final SpriteManager spriteManager = new SpriteManager();
 
@@ -122,6 +126,26 @@ public abstract class ObjectWorld
     protected void setGameSurface(Scene gameSurface)
     {
         this.gameSurface = gameSurface;
+    }
+
+    public Canvas getGameCanvas()
+    {
+        return nodeCanvas;
+    }
+
+    protected void setGameCanvas(Canvas nodeCanvas)
+    {
+        this.nodeCanvas = nodeCanvas;
+    }
+
+    public GraphicsContext getGraphics()
+    {
+        return graphicsContext;
+    }
+
+    protected void setGraphicsContext(GraphicsContext graphicsContext)
+    {
+        this.graphicsContext = graphicsContext;
     }
 
     public Group getSceneNodes()

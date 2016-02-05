@@ -20,7 +20,7 @@ public class MapContainer
     public void draw(GraphicsContext context)
     {
         //Смещение картинки относительно оболочки из-за MenuBar пришлось двинуть на 10 по Y
-        int offsetX = 0, offsetY = 10;
+        int offsetX = 0, offsetY = 0;
 
         for(int i = 0; i < getRows(); i++)
         {
