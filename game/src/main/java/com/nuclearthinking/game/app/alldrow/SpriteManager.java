@@ -62,7 +62,7 @@ public class SpriteManager
         CLEAN_UP_SPRITES.clear();
     }
 
-    public static void draw(GraphicsContext context, int offsetX, int offsetY)
+    public void draw(GraphicsContext context, int offsetX, int offsetY)
     {
         for(Sprite role : GAME_ACTORS)
         {

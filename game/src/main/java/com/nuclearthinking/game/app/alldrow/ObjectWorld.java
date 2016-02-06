@@ -41,6 +41,7 @@ public abstract class ObjectWorld
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt, event ->
         {
             updateSprites();
+            worldUpdate(getGraphics());
             checkCollision();
             cleanupSprites();
             //showFps(); //TODO: Получилось гавно. Надо ещё и чистить как то ведь
@@ -59,15 +60,12 @@ public abstract class ObjectWorld
         getGameLoop().play();
     }
 
-    protected void updateSprites()
+    private void updateSprites()
     {
-        spriteManager.getAllSprites().forEach(this::handleUpdate);
+        spriteManager.getAllSprites().forEach(Sprite::update);
     }
 
-    protected void handleUpdate(Sprite sprite)
-    {
-
-    }
+    protected abstract void worldUpdate(GraphicsContext context);
 
     protected void checkCollision()
     {

@@ -3,11 +3,13 @@ package com.nuclearthinking.game.app;
 import com.nuclearthinking.game.app.alldrow.Atom;
 import com.nuclearthinking.game.app.alldrow.ObjectWorld;
 import com.nuclearthinking.game.app.alldrow.Sprite;
+import com.nuclearthinking.game.app.alldrow.SpriteManager;
 import com.nuclearthinking.game.app.map.MapContainer;
 import com.nuclearthinking.game.app.utils.ManagerResources;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -18,6 +20,7 @@ public class TestScene extends ObjectWorld
 {
     MapContainer mapContainer = new MapContainer("img\\map.png");
     private static Image bg = ManagerResources.loadImage("img\\bg.png");
+    SpriteManager spriteManager = new SpriteManager();
 
     public TestScene(int fps, String title)
     {
@@ -46,8 +49,9 @@ public class TestScene extends ObjectWorld
         setGraphicsContext(getGameCanvas().getGraphicsContext2D());
 
         //Загружаем карту
-        createAtom();
+
         mapContainer.draw(getGraphics());
+        createAtom();
         //Рисуем все что есть
         primaryStage.show();
 
@@ -65,26 +69,21 @@ public class TestScene extends ObjectWorld
             mapContainer.draw(getGraphics());
         });
 
+    }
 
+    @Override
+    protected void worldUpdate(GraphicsContext context)
+    {
+        spriteManager.draw(context, 10, 10);
     }
 
     private void createAtom()
     {
-        Atom atom = new Atom("img\\gm.png", 0);
+        Atom atom = new Atom("img\\gm.png", 2);
 
         getSpriteManager().addSprites(atom);
 
-        mapContainer.initHero(atom);
-    }
-
-    @Override
-    protected void handleUpdate(Sprite sprite)
-    {
-        if (sprite.isAtom())
-        {
-            //System.out.println("Он есть");
-            //updateAtom((Atom)sprite);
-        }
+        //mapContainer.initHero(atom);
     }
 
     @Override
@@ -96,22 +95,7 @@ public class TestScene extends ObjectWorld
     @Override
     protected void cleanupSprites()
     {
-
-    }
-
-    private void updateAtom(Atom atom)
-    {
-        atom.update();
-
-        if (atom.getTranslateX() > (getGameSurface().getWidth()  - getGameCanvas().getWidth()) || atom.getTranslateX() < 0 )
-        {
-            atom.vX = atom.vX * -1;
-        }
-        if (atom.getTranslateY() > getGameSurface().getHeight()- getGameCanvas().getHeight() || atom.getTranslateY() < 0)
-        {
-
-            atom.vY = atom.vY * -1;
-        }
+        spriteManager.cleanupSprites();
     }
 
 }
