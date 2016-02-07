@@ -1,59 +1,30 @@
 package com.nuclearthinking.game.app.map;
 
-import com.nuclearthinking.game.app.alldrow.Sprite;
-import javafx.scene.canvas.GraphicsContext;
+import com.nuclearthinking.game.app.utils.ManagerResources;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 /**
  * Created by kuksin-mv on 01.02.2016.
  */
-public class MapContainer
+public class MapContainer extends Pane
 {
-    private static final byte PIXEL = 16;
+    private final Image MAP = ManagerResources.loadImage("img\\map.png");
+    private final ImageView imageView = new ImageView(MAP);
+    private static final int SPRITE_WIDTH = 1536;
+    private static final int SPRITE_HEIGHT = 1536;
+    private static final int OFFSET_X = 0;
+    private static final int OFFSET_Y = 0;
 
-    private static MapFactory factory;
-
-    public MapContainer(String image)
+    public MapContainer()
     {
-        this.factory = new MapFactory(image);
+        imageView.setViewport(new Rectangle2D(OFFSET_X, OFFSET_Y, SPRITE_WIDTH, SPRITE_HEIGHT));
+        getChildren().add(imageView);
     }
 
-    //Рисует картинку
-    public void draw(GraphicsContext context)
-    {
-        //Смещение картинки относительно оболочки из-за MenuBar пришлось двинуть на 10 по Y
-        int offsetX = 0, offsetY = 0;
 
-        for(int i = 0; i < getRows(); i++)
-        {
-            for(int j = 0; j < getColumns(); j++)
-            {
-                //Рисует картинку по кусочкам слева на право, сверху вниз
-                context.drawImage(factory.getImages()[j][i], boxToPixels(i) + offsetX, boxToPixels(j) + offsetY);
-            }
-        }
-    }
 
-    //Это для обратной сборки картинки, что бы квадраты не расползлись друг от друга и не влепились в один
-    public static int boxToPixels(int box)
-    {
-        return box * PIXEL;
-    }
-
-    //Кол-во строк в картинке
-    public int getRows()
-    {
-        return factory.getMapRows();
-    }
-
-    //Кол-во столбцов в картинке
-    public int getColumns()
-    {
-        return factory.getMapColumns();
-    }
-
-    public void initHero(Sprite hero)
-    {
-        hero.setMapContainer(this);
-    }
 
 }

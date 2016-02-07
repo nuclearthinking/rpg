@@ -5,9 +5,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -23,8 +20,6 @@ public abstract class ObjectWorld
 
     private Scene gameSurface;
     private Group sceneNode;
-    private Canvas nodeCanvas;
-    private GraphicsContext graphicsContext;
 
     private final SpriteManager spriteManager = new SpriteManager();
 
@@ -41,10 +36,8 @@ public abstract class ObjectWorld
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt, event ->
         {
             updateSprites();
-            worldUpdate(getGraphics());
             checkCollision();
             cleanupSprites();
-            //showFps(); //TODO: Получилось гавно. Надо ещё и чистить как то ведь
         });
 
         Timeline timeline = new Timeline(oneFrame);
@@ -60,30 +53,17 @@ public abstract class ObjectWorld
         getGameLoop().play();
     }
 
-    private void updateSprites()
+    protected void updateSprites()
     {
-        spriteManager.getAllSprites().forEach(Sprite::update);
-    }
 
-    protected abstract void worldUpdate(GraphicsContext context);
+    }
 
     protected void checkCollision()
     {
         spriteManager.resetCollisionsToCheck();
-
-        for(Sprite spriteA:spriteManager.getCollisionsToCheck())
-        {
-            for(Sprite spriteB:spriteManager.getAllSprites())
-            {
-                if (handleCollision(spriteA, spriteB))
-                {
-                    break;
-                }
-            }
-        }
     }
 
-    protected boolean handleCollision(Sprite spriteA, Sprite spriteB)
+    protected boolean handleCollision(SpriteAnimation spriteA, SpriteAnimation spriteB)
     {
         return false;
     }
@@ -91,13 +71,6 @@ public abstract class ObjectWorld
     protected void cleanupSprites()
     {
         spriteManager.cleanupSprites();
-    }
-
-    protected void showFps()
-    {
-        getGraphics().setStroke(Color.BLACK);
-        getGraphics().strokeText("FPS: " + Integer.toString(fps), 0, 20, 200);
-        getGraphics().restore();
     }
 
     protected int getFps()
@@ -133,26 +106,6 @@ public abstract class ObjectWorld
     protected void setGameSurface(Scene gameSurface)
     {
         this.gameSurface = gameSurface;
-    }
-
-    public Canvas getGameCanvas()
-    {
-        return nodeCanvas;
-    }
-
-    protected void setGameCanvas(Canvas nodeCanvas)
-    {
-        this.nodeCanvas = nodeCanvas;
-    }
-
-    public GraphicsContext getGraphics()
-    {
-        return graphicsContext;
-    }
-
-    protected void setGraphicsContext(GraphicsContext graphicsContext)
-    {
-        this.graphicsContext = graphicsContext;
     }
 
     public Group getSceneNodes()

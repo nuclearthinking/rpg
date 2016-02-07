@@ -1,53 +1,62 @@
 package com.nuclearthinking.game.app.alldrow;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-
-import java.awt.*;
+import com.nuclearthinking.game.app.utils.ManagerResources;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 /**
  * Created by kuksin-mv on 04.02.2016.
  */
-public class Atom extends Sprite
+public class Atom extends Pane
 {
-    public Atom(String spriteFile, int direction)
+    private final Image PLAYER = ManagerResources.loadImage("img\\gm.png");
+    private final ImageView imageView = new ImageView(PLAYER);
+    private static final int SPRITE_WIDTH = 70;
+    private static final int SPRITE_HEIGHT = 124;
+    private static final int COLUMNS = 8;
+    private static final int COUNT = 4;
+    private static final int OFFSET_X = 0;
+    private static final int OFFSET_Y = 0;
+
+
+    public SpriteAnimation spriteAnimation;
+
+    public Atom()
     {
-        super(spriteFile, direction);
-        setPosition(new Point(10, 10));
+        imageView.setViewport(new Rectangle2D(OFFSET_X, OFFSET_Y, SPRITE_WIDTH, SPRITE_HEIGHT));
+        spriteAnimation = new SpriteAnimation(this.imageView, Duration.millis(500), COUNT, COLUMNS, OFFSET_X, OFFSET_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
+        getChildren().add(imageView);
     }
 
-    @Override
-    public void update()
+
+    public void move(KeyCode keyCode)
     {
-        stepCounter++;
-        stepCounter = stepCounter % 100;
+        switch (keyCode)
+        {
+            case RIGHT:
+                spriteAnimation.setOffsetY(SPRITE_HEIGHT * 2);
+                this.setTranslateX(this.getTranslateX() + 1);
+                break;
 
-        vY++;
-        vX++;
-    }
+            case LEFT:
+                spriteAnimation.setOffsetY(SPRITE_HEIGHT);
+                this.setTranslateX(this.getTranslateX() - 1);
+                break;
 
-    @Override
-    public boolean collide(Sprite other)
-    {
-        return false;
-    }
+            case UP:
+                spriteAnimation.setOffsetY(SPRITE_HEIGHT * 3);
+                this.setTranslateY(this.getTranslateY() - 1);
+                break;
 
-    public boolean isAtom()
-    {
-        return true;
-    }
-
-    @Override
-    public void draw(GraphicsContext context, int offsetX, int offsetY)
-    {
-        int nx = vX + offsetX - getSpriteOffsetX();
-        int ny = vY + offsetY - getSpriteOffsetY();
-
-        context.setFill(Color.rgb(0, 0, 0, 0.5));
-        context.fillOval(nx + 15, ny + sfactory.getSpriteHeight() - sfactory.getSpriteHeight() / 5,
-                PIXEL * 5 / 4, PIXEL * 2 / 3);
-
-        context.drawImage(getSpriteImage(), nx, ny);
+            case DOWN:
+                spriteAnimation.setOffsetY(0);
+                this.setTranslateY(this.getTranslateY() + 1);
+                break;
+        }
     }
 
 }

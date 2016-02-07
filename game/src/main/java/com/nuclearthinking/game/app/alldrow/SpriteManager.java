@@ -1,6 +1,6 @@
 package com.nuclearthinking.game.app.alldrow;
 
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Pane;
 
 import java.util.*;
 
@@ -9,35 +9,35 @@ import java.util.*;
  */
 public class SpriteManager
 {
-    private final static List<Sprite> GAME_ACTORS = new ArrayList<Sprite>();
-    private final static List<Sprite> CHECK_COLLISION_LIST = new ArrayList<Sprite>();
-    private final static Set<Sprite> CLEAN_UP_SPRITES = new HashSet<Sprite>();
+    private final static List<Pane> GAME_ACTORS = new ArrayList<Pane>();
+    private final static List<Pane> CHECK_COLLISION_LIST = new ArrayList<Pane>();
+    private final static Set<Pane> CLEAN_UP_SPRITES = new HashSet<Pane>();
 
-    public List<Sprite>  getAllSprites()
+    public List<Pane>  getAllSprites()
     {
         return GAME_ACTORS;
     }
 
-    public void addSprites(Sprite... sprites)
+    public void addSprites(Pane... sprites)
     {
         GAME_ACTORS.addAll(Arrays.asList(sprites));
     }
 
-    public void removeSprites(Sprite... sprites)
+    public void removeSprites(Pane... sprites)
     {
         GAME_ACTORS.removeAll(Arrays.asList(sprites));
     }
 
-    public Set<Sprite> getSpritesToBeRemoved()
+    public Set<Pane> getSpritesToBeRemoved()
     {
         return CLEAN_UP_SPRITES;
     }
 
-    public void addSpritesToBeRemoved(Sprite... sprites)
+    public void addSpritesToBeRemoved(Pane... sprites)
     {
         if (sprites.length > 1)
         {
-            CLEAN_UP_SPRITES.addAll(Arrays.asList((Sprite[]) sprites));
+            CLEAN_UP_SPRITES.addAll(Arrays.asList((Pane[]) sprites));
         }
         else
         {
@@ -45,7 +45,7 @@ public class SpriteManager
         }
     }
 
-    public List<Sprite> getCollisionsToCheck()
+    public List<Pane> getCollisionsToCheck()
     {
         return CHECK_COLLISION_LIST;
     }
@@ -60,14 +60,6 @@ public class SpriteManager
     {
         GAME_ACTORS.removeAll(CLEAN_UP_SPRITES);
         CLEAN_UP_SPRITES.clear();
-    }
-
-    public void draw(GraphicsContext context, int offsetX, int offsetY)
-    {
-        for(Sprite role : GAME_ACTORS)
-        {
-            role.draw(context, offsetX, offsetY);
-        }
     }
 
 }
