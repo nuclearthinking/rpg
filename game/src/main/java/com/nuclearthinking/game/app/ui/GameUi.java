@@ -13,7 +13,7 @@ public class GameUi extends Pane
 {
     private static Text text = new Text();
 
-    public void drawStyleString(String msg, double x, double y)
+    public void drawStyleString(String msg)
     {
         if(msg == null || msg.length() == 0)
             return;
@@ -22,10 +22,14 @@ public class GameUi extends Pane
         text.setFill(Color.BLACK);
         text.setFont(Font.font("Arial", FontWeight.NORMAL, 15));
         text.setText(msg);
-        text.setX(x);
+
+        getChildren().add(text);
+    }
+
+    public void updateNamePos(double x, double y)
+    {
+        text.setX(text.getText().length() > 6 ? x : x+20);
         text.setY(y);
 
-        //TODO:Сделать метод для апдейта иначе эта хрени будет сыпать ошибками
-        getChildren().add(text);
     }
 }

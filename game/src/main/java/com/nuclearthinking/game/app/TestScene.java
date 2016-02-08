@@ -77,6 +77,9 @@ public class TestScene extends ObjectWorld
         //Добавляем в спрайт менеджер
         //TODO: После переделки с канвасов он как бы не нужен, надо подумать над актуальностью
         getSpriteManager().addSprites(player);
+
+        //Присваиваем имя в рисовалку
+        gameUi.drawStyleString(player.getName());
     }
 
     private void createWorld()
@@ -94,7 +97,7 @@ public class TestScene extends ObjectWorld
         //Чекаем нажатые клавиши каждый фрейм
         player.input(input);
         //Рисуем имя персонажа относительно координат персонажа
-        gameUi.drawStyleString(player.getName(), player.getTranslateX() + 20, player.getTranslateY() + 10);
+        gameUi.updateNamePos(player.getTranslateX(), player.getTranslateY() + 10);
     }
 
     /**
