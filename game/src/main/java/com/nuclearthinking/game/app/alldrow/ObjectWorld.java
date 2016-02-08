@@ -1,5 +1,8 @@
 package com.nuclearthinking.game.app.alldrow;
 
+import com.nuclearthinking.game.app.utils.ManagerAudio;
+import com.nuclearthinking.game.app.utils.ManagerImages;
+import com.nuclearthinking.game.app.utils.ManagerResources;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -22,6 +25,9 @@ public abstract class ObjectWorld
     private Group sceneNode;
 
     private final SpriteManager spriteManager = new SpriteManager();
+    private final ManagerAudio managerAudio = new ManagerAudio();
+    private final ManagerImages managerImages = new ManagerImages();
+    private final ManagerResources managerResources = new ManagerResources();
 
     public ObjectWorld(final  int fps, final String title)
     {
@@ -96,6 +102,21 @@ public abstract class ObjectWorld
     protected SpriteManager getSpriteManager()
     {
         return spriteManager;
+    }
+
+    protected ManagerAudio getManagerAudio()
+    {
+        return managerAudio;
+    }
+
+    protected ManagerImages getManagerImages()
+    {
+        return managerImages;
+    }
+
+    protected ManagerResources getManagerResources()
+    {
+        return managerResources;
     }
 
     public Scene getGameSurface()

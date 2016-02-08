@@ -5,8 +5,6 @@ import com.nuclearthinking.game.app.alldrow.SpriteAnimation;
 import com.nuclearthinking.game.app.controller.CreateCharacterController;
 import com.nuclearthinking.game.app.controller.Input;
 import com.nuclearthinking.game.app.map.MapContainer;
-import com.nuclearthinking.game.app.utils.ManagerAudio;
-import com.nuclearthinking.game.app.utils.ManagerImages;
 import com.nuclearthinking.game.player.Player;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -64,7 +62,7 @@ public class TestScene extends ObjectWorld
         //Рисуем все что есть
         primaryStage.show();
         //Запускаем музыку
-        ManagerAudio.backMusicStart("/audio/bg.mp3");
+        getManagerAudio().backMusicStart("/audio/bg.mp3");
     }
 
     private void createPlayer()
@@ -94,7 +92,8 @@ public class TestScene extends ObjectWorld
     {
         //Чекаем нажатые клавиши каждый фрейм
         player.input(input);
-        ManagerImages.drawStyleString(text, player.getName(), player.getTranslateX() + 20, player.getTranslateY() + 10);
+        //Рисуем имя персонажа относительно координат персонажа
+        getManagerImages().drawStyleString(text, player.getName(), player.getTranslateX() + 20, player.getTranslateY() + 10);
     }
 
     /**
