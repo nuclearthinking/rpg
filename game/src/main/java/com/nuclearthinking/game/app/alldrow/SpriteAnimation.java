@@ -38,11 +38,6 @@ public class SpriteAnimation extends Transition
         this.imageView.setViewport(new Rectangle2D(offsetX, offsetY, width, heidth));
     }
 
-    public boolean collide(SpriteAnimation other)
-    {
-        return false;
-    }
-
     @Override
     protected void interpolate(double frac)
     {

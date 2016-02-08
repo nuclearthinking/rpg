@@ -1,15 +1,17 @@
 package com.nuclearthinking.game.app;
 
-import com.nuclearthinking.game.app.alldrow.Atom;
 import com.nuclearthinking.game.app.alldrow.ObjectWorld;
 import com.nuclearthinking.game.app.alldrow.SpriteAnimation;
-import com.nuclearthinking.game.app.alldrow.SpriteManager;
+import com.nuclearthinking.game.app.controller.CreateCharacterController;
 import com.nuclearthinking.game.app.controller.Input;
 import com.nuclearthinking.game.app.map.MapContainer;
 import com.nuclearthinking.game.app.utils.ManagerAudio;
+import com.nuclearthinking.game.app.utils.ManagerImages;
+import com.nuclearthinking.game.player.Player;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -21,9 +23,10 @@ public class TestScene extends ObjectWorld
 
     public static Pane appRoot = new Pane();
     public static Pane gameRoot = new Pane();
-    public Atom player;
+    private static CreateCharacterController ccc = new CreateCharacterController();
+    public Player player;
+    Text text = new Text();
     public MapContainer mapContainer;
-    public SpriteManager spriteManager = new SpriteManager();
 
     public TestScene(int fps, String title)
     {
@@ -40,6 +43,7 @@ public class TestScene extends ObjectWorld
         //Создаем геодату
         //TODO: Сделать геодату
 
+        gameRoot.getChildren().add(text);
         //Добавляем игрока на игровой слой
         gameRoot.getChildren().add(player);
         //Добавляем игровой слой и карту на главный слой приложения
@@ -66,13 +70,14 @@ public class TestScene extends ObjectWorld
     private void createPlayer()
     {
         //Инициализируем игрока
-        player = new Atom();
+        player = ccc.getPlayer();
         //Указываем его положение на карте
         player.setTranslateX(10);
         player.setTranslateY(10);
         //Добавляем в спрайт менеджер
         //TODO: После переделки с канвасов он как бы не нужен, надо подумать над актуальностью
-        spriteManager.addSprites(player);
+        getSpriteManager().addSprites(player);
+
     }
 
     private void createWorld()
@@ -89,6 +94,7 @@ public class TestScene extends ObjectWorld
     {
         //Чекаем нажатые клавиши каждый фрейм
         player.input(input);
+        ManagerImages.drawStyleString(text, player.getName(), player.getTranslateX() + 20, player.getTranslateY() + 10);
     }
 
     /**

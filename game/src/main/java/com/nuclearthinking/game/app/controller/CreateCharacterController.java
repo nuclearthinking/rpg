@@ -54,4 +54,9 @@ public class CreateCharacterController
         startApp.getPrimaryStage().show();
     }
 
+    public Player getPlayer()
+    {
+        return player;
+    }
+
 }

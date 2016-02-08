@@ -1,11 +1,14 @@
 package com.nuclearthinking.game.obj;
 
+import com.nuclearthinking.game.app.alldrow.SpriteAnimation;
 import com.nuclearthinking.game.characters.interfaces.IName;
+import javafx.scene.layout.Pane;
 
 /**
  * Created by kuksin-mv on 18.01.2016.
  */
-public abstract class AbstractObject implements IName {
+public abstract class AbstractObject extends Pane implements IName
+{
     public String _name;
     public int _hitPoints;
     public double _strength = 10;
@@ -13,7 +16,10 @@ public abstract class AbstractObject implements IName {
     public double _agility = 10;
     public double _stamina = 10;
 
-    public AbstractObject() {
+    public SpriteAnimation spriteAnimation;
+
+    public AbstractObject()
+    {
         initStat();
     }
 

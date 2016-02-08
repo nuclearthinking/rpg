@@ -1,12 +1,12 @@
 package com.nuclearthinking.game.app.utils;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 /**
  * Created by kuksin-mv on 03.02.2016.
@@ -40,19 +40,16 @@ public class ManagerImages
         return new WritableImage(reader, x, y, width, height);
     }
 
-    public static void drawStyleString(GraphicsContext context, String text, int x, int y)
+    public static void drawStyleString(Text text, String msg, double x, double y)
     {
-        if(text == null || text.length() == 0)
+        if(msg == null || msg.length() == 0)
             return;
 
-        context.setFill(Color.BLACK);
-        context.setFont(Font.font("Arial", FontWeight.NORMAL, 14));
-        context.fillText(text, x - 1, y);
-        context.fillText(text, x + 1, y);
-        context.fillText(text, x, y + 1);
-        context.fillText(text, x, y - 1);
-        context.setFill(Color.WHITE);
-        context.fillText(text, x, y);
-        context.restore();
+        text.setStroke(Color.BLACK);
+        text.setFill(Color.BLACK);
+        text.setFont(Font.font("Arial", FontWeight.NORMAL, 15));
+        text.setText(msg);
+        text.setX(x);
+        text.setY(y);
     }
 }
