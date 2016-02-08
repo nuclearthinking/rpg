@@ -20,11 +20,11 @@ public class SpriteAnimation extends Transition
     //Смещение первого кадра
     private int offsetX, offsetY;
     //Размер кадра
-    private final int width, heidth;
+    private final int width, height;
 
     public SpriteAnimation(ImageView imageView, Duration durotation, int count, int columns,
                            int offsetX, int offsetY,
-                           int width, int heidth)
+                           int width, int height)
     {
         this.imageView = imageView;
         this.count = count;
@@ -32,10 +32,10 @@ public class SpriteAnimation extends Transition
         this.offsetX = offsetX;
         this.offsetY = offsetY;
         this.width = width;
-        this.heidth = heidth;
+        this.height = height;
         setCycleDuration(durotation);
         setCycleCount(Animation.INDEFINITE);
-        this.imageView.setViewport(new Rectangle2D(offsetX, offsetY, width, heidth));
+        this.imageView.setViewport(new Rectangle2D(offsetX, offsetY, width, height));
     }
 
     @Override
@@ -43,14 +43,15 @@ public class SpriteAnimation extends Transition
     {
         final int index = Math.min((int) Math.floor(frac * count), count - 1);
         final int x = (index % columns) * width + offsetX;
-        final int y = (index / columns) * heidth + offsetY;
-        imageView.setViewport(new Rectangle2D(x, y, width, heidth));
+        final int y = (index / columns) * height + offsetY;
+        imageView.setViewport(new Rectangle2D(x, y, width, height));
     }
 
     public void setOffsetX(int x)
     {
         this.offsetX = x;
     }
+
     public void setOffsetY(int y)
     {
         this.offsetY = y;

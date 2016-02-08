@@ -1,5 +1,8 @@
 package com.nuclearthinking.game.app.ui;
 
+import com.nuclearthinking.game.app.utils.ManagerResources;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -11,9 +14,25 @@ import javafx.scene.text.Text;
  */
 public class GameUi extends Pane
 {
+    private final Image HOT_BAR = ManagerResources.loadImage("img\\hotbar.png");
+    private final ImageView imageView = new ImageView(HOT_BAR);
+
     private static Text text = new Text();
 
-    public void drawStyleString(String msg)
+    public GameUi()
+    {
+        drawPlayerUi();
+    }
+
+    private void drawPlayerUi()
+    {
+        //TODO: Это должно как то зависеть от камеры
+        imageView.setX(10);
+        imageView.setY(800);
+        getChildren().add(imageView);
+    }
+
+    public void drawPlayerName(String msg)
     {
         if(msg == null || msg.length() == 0)
             return;
@@ -28,8 +47,7 @@ public class GameUi extends Pane
 
     public void updateNamePos(double x, double y)
     {
-        text.setX(text.getText().length() > 6 ? x : x+20);
+        text.setX(text.getText().length() > 6 ? x : x + 20);
         text.setY(y);
-
     }
 }

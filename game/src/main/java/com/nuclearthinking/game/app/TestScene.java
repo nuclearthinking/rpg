@@ -17,16 +17,16 @@ import javafx.stage.Stage;
  */
 public class TestScene extends ObjectWorld
 {
-    private Input input;
-
     private static Pane appRoot = new Pane();
     private static Pane gameRoot = new Pane();
     private static Pane gameUiPane = new Pane();
     private static CreateCharacterController ccc = new CreateCharacterController();
-    public Player player;
 
+    private Input input;
     private GameUi gameUi = new GameUi();
-    public MapContainer mapContainer;
+    private MapContainer mapContainer;
+
+    public Player player;
 
     public TestScene(int fps, String title)
     {
@@ -77,9 +77,8 @@ public class TestScene extends ObjectWorld
         //Добавляем в спрайт менеджер
         //TODO: После переделки с канвасов он как бы не нужен, надо подумать над актуальностью
         getSpriteManager().addSprites(player);
-
         //Присваиваем имя в рисовалку
-        gameUi.drawStyleString(player.getName());
+        gameUi.drawPlayerName(player.getName());
     }
 
     private void createWorld()

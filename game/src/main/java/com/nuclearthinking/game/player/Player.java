@@ -5,7 +5,6 @@ import com.nuclearthinking.game.app.controller.Input;
 import com.nuclearthinking.game.app.utils.ManagerResources;
 import com.nuclearthinking.game.npc.Monster;
 import com.nuclearthinking.game.obj.AbstractObject;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -49,7 +48,6 @@ public class Player extends AbstractObject
     public Player()
     {
         super();
-        imageView.setViewport(new Rectangle2D(OFFSET_X, OFFSET_Y, SPRITE_WIDTH, SPRITE_HEIGHT));
         spriteAnimation = new SpriteAnimation(this.imageView, Duration.millis(500), COUNT, COLUMNS, OFFSET_X, OFFSET_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
         getChildren().add(imageView);
     }

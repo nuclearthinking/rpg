@@ -16,7 +16,7 @@ public abstract class AbstractObject extends Pane implements IName
     public double _agility = 10;
     public double _stamina = 10;
 
-    public SpriteAnimation spriteAnimation;
+    protected SpriteAnimation spriteAnimation;
 
     public AbstractObject()
     {
