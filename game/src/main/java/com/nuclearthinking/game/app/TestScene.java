@@ -6,11 +6,16 @@ import com.nuclearthinking.game.app.controller.CreateCharacterController;
 import com.nuclearthinking.game.app.controller.Input;
 import com.nuclearthinking.game.app.map.MapContainer;
 import com.nuclearthinking.game.app.ui.GameUi;
+import com.nuclearthinking.game.app.ui.MenuLayer;
+import com.nuclearthinking.game.app.ui.SystemLayer;
 import com.nuclearthinking.game.player.Player;
+import javafx.animation.FadeTransition;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * Created by kuksin-mv on 04.02.2016.
@@ -23,10 +28,20 @@ public class TestScene extends ObjectWorld
     private static CreateCharacterController ccc = new CreateCharacterController();
 
     private Input input;
-    private GameUi gameUi = new GameUi();
-    private MapContainer mapContainer;
 
+    /**
+     * Слои указаны в порядке от самого нижнего к самому верхнему
+     */
+    //Слой карты
+    private MapContainer mapContainer;
+    //Слой с персонажем
     public Player player;
+    //Слой с интерфейсом персонажа
+    private GameUi gameUi = new GameUi();
+    //Слой с системными сообщениями(имена, уровни, нанесенный\полученный урон)
+    private SystemLayer systemLayer = new SystemLayer();
+    //Слой меню
+    private static MenuLayer menuLayer = new MenuLayer();
 
     public TestScene(int fps, String title)
     {
@@ -45,9 +60,9 @@ public class TestScene extends ObjectWorld
 
         gameUiPane.getChildren().add(gameUi);
         //Добавляем игрока на игровой слой
-        gameRoot.getChildren().addAll(player);
+        gameRoot.getChildren().addAll(player, systemLayer);
         //Добавляем игровой слой и карту на главный слой приложения
-        appRoot.getChildren().addAll(mapContainer, gameRoot, gameUiPane);
+        appRoot.getChildren().addAll(mapContainer, gameRoot, gameUiPane, menuLayer);
 
         //Задаем тайтл
         primaryStage.setTitle(getWindowsTitle());
@@ -65,6 +80,35 @@ public class TestScene extends ObjectWorld
         primaryStage.show();
         //Запускаем музыку
         getManagerAudio().backMusicStart("/audio/bg.mp3");
+
+        getGameSurface().setOnKeyPressed(event ->
+        {
+            if (event.getCode() == KeyCode.ESCAPE)
+            {
+                FadeTransition ft = new FadeTransition(Duration.seconds(1), menuLayer.menuBox);
+                if (!menuLayer.menuBox.isVisible())
+                {
+                    ft.setFromValue(0);
+                    ft.setToValue(1);
+                    ft.play();
+                    menuLayer.menuBox.setVisible(true);
+                    getGameLoop().pause();
+                    player.spriteAnimation.pause();
+                    getManagerAudio().backMusicPause();
+                }
+                else
+                {
+                    ft.setFromValue(1);
+                    ft.setToValue(0);
+                    ft.setOnFinished(evt -> menuLayer.menuBox.setVisible(false));
+                    ft.play();
+                    getGameLoop().play();
+                    player.spriteAnimation.play();
+                    getManagerAudio().backMusicPlay();
+                }
+            }
+        });
+
     }
 
     private void createPlayer()
@@ -78,7 +122,7 @@ public class TestScene extends ObjectWorld
         //TODO: После переделки с канвасов он как бы не нужен, надо подумать над актуальностью
         getSpriteManager().addSprites(player);
         //Присваиваем имя в рисовалку
-        gameUi.drawPlayerName(player.getName());
+        systemLayer.drawPlayerName(player.getName());
     }
 
     private void createWorld()
@@ -96,7 +140,7 @@ public class TestScene extends ObjectWorld
         //Чекаем нажатые клавиши каждый фрейм
         player.input(input);
         //Рисуем имя персонажа относительно координат персонажа
-        gameUi.updateNamePos(player.getTranslateX(), player.getTranslateY() + 10);
+        systemLayer.updateNamePos(player.getTranslateX(), player.getTranslateY() + 10);
     }
 
     /**

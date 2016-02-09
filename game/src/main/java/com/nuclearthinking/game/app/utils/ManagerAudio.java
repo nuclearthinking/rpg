@@ -19,6 +19,16 @@ public class ManagerAudio
         mp.play(); //Играем
     }
 
+    public static void backMusicPlay()
+    {
+        mp.play();
+    }
+
+    public static void backMusicPause()
+    {
+        mp.pause();
+    }
+
     public static void backMusicStop()
     {
         mp.stop(); //Останавливаем воспроизведение
